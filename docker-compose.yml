@@ -1,0 +1,107 @@
+services:
+  web:
+    build: ./docker/app
+    container_name: web
+    ports:
+      - "5000:5000"
+    depends_on:
+      - kafka
+      - jupyterlab
+      - spark-master
+      - spark-worker-1
+      - spark-worker-2
+
+  kafka:
+    image: docker.io/bitnami/kafka:3.5.1
+    container_name: kafka
+    ports:
+      - "9092:9092"
+      - "29092:29092"
+    environment:
+      - BITNAMI_DEBUG=yes
+      - KAFKA_ENABLE_KRAFT=true
+      - KAFKA_CFG_NODE_ID=1
+      - KAFKA_CFG_PROCESS_ROLES=broker,controller
+      - KAFKA_CFG_CONTROLLER_QUORUM_VOTERS=1@kafka:29092
+      - KAFKA_CFG_LISTENERS=PLAINTEXT://kafka:9092,CONTROLLER://kafka:29092
+      - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://kafka:9092
+      - KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP=PLAINTEXT:PLAINTEXT,CONTROLLER:PLAINTEXT
+      - KAFKA_CFG_CONTROLLER_LISTENER_NAMES=CONTROLLER
+      - KAFKA_CFG_INTER_BROKER_LISTENER_NAME=PLAINTEXT
+      - ALLOW_PLAINTEXT_LISTENER=yes
+
+  jupyterlab:
+    build:
+      context: ./docker/jupyterlab
+      args:
+        BASE_IMAGE: jupyter/base-notebook:latest
+        spark_version: 3.4.1
+        jupyterlab_version: 3.0.16
+        sparksql_magic_version: 0.0.3
+        kafka_python_version: 2.0.2
+    container_name: jupyterlab
+    environment:
+      - JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
+    ports:
+      - 8888:8888
+      - 4040:4040
+    volumes:
+      - shared-workspace:/opt/workspace
+      - ./docker/jupyterlab/notebooks:/home/jovyan/work
+
+  spark-master:
+    build:
+      context: ./docker/spark-master
+      args:
+        SPARK_BASE_IMAGE: bitnami/spark:3.4.1
+    container_name: spark-master
+    ports:
+      - 8080:8080
+      - 7077:7077
+    volumes:
+      - shared-workspace:/opt/workspace
+
+  spark-worker-1:
+    build:
+      context: ./docker/spark-worker
+      args:
+        SPARK_BASE_IMAGE: bitnami/spark:3.4.1
+    container_name: spark-worker-1
+    environment:
+      - SPARK_MODE=worker
+      - SPARK_MASTER=spark://spark-master:7077
+      - SPARK_WORKER_CORES=1
+      - SPARK_WORKER_MEMORY=512m
+    ports:
+      - 8081:8081
+    volumes:
+      - shared-workspace:/opt/workspace
+    depends_on:
+      - spark-master
+      
+  spark-worker-2:
+    build:
+      context: ./docker/spark-worker
+      args:
+        SPARK_BASE_IMAGE: bitnami/spark:3.4.1
+    container_name: spark-worker-2
+    environment:
+      - SPARK_MODE=worker
+      - SPARK_MASTER=spark://spark-master:7077
+      - SPARK_WORKER_CORES=1
+      - SPARK_WORKER_MEMORY=512m
+    ports:
+      - 8082:8081
+    volumes:
+      - shared-workspace:/opt/workspace
+    depends_on:
+      - spark-master
+
+volumes:
+  shared-workspace:
+    name: "distributed-file-system"
+    driver: local
+    driver_opts:
+      o: bind
+      type: none
+      device: ./
