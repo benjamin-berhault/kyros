@@ -12,8 +12,8 @@ services:
       - spark-worker-2
 
   kafka:
-    image: docker.io/bitnami/kafka:3.5.1
     container_name: kafka
+    image: docker.io/bitnami/kafka:3.5.1
     ports:
       - "9092:9092"
       - "29092:29092"
@@ -31,30 +31,31 @@ services:
       - ALLOW_PLAINTEXT_LISTENER=yes
 
   jupyterlab:
+    container_name: jupyterlab
     build:
       context: ./docker/jupyterlab
       args:
         BASE_IMAGE: jupyter/base-notebook:latest
         spark_version: 3.4.1
-        jupyterlab_version: 3.0.16
+        jupyterlab_version: 4.2.4
         sparksql_magic_version: 0.0.3
         kafka_python_version: 2.0.2
-    container_name: jupyterlab
     environment:
       - JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
     ports:
       - 8888:8888
       - 4040:4040
     volumes:
-      - shared-workspace:/opt/workspace
-      - ./docker/jupyterlab/notebooks:/home/jovyan/work
+      - shared-workspace:/home/jovyan/work
+      - delta-tables:/home/jovyan/delta-tables
+    user: "1000:1000"  # Use jovyan's user ID
 
   spark-master:
+    container_name: spark-master
     build:
       context: ./docker/spark-master
       args:
         SPARK_BASE_IMAGE: bitnami/spark:3.4.1
-    container_name: spark-master
     ports:
       - 8080:8080
       - 7077:7077
@@ -64,14 +65,15 @@ services:
       - SPARK_MASTER_WEBUI_PORT=8080
       - SPARK_UI_PORT=4040  # Explicitly set UI port for Spark Master
     volumes:
-      - shared-workspace:/opt/workspace
+      - shared-workspace:/home/jovyan/work
+      - delta-tables:/home/jovyan/delta-tables
 
   spark-worker-1:
+    container_name: spark-worker-1
     build:
       context: ./docker/spark-worker
       args:
         SPARK_BASE_IMAGE: bitnami/spark:3.4.1
-    container_name: spark-worker-1
     environment:
       - SPARK_MODE=worker
       - SPARK_MASTER_HOST=spark-master
@@ -82,16 +84,17 @@ services:
     ports:
       - 8081:8081
     volumes:
-      - shared-workspace:/opt/workspace
+      - shared-workspace:/home/jovyan/work
+      - delta-tables:/home/jovyan/delta-tables
     depends_on:
       - spark-master
-      
+
   spark-worker-2:
+    container_name: spark-worker-2
     build:
       context: ./docker/spark-worker
       args:
         SPARK_BASE_IMAGE: bitnami/spark:3.4.1
-    container_name: spark-worker-2
     environment:
       - SPARK_MODE=worker
       - SPARK_MASTER_HOST=spark-master
@@ -102,9 +105,24 @@ services:
     ports:
       - 8082:8081
     volumes:
-      - shared-workspace:/opt/workspace
+      - shared-workspace:/home/jovyan/work
+      - delta-tables:/home/jovyan/delta-tables
     depends_on:
       - spark-master
+  # minio:
+  #   image: minio/minio:latest
+  #   container_name: minio
+  #   ports:
+  #     # S3 API endpoint
+  #     - "9000:9000"
+  #     # Web console endpoint
+  #     - "9001:9001"  
+  #   environment:
+  #     MINIO_ROOT_USER: minio
+  #     MINIO_ROOT_PASSWORD: minio123
+  #   command: server /data --console-address ":9001"
+  #   volumes:
+  #     - minio-data:/data
 
 volumes:
   shared-workspace:
@@ -112,5 +130,14 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      # Use an absolute path or ${PWD} for the current directory
-      device: ./shared-workspace
+      device: ${PWD}/shared-workspace
+
+  delta-tables:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ${PWD}/delta-tables
+
+  # minio-data:
+  #   driver: local

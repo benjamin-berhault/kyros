@@ -9,7 +9,8 @@ LABEL org.label-schema.build-date=${build_date}
 LABEL org.label-schema.description="Spark master image"
 LABEL org.label-schema.schema-version="1.0"
 
-# -- Runtime
+# In docker/spark-master/Dockerfile
+RUN pip install delta-spark
 
 EXPOSE 8080 7077
 

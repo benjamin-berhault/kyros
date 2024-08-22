@@ -40,6 +40,12 @@ RUN chown -R "${NBuser}":"${GROUP}" /home/"${NBuser}"/ \
     && chown -R "${NBuser}":"${GROUP}" "${SPARK_HOME}"\
     && chown -R "${NBuser}":"${GROUP}" "${SHARED_WORKSPACE}"
 
+# Ensure shared-workspace has the correct ownership and permissions
+RUN mkdir -p /home/jovyan/work && \
+    chown -R 1000:1000 /home/jovyan/work && \
+    chmod -R 775 /home/jovyan/work
+
+        
 USER ${NBuser}
 
 

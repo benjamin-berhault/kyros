@@ -21,7 +21,7 @@ USER ${NB_USER}
 
 # Define build arguments with default values
 ARG spark_version=3.4.1
-ARG jupyterlab_version=3.0.16
+ARG jupyterlab_version=4.2.4
 ARG sparksql_magic_version=0.0.3
 ARG kafka_python_version=2.0.2
 
@@ -29,10 +29,26 @@ RUN pip3 install --no-cache-dir wget==3.2 \
     pyspark==${spark_version} \
     jupyterlab==${jupyterlab_version} \
     sparksql-magic==${sparksql_magic_version} \
-    kafka-python==${kafka_python_version}
+    kafka-python==${kafka_python_version} \
+    delta-spark
+
+RUN wget -qO- https://repo1.maven.org/maven2/io/delta/delta-core_2.12/2.4.0/delta-core_2.12-2.4.0.jar -P $SPARK_HOME/jars/
 
 ENV JAVA_HOME /usr/lib/jvm/java-11-openjdk-amd64
 ENV PATH $JAVA_HOME/bin:$PATH
+
+USER root
+# Ensure shared-workspace has the correct ownership and permissions
+RUN mkdir -p /home/jovyan/work && \
+    chown -R 1000:1000 /home/jovyan/work && \
+    chmod -R 775 /home/jovyan/work
+
+RUN mkdir -p /home/jovyan/work/notebooks/data/delta_lake && \
+    chown -R 1000:1000 /home/jovyan/work/notebooks/data/delta_lake && \
+    chmod -R 775 /home/jovyan/work/notebooks/data/delta_lake
+
+# Switch back to the original user
+USER jovyan
 
 EXPOSE 8888
 

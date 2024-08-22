@@ -9,6 +9,9 @@ LABEL org.label-schema.build-date=${build_date}
 LABEL org.label-schema.description="Spark worker image"
 LABEL org.label-schema.schema-version="1.0"
 
+# In docker/spark-worker/Dockerfile
+RUN pip install delta-spark
+
 # -- Expose Ports for Spark Worker
 EXPOSE 8081
 

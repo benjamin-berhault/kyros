@@ -3,6 +3,7 @@
 ```bash
 docker stop $(docker ps -aq)
 docker rm $(docker ps -aq)
+docker volume prune -f
 docker compose -f docker-compose.yml up --remove-orphans --build -d
 ```
 
