@@ -13,4 +13,5 @@ LABEL org.label-schema.schema-version="1.0"
 
 EXPOSE 8080 7077
 
-CMD bin/spark-class org.apache.spark.deploy.master.Master >> logs/spark-master.out
+# -- Command to Start the Spark Master
+CMD ["bin/spark-class", "org.apache.spark.deploy.master.Master"]

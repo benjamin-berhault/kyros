@@ -1,5 +1,11 @@
 # Data Engineering with Databricks Cookbook
 
+```bash
+docker stop $(docker ps -aq)
+docker rm $(docker ps -aq)
+docker compose -f docker-compose.yml up --remove-orphans --build -d
+```
+
 <a href="https://www.packtpub.com/product/data-engineering-with-databricks-cookbook/9781837633357"><img src="https://content.packt.com/_/image/original/B19798/cover_image_large.jpg" alt="no-image" height="256px" align="right"></a>
 
 This is the code repository for [Data Engineering with Databricks Cookbook](https://www.packtpub.com/product/data-engineering-with-databricks-cookbook/9781837633357), published by Packt.
