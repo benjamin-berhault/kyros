@@ -4,7 +4,13 @@
 docker stop $(docker ps -aq)
 docker rm $(docker ps -aq)
 docker volume prune -f
+docker network prune -f
 docker compose -f docker-compose.yml up --remove-orphans --build -d
+# or
+# Build Images Without Cache
+docker compose -f docker-compose.yml build --no-cache
+# Bring Up Containers
+docker compose -f docker-compose.yml up --remove-orphans -d
 ```
 
 <a href="https://www.packtpub.com/product/data-engineering-with-databricks-cookbook/9781837633357"><img src="https://content.packt.com/_/image/original/B19798/cover_image_large.jpg" alt="no-image" height="256px" align="right"></a>

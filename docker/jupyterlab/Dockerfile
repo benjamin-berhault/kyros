@@ -12,7 +12,7 @@ LABEL org.label-schema.description="JupyterLab image"
 # Switch to root to install Java
 USER root
 
-RUN apt-get update && apt-get install -y openjdk-11-jdk
+RUN apt-get update && apt-get install -y openjdk-11-jdk netcat
 
 # Switch back to the original user (jovyan for Jupyter base images)
 USER ${NB_USER}
@@ -53,4 +53,4 @@ USER jovyan
 EXPOSE 8888
 
 WORKDIR ${SHARED_WORKSPACE}
-CMD jupyter lab --ip=0.0.0.0 --port=8888 --no-browser --allow-root --NotebookApp.token=;python
+CMD ["/bin/bash", "-c", "while ! nc -z spark-master 7077; do echo 'Waiting for Spark master...'; sleep 2; done; jupyter lab --ip=0.0.0.0 --port=8888 --no-browser --allow-root --NotebookApp.token=;"]
