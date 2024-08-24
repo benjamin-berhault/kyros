@@ -1,4 +1,4 @@
-ARG SPARK_BASE_IMAGE
+ARG SPARK_BASE_IMAGE=bitnami/spark:3.4.1
 FROM ${SPARK_BASE_IMAGE}
 
 # -- Layer: Image Metadata

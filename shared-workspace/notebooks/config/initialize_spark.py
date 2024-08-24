@@ -2,7 +2,8 @@ from pyspark.sql import SparkSession
 import os
 
 # Define constants
-DATA_FOLDER = "../../data"  # Constant for the repository path
+DATA_FOLDER = "/home/jovyan/work/data"  # Constant for the repository path
+DELTA_LAKE_PATH = "/home/jovyan/delta_lake"
 
 try:
     from delta import configure_spark_with_delta_pip, DeltaTable
@@ -21,7 +22,8 @@ def initialize_spark(use_delta=False):
                .appName("read-delta-table")
                .config("spark.ui.port", "4040")
                .master("spark://spark-master:7077")
-               .config("spark.executor.memory", "512m"))
+               #.config("spark.executor.memory", "512m")
+              )
     
     if use_delta and DELTA_AVAILABLE:
         # Add Delta Lake specific configurations if Delta is available and requested
@@ -30,15 +32,24 @@ def initialize_spark(use_delta=False):
         
         # Initialize Spark session with Delta support
         spark = configure_spark_with_delta_pip(builder).getOrCreate()
-        delta_table_path = f"{DATA_FOLDER}/delta_lake/netflix_titles"
+        # Set the logging level to "ERROR" to minimize log output
+        spark.sparkContext.setLogLevel("ERROR")
+        spark.sparkContext.setLogLevel("INFO")
         print("Delta Lake support is enabled.")
-        return spark, delta_table_path
+        return spark, DELTA_LAKE_PATH
     else:
         # Initialize Spark session without Delta support
         spark = builder.getOrCreate()
+        # Set the logging level to "ERROR" to minimize log output
         spark.sparkContext.setLogLevel("ERROR")
+        spark.sparkContext.setLogLevel("INFO")
         print("Delta Lake support is not enabled.")
         return spark
+
+    # Set the logging level to "ERROR" to minimize log output
+    spark.sparkContext.setLogLevel("ERROR")
+    spark.sparkContext.setLogLevel("INFO")
+
 
 # Example usage
 # spark, delta_table_path = initialize_spark(use_delta=True)  # Set use_delta=False to run without Delta Lake

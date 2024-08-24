@@ -10,9 +10,7 @@ services:
       - kafka
       - jupyterlab
       - spark-master
-      - spark-worker-1
-      - spark-worker-2
-
+{{SPARK_WORKER_DEPENDENCIES}}
       - hue
     networks:
       - my-network
@@ -80,59 +78,7 @@ services:
     networks:
       - my-network
 
-  spark-worker-1:
-    container_name: spark-worker-1
-    build:
-      context: ./docker/spark-worker
-      args:
-        SPARK_BASE_IMAGE: bitnami/spark:3.4.1
-    ports:
-      - 8081:8081  # Spark Worker 1 Web UI
-      - 4041:4041  # Spark Worker 1 UI Port
-    environment:
-      - SPARK_MODE=worker
-      - SPARK_MASTER_HOST=spark-master
-      - SPARK_MASTER_PORT=7077
-      - SPARK_WORKER_CORES=2
-      - SPARK_WORKER_MEMORY=1G
-      - SPARK_EXECUTOR_MEMORY=1G
-      - SPARK_EXECUTOR_CORES=2
-      - SPARK_UI_PORT=4041
-    volumes:
-      - shared-workspace:/home/jovyan/work
-      - delta_lake:/home/jovyan/delta_lake
-    depends_on:
-      - spark-master
-    networks:
-      - my-network
-
-  spark-worker-2:
-    container_name: spark-worker-2
-    build:
-      context: ./docker/spark-worker
-      args:
-        SPARK_BASE_IMAGE: bitnami/spark:3.4.1
-    ports:
-      - 8082:8082  # Spark Worker 2 Web UI
-      - 4042:4042  # Spark Worker 2 UI Port
-    environment:
-      - SPARK_MODE=worker
-      - SPARK_MASTER_HOST=spark-master
-      - SPARK_MASTER_PORT=7077
-      - SPARK_WORKER_CORES=2
-      - SPARK_WORKER_MEMORY=1G
-      - SPARK_EXECUTOR_MEMORY=1G
-      - SPARK_EXECUTOR_CORES=2
-      - SPARK_UI_PORT=4042
-    volumes:
-      - shared-workspace:/home/jovyan/work
-      - delta_lake:/home/jovyan/delta_lake
-    depends_on:
-      - spark-master
-    networks:
-      - my-network
-
-
+{{SPARK_WORKER_SERVICES}}
 
   # hive-metastore:
   #   container_name: hive-metastore

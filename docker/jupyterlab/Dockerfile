@@ -40,12 +40,14 @@ ENV PATH $JAVA_HOME/bin:$PATH
 USER root
 # Ensure shared-workspace has the correct ownership and permissions
 RUN mkdir -p /home/jovyan/work && \
-    chown -R 1000:1000 /home/jovyan/work && \
+    chown -R jovyan:users /home/jovyan/work && \
     chmod -R 775 /home/jovyan/work
 
-RUN mkdir -p /home/jovyan/work/notebooks/data/delta_lake && \
-    chown -R 1000:1000 /home/jovyan/work/notebooks/data/delta_lake && \
-    chmod -R 775 /home/jovyan/work/notebooks/data/delta_lake
+RUN mkdir -p /home/jovyan/delta_lake && \
+    chown -R jovyan:users /home/jovyan/delta_lake && \
+    chmod -R 775 /home/jovyan/delta_lake
+
+RUN chmod -R 777 /home/jovyan/delta_lake
 
 # Switch back to the original user
 USER jovyan

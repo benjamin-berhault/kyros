@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   web:
     build: ./docker/app
@@ -12,8 +10,6 @@ services:
       - spark-master
       - spark-worker-1
       - spark-worker-2
-
-      - hue
     networks:
       - my-network
 
@@ -53,7 +49,7 @@ services:
       - 4045:4040  # Spark UI inside JupyterLab container (changed from 4040 to 4045 on host)
     volumes:
       - shared-workspace:/home/jovyan/work
-      - delta_lake:/home/jovyan/delta_lake
+      - delta-tables:/home/jovyan/delta-tables
     depends_on:
       - spark-master
     networks:
@@ -76,7 +72,7 @@ services:
       - SPARK_UI_PORT=4040  # Explicitly set UI port for Spark Master
     volumes:
       - shared-workspace:/home/jovyan/work
-      - delta_lake:/home/jovyan/delta_lake
+      - delta-tables:/home/jovyan/delta-tables
     networks:
       - my-network
 
@@ -93,14 +89,14 @@ services:
       - SPARK_MODE=worker
       - SPARK_MASTER_HOST=spark-master
       - SPARK_MASTER_PORT=7077
-      - SPARK_WORKER_CORES=2
-      - SPARK_WORKER_MEMORY=1G
-      - SPARK_EXECUTOR_MEMORY=1G
-      - SPARK_EXECUTOR_CORES=2
-      - SPARK_UI_PORT=4041
+      - SPARK_WORKER_CORES=${SPARK_WORKER_CORES}       # Reference for worker cores
+      - SPARK_WORKER_MEMORY=${SPARK_WORKER_MEMORY}     # Reference for worker memory
+      - SPARK_EXECUTOR_MEMORY=${SPARK_EXECUTOR_MEMORY} # Reference for executor memory
+      - SPARK_EXECUTOR_CORES=${SPARK_EXECUTOR_CORES}   # Reference for executor cores
+      - SPARK_UI_PORT=4041  # Set UI port for Spark Worker 1
     volumes:
       - shared-workspace:/home/jovyan/work
-      - delta_lake:/home/jovyan/delta_lake
+      - delta-tables:/home/jovyan/delta-tables
     depends_on:
       - spark-master
     networks:
@@ -119,124 +115,32 @@ services:
       - SPARK_MODE=worker
       - SPARK_MASTER_HOST=spark-master
       - SPARK_MASTER_PORT=7077
-      - SPARK_WORKER_CORES=2
-      - SPARK_WORKER_MEMORY=1G
-      - SPARK_EXECUTOR_MEMORY=1G
-      - SPARK_EXECUTOR_CORES=2
-      - SPARK_UI_PORT=4042
+      - SPARK_WORKER_CORES=${SPARK_WORKER_CORES}       # Reference for worker cores
+      - SPARK_WORKER_MEMORY=${SPARK_WORKER_MEMORY}     # Reference for worker memory
+      - SPARK_EXECUTOR_MEMORY=${SPARK_EXECUTOR_MEMORY} # Reference for executor memory
+      - SPARK_EXECUTOR_CORES=${SPARK_EXECUTOR_CORES}   # Reference for executor cores
+      - SPARK_UI_PORT=4042  # Set UI port for Spark Worker 2
     volumes:
       - shared-workspace:/home/jovyan/work
-      - delta_lake:/home/jovyan/delta_lake
+      - delta-tables:/home/jovyan/delta-tables
     depends_on:
       - spark-master
     networks:
       - my-network
-
-
-
-  # hive-metastore:
-  #   container_name: hive-metastore
-  #   build:
-  #     context: ./docker/hive-metastore
-  #   environment:
-  #     - HIVE_CONF_DIR=/opt/hive/conf
-  #     - "HIVE_METASTORE_URI=thrift://hive-metastore:9083"
-  #     - "HIVE_METASTORE_DB_TYPE=postgres"
-  #     - "HIVE_METASTORE_DB_HOST=postgres"
-  #     - "HIVE_METASTORE_DB_PORT=5432"
-  #     - "HIVE_METASTORE_DB_NAME=metastore"
-  #     - "HIVE_METASTORE_DB_USER=metastore_user"
-  #     - "HIVE_METASTORE_DB_PASSWORD=metastore_password"
+  # minio:
+  #   image: minio/minio:latest
+  #   container_name: minio
   #   ports:
-  #     - "9083:9083"
-  #   depends_on:
-  #     - postgres
-  #   networks:
-  #     - my-network
-  #   healthcheck:
-  #     test: ["CMD-SHELL", "curl -f http://localhost:9083 || exit 1"]
-  #     interval: 30s
-  #     timeout: 10s
-  #     retries: 5
-  hive-server2:
-    image: apache/hive:4.0.0
-    container_name: hive-server2
-    environment:
-      - HIVE_CONF_DIR=/opt/hive/conf
-    ports:
-      - "10001:10000"
-    depends_on:
-      - hive-metastore
-      - postgres
-    networks:
-      - my-network
-    command: /opt/hive/bin/hive --service hiveserver2
-    
-  hive-metastore:
-    image: apache/hive:4.0.0
-    container_name: hive-metastore
-    environment:
-      - SERVICE_NAME=metastore
-      - HIVE_METASTORE_USER=metastore_user
-      - HIVE_METASTORE_PASSWORD=metastore_password
-      - HIVE_METASTORE_DB_TYPE=postgres
-      - HIVE_METASTORE_DB_HOST=postgres
-      - HIVE_METASTORE_DB_PORT=5432
-      - HIVE_METASTORE_DB_NAME=metastore
-      - HIVE_METASTORE_DB_USER=metastore_user
-      - HIVE_METASTORE_DB_PASSWORD=metastore_password
-    ports:
-      - "9083:9083"
-    depends_on:
-      - postgres
-    networks:
-      - my-network
-
-  postgres:
-    image: postgres:latest
-    container_name: postgres
-    environment:
-      - POSTGRES_DB=metastore
-      - POSTGRES_USER=metastore_user
-      - POSTGRES_PASSWORD=metastore_password
-    ports:
-      - "5432:5432"
-    networks:
-      - my-network
-
-  spark-thrift-server:
-    image: bitnami/spark:3.4.1
-    container_name: spark-thrift-server
-    entrypoint:
-      - "/bin/bash"
-      - "-c"
-      - |
-        /opt/spark/sbin/start-thriftserver.sh --master spark://${SPARK_MASTER_HOST}:${SPARK_MASTER_PORT} --hiveconf hive.server2.thrift.bind.host=0.0.0.0 --hiveconf hive.server2.thrift.port=10000
-    depends_on:
-      - spark-master
-      - hive-metastore
-    ports:
-      - "10000:10000"
-    networks:
-      - my-network
-
-  hue:
-    container_name: hue
-    image: gethue/hue:latest
-    ports:
-      - "8889:8888"  # Hue web interface
-    environment:
-      - HUE_DATABASE_ENGINE=sqlite3
-      - HUE_DATABASE_NAME=hue
-      - HUE_DATABASE_USER=hue
-      - HUE_DATABASE_PASSWORD=hue_password
-    volumes:
-      - shared-workspace:/home/jovyan/work
-    depends_on:
-      - spark-master
-      - hive-metastore
-    networks:
-      - my-network
+  #     # S3 API endpoint
+  #     - "9000:9000"
+  #     # Web console endpoint
+  #     - "9001:9001"  
+  #   environment:
+  #     MINIO_ROOT_USER: minio
+  #     MINIO_ROOT_PASSWORD: minio123
+  #   command: server /data --console-address ":9001"
+  #   volumes:
+  #     - minio-data:/data
 
 volumes:
   shared-workspace:
@@ -246,12 +150,15 @@ volumes:
       o: bind
       device: ${PWD}/shared-workspace
 
-  delta_lake:
+  delta-tables:
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: ${PWD}/delta_lake
+      device: ${PWD}/delta-tables
+
+  # minio-data:
+  #   driver: local
 
 networks:
   my-network:
