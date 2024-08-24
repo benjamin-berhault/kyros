@@ -2,8 +2,10 @@
 # Created by https://www.toptal.com/developers/gitignore/api/spark,jupyternotebooks,pycharm,pycharm+iml,pycharm+all
 # Edit at https://www.toptal.com/developers/gitignore?templates=spark,jupyternotebooks,pycharm,pycharm+iml,pycharm+all
 
-data/
+/data/
+delta_lake/
 delta-tables/
+shared-workspace/data/partitioned_recipes/
 
 ### JupyterNotebooks ###
 # gitignore template for Jupyter Notebooks
