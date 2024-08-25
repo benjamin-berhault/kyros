@@ -7,37 +7,12 @@ services:
     depends_on:
       - jupyterlab
       - spark-master
-      - spark-worker-1
-      - spark-worker-2
-
+{{SPARK_WORKER_DEPENDENCIES}}
       - hue
     networks:
       - my-network
 
-  jupyterlab:
-    container_name: jupyterlab
-    build:
-      context: ./docker/jupyterlab
-      args:
-        BASE_IMAGE: jupyter/base-notebook:latest
-        spark_version: 3.4.1
-        jupyterlab_version: 4.2.4
-        sparksql_magic_version: 0.0.3
-        kafka_python_version: 2.0.2
-    environment:
-      - JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
-    ports:
-      - 8888:8888
-      - 4045:4040
-    volumes:
-      - shared-workspace:/home/jovyan/work
-      - delta_lake:/home/jovyan/delta_lake
-    depends_on:
-      - spark-master
-    networks:
-      - my-network
-
-
+{{ADDITIONAL_SERVICES}}
 
   spark-master:
     container_name: spark-master
@@ -60,59 +35,7 @@ services:
     networks:
       - my-network
 
-  spark-worker-1:
-    container_name: spark-worker-1
-    build:
-      context: ./docker/spark-worker
-      args:
-        SPARK_BASE_IMAGE: bitnami/spark:3.4.1
-    ports:
-      - 8081:8081  # Spark Worker 1 Web UI
-      - 4041:4041  # Spark Worker 1 UI Port
-    environment:
-      - SPARK_MODE=worker
-      - SPARK_MASTER_HOST=spark-master
-      - SPARK_MASTER_PORT=7077
-      - SPARK_WORKER_CORES=2
-      - SPARK_WORKER_MEMORY=1G
-      - SPARK_EXECUTOR_MEMORY=1G
-      - SPARK_EXECUTOR_CORES=1
-      - SPARK_UI_PORT=4041
-    volumes:
-      - shared-workspace:/home/jovyan/work
-      - delta_lake:/home/jovyan/delta_lake
-    depends_on:
-      - spark-master
-    networks:
-      - my-network
-
-  spark-worker-2:
-    container_name: spark-worker-2
-    build:
-      context: ./docker/spark-worker
-      args:
-        SPARK_BASE_IMAGE: bitnami/spark:3.4.1
-    ports:
-      - 8082:8082  # Spark Worker 2 Web UI
-      - 4042:4042  # Spark Worker 2 UI Port
-    environment:
-      - SPARK_MODE=worker
-      - SPARK_MASTER_HOST=spark-master
-      - SPARK_MASTER_PORT=7077
-      - SPARK_WORKER_CORES=2
-      - SPARK_WORKER_MEMORY=1G
-      - SPARK_EXECUTOR_MEMORY=1G
-      - SPARK_EXECUTOR_CORES=1
-      - SPARK_UI_PORT=4042
-    volumes:
-      - shared-workspace:/home/jovyan/work
-      - delta_lake:/home/jovyan/delta_lake
-    depends_on:
-      - spark-master
-    networks:
-      - my-network
-
-
+{{SPARK_WORKER_SERVICES}}
 
   # hive-metastore:
   #   container_name: hive-metastore
@@ -138,6 +61,21 @@ services:
   #     interval: 30s
   #     timeout: 10s
   #     retries: 5
+
+  minio:
+    image: minio/minio:latest
+    container_name: minio
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    environment:
+      - MINIO_ROOT_USER=admin
+      - MINIO_ROOT_PASSWORD=password123
+    command: server /data --console-address ":9001"
+    volumes:
+      - ./minio-data:/data
+    networks:
+      - spark
 
   hive-server2:
     image: apache/hive:4.0.0

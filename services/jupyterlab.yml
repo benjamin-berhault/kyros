@@ -1,0 +1,22 @@
+  jupyterlab:
+    container_name: jupyterlab
+    build:
+      context: ./docker/jupyterlab
+      args:
+        BASE_IMAGE: jupyter/base-notebook:latest
+        spark_version: 3.4.1
+        jupyterlab_version: 4.2.4
+        sparksql_magic_version: 0.0.3
+        kafka_python_version: 2.0.2
+    environment:
+      - JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
+    ports:
+      - 8888:8888
+      - 4045:4040
+    volumes:
+      - shared-workspace:/home/jovyan/work
+      - delta_lake:/home/jovyan/delta_lake
+    depends_on:
+      - spark-master
+    networks:
+      - my-network

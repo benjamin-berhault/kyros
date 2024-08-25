@@ -5,7 +5,6 @@ services:
     ports:
       - "5000:5000"
     depends_on:
-      - kafka
       - jupyterlab
       - spark-master
 {{SPARK_WORKER_DEPENDENCIES}}
@@ -62,6 +61,7 @@ services:
   #     interval: 30s
   #     timeout: 10s
   #     retries: 5
+
   hive-server2:
     image: apache/hive:4.0.0
     container_name: hive-server2

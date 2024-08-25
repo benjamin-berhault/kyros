@@ -1,0 +1,14 @@
+  zeppelin:
+    image: apache/zeppelin:0.10.0
+    container_name: zeppelin
+    ports:
+      - 9001:8080
+    environment:
+      - ZEPPELIN_NOTEBOOK_DIR=/notebook
+      - SPARK_HOME=/spark
+    volumes:
+      - zeppelin-data:/notebook
+    depends_on:
+      - spark-master
+    networks:
+      - my-network
