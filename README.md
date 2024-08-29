@@ -11,10 +11,9 @@ This project provides a Docker-based environment for data engineering using Apac
 - [Prerequisites](#prerequisites)
 - [Setup](#setup)
 - [Common Commands](#common-commands)
+- [Project Setup](#project-setup)
 - [Contributing](#contributing)
 - [License](#license)
-- [Project Setup](#project-setup)
-- [Getting Started](#getting-started)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -112,14 +111,6 @@ docker network prune -f
 docker exec -it --user root jupyterlab bash
 ```
 
-## Contributing
-
-We welcome contributions! Feel free to open an issue or submit a pull request.
-
-## License
-
-This project is licensed under the MIT License.
-
 ## Project Setup
 
 ### 1. **Environment Variables (`.env`)**
@@ -207,6 +198,10 @@ docker compose -f docker-compose.yml up --remove-orphans -d
 docker exec -it --user root jupyterlab bash
 ```
 
-## Getting Started
+## Contributing
 
-With this setup, you have a complete development environment for Apache Spark and Delta Lake within Docker, integrated seamlessly with JupyterLab.
+We welcome contributions! Feel free to open an issue or submit a pull request.
+
+## License
+
+This project is licensed under the MIT License.
