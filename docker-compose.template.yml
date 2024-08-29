@@ -5,10 +5,8 @@ services:
     ports:
       - "5000:5000"
     depends_on:
-      - jupyterlab
       - spark-master
 {{SPARK_WORKER_DEPENDENCIES}}
-      - hue
     networks:
       - my-network
 
@@ -121,24 +119,6 @@ services:
       - hive-metastore
     ports:
       - "10000:10000"
-    networks:
-      - my-network
-
-  hue:
-    container_name: hue
-    image: gethue/hue:latest
-    ports:
-      - "8889:8888"  # Hue web interface
-    environment:
-      - HUE_DATABASE_ENGINE=sqlite3
-      - HUE_DATABASE_NAME=hue
-      - HUE_DATABASE_USER=hue
-      - HUE_DATABASE_PASSWORD=hue_password
-    volumes:
-      - shared-workspace:/home/jovyan/work
-    depends_on:
-      - spark-master
-      - hive-metastore
     networks:
       - my-network
 

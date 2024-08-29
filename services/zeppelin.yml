@@ -7,8 +7,8 @@
       - ZEPPELIN_NOTEBOOK_DIR=/notebook
       - SPARK_HOME=/spark
     volumes:
-      - zeppelin-data:/notebook
+      - ./data/zeppelin-data:/notebook
     depends_on:
       - spark-master
     networks:
-      - my-network
+      - my-network\n

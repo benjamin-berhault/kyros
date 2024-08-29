@@ -14,8 +14,8 @@
       - 8888:8888
       - 4045:4040
     volumes:
-      - shared-workspace:/home/jovyan/work
-      - delta_lake:/home/jovyan/delta_lake
+      - ./shared-workspace:/home/jovyan/work
+      - ./data/delta_lake:/home/jovyan/delta_lake
     depends_on:
       - spark-master
     networks:

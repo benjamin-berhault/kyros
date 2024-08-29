@@ -5,15 +5,12 @@ services:
     ports:
       - "5000:5000"
     depends_on:
-      - jupyterlab
       - spark-master
       - spark-worker-1
       - spark-worker-2
 
-      - hue
     networks:
       - my-network
-
 
   jupyterlab:
     container_name: jupyterlab
@@ -31,13 +28,24 @@ services:
       - 8888:8888
       - 4045:4040
     volumes:
-      - shared-workspace:/home/jovyan/work
-      - delta_lake:/home/jovyan/delta_lake
+      - ./shared-workspace:/home/jovyan/work
+      - ./data/delta_lake:/home/jovyan/delta_lake
     depends_on:
       - spark-master
     networks:
       - my-network
-
+ 
+  portainer:
+    image: portainer/portainer-ce:latest
+    container_name: portainer
+    ports:
+      - 9000:9000
+    volumes:
+       - /var/run/docker.sock:/var/run/docker.sock
+    #   - portainer_data:/data
+    networks:
+      - my-network
+ 
 
 
   spark-master:
@@ -80,8 +88,8 @@ services:
       - SPARK_EXECUTOR_CORES=2
       - SPARK_UI_PORT=4041
     volumes:
-      - shared-workspace:/home/jovyan/work
-      - delta_lake:/home/jovyan/delta_lake
+      - ./shared-workspace:/home/jovyan/work
+      - ./data/delta_lake:/home/jovyan/delta_lake
     depends_on:
       - spark-master
     networks:
@@ -106,8 +114,8 @@ services:
       - SPARK_EXECUTOR_CORES=2
       - SPARK_UI_PORT=4042
     volumes:
-      - shared-workspace:/home/jovyan/work
-      - delta_lake:/home/jovyan/delta_lake
+      - ./shared-workspace:/home/jovyan/work
+      - ./data/delta_lake:/home/jovyan/delta_lake
     depends_on:
       - spark-master
     networks:
@@ -199,24 +207,6 @@ services:
       - hive-metastore
     ports:
       - "10000:10000"
-    networks:
-      - my-network
-
-  hue:
-    container_name: hue
-    image: gethue/hue:latest
-    ports:
-      - "8889:8888"  # Hue web interface
-    environment:
-      - HUE_DATABASE_ENGINE=sqlite3
-      - HUE_DATABASE_NAME=hue
-      - HUE_DATABASE_USER=hue
-      - HUE_DATABASE_PASSWORD=hue_password
-    volumes:
-      - shared-workspace:/home/jovyan/work
-    depends_on:
-      - spark-master
-      - hive-metastore
     networks:
       - my-network
 
