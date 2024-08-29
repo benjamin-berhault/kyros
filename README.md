@@ -6,7 +6,6 @@ This project provides a Docker-based environment for data engineering using Apac
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 **Table of Contents** 
 
-- [Think Tank](#think-tank)
 - [📝 Next steps](#-next-steps)
 - [Architecture Overview](#architecture-overview)
 - [Prerequisites](#prerequisites)
