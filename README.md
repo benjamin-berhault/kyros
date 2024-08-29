@@ -1,7 +1,9 @@
 
 # Data Engineering with Apache Spark and Delta Lake
+
+This project provides a Docker-based environment for data engineering using Apache Spark and Delta Lake. The setup includes a JupyterLab instance preconfigured with Spark, Delta Lake, and other necessary tools.
+
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Table of Contents** 
 
 - [Think Tank](#think-tank)
@@ -17,7 +19,6 @@
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-This project provides a Docker-based environment for data engineering using Apache Spark and Delta Lake. The setup includes a JupyterLab instance preconfigured with Spark, Delta Lake, and other necessary tools.
 
 ## 📝 Next steps
 
