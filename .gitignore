@@ -1,8 +1,13 @@
 
 # Created by https://www.toptal.com/developers/gitignore/api/spark,jupyternotebooks,pycharm,pycharm+iml,pycharm+all
 # Edit at https://www.toptal.com/developers/gitignore?templates=spark,jupyternotebooks,pycharm,pycharm+iml,pycharm+all
+# Ignore all content in data/delta_lake
+/data/delta_lake/*
 
-/data/
+# But keep this .gitignore and .gitkeep file
+!/data/delta_lake/.gitignore
+!/data/delta_lake/.gitkeep
+
 delta_lake/
 delta-tables/*
 shared-workspace/data/partitioned_recipes/
