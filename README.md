@@ -89,19 +89,19 @@ docker exec -it --user root jupyterlab bash
 
 ## Contributing
 
-Contributions are welcome! Please open an issue or submit a pull request.
+We welcome contributions! Feel free to open an issue or submit a pull request.
 
 ## License
 
 This project is licensed under the MIT License.
-```
 
-### 2. **`.env`**
-This file will contain your environment variables:
+## Project Setup
+
+### 1. **Environment Variables (`.env`)**
+
+The `.env` file contains all the environment variables needed to configure your Docker setup:
 
 ```dotenv
-# .env
-
 # General settings
 PROJECT_NAME=data-engineering
 JUPYTERLAB_VERSION=4.2.4
@@ -117,13 +117,13 @@ SPARK_UI_PORT=4045
 NETWORK_NAME=my-network
 ```
 
-### 3. **`generate-docker-compose.sh`**
+### 2. **Generate Docker Compose (`generate-docker-compose.sh`)**
 
-This script will generate the `docker-compose.yml` file based on your `.env` variables.
+This script generates the `docker-compose.yml` file dynamically based on the variables specified in your `.env` file. Ensure to run this script before starting your Docker containers.
 
-### 4. **`before_docker-compose.sh`**
+### 3. **Permissions Setup (`before_docker-compose.sh`)**
 
-This script ensures that the necessary directories are created and permissions are set correctly:
+Run this script to ensure that the necessary directories are created and permissions are set correctly:
 
 ```bash
 #!/bin/bash
@@ -139,12 +139,12 @@ chmod -R 777 ./data/delta_lake
 echo "Directories and permissions set successfully."
 ```
 
-### 5. **Common Docker Commands**
+### 4. **Common Docker Commands**
 
-Use these commands to manage your Docker environment:
+Here are some essential Docker commands for managing your environment:
 
 ```bash
-# Stop all containers
+# Stop all running containers
 docker stop $(docker ps -aq)
 
 # Remove all containers
@@ -156,17 +156,19 @@ docker volume prune -f
 # Remove all networks
 docker network prune -f
 
-# Build and run Docker Compose
+# Build and start the containers with Docker Compose
 docker compose -f docker-compose.yml up --remove-orphans --build -d
 
-# Build Images Without Cache
+# Build images without using cache
 docker compose -f docker-compose.yml build --no-cache
 
-# Bring Up Containers
+# Start containers without rebuilding
 docker compose -f docker-compose.yml up --remove-orphans -d
 
-# Access JupyterLab container as root
+# Access the JupyterLab container as root
 docker exec -it --user root jupyterlab bash
 ```
 
-With this setup, you’ll have a robust development environment for Apache Spark and Delta Lake in Docker, ready for use with JupyterLab.
+## Getting Started
+
+With this setup, you have a complete development environment for Apache Spark and Delta Lake within Docker, integrated seamlessly with JupyterLab.
