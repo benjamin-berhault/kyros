@@ -14,6 +14,7 @@ services:
     networks:
       - my-network
 
+
   jupyterlab:
     container_name: jupyterlab
     build:
@@ -76,7 +77,7 @@ services:
       - SPARK_WORKER_CORES=2
       - SPARK_WORKER_MEMORY=1G
       - SPARK_EXECUTOR_MEMORY=1G
-      - SPARK_EXECUTOR_CORES=1
+      - SPARK_EXECUTOR_CORES=2
       - SPARK_UI_PORT=4041
     volumes:
       - shared-workspace:/home/jovyan/work
@@ -102,7 +103,7 @@ services:
       - SPARK_WORKER_CORES=2
       - SPARK_WORKER_MEMORY=1G
       - SPARK_EXECUTOR_MEMORY=1G
-      - SPARK_EXECUTOR_CORES=1
+      - SPARK_EXECUTOR_CORES=2
       - SPARK_UI_PORT=4042
     volumes:
       - shared-workspace:/home/jovyan/work
