@@ -8,6 +8,7 @@
 !/data/delta_lake/.gitignore
 !/data/delta_lake/.gitkeep
 
+
 delta-tables/*
 shared-workspace/data/partitioned_recipes/
 
