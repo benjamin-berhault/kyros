@@ -2,6 +2,11 @@
 
 This project provides a Docker-based environment for data engineering using Apache Spark and Delta Lake. The setup includes a JupyterLab instance preconfigured with Spark, Delta Lake, and other necessary tools.
 
+## 📝 Next steps
+
+- DBeaver data access for the 3 formats
+- Hue
+
 ## Architecture Overview
 
 - **JupyterLab**: A browser-based interactive computing environment that enables you to work with documents and activities such as Jupyter notebooks, text editors, terminals, and custom components.
