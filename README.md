@@ -4,17 +4,16 @@
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Table of Contents** 
 
-- [Data Engineering with Apache Spark and Delta Lake](#data-engineering-with-apache-spark-and-delta-lake)
-  - [Think Tank](#think-tank)
-  - [📝 Next steps](#-next-steps)
-  - [Architecture Overview](#architecture-overview)
-  - [Prerequisites](#prerequisites)
-  - [Setup](#setup)
-  - [Common Commands](#common-commands)
-  - [Contributing](#contributing)
-  - [License](#license)
-  - [Project Setup](#project-setup)
-  - [Getting Started](#getting-started)
+- [Think Tank](#think-tank)
+- [📝 Next steps](#-next-steps)
+- [Architecture Overview](#architecture-overview)
+- [Prerequisites](#prerequisites)
+- [Setup](#setup)
+- [Common Commands](#common-commands)
+- [Contributing](#contributing)
+- [License](#license)
+- [Project Setup](#project-setup)
+- [Getting Started](#getting-started)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
