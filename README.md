@@ -1,4 +1,22 @@
+
 # Data Engineering with Apache Spark and Delta Lake
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents** 
+
+- [Data Engineering with Apache Spark and Delta Lake](#data-engineering-with-apache-spark-and-delta-lake)
+  - [Think Tank](#think-tank)
+  - [📝 Next steps](#-next-steps)
+  - [Architecture Overview](#architecture-overview)
+  - [Prerequisites](#prerequisites)
+  - [Setup](#setup)
+  - [Common Commands](#common-commands)
+  - [Contributing](#contributing)
+  - [License](#license)
+  - [Project Setup](#project-setup)
+  - [Getting Started](#getting-started)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 This project provides a Docker-based environment for data engineering using Apache Spark and Delta Lake. The setup includes a JupyterLab instance preconfigured with Spark, Delta Lake, and other necessary tools.
 
@@ -57,8 +75,10 @@ You can choose between building without cache or simply bringing up the containe
 
 ```bash
 # Build Images Without Cache
+# Build Images Without Cache
 docker compose -f docker-compose.yml build --no-cache
 
+# Bring Up Containers
 # Bring Up Containers
 docker compose -f docker-compose.yml up --remove-orphans -d
 ```
@@ -109,6 +129,7 @@ The `.env` file contains all the environment variables needed to configure your 
 
 ```dotenv
 # General settings
+# General settings
 PROJECT_NAME=data-engineering
 JUPYTERLAB_VERSION=4.2.4
 SPARK_VERSION=3.4.1
@@ -116,9 +137,11 @@ DELTA_VERSION=2.4.0
 ICEBERG_VERSION=1.2.0
 
 # Ports
+# Ports
 JUPYTERLAB_PORT=8888
 SPARK_UI_PORT=4045
 
+# Docker network
 # Docker network
 NETWORK_NAME=my-network
 ```
@@ -135,9 +158,11 @@ Run this script to ensure that the necessary directories are created and permiss
 #!/bin/bash
 
 # Create directories if they do not exist
+# Create directories if they do not exist
 mkdir -p ./shared-workspace
 mkdir -p ./data/delta_lake
 
+# Set permissions for the directories
 # Set permissions for the directories
 chmod -R 777 ./shared-workspace
 chmod -R 777 ./data/delta_lake
@@ -151,26 +176,34 @@ Here are some essential Docker commands for managing your environment:
 
 ```bash
 # Stop all running containers
+# Stop all running containers
 docker stop $(docker ps -aq)
 
+# Remove all containers
 # Remove all containers
 docker rm $(docker ps -aq)
 
 # Remove all volumes
+# Remove all volumes
 docker volume prune -f
 
+# Remove all networks
 # Remove all networks
 docker network prune -f
 
 # Build and start the containers with Docker Compose
+# Build and start the containers with Docker Compose
 docker compose -f docker-compose.yml up --remove-orphans --build -d
 
+# Build images without using cache
 # Build images without using cache
 docker compose -f docker-compose.yml build --no-cache
 
 # Start containers without rebuilding
+# Start containers without rebuilding
 docker compose -f docker-compose.yml up --remove-orphans -d
 
+# Access the JupyterLab container as root
 # Access the JupyterLab container as root
 docker exec -it --user root jupyterlab bash
 ```
