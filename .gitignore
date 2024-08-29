@@ -42,8 +42,6 @@ scratch/**
 
 .Trash*
 images/*
-data/data_lake/*
-data/delta_lake/*
 data/tmp/*
 # IPython
 profile_default/
