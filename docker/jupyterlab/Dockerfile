@@ -48,11 +48,10 @@ ENV PATH $JAVA_HOME/bin:$PATH
 
 # Ensure shared workspace and delta lake directories have the correct ownership and permissions
 USER root
-RUN mkdir -p /home/jovyan/work /home/jovyan/delta_lake && \
-    chown -R jovyan:users /home/jovyan/work /home/jovyan/delta_lake && \
-    chmod -R 775 /home/jovyan/work /home/jovyan/delta_lake
-
-RUN chmod -R 777 /home/jovyan/delta_lake
+RUN mkdir -p /home/jovyan/work /home/jovyan/delta_lake /home/jovyan/parquet /home/jovyan/iceberg && \
+    chown -R jovyan:users /home/jovyan/work /home/jovyan/delta_lake /home/jovyan/parquet /home/jovyan/iceberg && \
+    chmod -R 770 /home/jovyan/work && \
+    chmod -R 777 /home/jovyan/delta_lake /home/jovyan/parquet /home/jovyan/iceberg
 
 # Switch back to the original user
 USER jovyan

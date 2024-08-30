@@ -57,6 +57,8 @@ for i in $(seq 1 $WORKERS); do
   spark_worker_services+="    volumes:\n"
   spark_worker_services+="      - ./shared-workspace:/home/jovyan/work\n"
   spark_worker_services+="      - ./data/delta_lake:/home/jovyan/delta_lake\n"
+  spark_worker_services+="      - ./data/parquet:/home/jovyan/parquet\n"
+  spark_worker_services+="      - ./data/iceberg:/home/jovyan/iceberg\n"
   spark_worker_services+="    depends_on:\n"
   spark_worker_services+="      - spark-master\n"
   spark_worker_services+="    networks:\n"

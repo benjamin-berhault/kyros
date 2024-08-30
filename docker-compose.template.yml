@@ -29,7 +29,9 @@ services:
       - SPARK_UI_PORT=4040  # Explicitly set UI port for Spark Master
     volumes:
       - shared-workspace:/home/jovyan/work
-      - delta_lake:/home/jovyan/delta_lake
+      - ./data/delta_lake:/home/jovyan/delta_lake
+      - ./data/parquet:/home/jovyan/parquet
+      - ./data/iceberg:/home/jovyan/iceberg
     networks:
       - my-network
 
@@ -130,12 +132,12 @@ volumes:
       o: bind
       device: ${PWD}/shared-workspace
 
-  delta_lake:
-    driver: local
-    driver_opts:
-      type: none
-      o: bind
-      device: ${PWD}/delta_lake
+  # delta_lake:
+  #   driver: local
+  #   driver_opts:
+  #     type: none
+  #     o: bind
+  #     device: ${PWD}/delta_lake
 
   # ZEPPELIN_VOLUME_PLACEHOLDER
 

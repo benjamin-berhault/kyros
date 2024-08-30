@@ -16,6 +16,8 @@
     volumes:
       - ./shared-workspace:/home/jovyan/work
       - ./data/delta_lake:/home/jovyan/delta_lake
+      - ./data/parquet:/home/jovyan/parquet
+      - ./data/iceberg:/home/jovyan/iceberg
     depends_on:
       - spark-master
     networks:

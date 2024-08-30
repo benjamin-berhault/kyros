@@ -166,38 +166,36 @@ Here are some essential Docker commands for managing your environment:
 
 ```bash
 # Stop all running containers
-# Stop all running containers
 docker stop $(docker ps -aq)
 
-# Remove all containers
 # Remove all containers
 docker rm $(docker ps -aq)
 
 # Remove all volumes
-# Remove all volumes
 docker volume prune -f
 
-# Remove all networks
 # Remove all networks
 docker network prune -f
 
 # Build and start the containers with Docker Compose
-# Build and start the containers with Docker Compose
 docker compose -f docker-compose.yml up --remove-orphans --build -d
 
-# Build images without using cache
 # Build images without using cache
 docker compose -f docker-compose.yml build --no-cache
 
 # Start containers without rebuilding
-# Start containers without rebuilding
 docker compose -f docker-compose.yml up --remove-orphans -d
 
-# Access the JupyterLab container as root
 # Access the JupyterLab container as root
 docker exec -it --user root jupyterlab bash
 ```
 
+## Getting Started Tutorials
+
+* Delta Lake PySpark Python Helper Class | Working with Delta Lakes & Glue Pyspark Made Easy
+  * [YouTube Video](https://www.youtube.com/watch?v=fMF6J5-KJVw&list=PLL2hlSFBmWwyg9XXo9itISuh3exPNk70O)
+  * [Documentation](http://delta-lake-helper-class.s3-website-us-east-1.amazonaws.com/)
+  * [GitHub Repo](https://github.com/soumilshah1995/Delta-Lake-Pyspark-Helper-Class)
 ## Contributing
 
 We welcome contributions! Feel free to open an issue or submit a pull request.

@@ -30,6 +30,8 @@ services:
     volumes:
       - ./shared-workspace:/home/jovyan/work
       - ./data/delta_lake:/home/jovyan/delta_lake
+      - ./data/parquet:/home/jovyan/parquet
+      - ./data/iceberg:/home/jovyan/iceberg
     depends_on:
       - spark-master
     networks:
@@ -39,10 +41,12 @@ services:
     image: portainer/portainer-ce:latest
     container_name: portainer
     ports:
-      - 9000:9000
+      - "9000:9000"
     volumes:
-       - /var/run/docker.sock:/var/run/docker.sock
-    #   - portainer_data:/data
+      - /var/run/docker.sock:/var/run/docker.sock
+      #- portainer_data:/data
+    environment:
+      - ADMIN_PASSWORD=admin  # Set the admin password
     networks:
       - my-network
  
@@ -65,7 +69,9 @@ services:
       - SPARK_UI_PORT=4040  # Explicitly set UI port for Spark Master
     volumes:
       - shared-workspace:/home/jovyan/work
-      - delta_lake:/home/jovyan/delta_lake
+      - ./data/delta_lake:/home/jovyan/delta_lake
+      - ./data/parquet:/home/jovyan/parquet
+      - ./data/iceberg:/home/jovyan/iceberg
     networks:
       - my-network
 
@@ -90,6 +96,8 @@ services:
     volumes:
       - ./shared-workspace:/home/jovyan/work
       - ./data/delta_lake:/home/jovyan/delta_lake
+      - ./data/parquet:/home/jovyan/parquet
+      - ./data/iceberg:/home/jovyan/iceberg
     depends_on:
       - spark-master
     networks:
@@ -116,6 +124,8 @@ services:
     volumes:
       - ./shared-workspace:/home/jovyan/work
       - ./data/delta_lake:/home/jovyan/delta_lake
+      - ./data/parquet:/home/jovyan/parquet
+      - ./data/iceberg:/home/jovyan/iceberg
     depends_on:
       - spark-master
     networks:
@@ -195,13 +205,11 @@ services:
       - my-network
 
   spark-thrift-server:
-    image: bitnami/spark:3.4.1
     container_name: spark-thrift-server
-    entrypoint:
-      - "/bin/bash"
-      - "-c"
-      - |
-        /opt/spark/sbin/start-thriftserver.sh --master spark://${SPARK_MASTER_HOST}:${SPARK_MASTER_PORT} --hiveconf hive.server2.thrift.bind.host=0.0.0.0 --hiveconf hive.server2.thrift.port=10000
+    build:
+      context: ./docker/spark-thrift-server
+      args:
+        IMAGE: bitnami/spark:3.4.1
     depends_on:
       - spark-master
       - hive-metastore
@@ -218,12 +226,12 @@ volumes:
       o: bind
       device: ${PWD}/shared-workspace
 
-  delta_lake:
-    driver: local
-    driver_opts:
-      type: none
-      o: bind
-      device: ${PWD}/delta_lake
+  # delta_lake:
+  #   driver: local
+  #   driver_opts:
+  #     type: none
+  #     o: bind
+  #     device: ${PWD}/delta_lake
 
   # ZEPPELIN_VOLUME_PLACEHOLDER
 
