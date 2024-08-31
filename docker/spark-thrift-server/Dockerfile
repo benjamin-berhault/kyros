@@ -3,7 +3,6 @@ ARG IMAGE=apache/spark:3.4.1
 FROM ${IMAGE}
 
 # Set environment variables
-ENV SPARK_HOME=/opt/spark
 ENV JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
 ENV PATH=$JAVA_HOME/bin:$PATH
 
@@ -14,35 +13,30 @@ RUN apt-get update && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
+# Create necessary directories
+RUN mkdir -p /opt/spark/logs
+
+# Create symbolic links for the entire sbin and bin directories
+RUN ln -s /opt/bitnami/spark/sbin /opt/spark/sbin && \
+    ln -s /opt/bitnami/spark/bin /opt/spark/bin
+
 # Add Delta Lake JAR
-RUN wget -qO- https://repo1.maven.org/maven2/io/delta/delta-core_2.12/2.4.0/delta-core_2.12-2.4.0.jar -P $SPARK_HOME/jars/
+RUN wget https://repo1.maven.org/maven2/io/delta/delta-core_2.12/2.4.0/delta-core_2.12-2.4.0.jar -P $SPARK_HOME/jars/
 
-# Adjust ownership of the logs directory
-RUN chown -R 1001:1001 /opt/bitnami/spark/logs
+# Set ownership of logs directory
+RUN chown -R 1001:1001 /opt/spark/logs
 
-# Create necessary directories and symlink required files
-# RUN mkdir -p /opt/spark/sbin && \
-#     mkdir -p /opt/spark/bin && \
-#     mkdir -p /opt/spark/logs && \
-#     ln -s /opt/bitnami/spark/sbin/spark-daemon.sh /opt/spark/sbin/spark-daemon.sh && \
-#     ln -s /opt/bitnami/spark/sbin/spark-config.sh /opt/spark/sbin/spark-config.sh && \
-#     ln -s /opt/bitnami/spark/bin/load-spark-env.sh /opt/spark/bin/load-spark-env.sh && \
-#     ln -s /opt/bitnami/spark/bin/spark-submit /opt/spark/bin/spark-submit && \
-#     ln -s /opt/bitnami/spark/bin/spark-class /opt/spark/bin/spark-class && \
-#     chown -R 1001:1001 /opt/spark/logs
-
-# Switch back to the original user
+# Switch back to non-root user if necessary (usually it's the same user used in the base image)
 USER 1001
 
-# Start Spark Thrift Server
-ENTRYPOINT ["/bin/bash", "-c", "export SPARK_HOME=/opt/bitnami/spark && ${SPARK_HOME}/sbin/start-thriftserver.sh \
+# Set the working directory
+WORKDIR /opt/spark
+
+# Start the Thrift server
+CMD ${SPARK_HOME}/sbin/start-thriftserver.sh \
     --master spark://${SPARK_MASTER_HOST}:${SPARK_MASTER_PORT} \
     --hiveconf hive.server2.thrift.bind.host=0.0.0.0 \
     --hiveconf hive.server2.thrift.port=10000 \
     --hiveconf hive.metastore.uris=thrift://hive-metastore:9083 \
     --conf spark.sql.extensions=io.delta.sql.DeltaSparkSessionExtension \
-    --conf spark.sql.catalog.spark_catalog=org.apache.spark.sql.delta.catalog.DeltaCatalog"]
-
-
-# # Start Spark Thrift Server
-# CMD ["tail", "-f", "/dev/null"]
+    --conf spark.sql.catalog.spark_catalog=org.apache.spark.sql.delta.catalog.DeltaCatalog

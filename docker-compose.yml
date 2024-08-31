@@ -210,6 +210,10 @@ services:
       context: ./docker/spark-thrift-server
       args:
         IMAGE: bitnami/spark:3.4.1
+    environment:
+      - SPARK_MASTER_HOST=spark-master
+      - SPARK_MASTER_PORT=7077
+      - SPARK_HOME=/opt/bitnami/spark
     depends_on:
       - spark-master
       - hive-metastore

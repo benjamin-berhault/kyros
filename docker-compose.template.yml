@@ -109,13 +109,15 @@ services:
       - my-network
 
   spark-thrift-server:
-    image: bitnami/spark:3.4.1
     container_name: spark-thrift-server
-    entrypoint:
-      - "/bin/bash"
-      - "-c"
-      - |
-        /opt/spark/sbin/start-thriftserver.sh --master spark://${SPARK_MASTER_HOST}:${SPARK_MASTER_PORT} --hiveconf hive.server2.thrift.bind.host=0.0.0.0 --hiveconf hive.server2.thrift.port=10000
+    build:
+      context: ./docker/spark-thrift-server
+      args:
+        IMAGE: bitnami/spark:3.4.1
+    environment:
+      - SPARK_MASTER_HOST=spark-master
+      - SPARK_MASTER_PORT=7077
+      - SPARK_HOME=/opt/bitnami/spark
     depends_on:
       - spark-master
       - hive-metastore
