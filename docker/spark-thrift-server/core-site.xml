@@ -1,0 +1,47 @@
+<configuration>
+    <!-- Set the default file system to HDFS -->
+    <property>
+        <name>fs.defaultFS</name>
+        <value>hdfs://namenode:9000</value>
+    </property>
+
+    <!-- Enable user and group lookup using Hadoop’s native implementation -->
+    <property>
+        <name>hadoop.security.group.mapping</name>
+        <value>org.apache.hadoop.security.ShellBasedUnixGroupsMapping</value>
+    </property>
+
+    <!-- Fallback group mapping to use when native lookup fails -->
+    <property>
+        <name>hadoop.security.group.mapping.fallback</name>
+        <value>true</value>
+    </property>
+
+    <!-- Set the Hadoop user that will interact with HDFS (useful if 'sparkuser' needs specific permissions) -->
+    <property>
+        <name>hadoop.proxyuser.sparkuser.groups</name>
+        <value>*</value>
+    </property>
+    <property>
+        <name>hadoop.proxyuser.sparkuser.hosts</name>
+        <value>*</value>
+    </property>
+
+    <!-- Enable simple authentication -->
+    <property>
+        <name>hadoop.security.authentication</name>
+        <value>simple</value>
+    </property>
+
+    <!-- Enable authorization (could be temporarily disabled for debugging) -->
+    <property>
+        <name>hadoop.security.authorization</name>
+        <value>true</value>
+    </property>
+
+    <!-- Optional: Enable debug logging for group mapping -->
+    <property>
+        <name>log4j.logger.org.apache.hadoop.security.ShellBasedUnixGroupsMapping</name>
+        <value>DEBUG</value>
+    </property>
+</configuration>

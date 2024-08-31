@@ -190,6 +190,15 @@ docker compose -f docker-compose.yml up --remove-orphans -d
 docker exec -it --user root jupyterlab bash
 ```
 
+## Hive
+
+Connection
+ * Host: `localhost`
+ * Port: `10000`
+ * Database/Schema: `default`
+ * Username: `sparkuser`
+ * Password: `sparkuser_password`
+
 ## Getting Started Tutorials
 
 * Delta Lake PySpark Python Helper Class | Working with Delta Lakes & Glue Pyspark Made Easy
