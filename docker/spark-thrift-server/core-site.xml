@@ -44,4 +44,9 @@
         <name>log4j.logger.org.apache.hadoop.security.ShellBasedUnixGroupsMapping</name>
         <value>DEBUG</value>
     </property>
+    <property>
+        <name>ranger.plugin.hive.use.usergroups.from.userstore.enabled</name>
+        <value>true</value>
+    </property>
+
 </configuration>

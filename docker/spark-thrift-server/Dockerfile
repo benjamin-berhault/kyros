@@ -5,6 +5,7 @@ FROM ${IMAGE}
 # Set environment variables
 ENV JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
 ENV PATH=$JAVA_HOME/bin:$PATH
+ENV HADOOP_CONF_DIR=/opt/spark/conf
 
 # Install required packages
 USER root

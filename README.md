@@ -188,6 +188,38 @@ docker compose -f docker-compose.yml up --remove-orphans -d
 
 # Access the JupyterLab container as root
 docker exec -it --user root jupyterlab bash
+
+# Lists all running Docker containers, displaying each container's ID, name, and IP address in a clear, readable format
+docker ps -q | while read id; do echo -n "$id -> "; docker inspect -f '{{.Name}} -> {{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' $id | sed 's/\///'; echo ""; done
+```
+
+Check sparkuser existence:
+```bash
+docker exec -it spark-master id sparkuser
+docker exec -it spark-worker-1 id sparkuser
+docker exec -it spark-worker-2 id sparkuser
+docker exec -it hive-metastore id sparkuser
+docker exec -it spark-thrift-server id sparkuser
+docker exec -it postgres id sparkuser
+```
+
+#### Confirms that your core-site.xml is being correctly loaded by Spark within the spark-thrift-server container
+
+Access Spark Shell
+```
+spark-shell
+```
+
+Verify Loading Configuration  
+```java
+scala> val conf = spark.sparkContext.hadoopConfiguration
+conf: org.apache.hadoop.conf.Configuration = Configuration: core-default.xml, core-site.xml, mapred-default.xml, mapred-site.xml, yarn-default.xml, yarn-site.xml, __spark_hadoop_conf__.xml
+
+scala> println(conf.get("fs.defaultFS"))  // Should print the value from core-site.xml
+hdfs://namenode:9000
+
+scala> println(conf.get("hadoop.security.group.mapping"))  // Should print the value from core-site.xml
+org.apache.hadoop.security.ShellBasedUnixGroupsMapping
 ```
 
 ## Hive

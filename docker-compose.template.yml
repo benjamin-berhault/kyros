@@ -62,23 +62,27 @@ services:
   #     timeout: 10s
   #     retries: 5
 
-  hive-server2:
-    image: apache/hive:4.0.0
-    container_name: hive-server2
-    environment:
-      - HIVE_CONF_DIR=/opt/hive/conf
-    ports:
-      - "10001:10000"
-    depends_on:
-      - hive-metastore
-      - postgres
-    networks:
-      - my-network
-    command: /opt/hive/bin/hive --service hiveserver2
+  # hive-server2:
+  #   image: apache/hive:4.0.0
+  #   container_name: hive-server2
+  #   environment:
+  #     - HIVE_CONF_DIR=/opt/hive/conf
+  #   ports:
+  #     - "10001:10000"
+  #   depends_on:
+  #     - hive-metastore
+  #     - postgres
+  #   networks:
+  #     - my-network
+  #   command: /opt/hive/bin/hive --service hiveserver2
     
+
   hive-metastore:
-    image: apache/hive:4.0.0
     container_name: hive-metastore
+    build:
+      context: ./docker/hive-metastore
+      args:
+        IMAGE: apache/hive:4.0.0
     environment:
       - SERVICE_NAME=metastore
       - HIVE_METASTORE_USER=metastore_user
@@ -96,9 +100,13 @@ services:
     networks:
       - my-network
 
+
   postgres:
-    image: postgres:latest
     container_name: postgres
+    build:
+      context: ./docker/postgres
+      args:
+        IMAGE: postgres:latest
     environment:
       - POSTGRES_DB=metastore
       - POSTGRES_USER=metastore_user
@@ -119,7 +127,9 @@ services:
       - SPARK_MASTER_PORT=7077
       - SPARK_HOME=/opt/bitnami/spark
     depends_on:
+      - postgres
       - spark-master
+      - spark-worker-1
       - hive-metastore
     ports:
       - "10000:10000"
