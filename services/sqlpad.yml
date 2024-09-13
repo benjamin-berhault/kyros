@@ -1,0 +1,17 @@
+  sqlpad:
+    image: ${IF_USING_LOCAL_REGISTRY}sqlpad/sqlpad:latest
+    container_name: sqlpad
+    environment:
+      # SQLPad environment variables
+      SQLPAD_PORT: 3000               # Port on which SQLPad will run
+      SQLPAD_ADMIN: "admin@example.com" # Admin user email
+      SQLPAD_ADMIN_PASSWORD: "admin"   # Admin user password
+      SQLPAD_AUTH_DISABLED: "false"    # Set to false to enable authentication
+      SQLPAD_BASE_URL: ""              # Base URL if behind a reverse proxy
+      SQLPAD_DISABLE_TELEMETRY: "true" # Disable telemetry if you prefer
+    ports:
+      - "3000:3000"                    # Mapping SQLPad to localhost
+    volumes:
+      - ./sqlpad/data:/var/lib/sqlpad  # Persistent storage for SQLPad data
+    networks:
+      - my-network

@@ -1,8 +1,6 @@
 # Define the base image to be used
-ARG SPARK_BASE_IMAGE=bitnami/spark:3.4.1
-
-# Use the provided base image
-FROM ${SPARK_BASE_IMAGE}
+ARG IMAGE=bitnami/spark:3.4.1
+FROM ${IMAGE}
 
 # Layer: Image Metadata
 ARG build_date
@@ -20,6 +18,20 @@ RUN groupadd -g 1001 sparkgroup && \
 
 # Install additional Python packages, if needed
 RUN pip install delta-spark
+
+# Create the core-site.xml file and add the hadoop.security.group.mapping property
+RUN mkdir -p /opt/bitnami/spark/conf && \
+    echo '<?xml version="1.0" encoding="UTF-8"?>' > /opt/bitnami/spark/conf/core-site.xml && \
+    echo '<configuration>' >> /opt/bitnami/spark/conf/core-site.xml && \
+    echo '  <property>' >> /opt/bitnami/spark/conf/core-site.xml && \
+    echo '    <name>hadoop.security.group.mapping</name>' >> /opt/bitnami/spark/conf/core-site.xml && \
+    echo '    <value>org.apache.hadoop.security.ShellBasedUnixGroupsMapping</value>' >> /opt/bitnami/spark/conf/core-site.xml && \
+    echo '  </property>' >> /opt/bitnami/spark/conf/core-site.xml && \
+    echo '  <property>' >> /opt/bitnami/spark/conf/core-site.xml && \
+    echo '    <name>hadoop.security.group.mapping.fallback</name>' >> /opt/bitnami/spark/conf/core-site.xml && \
+    echo '    <value>true</value>' >> /opt/bitnami/spark/conf/core-site.xml && \
+    echo '  </property>' >> /opt/bitnami/spark/conf/core-site.xml && \
+    echo '</configuration>' >> /opt/bitnami/spark/conf/core-site.xml
 
 # Expose necessary ports for the Spark Worker
 EXPOSE 8081

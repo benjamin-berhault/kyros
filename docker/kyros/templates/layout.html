@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Project Navigation</h2>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/cloudbeaver">CloudBeaver</a></li>
+            <li><a href="/jupyterlab">JupyterLab</a></li>
+            <!-- Add more links to other components -->
+        </ul>
+    </div>
+    <div class="content">
+        <iframe src="{{ content_url }}" frameborder="0"></iframe>
+    </div>
+</body>
+</html>

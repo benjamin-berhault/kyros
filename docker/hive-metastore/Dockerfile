@@ -1,5 +1,6 @@
 # Use the Apache Hive 4.0.0 base image
-FROM apache/hive:4.0.0
+ARG IMAGE=apache/hive:4.0.0
+FROM ${IMAGE}
 
 # Switch to root to perform administrative tasks
 USER root
@@ -31,21 +32,23 @@ RUN bash -c "\
         exit 1; \
     fi"
 
+# Copy the start script into the container
+COPY start-hive-metastore.sh /opt/hive/bin/start-hive-metastore.sh
+
+# Make the start script executable
+RUN chmod +x /opt/hive/bin/start-hive-metastore.sh
+
 # # Switch back to the hive user
 USER hive
 
-# # Expose the metastore port
+# Expose the metastore port
 EXPOSE 9083
 
-
-# Initialize the schema (if needed), but continue even if it fails because can already exists
-# Initialize the schema (if needed), but continue even if it fails because it might already exist
-RUN echo "Starting schema initialization" && \
-    schematool -dbType postgres -initSchema -verbose || true && \
-    echo "Schema initialization complete"
+# Use the start script as the entry point
+ENTRYPOINT ["/opt/hive/bin/start-hive-metastore.sh"]
 
 # Override the ENTRYPOINT to disable the base image's entrypoint script: ENTRYPOINT ["sh" "-c" "/entrypoint.sh"]  
-#ENTRYPOINT ["tail", "-f", "/dev/null"]
+# ENTRYPOINT ["tail", "-f", "/dev/null"]
 
 # Start the Hive Metastore service
-ENTRYPOINT ["hive", "--service", "metastore"]
+#ENTRYPOINT ["hive", "--service", "metastore"]

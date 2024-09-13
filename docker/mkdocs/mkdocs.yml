@@ -1,0 +1,23 @@
+site_name: My Project Documentation
+theme:
+  name: 'material'
+  highlightjs: false  # Disable highlight.js to avoid conflicts with PrismJS
+
+plugins:
+  - glightbox
+
+markdown_extensions:
+  - pymdownx.highlight:
+      linenums: true  # Enable line numbers for code blocks
+
+extra_css:
+  - css/prism.css  # Link to local CSS file
+
+extra_javascript:
+  - js/prism.js  # Link to local JS file
+  - js/prism-line-numbers.min.js
+  
+nav:
+  - Home: index.md
+  - Delta Lake: delta-lake.md
+  - MinIO: minio.md

@@ -1,0 +1,12 @@
+  kyros:
+    container_name: kyros
+    build:
+      context: ./docker/kyros
+    ports:
+      - "5005:5000"
+    volumes:
+      - ./docker/kyros:/app
+    depends_on:
+      - cloudbeaver
+    networks:
+      - my-network

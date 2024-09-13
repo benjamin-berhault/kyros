@@ -3,7 +3,7 @@
     build:
       context: ./docker/jupyterlab
       args:
-        BASE_IMAGE: jupyter/base-notebook:latest
+        IMAGE: ${IF_USING_LOCAL_REGISTRY}jupyter/base-notebook:latest
         spark_version: 3.4.1
         jupyterlab_version: 4.2.4
         sparksql_magic_version: 0.0.3

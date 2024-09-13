@@ -1,9 +1,12 @@
 services:
   web:
-    build: ./docker/app
+    build:
+      context: ./docker/app
+      args:
+        IMAGE: 
     container_name: web
     ports:
-      - "5000:5000"
+      - "5002:5000"
     depends_on:
       - spark-master
 {{SPARK_WORKER_DEPENDENCIES}}
@@ -17,7 +20,7 @@ services:
     build:
       context: ./docker/spark-master
       args:
-        SPARK_BASE_IMAGE: bitnami/spark:3.4.1
+        IMAGE: ${IF_USING_LOCAL_REGISTRY}bitnami/spark:3.4.1
     ports:
       - 8080:8080  # Spark Master Web UI
       - 7077:7077  # Spark Master Port
@@ -75,14 +78,13 @@ services:
   #   networks:
   #     - my-network
   #   command: /opt/hive/bin/hive --service hiveserver2
-    
 
   hive-metastore:
     container_name: hive-metastore
     build:
       context: ./docker/hive-metastore
       args:
-        IMAGE: apache/hive:4.0.0
+        IMAGE: ${IF_USING_LOCAL_REGISTRY}apache/hive:4.0.0
     environment:
       - SERVICE_NAME=metastore
       - HIVE_METASTORE_USER=metastore_user
@@ -100,17 +102,27 @@ services:
     networks:
       - my-network
 
-
   postgres:
     container_name: postgres
     build:
       context: ./docker/postgres
       args:
-        IMAGE: postgres:latest
+        IMAGE: ${IF_USING_LOCAL_REGISTRY}postgres:latest
     environment:
-      - POSTGRES_DB=metastore
-      - POSTGRES_USER=metastore_user
-      - POSTGRES_PASSWORD=metastore_password
+      #- POSTGRES_DB=metastore
+      #- POSTGRES_USER=metastore_user
+      #- POSTGRES_PASSWORD=metastore_password
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres_admin
+      - POSTGRES_PASSWORD=admin_password
+      - METASTORE_USER=metastore_user
+      - METASTORE_PASSWORD=metastore_password
+      - METASTORE_DB=metastore
+      - SPARK_USER=spark_user
+      - SPARK_PASSWORD=spark_password
+      - SQLPAD_USER=sqlpad
+      - SQLPAD_PASSWORD=sqlpadpass
+      - SQLPAD_DB=sqlpaddb
     ports:
       - "5432:5432"
     networks:
@@ -121,7 +133,7 @@ services:
     build:
       context: ./docker/spark-thrift-server
       args:
-        IMAGE: bitnami/spark:3.4.1
+        IMAGE: ${IF_USING_LOCAL_REGISTRY}bitnami/spark:3.4.1
     environment:
       - SPARK_MASTER_HOST=spark-master
       - SPARK_MASTER_PORT=7077
@@ -152,6 +164,12 @@ volumes:
   #     device: ${PWD}/delta_lake
 
   # ZEPPELIN_VOLUME_PLACEHOLDER
+
+  minio-data:
+    driver: local
+
+  cloudbeaver_data:
+    driver: local
 
 networks:
   my-network:

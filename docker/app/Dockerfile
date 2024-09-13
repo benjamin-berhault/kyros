@@ -1,4 +1,6 @@
-FROM python:3.9-slim
+ARG IMAGE=python:3.9-slim
+FROM ${IMAGE}
+
 
 WORKDIR /app
 

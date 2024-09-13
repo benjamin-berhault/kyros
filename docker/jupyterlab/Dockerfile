@@ -1,6 +1,6 @@
 # Base image for JupyterLab with Python
-ARG BASE_IMAGE=jupyter/base-notebook:latest
-FROM ${BASE_IMAGE}
+ARG IMAGE=jupyter/base-notebook:latest
+FROM ${IMAGE}
 
 # -- Layer: Image Metadata
 
@@ -56,6 +56,9 @@ RUN mkdir -p /home/jovyan/work /home/jovyan/delta_lake /home/jovyan/parquet /hom
 # Switch back to the original user
 USER jovyan
 
+# Copy a Jupyter configuration file (optional)
+COPY jupyter_notebook_config.py /home/jovyan/.jupyter/
+
 # Expose JupyterLab port
 EXPOSE 8888
 
@@ -64,4 +67,6 @@ ENV SHARED_WORKSPACE="/home/jovyan"
 WORKDIR ${SHARED_WORKSPACE}
 
 # Command to wait for Spark master and then start JupyterLab
-CMD ["/bin/bash", "-c", "while ! nc -z spark-master 7077; do echo 'Waiting for Spark master...'; sleep 2; done; jupyter lab --ip=0.0.0.0 --port=8888 --no-browser --allow-root --NotebookApp.token=''"]
+CMD ["/bin/bash", "-c", "while ! nc -z spark-master 7077; do echo 'Waiting for Spark master...'; sleep 2; done; jupyter lab --ip=0.0.0.0 --port=8888 --no-browser --allow-root --NotebookApp.token='' --NotebookApp.disable_check_xsrf=True"]
+
+#CMD ["/bin/bash", "-c", "while ! nc -z spark-master 7077; do echo 'Waiting for Spark master...'; sleep 2; done; jupyter lab --ip=0.0.0.0 --port=8888 --no-browser --allow-root --NotebookApp.token=''"]

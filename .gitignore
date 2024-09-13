@@ -3,6 +3,9 @@
 # Edit at https://www.toptal.com/developers/gitignore?templates=spark,jupyternotebooks,pycharm,pycharm+iml,pycharm+all
 # Ignore all content in data/delta_lake
 /data/delta_lake/*
+think-tank
+docker/local-registry/images
+docker/local-registry/jars
 
 # But keep this .gitignore and .gitkeep file
 !/data/delta_lake/.gitignore

@@ -1,14 +1,37 @@
   minio:
-    image: minio/minio:latest
     container_name: minio
+    build:
+      context: ./docker/minio
+      args:
+        IMAGE: ${IF_USING_LOCAL_REGISTRY}minio/minio:RELEASE.2024-09-09T16-59-28Z
+    hostname: minio
     ports:
-      - 9000:9000
-      - 9001:9001
-    environment:
-      - MINIO_ROOT_USER=admin
-      - MINIO_ROOT_PASSWORD=password123
-    command: server /data --console-address ":9001"
+      - "9000:9000"
+      - "9001:9001"
     volumes:
-      - minio-data:/data
+      - ./minio/data:/data
+    environment:
+      MINIO_ACCESS_KEY: minio
+      MINIO_SECRET_KEY: minio123
     networks:
-      - my-network
+      - trino-network
+
+  minio-client:
+    container_name: minio-client
+    build:
+      context: ./docker/minio-client
+      args:
+        IMAGE: ${IF_USING_LOCAL_REGISTRY}minio/mc:RELEASE.2024-09-09T07-53-10Z
+        MINIO_HOST: http://minio:9000
+        MINIO_ACCESS_KEY: minio
+        MINIO_SECRET_KEY: minio123
+        BUCKET_NAMES: raw-data,processed-data,delta-data,iceberg-data,models,logs,backups  # Define multiple buckets here
+    environment:
+      - MINIO_HOST=http://minio:9000
+      - MINIO_ACCESS_KEY=minio
+      - MINIO_SECRET_KEY=minio123
+      - BUCKET_NAMES=raw-data,processed-data,delta-data,iceberg-data,models,logs,backups
+    networks:
+      - trino-network
+    depends_on:
+      - minio

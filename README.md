@@ -201,6 +201,7 @@ docker exec -it spark-worker-2 id sparkuser
 docker exec -it hive-metastore id sparkuser
 docker exec -it spark-thrift-server id sparkuser
 docker exec -it postgres id sparkuser
+docker stats
 ```
 
 #### Confirms that your core-site.xml is being correctly loaded by Spark within the spark-thrift-server container

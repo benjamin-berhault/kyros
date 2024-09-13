@@ -15,12 +15,6 @@ if [ "$INCLUDE_JUPYTERLAB" = "true" ]; then
 "
 fi
 
-if [ "$INCLUDE_ZEPPELIN" = "true" ]; then
-  additional_services+="$(cat services/zeppelin.yml)
-
-"
-fi
-
 if [ "$INCLUDE_KAFKA" = "true" ]; then
   additional_services+="$(cat services/kafka.yml)
 
@@ -34,6 +28,28 @@ if [ "$INCLUDE_PORTAINER" = "true" ]; then
 "
 fi
 
+# Include additional services based on environment variables
+if [ "$INCLUDE_TRINO" = "true" ]; then
+  additional_services+="$(cat services/trino.yml)
+ 
+"
+fi
+
+# Include additional services based on environment variables
+if [ "$INCLUDE_CLOUDBEAVER" = "true" ]; then
+  additional_services+="$(cat services/cloudbeaver.yml)
+ 
+"
+fi
+
+# Include additional services based on environment variables
+if [ "$INCLUDE_KYROS" = "true" ]; then
+  additional_services+="$(cat services/kyros.yml)
+ 
+"
+fi
+
+
 # Generate worker services
 for i in $(seq 1 $WORKERS); do
   spark_worker_services+="  spark-worker-$i:\n"
@@ -41,7 +57,7 @@ for i in $(seq 1 $WORKERS); do
   spark_worker_services+="    build:\n"
   spark_worker_services+="      context: ./docker/spark-worker\n"
   spark_worker_services+="      args:\n"
-  spark_worker_services+="        SPARK_BASE_IMAGE: bitnami/spark:3.4.1\n"
+  spark_worker_services+="        SPARK_BASE_IMAGE: \${IF_USING_LOCAL_REGISTRY}bitnami/spark:3.4.1\n"
   spark_worker_services+="    ports:\n"
   spark_worker_services+="      - 808$i:808$i  # Spark Worker $i Web UI\n"
   spark_worker_services+="      - 404$i:404$i  # Spark Worker $i UI Port\n"

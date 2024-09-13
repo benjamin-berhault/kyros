@@ -1,0 +1,13 @@
+  cloudbeaver:
+    image: ${IF_USING_LOCAL_REGISTRY}dbeaver/cloudbeaver:latest
+    container_name: cloudbeaver
+    environment:
+      - CB_SERVER_NAME=CloudBeaver
+      - CB_ADMIN_NAME=admin
+      - CB_ADMIN_PASSWORD=admin_password
+    ports:
+      - "8978:8978"
+    volumes:
+      - cloudbeaver_data:/opt/cloudbeaver/workspace
+    networks:
+      - my-network
