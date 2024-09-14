@@ -34,7 +34,7 @@ RUN pip3 install --no-cache-dir wget==3.2 \
     jupyterlab==${jupyterlab_version} \
     sparksql-magic==${sparksql_magic_version} \
     kafka-python==${kafka_python_version} \
-    delta-spark
+    delta-spark 
 
 # Download Delta Lake JAR
 RUN wget -qO- https://repo1.maven.org/maven2/io/delta/delta-core_2.12/2.4.0/delta-core_2.12-2.4.0.jar -P $SPARK_HOME/jars/
@@ -67,6 +67,7 @@ ENV SHARED_WORKSPACE="/home/jovyan"
 WORKDIR ${SHARED_WORKSPACE}
 
 # Command to wait for Spark master and then start JupyterLab
-CMD ["/bin/bash", "-c", "while ! nc -z spark-master 7077; do echo 'Waiting for Spark master...'; sleep 2; done; jupyter lab --ip=0.0.0.0 --port=8888 --no-browser --allow-root --NotebookApp.token='' --NotebookApp.disable_check_xsrf=True"]
+#CMD ["/bin/bash", "-c", "while ! nc -z spark-master 7077; do echo 'Waiting for Spark master...'; sleep 2; done; jupyter lab --ip=0.0.0.0 --port=8888 --no-browser --allow-root --NotebookApp.token='' --NotebookApp.disable_check_xsrf=True"]
+CMD ["/bin/bash", "-c", "while ! nc -z spark-master 7077; do echo 'Waiting for Spark master...'; sleep 2; done; jupyter lab --ip=0.0.0.0 --port=8888 --no-browser --allow-root --NotebookApp.token='' --NotebookApp.disable_check_xsrf=True --NotebookApp.tornado_settings='{\"headers\":{\"Content-Security-Policy\": \"frame-ancestors 'self' http://localhost:5005;\"}}'"]
 
 #CMD ["/bin/bash", "-c", "while ! nc -z spark-master 7077; do echo 'Waiting for Spark master...'; sleep 2; done; jupyter lab --ip=0.0.0.0 --port=8888 --no-browser --allow-root --NotebookApp.token=''"]

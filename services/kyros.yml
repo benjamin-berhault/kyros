@@ -10,3 +10,5 @@
       - cloudbeaver
     networks:
       - my-network
+    environment:
+      - KYROS_PORT=5005  # Pass the port as an environment variable

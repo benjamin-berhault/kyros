@@ -1,0 +1,2828 @@
+html {
+    --mat-option-selected-state-label-text-color: #673ab7;
+    --mat-option-label-text-color: rgba(0, 0, 0, .87);
+    --mat-option-hover-state-layer-color: rgba(0, 0, 0, .04);
+    --mat-option-focus-state-layer-color: rgba(0, 0, 0, .04);
+    --mat-option-selected-state-layer-color: rgba(0, 0, 0, .04)
+}
+
+html {
+    --mat-optgroup-label-text-color: rgba(0, 0, 0, .87)
+}
+
+html {
+    --mat-option-label-text-font: Roboto, sans-serif;
+    --mat-option-label-text-line-height: 24px;
+    --mat-option-label-text-size: 16px;
+    --mat-option-label-text-tracking: .03125em;
+    --mat-option-label-text-weight: 400
+}
+
+html {
+    --mat-optgroup-label-text-font: Roboto, sans-serif;
+    --mat-optgroup-label-text-line-height: 24px;
+    --mat-optgroup-label-text-size: 16px;
+    --mat-optgroup-label-text-tracking: .03125em;
+    --mat-optgroup-label-text-weight: 400
+}
+
+html {
+    --mdc-filled-text-field-caret-color: #673ab7;
+    --mdc-filled-text-field-focus-active-indicator-color: #673ab7;
+    --mdc-filled-text-field-focus-label-text-color: rgba(103, 58, 183, .87);
+    --mdc-filled-text-field-container-color: whitesmoke;
+    --mdc-filled-text-field-disabled-container-color: #fafafa;
+    --mdc-filled-text-field-label-text-color: rgba(0, 0, 0, .6);
+    --mdc-filled-text-field-disabled-label-text-color: rgba(0, 0, 0, .38);
+    --mdc-filled-text-field-input-text-color: rgba(0, 0, 0, .87);
+    --mdc-filled-text-field-disabled-input-text-color: rgba(0, 0, 0, .38);
+    --mdc-filled-text-field-input-text-placeholder-color: rgba(0, 0, 0, .6);
+    --mdc-filled-text-field-error-focus-label-text-color: #f44336;
+    --mdc-filled-text-field-error-label-text-color: #f44336;
+    --mdc-filled-text-field-error-caret-color: #f44336;
+    --mdc-filled-text-field-active-indicator-color: rgba(0, 0, 0, .42);
+    --mdc-filled-text-field-disabled-active-indicator-color: rgba(0, 0, 0, .06);
+    --mdc-filled-text-field-hover-active-indicator-color: rgba(0, 0, 0, .87);
+    --mdc-filled-text-field-error-active-indicator-color: #f44336;
+    --mdc-filled-text-field-error-focus-active-indicator-color: #f44336;
+    --mdc-filled-text-field-error-hover-active-indicator-color: #f44336;
+    --mdc-outlined-text-field-caret-color: #673ab7;
+    --mdc-outlined-text-field-focus-outline-color: #673ab7;
+    --mdc-outlined-text-field-focus-label-text-color: rgba(103, 58, 183, .87);
+    --mdc-outlined-text-field-label-text-color: rgba(0, 0, 0, .6);
+    --mdc-outlined-text-field-disabled-label-text-color: rgba(0, 0, 0, .38);
+    --mdc-outlined-text-field-input-text-color: rgba(0, 0, 0, .87);
+    --mdc-outlined-text-field-disabled-input-text-color: rgba(0, 0, 0, .38);
+    --mdc-outlined-text-field-input-text-placeholder-color: rgba(0, 0, 0, .6);
+    --mdc-outlined-text-field-error-caret-color: #f44336;
+    --mdc-outlined-text-field-error-focus-label-text-color: #f44336;
+    --mdc-outlined-text-field-error-label-text-color: #f44336;
+    --mdc-outlined-text-field-outline-color: rgba(0, 0, 0, .38);
+    --mdc-outlined-text-field-disabled-outline-color: rgba(0, 0, 0, .06);
+    --mdc-outlined-text-field-hover-outline-color: rgba(0, 0, 0, .87);
+    --mdc-outlined-text-field-error-focus-outline-color: #f44336;
+    --mdc-outlined-text-field-error-hover-outline-color: #f44336;
+    --mdc-outlined-text-field-error-outline-color: #f44336;
+    --mat-form-field-disabled-input-text-placeholder-color: rgba(0, 0, 0, .38)
+}
+
+html {
+    --mdc-filled-text-field-label-text-font: Roboto, sans-serif;
+    --mdc-filled-text-field-label-text-size: 16px;
+    --mdc-filled-text-field-label-text-tracking: .03125em;
+    --mdc-filled-text-field-label-text-weight: 400;
+    --mdc-outlined-text-field-label-text-font: Roboto, sans-serif;
+    --mdc-outlined-text-field-label-text-size: 16px;
+    --mdc-outlined-text-field-label-text-tracking: .03125em;
+    --mdc-outlined-text-field-label-text-weight: 400;
+    --mat-form-field-container-text-font: Roboto, sans-serif;
+    --mat-form-field-container-text-line-height: 24px;
+    --mat-form-field-container-text-size: 16px;
+    --mat-form-field-container-text-tracking: .03125em;
+    --mat-form-field-container-text-weight: 400;
+    --mat-form-field-outlined-label-text-populated-size: 16px;
+    --mat-form-field-subscript-text-font: Roboto, sans-serif;
+    --mat-form-field-subscript-text-line-height: 20px;
+    --mat-form-field-subscript-text-size: 12px;
+    --mat-form-field-subscript-text-tracking: .0333333333em;
+    --mat-form-field-subscript-text-weight: 400
+}
+
+html {
+    --mat-select-panel-background-color: white;
+    --mat-select-enabled-trigger-text-color: rgba(0, 0, 0, .87);
+    --mat-select-disabled-trigger-text-color: rgba(0, 0, 0, .38);
+    --mat-select-placeholder-text-color: rgba(0, 0, 0, .6);
+    --mat-select-enabled-arrow-color: rgba(0, 0, 0, .54);
+    --mat-select-disabled-arrow-color: rgba(0, 0, 0, .38);
+    --mat-select-focused-arrow-color: rgba(103, 58, 183, .87);
+    --mat-select-invalid-arrow-color: rgba(244, 67, 54, .87)
+}
+
+html {
+    --mat-select-trigger-text-font: Roboto, sans-serif;
+    --mat-select-trigger-text-line-height: 24px;
+    --mat-select-trigger-text-size: 16px;
+    --mat-select-trigger-text-tracking: .03125em;
+    --mat-select-trigger-text-weight: 400
+}
+
+html {
+    --mat-autocomplete-background-color: white
+}
+
+html {
+    --mat-menu-item-label-text-color: rgba(0, 0, 0, .87);
+    --mat-menu-item-icon-color: rgba(0, 0, 0, .87);
+    --mat-menu-item-hover-state-layer-color: rgba(0, 0, 0, .04);
+    --mat-menu-item-focus-state-layer-color: rgba(0, 0, 0, .04);
+    --mat-menu-container-color: white
+}
+
+html {
+    --mat-menu-item-label-text-font: Roboto, sans-serif;
+    --mat-menu-item-label-text-size: 16px;
+    --mat-menu-item-label-text-tracking: .03125em;
+    --mat-menu-item-label-text-line-height: 24px;
+    --mat-menu-item-label-text-weight: 400
+}
+
+html {
+    --mat-paginator-container-text-color: rgba(0, 0, 0, .87);
+    --mat-paginator-container-background-color: white;
+    --mat-paginator-enabled-icon-color: rgba(0, 0, 0, .54);
+    --mat-paginator-disabled-icon-color: rgba(0, 0, 0, .12)
+}
+
+html {
+    --mat-paginator-container-size: 56px
+}
+
+html {
+    --mat-paginator-container-text-font: Roboto, sans-serif;
+    --mat-paginator-container-text-line-height: 20px;
+    --mat-paginator-container-text-size: 12px;
+    --mat-paginator-container-text-tracking: .0333333333em;
+    --mat-paginator-container-text-weight: 400;
+    --mat-paginator-select-trigger-text-size: 12px
+}
+
+html {
+    --mdc-checkbox-disabled-selected-icon-color: rgba(0, 0, 0, .38);
+    --mdc-checkbox-disabled-unselected-icon-color: rgba(0, 0, 0, .38);
+    --mdc-checkbox-selected-checkmark-color: #000;
+    --mdc-checkbox-selected-focus-icon-color: #ffd740;
+    --mdc-checkbox-selected-hover-icon-color: #ffd740;
+    --mdc-checkbox-selected-icon-color: #ffd740;
+    --mdc-checkbox-selected-pressed-icon-color: #ffd740;
+    --mdc-checkbox-unselected-focus-icon-color: #212121;
+    --mdc-checkbox-unselected-hover-icon-color: #212121;
+    --mdc-checkbox-unselected-icon-color: rgba(0, 0, 0, .54);
+    --mdc-checkbox-unselected-pressed-icon-color: rgba(0, 0, 0, .54);
+    --mdc-checkbox-selected-focus-state-layer-color: #ffd740;
+    --mdc-checkbox-selected-hover-state-layer-color: #ffd740;
+    --mdc-checkbox-selected-pressed-state-layer-color: #ffd740;
+    --mdc-checkbox-unselected-focus-state-layer-color: black;
+    --mdc-checkbox-unselected-hover-state-layer-color: black;
+    --mdc-checkbox-unselected-pressed-state-layer-color: black
+}
+
+html {
+    --mdc-checkbox-state-layer-size: 40px
+}
+
+html {
+    --mat-table-background-color: white;
+    --mat-table-header-headline-color: rgba(0, 0, 0, .87);
+    --mat-table-row-item-label-text-color: rgba(0, 0, 0, .87);
+    --mat-table-row-item-outline-color: rgba(0, 0, 0, .12)
+}
+
+html {
+    --mat-table-header-container-height: 56px;
+    --mat-table-footer-container-height: 52px;
+    --mat-table-row-item-container-height: 52px
+}
+
+html {
+    --mat-table-header-headline-font: Roboto, sans-serif;
+    --mat-table-header-headline-line-height: 22px;
+    --mat-table-header-headline-size: 14px;
+    --mat-table-header-headline-weight: 500;
+    --mat-table-header-headline-tracking: .0071428571em;
+    --mat-table-row-item-label-text-font: Roboto, sans-serif;
+    --mat-table-row-item-label-text-line-height: 20px;
+    --mat-table-row-item-label-text-size: 14px;
+    --mat-table-row-item-label-text-weight: 400;
+    --mat-table-row-item-label-text-tracking: .0178571429em;
+    --mat-table-footer-supporting-text-font: Roboto, sans-serif;
+    --mat-table-footer-supporting-text-line-height: 20px;
+    --mat-table-footer-supporting-text-size: 14px;
+    --mat-table-footer-supporting-text-weight: 400;
+    --mat-table-footer-supporting-text-tracking: .0178571429em
+}
+
+html {
+    --mat-badge-background-color: #673ab7;
+    --mat-badge-text-color: white;
+    --mat-badge-disabled-state-background-color: #b9b9b9;
+    --mat-badge-disabled-state-text-color: rgba(0, 0, 0, .38)
+}
+
+html {
+    --mat-badge-text-font: Roboto, sans-serif;
+    --mat-badge-text-size: 12px;
+    --mat-badge-text-weight: 600;
+    --mat-badge-small-size-text-size: 9px;
+    --mat-badge-large-size-text-size: 24px
+}
+
+html {
+    --mat-bottom-sheet-container-text-color: rgba(0, 0, 0, .87);
+    --mat-bottom-sheet-container-background-color: white
+}
+
+html {
+    --mat-bottom-sheet-container-text-font: Roboto, sans-serif;
+    --mat-bottom-sheet-container-text-line-height: 20px;
+    --mat-bottom-sheet-container-text-size: 14px;
+    --mat-bottom-sheet-container-text-tracking: .0178571429em;
+    --mat-bottom-sheet-container-text-weight: 400
+}
+
+html {
+    --mat-legacy-button-toggle-text-color: rgba(0, 0, 0, .38);
+    --mat-legacy-button-toggle-state-layer-color: rgba(0, 0, 0, .12);
+    --mat-legacy-button-toggle-selected-state-text-color: rgba(0, 0, 0, .54);
+    --mat-legacy-button-toggle-selected-state-background-color: #e0e0e0;
+    --mat-legacy-button-toggle-disabled-state-text-color: rgba(0, 0, 0, .26);
+    --mat-legacy-button-toggle-disabled-state-background-color: #eeeeee;
+    --mat-legacy-button-toggle-disabled-selected-state-background-color: #bdbdbd;
+    --mat-standard-button-toggle-text-color: rgba(0, 0, 0, .87);
+    --mat-standard-button-toggle-background-color: white;
+    --mat-standard-button-toggle-state-layer-color: black;
+    --mat-standard-button-toggle-selected-state-background-color: #e0e0e0;
+    --mat-standard-button-toggle-selected-state-text-color: rgba(0, 0, 0, .87);
+    --mat-standard-button-toggle-disabled-state-text-color: rgba(0, 0, 0, .26);
+    --mat-standard-button-toggle-disabled-state-background-color: white;
+    --mat-standard-button-toggle-disabled-selected-state-text-color: rgba(0, 0, 0, .87);
+    --mat-standard-button-toggle-disabled-selected-state-background-color: #bdbdbd;
+    --mat-standard-button-toggle-divider-color: #e0e0e0
+}
+
+html {
+    --mat-standard-button-toggle-height: 48px
+}
+
+html {
+    --mat-legacy-button-toggle-text-font: Roboto, sans-serif;
+    --mat-standard-button-toggle-text-font: Roboto, sans-serif
+}
+
+html {
+    --mat-datepicker-calendar-date-selected-state-text-color: white;
+    --mat-datepicker-calendar-date-selected-state-background-color: #673ab7;
+    --mat-datepicker-calendar-date-selected-disabled-state-background-color: rgba(103, 58, 183, .4);
+    --mat-datepicker-calendar-date-today-selected-state-outline-color: white;
+    --mat-datepicker-calendar-date-focus-state-background-color: rgba(103, 58, 183, .3);
+    --mat-datepicker-calendar-date-hover-state-background-color: rgba(103, 58, 183, .3);
+    --mat-datepicker-toggle-active-state-icon-color: #673ab7;
+    --mat-datepicker-calendar-date-in-range-state-background-color: rgba(103, 58, 183, .2);
+    --mat-datepicker-calendar-date-in-comparison-range-state-background-color: rgba(249, 171, 0, .2);
+    --mat-datepicker-calendar-date-in-overlap-range-state-background-color: #a8dab5;
+    --mat-datepicker-calendar-date-in-overlap-range-selected-state-background-color: #46a35e;
+    --mat-datepicker-toggle-icon-color: rgba(0, 0, 0, .54);
+    --mat-datepicker-calendar-body-label-text-color: rgba(0, 0, 0, .54);
+    --mat-datepicker-calendar-period-button-icon-color: rgba(0, 0, 0, .54);
+    --mat-datepicker-calendar-navigation-button-icon-color: rgba(0, 0, 0, .54);
+    --mat-datepicker-calendar-header-divider-color: rgba(0, 0, 0, .12);
+    --mat-datepicker-calendar-header-text-color: rgba(0, 0, 0, .54);
+    --mat-datepicker-calendar-date-today-outline-color: rgba(0, 0, 0, .38);
+    --mat-datepicker-calendar-date-today-disabled-state-outline-color: rgba(0, 0, 0, .18);
+    --mat-datepicker-calendar-date-text-color: rgba(0, 0, 0, .87);
+    --mat-datepicker-calendar-date-outline-color: transparent;
+    --mat-datepicker-calendar-date-disabled-state-text-color: rgba(0, 0, 0, .38);
+    --mat-datepicker-calendar-date-preview-state-outline-color: rgba(0, 0, 0, .24);
+    --mat-datepicker-range-input-separator-color: rgba(0, 0, 0, .87);
+    --mat-datepicker-range-input-disabled-state-separator-color: rgba(0, 0, 0, .38);
+    --mat-datepicker-range-input-disabled-state-text-color: rgba(0, 0, 0, .38);
+    --mat-datepicker-calendar-container-background-color: white;
+    --mat-datepicker-calendar-container-text-color: rgba(0, 0, 0, .87)
+}
+
+html {
+    --mat-datepicker-calendar-text-font: Roboto, sans-serif;
+    --mat-datepicker-calendar-text-size: 13px;
+    --mat-datepicker-calendar-body-label-text-size: 14px;
+    --mat-datepicker-calendar-body-label-text-weight: 500;
+    --mat-datepicker-calendar-period-button-text-size: 14px;
+    --mat-datepicker-calendar-period-button-text-weight: 500;
+    --mat-datepicker-calendar-header-text-size: 11px;
+    --mat-datepicker-calendar-header-text-weight: 400
+}
+
+html {
+    --mat-divider-color: rgba(0, 0, 0, .12)
+}
+
+html {
+    --mat-expansion-container-background-color: white;
+    --mat-expansion-container-text-color: rgba(0, 0, 0, .87);
+    --mat-expansion-actions-divider-color: rgba(0, 0, 0, .12);
+    --mat-expansion-header-hover-state-layer-color: rgba(0, 0, 0, .04);
+    --mat-expansion-header-focus-state-layer-color: rgba(0, 0, 0, .04);
+    --mat-expansion-header-disabled-state-text-color: rgba(0, 0, 0, .26);
+    --mat-expansion-header-text-color: rgba(0, 0, 0, .87);
+    --mat-expansion-header-description-color: rgba(0, 0, 0, .54);
+    --mat-expansion-header-indicator-color: rgba(0, 0, 0, .54)
+}
+
+html {
+    --mat-expansion-header-collapsed-state-height: 48px;
+    --mat-expansion-header-expanded-state-height: 64px
+}
+
+html {
+    --mat-expansion-header-text-font: Roboto, sans-serif;
+    --mat-expansion-header-text-size: 14px;
+    --mat-expansion-header-text-weight: 500;
+    --mat-expansion-header-text-line-height: inherit;
+    --mat-expansion-header-text-tracking: inherit;
+    --mat-expansion-container-text-font: Roboto, sans-serif;
+    --mat-expansion-container-text-line-height: 20px;
+    --mat-expansion-container-text-size: 14px;
+    --mat-expansion-container-text-tracking: .0178571429em;
+    --mat-expansion-container-text-weight: 400
+}
+
+html {
+    --mat-grid-list-tile-header-primary-text-size: 14px;
+    --mat-grid-list-tile-header-secondary-text-size: 12px;
+    --mat-grid-list-tile-footer-primary-text-size: 14px;
+    --mat-grid-list-tile-footer-secondary-text-size: 12px
+}
+
+html {
+    --mat-icon-color: inherit
+}
+
+html {
+    --mat-sidenav-container-divider-color: rgba(0, 0, 0, .12);
+    --mat-sidenav-container-background-color: white;
+    --mat-sidenav-container-text-color: rgba(0, 0, 0, .87);
+    --mat-sidenav-content-background-color: #fafafa;
+    --mat-sidenav-content-text-color: rgba(0, 0, 0, .87);
+    --mat-sidenav-scrim-color: rgba(0, 0, 0, .6)
+}
+
+html {
+    --mat-stepper-header-icon-foreground-color: white;
+    --mat-stepper-header-selected-state-icon-background-color: #673ab7;
+    --mat-stepper-header-selected-state-icon-foreground-color: white;
+    --mat-stepper-header-done-state-icon-background-color: #673ab7;
+    --mat-stepper-header-done-state-icon-foreground-color: white;
+    --mat-stepper-header-edit-state-icon-background-color: #673ab7;
+    --mat-stepper-header-edit-state-icon-foreground-color: white;
+    --mat-stepper-container-color: white;
+    --mat-stepper-line-color: rgba(0, 0, 0, .12);
+    --mat-stepper-header-hover-state-layer-color: rgba(0, 0, 0, .04);
+    --mat-stepper-header-focus-state-layer-color: rgba(0, 0, 0, .04);
+    --mat-stepper-header-label-text-color: rgba(0, 0, 0, .54);
+    --mat-stepper-header-optional-label-text-color: rgba(0, 0, 0, .54);
+    --mat-stepper-header-selected-state-label-text-color: rgba(0, 0, 0, .87);
+    --mat-stepper-header-error-state-label-text-color: #f44336;
+    --mat-stepper-header-icon-background-color: rgba(0, 0, 0, .54);
+    --mat-stepper-header-error-state-icon-foreground-color: #f44336;
+    --mat-stepper-header-error-state-icon-background-color: transparent
+}
+
+html {
+    --mat-stepper-header-height: 72px
+}
+
+html {
+    --mat-stepper-container-text-font: Roboto, sans-serif;
+    --mat-stepper-header-label-text-font: Roboto, sans-serif;
+    --mat-stepper-header-label-text-size: 14px;
+    --mat-stepper-header-label-text-weight: 400;
+    --mat-stepper-header-error-state-label-text-size: 16px;
+    --mat-stepper-header-selected-state-label-text-size: 16px;
+    --mat-stepper-header-selected-state-label-text-weight: 400
+}
+
+html {
+    --mat-toolbar-container-background-color: whitesmoke;
+    --mat-toolbar-container-text-color: rgba(0, 0, 0, .87)
+}
+
+html {
+    --mat-toolbar-standard-height: 64px;
+    --mat-toolbar-mobile-height: 56px
+}
+
+html {
+    --mat-toolbar-title-text-font: Roboto, sans-serif;
+    --mat-toolbar-title-text-line-height: 32px;
+    --mat-toolbar-title-text-size: 20px;
+    --mat-toolbar-title-text-tracking: .0125em;
+    --mat-toolbar-title-text-weight: 500
+}
+
+:root {
+    --surface-a: #ffffff;
+    --surface-b: #faf9f8;
+    --surface-c: #f3f2f1;
+    --surface-d: #edebe9;
+    --surface-e: #ffffff;
+    --surface-f: #ffffff;
+    --text-color: #323130;
+    --text-color-secondary: #605e5c;
+    --primary-color: #0078d4;
+    --primary-color-text: #ffffff;
+    --font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
+    --surface-0: #ffffff;
+    --surface-50: #f3f2f1;
+    --surface-100: #e1dfdd;
+    --surface-200: #bebbb8;
+    --surface-300: #a19f9d;
+    --surface-400: #797775;
+    --surface-500: #484644;
+    --surface-600: #323130;
+    --surface-700: #252423;
+    --surface-800: #1b1a19;
+    --surface-900: #11100f;
+    --gray-50: #f3f2f1;
+    --gray-100: #e1dfdd;
+    --gray-200: #bebbb8;
+    --gray-300: #a19f9d;
+    --gray-400: #797775;
+    --gray-500: #484644;
+    --gray-600: #323130;
+    --gray-700: #252423;
+    --gray-800: #1b1a19;
+    --gray-900: #11100f;
+    --content-padding: 1rem;
+    --inline-spacing: .5rem;
+    --border-radius: 2px;
+    --surface-ground: #faf9f8;
+    --surface-section: #ffffff;
+    --surface-card: #ffffff;
+    --surface-overlay: #ffffff;
+    --surface-border: #edebe9;
+    --surface-hover: #f3f2f1;
+    --maskbg: rgba(0, 0, 0, .4);
+    --focus-ring: inset 0 0 0 1px #605e5c
+}
+
+* {
+    box-sizing: border-box
+}
+
+:root {
+    --blue-50: #f3f8fc;
+    --blue-100: #c6dcef;
+    --blue-200: #98c1e3;
+    --blue-300: #6ba5d7;
+    --blue-400: #3d8aca;
+    --blue-500: #106ebe;
+    --blue-600: #0e5ea2;
+    --blue-700: #0b4d85;
+    --blue-800: #093d69;
+    --blue-900: #062c4c;
+    --green-50: #f7fbf3;
+    --green-100: #d9eac4;
+    --green-200: #bbda96;
+    --green-300: #9cca67;
+    --green-400: #7eb939;
+    --green-500: #60a90a;
+    --green-600: #529009;
+    --green-700: #437607;
+    --green-800: #355d06;
+    --green-900: #264404;
+    --yellow-50: #fffcf2;
+    --yellow-100: #ffeec2;
+    --yellow-200: #ffe191;
+    --yellow-300: #ffd461;
+    --yellow-400: #ffc630;
+    --yellow-500: #ffb900;
+    --yellow-600: #d99d00;
+    --yellow-700: #b38200;
+    --yellow-800: #8c6600;
+    --yellow-900: #664a00;
+    --cyan-50: #f2fbfc;
+    --cyan-100: #c2eef1;
+    --cyan-200: #91e0e5;
+    --cyan-300: #61d2da;
+    --cyan-400: #30c5ce;
+    --cyan-500: #00b7c3;
+    --cyan-600: #009ca6;
+    --cyan-700: #008089;
+    --cyan-800: #00656b;
+    --cyan-900: #00494e;
+    --pink-50: #fef2f9;
+    --pink-100: #f8c2e3;
+    --pink-200: #f391ce;
+    --pink-300: #ee61b8;
+    --pink-400: #e830a2;
+    --pink-500: #e3008c;
+    --pink-600: #c10077;
+    --pink-700: #9f0062;
+    --pink-800: #7d004d;
+    --pink-900: #5b0038;
+    --indigo-50: #f5f6fc;
+    --indigo-100: #cdd3f1;
+    --indigo-200: #a5b0e6;
+    --indigo-300: #7d8edc;
+    --indigo-400: #566bd1;
+    --indigo-500: #2e48c6;
+    --indigo-600: #273da8;
+    --indigo-700: #20328b;
+    --indigo-800: #19286d;
+    --indigo-900: #121d4f;
+    --teal-50: #f2f9f8;
+    --teal-100: #c2e1dd;
+    --teal-200: #91c9c2;
+    --teal-300: #61b2a8;
+    --teal-400: #309a8d;
+    --teal-500: #008272;
+    --teal-600: #006f61;
+    --teal-700: #005b50;
+    --teal-800: #00483f;
+    --teal-900: #00342e;
+    --orange-50: #fdf7f2;
+    --orange-100: #f5d8c2;
+    --orange-200: #edb991;
+    --orange-300: #e49a61;
+    --orange-400: #dc7b30;
+    --orange-500: #d45c00;
+    --orange-600: #b44e00;
+    --orange-700: #944000;
+    --orange-800: #753300;
+    --orange-900: #552500;
+    --bluegray-50: #f8f9fb;
+    --bluegray-100: #dee4ed;
+    --bluegray-200: #c4cfe0;
+    --bluegray-300: #a9bad2;
+    --bluegray-400: #8fa4c4;
+    --bluegray-500: #758fb6;
+    --bluegray-600: #637a9b;
+    --bluegray-700: #52647f;
+    --bluegray-800: #404f64;
+    --bluegray-900: #2f3949;
+    --purple-50: #f9f8fd;
+    --purple-100: #e1dff7;
+    --purple-200: #cac5f1;
+    --purple-300: #b2abeb;
+    --purple-400: #9b92e4;
+    --purple-500: #8378de;
+    --purple-600: #6f66bd;
+    --purple-700: #5c549b;
+    --purple-800: #48427a;
+    --purple-900: #343059;
+    --red-50: #fdf5f5;
+    --red-100: #f4cecf;
+    --red-200: #eba8a9;
+    --red-300: #e28184;
+    --red-400: #da5b5e;
+    --red-500: #d13438;
+    --red-600: #b22c30;
+    --red-700: #922427;
+    --red-800: #731d1f;
+    --red-900: #541516
+}
+
+
+:root {
+    --font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji
+}
+
+:root {
+    --swiper-theme-color: #007aff
+}
+
+:root {
+    --swiper-navigation-size: 44px
+}
+
+@font-face {
+    font-family: Segoe UI;
+    src: local("Segoe UI Light"), url(segoeuil.b7052262d65498a9.woff) format("woff"), url(segoeuil.453a74f4a685b371.woff2) format("woff2"), url(segoeuil.a10e36ee0338cb3e.ttf) format("ttf"), url(segoeuil.b148c78f5c88e846.svg#SegoeUILight) format("svg");
+    font-weight: 200;
+    font-style: normal
+}
+
+@font-face {
+    font-family: Segoe UI;
+    src: local("Segoe UI Semilight"), url(segoeuisl.0b319767acd16189.woff) format("woff"), url(segoeuisl.3ef7c5e718255646.woff2) format("woff2"), url(segoeuisl.e3f7e0dafc6e539b.ttf) format("ttf"), url(segoeuisl.d42c9a39c04c3914.svg#SegoeUISemilight) format("svg");
+    font-weight: 300;
+    font-style: normal
+}
+
+@font-face {
+    font-family: Segoe UI;
+    src: local("Segoe UI"), url(segoeui.fdabbd73c48f7e0a.woff) format("woff"), url(segoeui.80c9c12e20390ef0.woff2) format("woff2"), url(segoeui.060b7660e09c7882.ttf) format("ttf"), url(segoeui.97c254b4d6bb03fe.svg#SegoeUI) format("svg");
+    font-weight: 400;
+    font-style: normal
+}
+
+@font-face {
+    font-family: Segoe UI;
+    src: local("Segoe UI Semibold"), url(segoeuisb.f4801215643e9168.woff) format("woff"), url(segoeuisb.00bf63d10c5e7dbb.woff2) format("woff2"), url(segoeuisb.2a9104d3dac409bc.ttf) format("ttf"), url(segoeuisb.287a384f27650cb1.svg#SegoeUISemibold) format("svg");
+    font-weight: 500;
+    font-style: normal
+}
+
+@font-face {
+    font-family: Segoe UI;
+    src: local("Segoe UI Semibold"), url(segoeuisb.f4801215643e9168.woff) format("woff"), url(segoeuisb.00bf63d10c5e7dbb.woff2) format("woff2"), url(segoeuisb.2a9104d3dac409bc.ttf) format("ttf"), url(segoeuisb.287a384f27650cb1.svg#SegoeUISemibold) format("svg");
+    font-weight: 600;
+    font-style: normal
+}
+
+@font-face {
+    font-family: Segoe UI;
+    src: local("Segoe UI Bold"), url(segoeuib.f88854d9b87dc087.woff) format("woff"), url(segoeuib.79384356c39628d0.woff2) format("woff2"), url(segoeuib.aa3d5449c2477d50.ttf) format("ttf"), url(segoeuib.70d7487745ef2f05.svg#SegoeUIBold) format("svg");
+    font-weight: 700;
+    font-style: normal
+}
+
+body {
+    margin: 0;
+    height: 100%;
+    width: 100%;
+    font-family: Segoe UI;
+    background-color: var(--colorNeutralBackground1, #ffffff);
+    color: var(--colorNeutralForeground1, #242424)
+}
+
+html {
+    height: 100%
+}
+
+*:focus {
+    outline-offset: -1px
+}
+
+* {
+    box-sizing: revert
+}
+
+:root {
+    --borderRadiusNone: 0;
+    --borderRadiusSmall: 2px;
+    --borderRadiusMedium: 4px;
+    --borderRadiusLarge: 6px;
+    --borderRadiusXLarge: 8px;
+    --borderRadiusCircular: 10000px;
+    --fontSizeBase100: 10px;
+    --fontSizeBase200: 12px;
+    --fontSizeBase300: 14px;
+    --fontSizeBase400: 16px;
+    --fontSizeBase500: 20px;
+    --fontSizeBase600: 24px;
+    --fontSizeHero700: 28px;
+    --fontSizeHero800: 32px;
+    --fontSizeHero900: 40px;
+    --fontSizeHero1000: 68px;
+    --lineHeightBase100: 14px;
+    --lineHeightBase200: 16px;
+    --lineHeightBase300: 20px;
+    --lineHeightBase400: 22px;
+    --lineHeightBase500: 28px;
+    --lineHeightBase600: 32px;
+    --lineHeightHero700: 36px;
+    --lineHeightHero800: 40px;
+    --lineHeightHero900: 52px;
+    --lineHeightHero1000: 92px;
+    --fontFamilyBase: "Segoe UI", "Segoe UI Web (West European)", -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+    --fontFamilyMonospace: Consolas, "Courier New", Courier, monospace;
+    --fontFamilyNumeric: Bahnschrift, "Segoe UI", "Segoe UI Web (West European)", -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+    --fontWeightRegular: 400;
+    --fontWeightMedium: 500;
+    --fontWeightSemibold: 600;
+    --fontWeightBold: 700;
+    --strokeWidthThin: 1px;
+    --strokeWidthThick: 2px;
+    --strokeWidthThicker: 3px;
+    --strokeWidthThickest: 4px;
+    --spacingHorizontalNone: 0;
+    --spacingHorizontalXXS: 2px;
+    --spacingHorizontalXS: 4px;
+    --spacingHorizontalSNudge: 6px;
+    --spacingHorizontalS: 8px;
+    --spacingHorizontalMNudge: 10px;
+    --spacingHorizontalM: 12px;
+    --spacingHorizontalL: 16px;
+    --spacingHorizontalXL: 20px;
+    --spacingHorizontalXXL: 24px;
+    --spacingHorizontalXXXL: 32px;
+    --spacingVerticalNone: 0;
+    --spacingVerticalXXS: 2px;
+    --spacingVerticalXS: 4px;
+    --spacingVerticalSNudge: 6px;
+    --spacingVerticalS: 8px;
+    --spacingVerticalMNudge: 10px;
+    --spacingVerticalM: 12px;
+    --spacingVerticalL: 16px;
+    --spacingVerticalXL: 20px;
+    --spacingVerticalXXL: 24px;
+    --spacingVerticalXXXL: 32px;
+    --durationUltraFast: 50ms;
+    --durationFaster: .1s;
+    --durationFast: .15s;
+    --durationNormal: .2s;
+    --durationSlow: .3s;
+    --durationSlower: .4s;
+    --durationUltraSlow: .5s;
+    --curveAccelerateMax: cubic-bezier(1, 0, 1, 1);
+    --curveAccelerateMid: cubic-bezier(.7, 0, 1, .5);
+    --curveAccelerateMin: cubic-bezier(.8, 0, 1, 1);
+    --curveDecelerateMax: cubic-bezier(0, 0, 0, 1);
+    --curveDecelerateMid: cubic-bezier(.1, .9, .2, 1);
+    --curveDecelerateMin: cubic-bezier(.33, 0, .1, 1);
+    --curveEasyEaseMax: cubic-bezier(.8, 0, .1, 1);
+    --curveEasyEase: cubic-bezier(.33, 0, .67, 1);
+    --curveLinear: cubic-bezier(0, 0, 1, 1);
+    --shadow2: 0 0 2px rgba(0, 0, 0, .12), 0 1px 2px rgba(0, 0, 0, .14);
+    --shadow4: 0 0 2px rgba(0, 0, 0, .12), 0 2px 4px rgba(0, 0, 0, .14);
+    --shadow8: 0 0 2px rgba(0, 0, 0, .12), 0 4px 8px rgba(0, 0, 0, .14);
+    --shadow16: 0 0 2px rgba(0, 0, 0, .12), 0 8px 16px rgba(0, 0, 0, .14);
+    --shadow28: 0 0 8px rgba(0, 0, 0, .12), 0 14px 28px rgba(0, 0, 0, .14);
+    --shadow64: 0 0 8px rgba(0, 0, 0, .12), 0 32px 64px rgba(0, 0, 0, .14);
+    --shadow2Brand: 0 0 2px rgba(0, 0, 0, .3), 0 1px 2px rgba(0, 0, 0, .25);
+    --shadow4Brand: 0 0 2px rgba(0, 0, 0, .3), 0 2px 4px rgba(0, 0, 0, .25);
+    --shadow8Brand: 0 0 2px rgba(0, 0, 0, .3), 0 4px 8px rgba(0, 0, 0, .25);
+    --shadow16Brand: 0 0 2px rgba(0, 0, 0, .3), 0 8px 16px rgba(0, 0, 0, .25);
+    --shadow28Brand: 0 0 8px rgba(0, 0, 0, .3), 0 14px 28px rgba(0, 0, 0, .25);
+    --shadow64Brand: 0 0 8px rgba(0, 0, 0, .3), 0 32px 64px rgba(0, 0, 0, .25);
+    --globalColorDarkRedShade50: #130204;
+    --globalColorDarkRedShade40: #230308;
+    --globalColorDarkRedShade30: #420610;
+    --globalColorDarkRedShade20: #590815;
+    --globalColorDarkRedShade10: #690a19;
+    --globalColorDarkRedPrimary: #750b1c;
+    --globalColorDarkRedTint10: #861b2c;
+    --globalColorDarkRedTint20: #962f3f;
+    --globalColorDarkRedTint30: #ac4f5e;
+    --globalColorDarkRedTint40: #d69ca5;
+    --globalColorDarkRedTint50: #e9c7cd;
+    --globalColorDarkRedTint60: #f9f0f2;
+    --globalColorBurgundyShade50: #1a0607;
+    --globalColorBurgundyShade40: #310b0d;
+    --globalColorBurgundyShade30: #5c1519;
+    --globalColorBurgundyShade20: #7d1d21;
+    --globalColorBurgundyShade10: #942228;
+    --globalColorBurgundyPrimary: #a4262c;
+    --globalColorBurgundyTint10: #af393e;
+    --globalColorBurgundyTint20: #ba4d52;
+    --globalColorBurgundyTint30: #c86c70;
+    --globalColorBurgundyTint40: #e4afb2;
+    --globalColorBurgundyTint50: #f0d3d4;
+    --globalColorBurgundyTint60: #fbf4f4;
+    --globalColorCranberryShade50: #200205;
+    --globalColorCranberryShade40: #3b0509;
+    --globalColorCranberryShade30: #6e0811;
+    --globalColorCranberryShade20: #960b18;
+    --globalColorCranberryShade10: #b10e1c;
+    --globalColorCranberryPrimary: #c50f1f;
+    --globalColorCranberryTint10: #cc2635;
+    --globalColorCranberryTint20: #d33f4c;
+    --globalColorCranberryTint30: #dc626d;
+    --globalColorCranberryTint40: #eeacb2;
+    --globalColorCranberryTint50: #f6d1d5;
+    --globalColorCranberryTint60: #fdf3f4;
+    --globalColorRedShade50: #210809;
+    --globalColorRedShade40: #3f1011;
+    --globalColorRedShade30: #751d1f;
+    --globalColorRedShade20: #9f282b;
+    --globalColorRedShade10: #bc2f32;
+    --globalColorRedPrimary: #d13438;
+    --globalColorRedTint10: #d7494c;
+    --globalColorRedTint20: #dc5e62;
+    --globalColorRedTint30: #e37d80;
+    --globalColorRedTint40: #f1bbbc;
+    --globalColorRedTint50: #f8dadb;
+    --globalColorRedTint60: #fdf6f6;
+    --globalColorDarkOrangeShade50: #230900;
+    --globalColorDarkOrangeShade40: #411200;
+    --globalColorDarkOrangeShade30: #7a2101;
+    --globalColorDarkOrangeShade20: #a62d01;
+    --globalColorDarkOrangeShade10: #c43501;
+    --globalColorDarkOrangePrimary: #da3b01;
+    --globalColorDarkOrangeTint10: #de501c;
+    --globalColorDarkOrangeTint20: #e36537;
+    --globalColorDarkOrangeTint30: #e9835e;
+    --globalColorDarkOrangeTint40: #f4bfab;
+    --globalColorDarkOrangeTint50: #f9dcd1;
+    --globalColorDarkOrangeTint60: #fdf6f3;
+    --globalColorBronzeShade50: #1b0a01;
+    --globalColorBronzeShade40: #321303;
+    --globalColorBronzeShade30: #5e2405;
+    --globalColorBronzeShade20: #7f3107;
+    --globalColorBronzeShade10: #963a08;
+    --globalColorBronzePrimary: #a74109;
+    --globalColorBronzeTint10: #b2521e;
+    --globalColorBronzeTint20: #bc6535;
+    --globalColorBronzeTint30: #ca8057;
+    --globalColorBronzeTint40: #e5bba4;
+    --globalColorBronzeTint50: #f1d9cc;
+    --globalColorBronzeTint60: #fbf5f2;
+    --globalColorPumpkinShade50: #200d03;
+    --globalColorPumpkinShade40: #3d1805;
+    --globalColorPumpkinShade30: #712d09;
+    --globalColorPumpkinShade20: #9a3d0c;
+    --globalColorPumpkinShade10: #b6480e;
+    --globalColorPumpkinPrimary: #ca5010;
+    --globalColorPumpkinTint10: #d06228;
+    --globalColorPumpkinTint20: #d77440;
+    --globalColorPumpkinTint30: #df8e64;
+    --globalColorPumpkinTint40: #efc4ad;
+    --globalColorPumpkinTint50: #f7dfd2;
+    --globalColorPumpkinTint60: #fdf7f4;
+    --globalColorOrangeShade50: #271002;
+    --globalColorOrangeShade40: #4a1e04;
+    --globalColorOrangeShade30: #8a3707;
+    --globalColorOrangeShade20: #bc4b09;
+    --globalColorOrangeShade10: #de590b;
+    --globalColorOrangePrimary: #f7630c;
+    --globalColorOrangeTint10: #f87528;
+    --globalColorOrangeTint20: #f98845;
+    --globalColorOrangeTint30: #faa06b;
+    --globalColorOrangeTint40: #fdcfb4;
+    --globalColorOrangeTint50: #fee5d7;
+    --globalColorOrangeTint60: #fff9f5;
+    --globalColorPeachShade50: #291600;
+    --globalColorPeachShade40: #4d2a00;
+    --globalColorPeachShade30: #8f4e00;
+    --globalColorPeachShade20: #c26a00;
+    --globalColorPeachShade10: #e67e00;
+    --globalColorPeachPrimary: #ff8c00;
+    --globalColorPeachTint10: #ff9a1f;
+    --globalColorPeachTint20: #ffa83d;
+    --globalColorPeachTint30: #ffba66;
+    --globalColorPeachTint40: #ffddb3;
+    --globalColorPeachTint50: #ffedd6;
+    --globalColorPeachTint60: #fffaf5;
+    --globalColorMarigoldShade50: #251a00;
+    --globalColorMarigoldShade40: #463100;
+    --globalColorMarigoldShade30: #835b00;
+    --globalColorMarigoldShade20: #b27c00;
+    --globalColorMarigoldShade10: #d39300;
+    --globalColorMarigoldPrimary: #eaa300;
+    --globalColorMarigoldTint10: #edad1c;
+    --globalColorMarigoldTint20: #efb839;
+    --globalColorMarigoldTint30: #f2c661;
+    --globalColorMarigoldTint40: #f9e2ae;
+    --globalColorMarigoldTint50: #fcefd3;
+    --globalColorMarigoldTint60: #fefbf4;
+    --globalColorYellowPrimary: #fde300;
+    --globalColorYellowShade10: #e4cc00;
+    --globalColorYellowShade20: #c0ad00;
+    --globalColorYellowShade30: #817400;
+    --globalColorYellowShade40: #4c4400;
+    --globalColorYellowShade50: #282400;
+    --globalColorYellowTint10: #fde61e;
+    --globalColorYellowTint20: #fdea3d;
+    --globalColorYellowTint30: #feee66;
+    --globalColorYellowTint40: #fef7b2;
+    --globalColorYellowTint50: #fffad6;
+    --globalColorYellowTint60: #fffef5;
+    --globalColorGoldShade50: #1f1900;
+    --globalColorGoldShade40: #3a2f00;
+    --globalColorGoldShade30: #6c5700;
+    --globalColorGoldShade20: #937700;
+    --globalColorGoldShade10: #ae8c00;
+    --globalColorGoldPrimary: #c19c00;
+    --globalColorGoldTint10: #c8a718;
+    --globalColorGoldTint20: #d0b232;
+    --globalColorGoldTint30: #dac157;
+    --globalColorGoldTint40: #ecdfa5;
+    --globalColorGoldTint50: #f5eece;
+    --globalColorGoldTint60: #fdfbf2;
+    --globalColorBrassShade50: #181202;
+    --globalColorBrassShade40: #2e2103;
+    --globalColorBrassShade30: #553e06;
+    --globalColorBrassShade20: #745408;
+    --globalColorBrassShade10: #89640a;
+    --globalColorBrassPrimary: #986f0b;
+    --globalColorBrassTint10: #a47d1e;
+    --globalColorBrassTint20: #b18c34;
+    --globalColorBrassTint30: #c1a256;
+    --globalColorBrassTint40: #e0cea2;
+    --globalColorBrassTint50: #efe4cb;
+    --globalColorBrassTint60: #fbf8f2;
+    --globalColorBrownShade50: #170e07;
+    --globalColorBrownShade40: #2b1a0e;
+    --globalColorBrownShade30: #50301a;
+    --globalColorBrownShade20: #6c4123;
+    --globalColorBrownShade10: #804d29;
+    --globalColorBrownPrimary: #8e562e;
+    --globalColorBrownTint10: #9c663f;
+    --globalColorBrownTint20: #a97652;
+    --globalColorBrownTint30: #bb8f6f;
+    --globalColorBrownTint40: #ddc3b0;
+    --globalColorBrownTint50: #edded3;
+    --globalColorBrownTint60: #faf7f4;
+    --globalColorDarkBrownShade50: #0c0704;
+    --globalColorDarkBrownShade40: #170c08;
+    --globalColorDarkBrownShade30: #2b1710;
+    --globalColorDarkBrownShade20: #3a1f15;
+    --globalColorDarkBrownShade10: #452519;
+    --globalColorDarkBrownPrimary: #4d291c;
+    --globalColorDarkBrownTint10: #623a2b;
+    --globalColorDarkBrownTint20: #784d3e;
+    --globalColorDarkBrownTint30: #946b5c;
+    --globalColorDarkBrownTint40: #caada3;
+    --globalColorDarkBrownTint50: #e3d2cb;
+    --globalColorDarkBrownTint60: #f8f3f2;
+    --globalColorLimeShade50: #121b06;
+    --globalColorLimeShade40: #23330b;
+    --globalColorLimeShade30: #405f14;
+    --globalColorLimeShade20: #57811b;
+    --globalColorLimeShade10: #689920;
+    --globalColorLimePrimary: #73aa24;
+    --globalColorLimeTint10: #81b437;
+    --globalColorLimeTint20: #90be4c;
+    --globalColorLimeTint30: #a4cc6c;
+    --globalColorLimeTint40: #cfe5af;
+    --globalColorLimeTint50: #e5f1d3;
+    --globalColorLimeTint60: #f8fcf4;
+    --globalColorForestShade50: #0c1501;
+    --globalColorForestShade40: #162702;
+    --globalColorForestShade30: #294903;
+    --globalColorForestShade20: #376304;
+    --globalColorForestShade10: #427505;
+    --globalColorForestPrimary: #498205;
+    --globalColorForestTint10: #599116;
+    --globalColorForestTint20: #6ba02b;
+    --globalColorForestTint30: #85b44c;
+    --globalColorForestTint40: #bdd99b;
+    --globalColorForestTint50: #dbebc7;
+    --globalColorForestTint60: #f6faf0;
+    --globalColorSeafoamShade50: #002111;
+    --globalColorSeafoamShade40: #003d20;
+    --globalColorSeafoamShade30: #00723b;
+    --globalColorSeafoamShade20: #009b51;
+    --globalColorSeafoamShade10: #00b85f;
+    --globalColorSeafoamPrimary: #00cc6a;
+    --globalColorSeafoamTint10: #19d279;
+    --globalColorSeafoamTint20: #34d889;
+    --globalColorSeafoamTint30: #5ae0a0;
+    --globalColorSeafoamTint40: #a8f0cd;
+    --globalColorSeafoamTint50: #cff7e4;
+    --globalColorSeafoamTint60: #f3fdf8;
+    --globalColorLightGreenShade50: #031a02;
+    --globalColorLightGreenShade40: #063004;
+    --globalColorLightGreenShade30: #0b5a08;
+    --globalColorLightGreenShade20: #0e7a0b;
+    --globalColorLightGreenShade10: #11910d;
+    --globalColorLightGreenPrimary: #13a10e;
+    --globalColorLightGreenTint10: #27ac22;
+    --globalColorLightGreenTint20: #3db838;
+    --globalColorLightGreenTint30: #5ec75a;
+    --globalColorLightGreenTint40: #a7e3a5;
+    --globalColorLightGreenTint50: #cef0cd;
+    --globalColorLightGreenTint60: #f2fbf2;
+    --globalColorGreenShade50: #031403;
+    --globalColorGreenShade40: #052505;
+    --globalColorGreenShade30: #094509;
+    --globalColorGreenShade20: #0c5e0c;
+    --globalColorGreenShade10: #0e700e;
+    --globalColorGreenPrimary: #107c10;
+    --globalColorGreenTint10: #218c21;
+    --globalColorGreenTint20: #359b35;
+    --globalColorGreenTint30: #54b054;
+    --globalColorGreenTint40: #9fd89f;
+    --globalColorGreenTint50: #c9eac9;
+    --globalColorGreenTint60: #f1faf1;
+    --globalColorDarkGreenShade50: #021102;
+    --globalColorDarkGreenShade40: #032003;
+    --globalColorDarkGreenShade30: #063b06;
+    --globalColorDarkGreenShade20: #085108;
+    --globalColorDarkGreenShade10: #0a5f0a;
+    --globalColorDarkGreenPrimary: #0b6a0b;
+    --globalColorDarkGreenTint10: #1a7c1a;
+    --globalColorDarkGreenTint20: #2d8e2d;
+    --globalColorDarkGreenTint30: #4da64d;
+    --globalColorDarkGreenTint40: #9ad29a;
+    --globalColorDarkGreenTint50: #c6e7c6;
+    --globalColorDarkGreenTint60: #f0f9f0;
+    --globalColorLightTealShade50: #001d1f;
+    --globalColorLightTealShade40: #00373a;
+    --globalColorLightTealShade30: #00666d;
+    --globalColorLightTealShade20: #008b94;
+    --globalColorLightTealShade10: #00a5af;
+    --globalColorLightTealPrimary: #00b7c3;
+    --globalColorLightTealTint10: #18bfca;
+    --globalColorLightTealTint20: #32c8d1;
+    --globalColorLightTealTint30: #58d3db;
+    --globalColorLightTealTint40: #a6e9ed;
+    --globalColorLightTealTint50: #cef3f5;
+    --globalColorLightTealTint60: #f2fcfd;
+    --globalColorTealShade50: #001516;
+    --globalColorTealShade40: #012728;
+    --globalColorTealShade30: #02494c;
+    --globalColorTealShade20: #026467;
+    --globalColorTealShade10: #037679;
+    --globalColorTealPrimary: #038387;
+    --globalColorTealTint10: #159195;
+    --globalColorTealTint20: #2aa0a4;
+    --globalColorTealTint30: #4cb4b7;
+    --globalColorTealTint40: #9bd9db;
+    --globalColorTealTint50: #c7ebec;
+    --globalColorTealTint60: #f0fafa;
+    --globalColorDarkTealShade50: #001010;
+    --globalColorDarkTealShade40: #001f1f;
+    --globalColorDarkTealShade30: #003939;
+    --globalColorDarkTealShade20: #004e4e;
+    --globalColorDarkTealShade10: #005c5c;
+    --globalColorDarkTealPrimary: #006666;
+    --globalColorDarkTealTint10: #0e7878;
+    --globalColorDarkTealTint20: #218b8b;
+    --globalColorDarkTealTint30: #41a3a3;
+    --globalColorDarkTealTint40: #92d1d1;
+    --globalColorDarkTealTint50: #c2e7e7;
+    --globalColorDarkTealTint60: #eff9f9;
+    --globalColorCyanShade50: #00181e;
+    --globalColorCyanShade40: #002e38;
+    --globalColorCyanShade30: #005669;
+    --globalColorCyanShade20: #00748f;
+    --globalColorCyanShade10: #008aa9;
+    --globalColorCyanPrimary: #0099bc;
+    --globalColorCyanTint10: #18a4c4;
+    --globalColorCyanTint20: #31afcc;
+    --globalColorCyanTint30: #56bfd7;
+    --globalColorCyanTint40: #a4deeb;
+    --globalColorCyanTint50: #cdedf4;
+    --globalColorCyanTint60: #f2fafc;
+    --globalColorSteelShade50: #000f12;
+    --globalColorSteelShade40: #001b22;
+    --globalColorSteelShade30: #00333f;
+    --globalColorSteelShade20: #004555;
+    --globalColorSteelShade10: #005265;
+    --globalColorSteelPrimary: #005b70;
+    --globalColorSteelTint10: #0f6c81;
+    --globalColorSteelTint20: #237d92;
+    --globalColorSteelTint30: #4496a9;
+    --globalColorSteelTint40: #94c8d4;
+    --globalColorSteelTint50: #c3e1e8;
+    --globalColorSteelTint60: #eff7f9;
+    --globalColorLightBlueShade50: #091823;
+    --globalColorLightBlueShade40: #112d42;
+    --globalColorLightBlueShade30: #20547c;
+    --globalColorLightBlueShade20: #2c72a8;
+    --globalColorLightBlueShade10: #3487c7;
+    --globalColorLightBluePrimary: #3a96dd;
+    --globalColorLightBlueTint10: #4fa1e1;
+    --globalColorLightBlueTint20: #65ade5;
+    --globalColorLightBlueTint30: #83bdeb;
+    --globalColorLightBlueTint40: #bfddf5;
+    --globalColorLightBlueTint50: #dcedfa;
+    --globalColorLightBlueTint60: #f6fafe;
+    --globalColorBlueShade50: #001322;
+    --globalColorBlueShade40: #002440;
+    --globalColorBlueShade30: #004377;
+    --globalColorBlueShade20: #005ba1;
+    --globalColorBlueShade10: #006cbf;
+    --globalColorBluePrimary: #0078d4;
+    --globalColorBlueTint10: #1a86d9;
+    --globalColorBlueTint20: #3595de;
+    --globalColorBlueTint30: #5caae5;
+    --globalColorBlueTint40: #a9d3f2;
+    --globalColorBlueTint50: #d0e7f8;
+    --globalColorBlueTint60: #f3f9fd;
+    --globalColorRoyalBlueShade50: #000c16;
+    --globalColorRoyalBlueShade40: #00172a;
+    --globalColorRoyalBlueShade30: #002c4e;
+    --globalColorRoyalBlueShade20: #003b6a;
+    --globalColorRoyalBlueShade10: #00467e;
+    --globalColorRoyalBluePrimary: #004e8c;
+    --globalColorRoyalBlueTint10: #125e9a;
+    --globalColorRoyalBlueTint20: #286fa8;
+    --globalColorRoyalBlueTint30: #4a89ba;
+    --globalColorRoyalBlueTint40: #9abfdc;
+    --globalColorRoyalBlueTint50: #c7dced;
+    --globalColorRoyalBlueTint60: #f0f6fa;
+    --globalColorDarkBlueShade50: #000910;
+    --globalColorDarkBlueShade40: #00111f;
+    --globalColorDarkBlueShade30: #002039;
+    --globalColorDarkBlueShade20: #002b4e;
+    --globalColorDarkBlueShade10: #00335c;
+    --globalColorDarkBluePrimary: #003966;
+    --globalColorDarkBlueTint10: #0e4a78;
+    --globalColorDarkBlueTint20: #215c8b;
+    --globalColorDarkBlueTint30: #4178a3;
+    --globalColorDarkBlueTint40: #92b5d1;
+    --globalColorDarkBlueTint50: #c2d6e7;
+    --globalColorDarkBlueTint60: #eff4f9;
+    --globalColorCornflowerShade50: #0d1126;
+    --globalColorCornflowerShade40: #182047;
+    --globalColorCornflowerShade30: #2c3c85;
+    --globalColorCornflowerShade20: #3c51b4;
+    --globalColorCornflowerShade10: #4760d5;
+    --globalColorCornflowerPrimary: #4f6bed;
+    --globalColorCornflowerTint10: #637cef;
+    --globalColorCornflowerTint20: #778df1;
+    --globalColorCornflowerTint30: #93a4f4;
+    --globalColorCornflowerTint40: #c8d1fa;
+    --globalColorCornflowerTint50: #e1e6fc;
+    --globalColorCornflowerTint60: #f7f9fe;
+    --globalColorNavyShade50: #00061d;
+    --globalColorNavyShade40: #000c36;
+    --globalColorNavyShade30: #001665;
+    --globalColorNavyShade20: #001e89;
+    --globalColorNavyShade10: #0023a2;
+    --globalColorNavyPrimary: #0027b4;
+    --globalColorNavyTint10: #173bbd;
+    --globalColorNavyTint20: #3050c6;
+    --globalColorNavyTint30: #546fd2;
+    --globalColorNavyTint40: #a3b2e8;
+    --globalColorNavyTint50: #ccd5f3;
+    --globalColorNavyTint60: #f2f4fc;
+    --globalColorLavenderShade50: #120f25;
+    --globalColorLavenderShade40: #221d46;
+    --globalColorLavenderShade30: #3f3682;
+    --globalColorLavenderShade20: #5649b0;
+    --globalColorLavenderShade10: #6656d1;
+    --globalColorLavenderPrimary: #7160e8;
+    --globalColorLavenderTint10: #8172eb;
+    --globalColorLavenderTint20: #9184ee;
+    --globalColorLavenderTint30: #a79cf1;
+    --globalColorLavenderTint40: #d2ccf8;
+    --globalColorLavenderTint50: #e7e4fb;
+    --globalColorLavenderTint60: #f9f8fe;
+    --globalColorPurpleShade50: #0f0717;
+    --globalColorPurpleShade40: #1c0e2b;
+    --globalColorPurpleShade30: #341a51;
+    --globalColorPurpleShade20: #46236e;
+    --globalColorPurpleShade10: #532982;
+    --globalColorPurplePrimary: #5c2e91;
+    --globalColorPurpleTint10: #6b3f9e;
+    --globalColorPurpleTint20: #7c52ab;
+    --globalColorPurpleTint30: #9470bd;
+    --globalColorPurpleTint40: #c6b1de;
+    --globalColorPurpleTint50: #e0d3ed;
+    --globalColorPurpleTint60: #f7f4fb;
+    --globalColorDarkPurpleShade50: #0a0411;
+    --globalColorDarkPurpleShade40: #130820;
+    --globalColorDarkPurpleShade30: #240f3c;
+    --globalColorDarkPurpleShade20: #311552;
+    --globalColorDarkPurpleShade10: #3a1861;
+    --globalColorDarkPurplePrimary: #401b6c;
+    --globalColorDarkPurpleTint10: #512b7e;
+    --globalColorDarkPurpleTint20: #633e8f;
+    --globalColorDarkPurpleTint30: #7e5ca7;
+    --globalColorDarkPurpleTint40: #b9a3d3;
+    --globalColorDarkPurpleTint50: #d8cce7;
+    --globalColorDarkPurpleTint60: #f5f2f9;
+    --globalColorOrchidShade50: #16101d;
+    --globalColorOrchidShade40: #281e37;
+    --globalColorOrchidShade30: #4c3867;
+    --globalColorOrchidShade20: #674c8c;
+    --globalColorOrchidShade10: #795aa6;
+    --globalColorOrchidPrimary: #8764b8;
+    --globalColorOrchidTint10: #9373c0;
+    --globalColorOrchidTint20: #a083c9;
+    --globalColorOrchidTint30: #b29ad4;
+    --globalColorOrchidTint40: #d7caea;
+    --globalColorOrchidTint50: #e9e2f4;
+    --globalColorOrchidTint60: #f9f8fc;
+    --globalColorGrapeShade50: #160418;
+    --globalColorGrapeShade40: #29072e;
+    --globalColorGrapeShade30: #4c0d55;
+    --globalColorGrapeShade20: #671174;
+    --globalColorGrapeShade10: #7a1589;
+    --globalColorGrapePrimary: #881798;
+    --globalColorGrapeTint10: #952aa4;
+    --globalColorGrapeTint20: #a33fb1;
+    --globalColorGrapeTint30: #b55fc1;
+    --globalColorGrapeTint40: #d9a7e0;
+    --globalColorGrapeTint50: #eaceef;
+    --globalColorGrapeTint60: #faf2fb;
+    --globalColorBerryShade50: #1f091d;
+    --globalColorBerryShade40: #3a1136;
+    --globalColorBerryShade30: #6d2064;
+    --globalColorBerryShade20: #932b88;
+    --globalColorBerryShade10: #af33a1;
+    --globalColorBerryPrimary: #c239b3;
+    --globalColorBerryTint10: #c94cbc;
+    --globalColorBerryTint20: #d161c4;
+    --globalColorBerryTint30: #da7ed0;
+    --globalColorBerryTint40: #edbbe7;
+    --globalColorBerryTint50: #f5daf2;
+    --globalColorBerryTint60: #fdf5fc;
+    --globalColorLilacShade50: #1c0b1f;
+    --globalColorLilacShade40: #35153a;
+    --globalColorLilacShade30: #63276d;
+    --globalColorLilacShade20: #863593;
+    --globalColorLilacShade10: #9f3faf;
+    --globalColorLilacPrimary: #b146c2;
+    --globalColorLilacTint10: #ba58c9;
+    --globalColorLilacTint20: #c36bd1;
+    --globalColorLilacTint30: #cf87da;
+    --globalColorLilacTint40: #e6bfed;
+    --globalColorLilacTint50: #f2dcf5;
+    --globalColorLilacTint60: #fcf6fd;
+    --globalColorPinkShade50: #24091b;
+    --globalColorPinkShade40: #441232;
+    --globalColorPinkShade30: #80215d;
+    --globalColorPinkShade20: #ad2d7e;
+    --globalColorPinkShade10: #cd3595;
+    --globalColorPinkPrimary: #e43ba6;
+    --globalColorPinkTint10: #e750b0;
+    --globalColorPinkTint20: #ea66ba;
+    --globalColorPinkTint30: #ef85c8;
+    --globalColorPinkTint40: #f7c0e3;
+    --globalColorPinkTint50: #fbddf0;
+    --globalColorPinkTint60: #fef6fb;
+    --globalColorHotPinkShade50: #240016;
+    --globalColorHotPinkShade40: #44002a;
+    --globalColorHotPinkShade30: #7f004e;
+    --globalColorHotPinkShade20: #ad006a;
+    --globalColorHotPinkShade10: #cc007e;
+    --globalColorHotPinkPrimary: #e3008c;
+    --globalColorHotPinkTint10: #e61c99;
+    --globalColorHotPinkTint20: #ea38a6;
+    --globalColorHotPinkTint30: #ee5fb7;
+    --globalColorHotPinkTint40: #f7adda;
+    --globalColorHotPinkTint50: #fbd2eb;
+    --globalColorHotPinkTint60: #fef4fa;
+    --globalColorMagentaShade50: #1f0013;
+    --globalColorMagentaShade40: #390024;
+    --globalColorMagentaShade30: #6b0043;
+    --globalColorMagentaShade20: #91005a;
+    --globalColorMagentaShade10: #ac006b;
+    --globalColorMagentaPrimary: #bf0077;
+    --globalColorMagentaTint10: #c71885;
+    --globalColorMagentaTint20: #ce3293;
+    --globalColorMagentaTint30: #d957a8;
+    --globalColorMagentaTint40: #eca5d1;
+    --globalColorMagentaTint50: #f5cee6;
+    --globalColorMagentaTint60: #fcf2f9;
+    --globalColorPlumShade50: #13000c;
+    --globalColorPlumShade40: #240017;
+    --globalColorPlumShade30: #43002b;
+    --globalColorPlumShade20: #5a003b;
+    --globalColorPlumShade10: #6b0045;
+    --globalColorPlumPrimary: #77004d;
+    --globalColorPlumTint10: #87105d;
+    --globalColorPlumTint20: #98246f;
+    --globalColorPlumTint30: #ad4589;
+    --globalColorPlumTint40: #d696c0;
+    --globalColorPlumTint50: #e9c4dc;
+    --globalColorPlumTint60: #faf0f6;
+    --globalColorBeigeShade50: #141313;
+    --globalColorBeigeShade40: #252323;
+    --globalColorBeigeShade30: #444241;
+    --globalColorBeigeShade20: #5d5958;
+    --globalColorBeigeShade10: #6e6968;
+    --globalColorBeigePrimary: #7a7574;
+    --globalColorBeigeTint10: #8a8584;
+    --globalColorBeigeTint20: #9a9594;
+    --globalColorBeigeTint30: #afabaa;
+    --globalColorBeigeTint40: #d7d4d4;
+    --globalColorBeigeTint50: #eae8e8;
+    --globalColorBeigeTint60: #faf9f9;
+    --globalColorMinkShade50: #0f0e0e;
+    --globalColorMinkShade40: #1c1b1a;
+    --globalColorMinkShade30: #343231;
+    --globalColorMinkShade20: #474443;
+    --globalColorMinkShade10: #54514f;
+    --globalColorMinkPrimary: #5d5a58;
+    --globalColorMinkTint10: #706d6b;
+    --globalColorMinkTint20: #84817e;
+    --globalColorMinkTint30: #9e9b99;
+    --globalColorMinkTint40: #cecccb;
+    --globalColorMinkTint50: #e5e4e3;
+    --globalColorMinkTint60: #f8f8f8;
+    --globalColorSilverShade50: #151818;
+    --globalColorSilverShade40: #282d2e;
+    --globalColorSilverShade30: #4a5356;
+    --globalColorSilverShade20: #657174;
+    --globalColorSilverShade10: #78868a;
+    --globalColorSilverPrimary: #859599;
+    --globalColorSilverTint10: #92a1a5;
+    --globalColorSilverTint20: #a0aeb1;
+    --globalColorSilverTint30: #b3bfc2;
+    --globalColorSilverTint40: #d8dfe0;
+    --globalColorSilverTint50: #eaeeef;
+    --globalColorSilverTint60: #fafbfb;
+    --globalColorPlatinumShade50: #111314;
+    --globalColorPlatinumShade40: #1f2426;
+    --globalColorPlatinumShade30: #3b4447;
+    --globalColorPlatinumShade20: #505c60;
+    --globalColorPlatinumShade10: #5f6d71;
+    --globalColorPlatinumPrimary: #69797e;
+    --globalColorPlatinumTint10: #79898d;
+    --globalColorPlatinumTint20: #89989d;
+    --globalColorPlatinumTint30: #a0adb2;
+    --globalColorPlatinumTint40: #cdd6d8;
+    --globalColorPlatinumTint50: #e4e9ea;
+    --globalColorPlatinumTint60: #f8f9fa;
+    --globalColorAnchorShade50: #090a0b;
+    --globalColorAnchorShade40: #111315;
+    --globalColorAnchorShade30: #202427;
+    --globalColorAnchorShade20: #2b3135;
+    --globalColorAnchorShade10: #333a3f;
+    --globalColorAnchorPrimary: #394146;
+    --globalColorAnchorTint10: #4d565c;
+    --globalColorAnchorTint20: #626c72;
+    --globalColorAnchorTint30: #808a90;
+    --globalColorAnchorTint40: #bcc3c7;
+    --globalColorAnchorTint50: #dbdfe1;
+    --globalColorAnchorTint60: #f6f7f8;
+    --globalColorCharcoalShade50: #090909;
+    --globalColorCharcoalShade40: #111111;
+    --globalColorCharcoalShade30: #202020;
+    --globalColorCharcoalShade20: #2b2b2b;
+    --globalColorCharcoalShade10: #333333;
+    --globalColorCharcoalPrimary: #393939;
+    --globalColorCharcoalTint10: #515151;
+    --globalColorCharcoalTint20: #686868;
+    --globalColorCharcoalTint30: #888888;
+    --globalColorCharcoalTint40: #c4c4c4;
+    --globalColorCharcoalTint50: #dfdfdf;
+    --globalColorCharcoalTint60: #f7f7f7
+}
+
+/*---------------------------------------------------------------------------------------------
+*  Copyright (c) Microsoft Corporation. All rights reserved.
+*  Licensed under the MIT License. See License.txt in the project root for license information.
+*--------------------------------------------------------------------------------------------*/
+
+/*---------------------------------------------------------------------------------------------
+*  Copyright (c) Microsoft Corporation. All rights reserved.
+*  Licensed under the MIT License. See License.txt in the project root for license information.
+*--------------------------------------------------------------------------------------------*/
+
+/*---------------------------------------------------------------------------------------------
+*  Copyright (c) Microsoft Corporation. All rights reserved.
+*  Licensed under the MIT License. See License.txt in the project root for license information.
+*--------------------------------------------------------------------------------------------*/
+
+/*---------------------------------------------------------------------------------------------
+*  Copyright (c) Microsoft Corporation. All rights reserved.
+*  Licensed under the MIT License. See License.txt in the project root for license information.
+*--------------------------------------------------------------------------------------------*/
+
+/*---------------------------------------------------------------------------------------------
+*  Copyright (c) Microsoft Corporation. All rights reserved.
+*  Licensed under the MIT License. See License.txt in the project root for license information.
+*--------------------------------------------------------------------------------------------*/
+
+/*---------------------------------------------------------------------------------------------
+*  Copyright (c) Microsoft Corporation. All rights reserved.
+*  Licensed under the MIT License. See License.txt in the project root for license information.
+*--------------------------------------------------------------------------------------------*/
+
+/* for OS X ballistic scrolling */
+
+/* Focus */
+
+/* Dnd */
+
+/* Filter */
+
+/*---------------------------------------------------------------------------------------------
+*  Copyright (c) Microsoft Corporation. All rights reserved.
+*  Licensed under the MIT License. See License.txt in the project root for license information.
+*--------------------------------------------------------------------------------------------*/
+
+/* Arrows */
+
+/* Scrollable Content Inset Shadow */
+
+/*---------------------------------------------------------------------------------------------
+*  Copyright (c) Microsoft Corporation. All rights reserved.
+*  Licensed under the MIT License. See License.txt in the project root for license information.
+*--------------------------------------------------------------------------------------------*/
+
+/* .codeActionMenuWidget .monaco-list:not(.element-focus) {
+border: none !important;
+border-width: 0px !important;
+} */
+
+/** Styles for each row in the list element **/
+
+/*---------------------------------------------------------------------------------------------
+*  Copyright (c) Microsoft Corporation. All rights reserved.
+*  Licensed under the MIT License. See License.txt in the project root for license information.
+*--------------------------------------------------------------------------------------------*/
+
+/*---------------------------------------------------------------------------------------------
+*  Copyright (c) Microsoft Corporation. All rights reserved.
+*  Licensed under the MIT License. See License.txt in the project root for license information.
+*--------------------------------------------------------------------------------------------*/
+
+/*---------------------------------------------------------------------------------------------
+*  Copyright (c) Microsoft Corporation. All rights reserved.
+*  Licensed under the MIT License. See License.txt in the project root for license information.
+*--------------------------------------------------------------------------------------------*/
+
+/* Decoration */
+
+/* Header */
+
+
+/* Body */
+
+/*---------------------------------------------------------------------------------------------
+*  Copyright (c) Microsoft Corporation. All rights reserved.
+*  Licensed under the MIT License. See License.txt in the project root for license information.
+*--------------------------------------------------------------------------------------------*/
+
+/*---------------------------------------------------------------------------------------------
+*  Copyright (c) Microsoft Corporation. All rights reserved.
+*  Licensed under the MIT License. See License.txt in the project root for license information.
+*--------------------------------------------------------------------------------------------*/
+
+/* Vertical actions */
+
+/* Action Items */
+
+/*---------------------------------------------------------------------------------------------
+*  Copyright (c) Microsoft Corporation. All rights reserved.
+*  Licensed under the MIT License. See License.txt in the project root for license information.
+*--------------------------------------------------------------------------------------------*/
+
+/*---------------------------------------------------------------------------------------------
+*  Copyright (c) Microsoft Corporation. All rights reserved.
+*  Licensed under the MIT License. See License.txt in the project root for license information.
+*--------------------------------------------------------------------------------------------*/
+
+/* -------------------- IE10 remove auto clear button -------------------- */
+
+::-ms-clear {
+    display: none;
+}
+
+/* All widgets */
+/* I am not a big fan of this rule */
+
+/* -------------------- Editor -------------------- */
+
+/* -------------------- Misc -------------------- */
+
+/*
+.monaco-editor .auto-closed-character {
+opacity: 0.3;
+}
+*/
+/*---------------------------------------------------------------------------------------------
+*  Copyright (c) Microsoft Corporation. All rights reserved.
+*  Licensed under the MIT License. See License.txt in the project root for license information.
+*--------------------------------------------------------------------------------------------*/
+
+/*.monaco-editor .inputarea {
+position: fixed !important;
+width: 800px !important;
+height: 500px !important;
+top: initial !important;
+left: initial !important;
+bottom: 0 !important;
+right: 0 !important;
+color: black !important;
+background: white !important;
+line-height: 15px !important;
+font-size: 14px !important;
+}*/
+
+/*---------------------------------------------------------------------------------------------
+*  Copyright (c) Microsoft Corporation. All rights reserved.
+*  Licensed under the MIT License. See License.txt in the project root for license information.
+*--------------------------------------------------------------------------------------------*/
+
+/*---------------------------------------------------------------------------------------------
+*  Copyright (c) Microsoft Corporation. All rights reserved.
+*  Licensed under the MIT License. See License.txt in the project root for license information.
+*--------------------------------------------------------------------------------------------*/
+
+/*---------------------------------------------------------------------------------------------
+*  Copyright (c) Microsoft Corporation. All rights reserved.
+*  Licensed under the MIT License. See License.txt in the project root for license information.
+*--------------------------------------------------------------------------------------------*/
+
+/*---------------------------------------------------------------------------------------------
+*  Copyright (c) Microsoft Corporation. All rights reserved.
+*  Licensed under the MIT License. See License.txt in the project root for license information.
+*--------------------------------------------------------------------------------------------*/
+
+/*
+Keeping name short for faster parsing.
+cdr = core decorations rendering (div)
+*/
+
+/*---------------------------------------------------------------------------------------------
+*  Copyright (c) Microsoft Corporation. All rights reserved.
+*  Licensed under the MIT License. See License.txt in the project root for license information.
+*--------------------------------------------------------------------------------------------*/
+
+/*
+Keeping name short for faster parsing.
+cgmr = core glyph margin rendering (div)
+*/
+
+/*---------------------------------------------------------------------------------------------
+*  Copyright (c) Microsoft Corporation. All rights reserved.
+*  Licensed under the MIT License. See License.txt in the project root for license information.
+*--------------------------------------------------------------------------------------------*/
+
+/*---------------------------------------------------------------------------------------------
+*  Copyright (c) Microsoft Corporation. All rights reserved.
+*  Licensed under the MIT License. See License.txt in the project root for license information.
+*--------------------------------------------------------------------------------------------*/
+
+/* Uncomment to see lines flashing when they're painted */
+/*.monaco-editor .view-lines > .view-line {
+background-color: none;
+animation-name: flash-background;
+animation-duration: 800ms;
+}
+@keyframes flash-background {
+0%   { background-color: lightgreen; }
+100% { background-color: none }
+}*/
+
+/* TODO@tokenization bootstrap fix */
+/*.monaco-editor .view-line > span > span {
+float: none;
+min-height: inherit;
+margin-left: inherit;
+}*/
+/*---------------------------------------------------------------------------------------------
+*  Copyright (c) Microsoft Corporation. All rights reserved.
+*  Licensed under the MIT License. See License.txt in the project root for license information.
+*--------------------------------------------------------------------------------------------*/
+
+/*
+Keeping name short for faster parsing.
+cldr = core lines decorations rendering (div)
+*/
+
+/*---------------------------------------------------------------------------------------------
+*  Copyright (c) Microsoft Corporation. All rights reserved.
+*  Licensed under the MIT License. See License.txt in the project root for license information.
+*--------------------------------------------------------------------------------------------*/
+
+/*
+Keeping name short for faster parsing.
+cmdr = core margin decorations rendering (div)
+*/
+
+/*---------------------------------------------------------------------------------------------
+*  Copyright (c) Microsoft Corporation. All rights reserved.
+*  Licensed under the MIT License. See License.txt in the project root for license information.
+*--------------------------------------------------------------------------------------------*/
+
+/* START cover the case that slider is visible on mouseover */
+
+/* END cover the case that slider is visible on mouseover */
+
+/* 0.5s fade in/out for the minimap */
+
+/*---------------------------------------------------------------------------------------------
+*  Copyright (c) Microsoft Corporation. All rights reserved.
+*  Licensed under the MIT License. See License.txt in the project root for license information.
+*--------------------------------------------------------------------------------------------*/
+
+/*---------------------------------------------------------------------------------------------
+*  Copyright (c) Microsoft Corporation. All rights reserved.
+*  Licensed under the MIT License. See License.txt in the project root for license information.
+*--------------------------------------------------------------------------------------------*/
+
+/*---------------------------------------------------------------------------------------------
+*  Copyright (c) Microsoft Corporation. All rights reserved.
+*  Licensed under the MIT License. See License.txt in the project root for license information.
+*--------------------------------------------------------------------------------------------*/
+
+/*---------------------------------------------------------------------------------------------
+*  Copyright (c) Microsoft Corporation. All rights reserved.
+*  Licensed under the MIT License. See License.txt in the project root for license information.
+*--------------------------------------------------------------------------------------------*/
+
+/*
+Keeping name short for faster parsing.
+cslr = core selections layer rendering (div)
+*/
+
+/*---------------------------------------------------------------------------------------------
+*  Copyright (c) Microsoft Corporation. All rights reserved.
+*  Licensed under the MIT License. See License.txt in the project root for license information.
+*--------------------------------------------------------------------------------------------*/
+
+/* -- smooth-caret-animation -- */
+
+/* -- block-outline-style -- */
+
+/* -- underline-style -- */
+
+/* -- underline-thin-style -- */
+
+/*---------------------------------------------------------------------------------------------
+*  Copyright (c) Microsoft Corporation. All rights reserved.
+*  Licensed under the MIT License. See License.txt in the project root for license information.
+*--------------------------------------------------------------------------------------------*/
+
+/*---------------------------------------------------------------------------------------------
+*  Copyright (c) Microsoft Corporation. All rights reserved.
+*  Licensed under the MIT License. See License.txt in the project root for license information.
+*--------------------------------------------------------------------------------------------*/
+
+:root {
+    --sash-size: 4px;
+}
+
+/** Debug **/
+
+/*---------------------------------------------------------------------------------------------
+*  Copyright (c) Microsoft Corporation. All rights reserved.
+*  Licensed under the MIT License. See License.txt in the project root for license information.
+*--------------------------------------------------------------------------------------------*/
+
+/*---------------------------------------------------------------------------------------------
+*  Copyright (c) Microsoft Corporation. All rights reserved.
+*  Licensed under the MIT License. See License.txt in the project root for license information.
+*--------------------------------------------------------------------------------------------*/
+
+/*---------------------------------------------------------------------------------------------
+*  Copyright (c) Microsoft Corporation. All rights reserved.
+*  Licensed under the MIT License. See License.txt in the project root for license information.
+*--------------------------------------------------------------------------------------------*/
+
+/*---------------------------------------------------------------------------------------------
+*  Copyright (c) Microsoft Corporation. All rights reserved.
+*  Licensed under the MIT License. See License.txt in the project root for license information.
+*--------------------------------------------------------------------------------------------*/
+
+/*---------------------------------------------------------------------------------------------
+*  Copyright (c) Microsoft Corporation. All rights reserved.
+*  Licensed under the MIT License. See License.txt in the project root for license information.
+*--------------------------------------------------------------------------------------------*/
+
+/*
+.monaco-table:hover > .monaco-split-view2,
+.monaco-table:hover > .monaco-split-view2 .monaco-sash.vertical::before {
+border-color: rgba(204, 204, 204, 0.2);
+} */
+/*---------------------------------------------------------------------------------------------
+*  Copyright (c) Microsoft Corporation. All rights reserved.
+*  Licensed under the MIT License. See License.txt in the project root for license information.
+*--------------------------------------------------------------------------------------------*/
+
+/* hide check when unchecked */
+
+/*---------------------------------------------------------------------------------------------
+*  Copyright (c) Microsoft Corporation. All rights reserved.
+*  Licensed under the MIT License. See License.txt in the project root for license information.
+*--------------------------------------------------------------------------------------------*/
+
+/* Context view */
+
+/* Action bar support */
+
+/*---------------------------------------------------------------------------------------------
+*  Copyright (c) Microsoft Corporation. All rights reserved.
+*  Licensed under the MIT License. See License.txt in the project root for license information.
+*--------------------------------------------------------------------------------------------*/
+/* ---------- Find input ---------- */
+
+/* Theming */
+
+/* Highlighting */
+
+/*---------------------------------------------------------------------------------------------
+*  Copyright (c) Microsoft Corporation. All rights reserved.
+*  Licensed under the MIT License. See License.txt in the project root for license information.
+*--------------------------------------------------------------------------------------------*/
+
+/*---------------------------------------------------------------------------------------------
+*  Copyright (c) Microsoft Corporation. All rights reserved.
+*  Licensed under the MIT License. See License.txt in the project root for license information.
+*--------------------------------------------------------------------------------------------*/
+
+/* -- zone widget */
+
+/* High Contrast Theming */
+
+/*---------------------------------------------------------------------------------------------
+*  Copyright (c) Microsoft Corporation. All rights reserved.
+*  Licensed under the MIT License. See License.txt in the project root for license information.
+*--------------------------------------------------------------------------------------------*/
+
+/*---------------------------------------------------------------------------------------------
+*  Copyright (c) Microsoft Corporation. All rights reserved.
+*  Licensed under the MIT License. See License.txt in the project root for license information.
+*--------------------------------------------------------------------------------------------*/
+
+/* ---------- Icon label ---------- */
+
+/* make sure apply italic font style to decorations as well */
+
+/* make sure selection color wins when a label is being selected */
+
+/*---------------------------------------------------------------------------------------------
+*  Copyright (c) Microsoft Corporation. All rights reserved.
+*  Licensed under the MIT License. See License.txt in the project root for license information.
+*--------------------------------------------------------------------------------------------*/
+
+/* MarkupContent Layout */
+
+/** Spans in markdown hovers need a margin-bottom to avoid looking cramped: https://github.com/microsoft/vscode/issues/101496 **/
+
+/*---------------------------------------------------------------------------------------------
+*  Copyright (c) Microsoft Corporation. All rights reserved.
+*  Licensed under the MIT License. See License.txt in the project root for license information.
+*--------------------------------------------------------------------------------------------*/
+
+/* marker zone */
+
+/*---------------------------------------------------------------------------------------------
+*  Copyright (c) Microsoft Corporation. All rights reserved.
+*  Licensed under the MIT License. See License.txt in the project root for license information.
+*--------------------------------------------------------------------------------------------*/
+
+/*---------------------------------------------------------------------------------------------
+*  Copyright (c) Microsoft Corporation. All rights reserved.
+*  Licensed under the MIT License. See License.txt in the project root for license information.
+*--------------------------------------------------------------------------------------------*/
+
+/*---------------------------------------------------------------------------------------------
+*  Copyright (c) Microsoft Corporation. All rights reserved.
+*  Licensed under the MIT License. See License.txt in the project root for license information.
+*--------------------------------------------------------------------------------------------*/
+
+/* Find widget */
+
+/* Find widget when replace is toggled on */
+
+/* find in selection button */
+
+/* REDUCED */
+
+/* NARROW (SMALLER THAN REDUCED) */
+
+/* COLLAPSED (SMALLER THAN NARROW) */
+
+/*---------------------------------------------------------------------------------------------
+*  Copyright (c) Microsoft Corporation. All rights reserved.
+*  Licensed under the MIT License. See License.txt in the project root for license information.
+*--------------------------------------------------------------------------------------------*/
+
+/*---------------------------------------------------------------------------------------------
+*  Copyright (c) Microsoft Corporation. All rights reserved.
+*  Licensed under the MIT License. See License.txt in the project root for license information.
+*--------------------------------------------------------------------------------------------*/
+
+/*---------------------------------------------------------------------------------------------
+*  Copyright (c) Microsoft Corporation. All rights reserved.
+*  Licensed under the MIT License. See License.txt in the project root for license information.
+*--------------------------------------------------------------------------------------------*/
+
+@font-face {
+    font-family: "codicon";
+    font-display: block;
+    src: url(0903360d41263eef.ttf) format("truetype");
+}
+
+/* icon rules are dynamically created by the platform theme service (see iconsStyleSheet.ts) */
+/*---------------------------------------------------------------------------------------------
+*  Copyright (c) Microsoft Corporation. All rights reserved.
+*  Licensed under the MIT License. See License.txt in the project root for license information.
+*--------------------------------------------------------------------------------------------*/
+
+/* custom speed & easing for loading icon */
+
+/*---------------------------------------------------------------------------------------------
+*  Copyright (c) Microsoft Corporation. All rights reserved.
+*  Licensed under the MIT License. See License.txt in the project root for license information.
+*--------------------------------------------------------------------------------------------*/
+
+/* Suggest widget*/
+
+/* Styles for status bar part */
+
+/* Styles for Message element for when widget is loading or is empty */
+
+/** Styles for the list element **/
+
+/** Styles for each row in the list element **/
+
+/** ReadMore Icon styles **/
+
+/** signature, qualifier, type/details opacity **/
+
+/** Type Info and icon next to the label in the focused completion item **/
+
+/** Details: if using CompletionItem#details, show on focus **/
+
+/** Details: if using CompletionItemLabel#details, always show **/
+
+/** Ellipsis on hover **/
+
+/** Do NOT display ReadMore when docs is side/below **/
+
+/** Do NOT display ReadMore when using plain CompletionItemLabel (details/documentation might not be resolved) **/
+
+/** Focused item can show ReadMore, but can't when docs is side/below **/
+
+/** Styles for each row in the list **/
+
+/** Styles for the docs of the completion item in focus **/
+
+/*---------------------------------------------------------------------------------------------
+*  Copyright (c) Microsoft Corporation. All rights reserved.
+*  Licensed under the MIT License. See License.txt in the project root for license information.
+*--------------------------------------------------------------------------------------------*/
+
+/*---------------------------------------------------------------------------------------------
+*  Copyright (c) Microsoft Corporation. All rights reserved.
+*  Licensed under the MIT License. See License.txt in the project root for license information.
+*--------------------------------------------------------------------------------------------*/
+
+/*---------------------------------------------------------------------------------------------
+*  Copyright (c) Microsoft Corporation. All rights reserved.
+*  Licensed under the MIT License. See License.txt in the project root for license information.
+*--------------------------------------------------------------------------------------------*/
+
+/*---------------------------------------------------------------------------------------------
+*  Copyright (c) Microsoft Corporation. All rights reserved.
+*  Licensed under the MIT License. See License.txt in the project root for license information.
+*--------------------------------------------------------------------------------------------*/
+
+/*---------------------------------------------------------------------------------------------
+*  Copyright (c) Microsoft Corporation. All rights reserved.
+*  Licensed under the MIT License. See License.txt in the project root for license information.
+*--------------------------------------------------------------------------------------------*/
+
+/*---------------------------------------------------------------------------------------------
+*  Copyright (c) Microsoft Corporation. All rights reserved.
+*  Licensed under the MIT License. See License.txt in the project root for license information.
+*--------------------------------------------------------------------------------------------*/
+
+/*---------------------------------------------------------------------------------------------
+*  Copyright (c) Microsoft Corporation. All rights reserved.
+*  Licensed under the MIT License. See License.txt in the project root for license information.
+*--------------------------------------------------------------------------------------------*/
+
+/*---------------------------------------------------------------------------------------------
+*  Copyright (c) Microsoft Corporation. All rights reserved.
+*  Licensed under the MIT License. See License.txt in the project root for license information.
+*--------------------------------------------------------------------------------------------*/
+
+
+/* Default standalone editor fonts */
+
+/* See https://github.com/microsoft/monaco-editor/issues/2168#issuecomment-780078600 */
+
+/* The hc-black theme is already high contrast optimized */
+
+/* In case the browser goes into high contrast mode and the editor is not configured with the hc-black theme */
+@media screen and (-ms-high-contrast:active) {
+
+    /* current line highlight */
+
+    /* view cursors */
+
+    /* dnd target */
+
+    /* selected text background */
+
+    /* allow the text to have a transparent background. */
+
+    /* text color */
+
+    /* selected text color */
+
+    /* allow decorations */
+
+    /* various decorations */
+
+    /* find widget */
+
+    /* list - used by suggest widget */
+
+    /* scrollbars */
+
+    /* overview ruler */
+
+    /* minimap */
+
+    /* squiggles */
+
+    /* contextmenu */
+
+    /* diff editor */
+}
+
+/*.monaco-editor.vs [tabindex="0"]:focus {
+outline: 1px solid rgba(0, 122, 204, 0.4);
+outline-offset: -1px;
+opacity: 1 !important;
+}
+
+.monaco-editor.vs-dark [tabindex="0"]:focus {
+outline: 1px solid rgba(14, 99, 156, 0.6);
+outline-offset: -1px;
+opacity: 1 !important;
+}*/
+/*---------------------------------------------------------------------------------------------
+*  Copyright (c) Microsoft Corporation. All rights reserved.
+*  Licensed under the MIT License. See License.txt in the project root for license information.
+*--------------------------------------------------------------------------------------------*/
+/* ---------- DiffEditor ---------- */
+
+/* colors not externalized: using transparancy on background */
+
+/* ---------- Diff ---------- */
+
+/* ---------- Inline Diff ---------- */
+
+/*---------------------------------------------------------------------------------------------
+*  Copyright (c) Microsoft Corporation. All rights reserved.
+*  Licensed under the MIT License. See License.txt in the project root for license information.
+*--------------------------------------------------------------------------------------------*/
+
+/*---------------------------------------------------------------------------------------------
+*  Copyright (c) Microsoft Corporation. All rights reserved.
+*  Licensed under the MIT License. See License.txt in the project root for license information.
+*--------------------------------------------------------------------------------------------*/
+
+/*---------------------------------------------------------------------------------------------
+*  Copyright (c) Microsoft Corporation. All rights reserved.
+*  Licensed under the MIT License. See License.txt in the project root for license information.
+*--------------------------------------------------------------------------------------------*/
+
+/*---------------------------------------------------------------------------------------------
+*  Copyright (c) Microsoft Corporation. All rights reserved.
+*  Licensed under the MIT License. See License.txt in the project root for license information.
+*--------------------------------------------------------------------------------------------*/
+
+/*---------------------------------------------------------------------------------------------
+*  Copyright (c) Microsoft Corporation. All rights reserved.
+*  Licensed under the MIT License. See License.txt in the project root for license information.
+*--------------------------------------------------------------------------------------------*/
+
+/**
+* The progress bit has a width: 2% (1/50) of the parent container. The animation moves it from 0% to 100% of
+* that container. Since translateX is relative to the progress bit size, we have to multiple it with
+* its relative size to the parent container:
+* parent width: 5000%
+*    bit width: 100%
+* translateX should be as follow:
+*  50%: 5000% * 50% - 50% (set to center) = 2450%
+* 100%: 5000% * 100% - 100% (do not overflow) = 4900%
+*/
+
+/*---------------------------------------------------------------------------------------------
+*  Copyright (c) Microsoft Corporation. All rights reserved.
+*  Licensed under the MIT License. See License.txt in the project root for license information.
+*--------------------------------------------------------------------------------------------*/
+
+/* focused items in quick pick */
+
+/*---------------------------------------------------------------------------------------------
+*  Copyright (c) Microsoft Corporation. All rights reserved.
+*  Licensed under the MIT License. See License.txt in the project root for license information.
+*--------------------------------------------------------------------------------------------*/
+
+/**
+* Draft v0.9.1
+*
+* Copyright (c) 2013-present, Facebook, Inc.
+* All rights reserved.
+*
+* This source code is licensed under the BSD-style license found in the
+* LICENSE file in the root directory of this source tree. An additional grant
+* of patent rights can be found in the PATENTS file in the same directory.
+*/
+
+[_nghost-ng-c3356402977] {
+    height: 100vh;
+    display: flex;
+    flex-direction: column
+}
+
+@media (min-height: 256px) {
+    [_nghost-ng-c3356402977] {
+        height: 100%
+    }
+}
+
+[_nghost-ng-c3356402977] mat-sidenav-container[_ngcontent-ng-c3356402977] {
+    display: flex;
+    flex-grow: 1;
+    z-index: inherit;
+    height: 100%
+}
+
+[_nghost-ng-c3356402977] mat-sidenav-container[_ngcontent-ng-c3356402977] .mat-drawer-content {
+    display: flex;
+    flex-grow: 1
+}
+
+[_nghost-ng-c3356402977] mat-sidenav-container[_ngcontent-ng-c3356402977] mat-sidenav {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, .12)
+}
+
+@media (max-height: 256px) {
+    [_nghost-ng-c3356402977] mat-sidenav-container.fullHeight[_ngcontent-ng-c3356402977] mat-sidenav-content {
+        height: 216px
+    }
+}
+
+[_nghost-ng-c3356402977] .globalSearchToggle[_ngcontent-ng-c3356402977] {
+    line-height: 2.5
+}
+
+[_nghost-ng-c3356402977] .search-close[_ngcontent-ng-c3356402977] {
+    line-height: 2.5;
+    flex-grow: 5;
+    margin: 0 10px
+}
+
+[_nghost-ng-c3356402977] .top-bar[_ngcontent-ng-c3356402977] {
+    display: flex;
+    flex-flow: row nowrap;
+    min-height: 40px;
+    flex: 0 0 auto;
+    position: relative;
+    background-color: var(--colorBrandBackground, #0078D4);
+    justify-content: center;
+    white-space: nowrap;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, .16);
+    z-index: 2
+}
+
+[_nghost-ng-c3356402977] .top-bar[_ngcontent-ng-c3356402977] .title-container[_ngcontent-ng-c3356402977] {
+    display: flex;
+    flex-grow: 1;
+    flex-shrink: 5;
+    width: 35%;
+    overflow: hidden
+}
+
+@media (max-width: 870px) {
+    [_nghost-ng-c3356402977] .top-bar[_ngcontent-ng-c3356402977] .title-container[_ngcontent-ng-c3356402977] .optional-text[_ngcontent-ng-c3356402977] {
+        display: none
+    }
+}
+
+[_nghost-ng-c3356402977] .top-bar[_ngcontent-ng-c3356402977] .microsoft-title[_ngcontent-ng-c3356402977] {
+    color: var(--colorNeutralForegroundOnBrand, #ffffff);
+    font-size: 15px;
+    padding: 0 16px;
+    line-height: 40px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 0;
+    margin-bottom: 0
+}
+
+[_nghost-ng-c3356402977] .top-bar[_ngcontent-ng-c3356402977] .microsoft-title[_ngcontent-ng-c3356402977]:hover {
+    background-color: var(--colorBrandBackgroundHover, #106EBE);
+    box-shadow: inset -9px 0 13px rgba(74, 74, 74, .23)
+}
+
+[_nghost-ng-c3356402977] .top-bar[_ngcontent-ng-c3356402977] .microsoft-title[_ngcontent-ng-c3356402977]:focus {
+    outline: 1px dashed var(--colorNeutralForegroundOnBrand, #ffffff)
+}
+
+[_nghost-ng-c3356402977] .top-bar[_ngcontent-ng-c3356402977] .icon-bar-container[_ngcontent-ng-c3356402977] {
+    display: flex;
+    flex-grow: 2;
+    justify-content: flex-end
+}
+
+[_nghost-ng-c3356402977] .top-bar[_ngcontent-ng-c3356402977] .madrid-icon[_ngcontent-ng-c3356402977] {
+    color: var(--colorNeutralForegroundOnBrand, #ffffff)
+}
+
+[_nghost-ng-c3356402977] .top-bar[_ngcontent-ng-c3356402977] .nav-menu-small-screen[_ngcontent-ng-c3356402977] {
+    line-height: 2.5;
+    margin: 0 15px
+}
+
+[_nghost-ng-c3356402977] .top-bar[_ngcontent-ng-c3356402977] .madrid-icon[_ngcontent-ng-c3356402977] {
+    cursor: pointer
+}
+
+@media (min-width: 1024px) {
+    [_nghost-ng-c3356402977] .top-bar[_ngcontent-ng-c3356402977] app-icon-bar[_ngcontent-ng-c3356402977] {
+        width: 35%;
+        min-width: 250px;
+        overflow: hidden;
+        margin-left: auto;
+        display: flex;
+        flex-grow: 1
+    }
+
+    [_nghost-ng-c3356402977] .top-bar[_ngcontent-ng-c3356402977] .title-container[_ngcontent-ng-c3356402977] {
+        flex: 1 1 auto
+    }
+
+    [_nghost-ng-c3356402977] .top-bar[_ngcontent-ng-c3356402977] .globalSearchToggle[_ngcontent-ng-c3356402977] {
+        display: none
+    }
+
+    [_nghost-ng-c3356402977] .top-bar[_ngcontent-ng-c3356402977] .search-close[_ngcontent-ng-c3356402977] {
+        display: none
+    }
+
+    [_nghost-ng-c3356402977] .top-bar[_ngcontent-ng-c3356402977] .nav-menu-small-screen[_ngcontent-ng-c3356402977] {
+        display: none
+    }
+}
+
+@media (min-width: 640px) and (max-width: 1023px) {
+    [_nghost-ng-c3356402977] .top-bar[_ngcontent-ng-c3356402977] app-icon-bar[_ngcontent-ng-c3356402977] {
+        flex-grow: 1
+    }
+
+    [_nghost-ng-c3356402977] .top-bar[_ngcontent-ng-c3356402977] .globalSearchToggle[_ngcontent-ng-c3356402977] {
+        display: none
+    }
+
+    [_nghost-ng-c3356402977] .top-bar[_ngcontent-ng-c3356402977] .title-container[_ngcontent-ng-c3356402977] {
+        display: flex
+    }
+
+    [_nghost-ng-c3356402977] .top-bar[_ngcontent-ng-c3356402977] .search-close[_ngcontent-ng-c3356402977] {
+        display: none
+    }
+
+    [_nghost-ng-c3356402977] .top-bar[_ngcontent-ng-c3356402977] .nav-menu-small-screen[_ngcontent-ng-c3356402977] {
+        display: none
+    }
+}
+
+@media (min-width: 256px) and (max-width: 639px) {
+    [_nghost-ng-c3356402977] .top-bar[_ngcontent-ng-c3356402977] app-icon-bar[_ngcontent-ng-c3356402977] {
+        flex-grow: 0
+    }
+
+    [_nghost-ng-c3356402977] .top-bar[_ngcontent-ng-c3356402977] .search-close[_ngcontent-ng-c3356402977] {
+        display: none
+    }
+
+    [_nghost-ng-c3356402977] .top-bar[_ngcontent-ng-c3356402977] .globalSearchToggle[_ngcontent-ng-c3356402977] {
+        display: flex
+    }
+
+    [_nghost-ng-c3356402977] .top-bar[_ngcontent-ng-c3356402977] .nav-menu-small-screen[_ngcontent-ng-c3356402977] {
+        display: flex
+    }
+}
+
+@media (max-width: 479px) {
+
+    [_nghost-ng-c3356402977] .top-bar[_ngcontent-ng-c3356402977] .search-close[_ngcontent-ng-c3356402977] {
+        display: none
+    }
+
+    [_nghost-ng-c3356402977] .top-bar[_ngcontent-ng-c3356402977] .globalSearchToggle[_ngcontent-ng-c3356402977] {
+        display: flex
+    }
+
+    [_nghost-ng-c3356402977] .top-bar[_ngcontent-ng-c3356402977] .nav-menu-small-screen[_ngcontent-ng-c3356402977] {
+        display: flex
+    }
+}
+
+.mat-drawer-container {
+    position: relative;
+    z-index: 1;
+    color: var(--mat-sidenav-content-text-color);
+    background-color: var(--mat-sidenav-content-background-color);
+    box-sizing: border-box;
+    -webkit-overflow-scrolling: touch;
+    display: block;
+    overflow: hidden
+}
+
+.mat-drawer-backdrop {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    position: absolute;
+    display: block;
+    z-index: 3;
+    visibility: hidden
+}
+
+.mat-drawer-content {
+    position: relative;
+    z-index: 1;
+    display: block;
+    height: 100%;
+    overflow: auto
+}
+
+.mat-drawer {
+    box-shadow: 0px 8px 10px -5px rgba(0, 0, 0, 0.2), 0px 16px 24px 2px rgba(0, 0, 0, 0.14), 0px 6px 30px 5px rgba(0, 0, 0, 0.12);
+    position: relative;
+    z-index: 4;
+    --mat-sidenav-container-shape: 0;
+    color: var(--mat-sidenav-container-text-color);
+    background-color: var(--mat-sidenav-container-background-color);
+    border-top-right-radius: var(--mat-sidenav-container-shape);
+    border-bottom-right-radius: var(--mat-sidenav-container-shape);
+    display: block;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    z-index: 3;
+    outline: 0;
+    box-sizing: border-box;
+    overflow-y: auto;
+    transform: translate3d(-100%, 0, 0)
+}
+
+.mat-drawer.mat-drawer-end {
+    right: 0;
+    transform: translate3d(100%, 0, 0);
+    border-top-left-radius: var(--mat-sidenav-container-shape);
+    border-bottom-left-radius: var(--mat-sidenav-container-shape);
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0
+}
+
+.mat-drawer[style*="visibility: hidden"] {
+    display: none
+}
+
+.mat-drawer-inner-container {
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch
+}
+
+[_nghost-ng-c1979484314] mat-sidenav-container[_ngcontent-ng-c1979484314] {
+    display: flex;
+    flex-grow: 1;
+    height: 100%
+}
+
+[_nghost-ng-c1979484314] mat-sidenav-container[_ngcontent-ng-c1979484314] mat-sidenav-content[_ngcontent-ng-c1979484314] {
+    background-color: var(--colorNeutralBackground1, #ffffff)
+}
+
+[_nghost-ng-c1979484314] .sidenav-modal[_ngcontent-ng-c1979484314] {
+    display: flex;
+    flex-direction: column;
+    min-width: 316px;
+    height: 100%;
+    max-width: 100vw;
+    overflow: hidden;
+    background-color: transparent
+}
+
+[_nghost-ng-c1979484314] .dynamic-component-container[_ngcontent-ng-c1979484314] {
+    position: relative;
+    flex-grow: 1;
+    overflow: hidden
+}
+
+@media (max-width: 1023px) {
+    [_nghost-ng-c1979484314] .sidenav-modal[_ngcontent-ng-c1979484314] {
+        max-width: 632px
+    }
+}
+
+@media (max-width: 639px) {
+    [_nghost-ng-c1979484314] .sidenav-modal[_ngcontent-ng-c1979484314] {
+        max-width: 316px
+    }
+}
+
+@media (max-height: 479px) {
+
+    [_nghost-ng-c1979484314] .sidenav-modal[_ngcontent-ng-c1979484314] {
+        overflow-y: auto
+    }
+
+    [_nghost-ng-c1979484314] .dynamic-component-container[_ngcontent-ng-c1979484314] {
+        overflow: visible
+    }
+}
+
+[_nghost-ng-c3276584325] {
+    display: flex;
+    justify-content: flex-end
+}
+
+[_nghost-ng-c3276584325] .full-container[_ngcontent-ng-c3276584325] {
+    display: flex
+}
+
+[_nghost-ng-c3276584325] .account-info-button[_ngcontent-ng-c3276584325] {
+    border: 0;
+    padding: 0;
+    background: none
+}
+
+[_nghost-ng-c3276584325] .account-info-button[_ngcontent-ng-c3276584325] .account-info-container[_ngcontent-ng-c3276584325] {
+    display: flex;
+    align-items: center;
+    height: 40px;
+    cursor: pointer
+}
+
+[_nghost-ng-c3276584325] .account-info-button[_ngcontent-ng-c3276584325] .account-info-container[_ngcontent-ng-c3276584325]:hover {
+    background-color: var(--colorBrandBackgroundHover, #106EBE);
+    box-shadow: inset -9px 0 13px rgba(74, 74, 74, .23)
+}
+
+[_nghost-ng-c3276584325] .account-info-button[_ngcontent-ng-c3276584325] .account-info-container[_ngcontent-ng-c3276584325]:focus {
+    outline: 1px dashed var(--colorNeutralStrokeOnBrand2, #ffffff)
+}
+
+[_nghost-ng-c3276584325] .account-info-button[_ngcontent-ng-c3276584325] .account-info-container[_ngcontent-ng-c3276584325] .userInfo[_ngcontent-ng-c3276584325] {
+    display: flex;
+    align-items: flex-end;
+    flex-direction: column;
+    padding: 0 0 0 20px;
+    color: var(--colorNeutralForegroundOnBrand, #ffffff)
+}
+
+[_nghost-ng-c3276584325] .account-info-button[_ngcontent-ng-c3276584325] .account-info-container[_ngcontent-ng-c3276584325] .userInfo[_ngcontent-ng-c3276584325] .userEmail[_ngcontent-ng-c3276584325] {
+    cursor: default;
+    font-size: 14px
+}
+
+[_nghost-ng-c3276584325] .account-info-button[_ngcontent-ng-c3276584325] .account-info-container[_ngcontent-ng-c3276584325] .userInfo[_ngcontent-ng-c3276584325] .userTenant[_ngcontent-ng-c3276584325] {
+    text-transform: uppercase;
+    font-size: 10px;
+    font-weight: 600
+}
+
+@media (max-width: 870px) {
+    [_nghost-ng-c3276584325] .account-info-button[_ngcontent-ng-c3276584325] .account-info-container[_ngcontent-ng-c3276584325] .userInfo[_ngcontent-ng-c3276584325] {
+        display: none
+    }
+}
+
+[_nghost-ng-c3276584325] .account-info-button[_ngcontent-ng-c3276584325] .account-info-container[_ngcontent-ng-c3276584325] .userPhoto[_ngcontent-ng-c3276584325] {
+    padding: 0 6px
+}
+
+[_nghost-ng-c3276584325] .account-info-button[_ngcontent-ng-c3276584325] .account-info-container[_ngcontent-ng-c3276584325] .userPhoto[_ngcontent-ng-c3276584325] .img-circle[_ngcontent-ng-c3276584325] {
+    border-radius: 50%;
+    width: 28px;
+    height: 28px
+}
+
+
+/* Slider */
+
+/* Icons */
+@font-face {
+    font-family: 'slick';
+    font-weight: normal;
+    font-style: normal;
+
+    src: url(data:application/vnd.ms-fontobject;base64,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);
+    src: url(data:application/vnd.ms-fontobject;base64,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?#iefix) format('embedded-opentype'), url(data:font/woff;base64,d09GRk9UVE8AAAVkAAsAAAAAB1wAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAABDRkYgAAABCAAAAi4AAAKbH/pWDkZGVE0AAAM4AAAAGgAAABxt0civR0RFRgAAA1QAAAAcAAAAIAAyAARPUy8yAAADcAAAAFIAAABgUBj/rmNtYXAAAAPEAAAAUAAAAWIiC0SwaGVhZAAABBQAAAAuAAAANgABMftoaGVhAAAERAAAABwAAAAkA+UCA2htdHgAAARgAAAADgAAAA4ESgBKbWF4cAAABHAAAAAGAAAABgAFUABuYW1lAAAEeAAAANwAAAFuBSeBwnBvc3QAAAVUAAAAEAAAACAAAwABeJw9ks9vEkEUx2cpWyeUoFYgNkHi2Wt7N3rVm3cTs3UVLC4LxIWEQvi1P3i7O1tYLJDAmlgKGEhQrsajf0j7J3jYTXrQWUrMJG+++b55n5e8NwwKBhHDMLv5kxT3ATEBxKBn3qOAl9zxHgb1MAPhHQgHkyF08Gr/L8B/Eb6zWnmCJ7AJVLubQOheArXvJ1A4EXi6j4I+Zg9F0QFKvsnlBCmXeve+sFEnb/nCptdtQ4QYhVFRAT1HrF8UQK/RL/SbmUbclsvGVFXRZKDHUE38cc4qpkbAAsuwiImvro+ufcfaOIQ6szlrmjRJDaKZKnbjN3GWKIbiIzRFUfCffuxxKOL+3LDlDVvx2TdxN84qZEsnhNBa6pgm2dAsnzbLsETdsmRFxUeHV4e+I2/ptN8TyqV8T3Dt29t7EYOuajVIw2y1Wy3M86w0zg/Fz2IvawmQAUHOVrPVfLkoScVynsqsTG0MGUs4z55nh3mnOJa+li+rl9WpPIcFfDubDeaDC+fLBdYN3QADzLauGfj4B6sZmq6CCpqmtSvF0qlUl2qf5AJIUCSlTqlb7lUG+LRfGzZGzZEyBgccMu6MuqPecNDvD4Y9Kjtj4gD+DsvKVMTcMdtqtZtmkzQstQvYje7Syep0PDSAhSOeHYXYWThEF//A/0YvYV1fSQtpKU5STtrhbQ444OtpKSWJIg3pOg8cBs7maTY1EZf07aq+hjWs7IWzdCYTGhb2CtZ47x+Uhx28AAB4nGNgYGBkAIJz765vANHnCyvqYTQAWnkHswAAeJxjYGRgYOADYgkGEGBiYARCFjAG8RgABHYAN3icY2BmYmCcwMDKwMHow5jGwMDgDqW/MkgytDAwMDGwcjKAQQMDAyOQUmCAgoA01xQGB4ZExUmMD/4/YNBjvP3/NgNEDQPjbbBKBQZGADfLDgsAAHicY2BgYGaAYBkGRgYQiAHyGMF8FgYHIM3DwMHABGQzMCQqKClOUJz0/z9YHRLv/+L7D+8V3cuHmgAHjGwM6ELUByxUMIOZCmbgAAA5LQ8XeJxjYGRgYABiO68w73h+m68M3EwMIHC+sKIeTqsyqDLeZrwN5HIwgKUB/aYJUgAAeJxjYGRgYLzNwMCgx8QAAkA2IwMqYAIAMGIB7QIAAAACAAAlACUAJQAlAAAAAFAAAAUAAHicbY49asNAEIU/2ZJDfkiRIvXapUFCEqpcptABUrg3ZhEiQoKVfY9UqVLlGDlADpAT5e16IUWysMz3hjfzBrjjjQT/EjKpCy+4YhN5yZoxcirPe+SMWz4jr6S+5UzSa3VuwpTnBfc8RF7yxDZyKs9r5IxHPiKv1P9iZqDnyAvMQ39UecbScVb/gJO03Xk4CFom3XYK1clhMdQUlKo7/d9NF13RkIdfy+MV7TSe2sl11tRFaXYmJKpWTd7kdVnJ8veevZKc+n3I93t9Jnvr5n4aTVWU/0z9AI2qMkV4nGNgZkAGjAxoAAAAjgAF) format('woff'), url(data:font/ttf;base64,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) format('truetype'), url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBzdGFuZGFsb25lPSJubyI/Pgo8IURPQ1RZUEUgc3ZnIFBVQkxJQyAiLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4iICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxtZXRhZGF0YT5HZW5lcmF0ZWQgYnkgRm9udGFzdGljLm1lPC9tZXRhZGF0YT4KPGRlZnM+Cjxmb250IGlkPSJzbGljayIgaG9yaXotYWR2LXg9IjUxMiI+Cjxmb250LWZhY2UgZm9udC1mYW1pbHk9InNsaWNrIiB1bml0cy1wZXItZW09IjUxMiIgYXNjZW50PSI0ODAiIGRlc2NlbnQ9Ii0zMiIvPgo8bWlzc2luZy1nbHlwaCBob3Jpei1hZHYteD0iNTEyIiAvPgoKPGdseXBoIHVuaWNvZGU9IiYjODU5NDsiIGQ9Ik0yNDEgMTEzbDEzMCAxMzBjNCA0IDYgOCA2IDEzIDAgNS0yIDktNiAxM2wtMTMwIDEzMGMtMyAzLTcgNS0xMiA1LTUgMC0xMC0yLTEzLTVsLTI5LTMwYy00LTMtNi03LTYtMTIgMC01IDItMTAgNi0xM2w4Ny04OC04Ny04OGMtNC0zLTYtOC02LTEzIDAtNSAyLTkgNi0xMmwyOS0zMGMzLTMgOC01IDEzLTUgNSAwIDkgMiAxMiA1eiBtMjM0IDE0M2MwLTQwLTktNzctMjktMTEwLTIwLTM0LTQ2LTYwLTgwLTgwLTMzLTIwLTcwLTI5LTExMC0yOS00MCAwLTc3IDktMTEwIDI5LTM0IDIwLTYwIDQ2LTgwIDgwLTIwIDMzLTI5IDcwLTI5IDExMCAwIDQwIDkgNzcgMjkgMTEwIDIwIDM0IDQ2IDYwIDgwIDgwIDMzIDIwIDcwIDI5IDExMCAyOSA0MCAwIDc3LTkgMTEwLTI5IDM0LTIwIDYwLTQ2IDgwLTgwIDIwLTMzIDI5LTcwIDI5LTExMHoiLz4KPGdseXBoIHVuaWNvZGU9IiYjODU5MjsiIGQ9Ik0yOTYgMTEzbDI5IDMwYzQgMyA2IDcgNiAxMiAwIDUtMiAxMC02IDEzbC04NyA4OCA4NyA4OGM0IDMgNiA4IDYgMTMgMCA1LTIgOS02IDEybC0yOSAzMGMtMyAzLTggNS0xMyA1LTUgMC05LTItMTItNWwtMTMwLTEzMGMtNC00LTYtOC02LTEzIDAtNSAyLTkgNi0xM2wxMzAtMTMwYzMtMyA3LTUgMTItNSA1IDAgMTAgMiAxMyA1eiBtMTc5IDE0M2MwLTQwLTktNzctMjktMTEwLTIwLTM0LTQ2LTYwLTgwLTgwLTMzLTIwLTcwLTI5LTExMC0yOS00MCAwLTc3IDktMTEwIDI5LTM0IDIwLTYwIDQ2LTgwIDgwLTIwIDMzLTI5IDcwLTI5IDExMCAwIDQwIDkgNzcgMjkgMTEwIDIwIDM0IDQ2IDYwIDgwIDgwIDMzIDIwIDcwIDI5IDExMCAyOSA0MCAwIDc3LTkgMTEwLTI5IDM0LTIwIDYwLTQ2IDgwLTgwIDIwLTMzIDI5LTcwIDI5LTExMHoiLz4KPGdseXBoIHVuaWNvZGU9IiYjODIyNjsiIGQ9Ik00NzUgMjU2YzAtNDAtOS03Ny0yOS0xMTAtMjAtMzQtNDYtNjAtODAtODAtMzMtMjAtNzAtMjktMTEwLTI5LTQwIDAtNzcgOS0xMTAgMjktMzQgMjAtNjAgNDYtODAgODAtMjAgMzMtMjkgNzAtMjkgMTEwIDAgNDAgOSA3NyAyOSAxMTAgMjAgMzQgNDYgNjAgODAgODAgMzMgMjAgNzAgMjkgMTEwIDI5IDQwIDAgNzctOSAxMTAtMjkgMzQtMjAgNjAtNDYgODAtODAgMjAtMzMgMjktNzAgMjktMTEweiIvPgo8Z2x5cGggdW5pY29kZT0iJiM5NzsiIGQ9Ik00NzUgNDM5bDAtMTI4YzAtNS0xLTktNS0xMy00LTQtOC01LTEzLTVsLTEyOCAwYy04IDAtMTMgMy0xNyAxMS0zIDctMiAxNCA0IDIwbDQwIDM5Yy0yOCAyNi02MiAzOS0xMDAgMzktMjAgMC0zOS00LTU3LTExLTE4LTgtMzMtMTgtNDYtMzItMTQtMTMtMjQtMjgtMzItNDYtNy0xOC0xMS0zNy0xMS01NyAwLTIwIDQtMzkgMTEtNTcgOC0xOCAxOC0zMyAzMi00NiAxMy0xNCAyOC0yNCA0Ni0zMiAxOC03IDM3LTExIDU3LTExIDIzIDAgNDQgNSA2NCAxNSAyMCA5IDM4IDIzIDUxIDQyIDIgMSA0IDMgNyAzIDMgMCA1LTEgNy0zbDM5LTM5YzItMiAzLTMgMy02IDAtMi0xLTQtMi02LTIxLTI1LTQ2LTQ1LTc2LTU5LTI5LTE0LTYwLTIwLTkzLTIwLTMwIDAtNTggNS04NSAxNy0yNyAxMi01MSAyNy03MCA0Ny0yMCAxOS0zNSA0My00NyA3MC0xMiAyNy0xNyA1NS0xNyA4NSAwIDMwIDUgNTggMTcgODUgMTIgMjcgMjcgNTEgNDcgNzAgMTkgMjAgNDMgMzUgNzAgNDcgMjcgMTIgNTUgMTcgODUgMTcgMjggMCA1NS01IDgxLTE1IDI2LTExIDUwLTI2IDcwLTQ1bDM3IDM3YzYgNiAxMiA3IDIwIDQgOC00IDExLTkgMTEtMTd6Ii8+CjwvZm9udD48L2RlZnM+PC9zdmc+Cg==#slick) format('svg');
+}
+
+/* Arrows */
+
+/* Dots */
+
+
+
+/* Slider */
+
+.FeatureShowcase_featureShowcase__tWZZI .slick-prev:focus-visible,
+.FeatureShowcase_featureShowcase__tWZZI .slick-next:focus-visible {
+    outline: var(--focus-outline-color, #00bcf2) auto 1px
+}
+
+.FeatureShowcase_featureShowcase__tWZZI .slick-dots.FeatureShowcase_sliderDots__miK2E li button:focus-visible {
+    outline-offset: -1px;
+    outline: var(--focus-outline-color, #00bcf2) auto 1px
+}
+
+[_nghost-ng-c1527126507] {
+    background: var(--colorNeutralBackground1, #ffffff);
+    display: flex;
+    flex-flow: column nowrap;
+    width: 100%;
+    height: 100%;
+    font-size: 14px
+}
+
+[_nghost-ng-c1527126507] .scaffold[_ngcontent-ng-c1527126507] {
+    display: flex;
+    flex-flow: row nowrap;
+    flex-grow: 1;
+    height: 100%;
+    overflow: hidden;
+    background: var(--colorNeutralBackground1, #ffffff);
+    color: var(--colorNeutralStrokeFocus2, #000000)
+}
+
+[_nghost-ng-c1527126507] .scaffold[_ngcontent-ng-c1527126507] .expanded-menu[_ngcontent-ng-c1527126507] {
+    min-width: 228px
+}
+
+[_nghost-ng-c1527126507] .scaffold[_ngcontent-ng-c1527126507] .horizontal-line[_ngcontent-ng-c1527126507] {
+    background-color: var(--colorNeutralStroke1, #DEDEDE);
+    height: 1px;
+    margin: 0 12px
+}
+
+[_nghost-ng-c1527126507] .scaffold[_ngcontent-ng-c1527126507] .nav-panel[_ngcontent-ng-c1527126507] {
+    display: flex;
+    flex-flow: row nowrap;
+    flex-shrink: 0;
+    width: inherit;
+    overflow: auto;
+    background-color: var(--colorNeutralBackground2, #FAFAFA);
+    box-shadow: inset 0 0 8px rgba(0, 0, 0, .2)
+}
+
+[_nghost-ng-c1527126507] .scaffold[_ngcontent-ng-c1527126507] .nav-panel[_ngcontent-ng-c1527126507] .tooltip-wrapper[_ngcontent-ng-c1527126507]:focus {
+    outline-offset: -1px;
+    outline: var(--colorNeutralStrokeAccessible, #605E5C) dashed 1px
+}
+
+[_nghost-ng-c1527126507] .scaffold[_ngcontent-ng-c1527126507] .nav-panel[_ngcontent-ng-c1527126507] .menu-bar[_ngcontent-ng-c1527126507] {
+    display: flex;
+    color: var(--colorNeutralForeground1, #323130);
+    text-align: center;
+    flex-flow: column nowrap;
+    justify-content: space-between;
+    z-index: 3;
+    width: 100%
+}
+
+[_nghost-ng-c1527126507] .scaffold[_ngcontent-ng-c1527126507] .nav-panel[_ngcontent-ng-c1527126507] .menu-bar[_ngcontent-ng-c1527126507] .top-area[_ngcontent-ng-c1527126507] {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column
+}
+
+[_nghost-ng-c1527126507] .scaffold[_ngcontent-ng-c1527126507] .nav-panel[_ngcontent-ng-c1527126507] .menu-bar[_ngcontent-ng-c1527126507] .top-area[_ngcontent-ng-c1527126507] .icon[_ngcontent-ng-c1527126507] {
+    color: #fff;
+    font-size: 15px;
+    height: 48px;
+    width: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    outline: none
+}
+
+[_nghost-ng-c1527126507] .scaffold[_ngcontent-ng-c1527126507] .nav-panel[_ngcontent-ng-c1527126507] .menu-bar[_ngcontent-ng-c1527126507] .top-area[_ngcontent-ng-c1527126507] .expand-icon-area[_ngcontent-ng-c1527126507] {
+    width: 100%;
+    height: 28px;
+    display: flex
+}
+
+[_nghost-ng-c1527126507] .scaffold[_ngcontent-ng-c1527126507] .nav-panel[_ngcontent-ng-c1527126507] .menu-bar[_ngcontent-ng-c1527126507] .top-area[_ngcontent-ng-c1527126507] .expand-icon-area[_ngcontent-ng-c1527126507] .expand-icon[_ngcontent-ng-c1527126507] {
+    width: 25px;
+    margin-left: auto
+}
+
+[_nghost-ng-c1527126507] .scaffold[_ngcontent-ng-c1527126507] .nav-panel[_ngcontent-ng-c1527126507] .menu-bar[_ngcontent-ng-c1527126507] .tooltip-wrapper[_ngcontent-ng-c1527126507]:focus {
+    outline-offset: -1px;
+    outline: 1px solid var(--colorNeutralForeground3, #605E5C)
+}
+
+[_nghost-ng-c1527126507] .scaffold[_ngcontent-ng-c1527126507] .nav-panel[_ngcontent-ng-c1527126507] .menu-bar[_ngcontent-ng-c1527126507] .nav-hover[_ngcontent-ng-c1527126507] {
+    cursor: pointer;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    background-color: transparent;
+    border: 0;
+    padding: 0;
+    width: 100%
+}
+
+[_nghost-ng-c1527126507] .scaffold[_ngcontent-ng-c1527126507] .nav-panel[_ngcontent-ng-c1527126507] .menu-bar[_ngcontent-ng-c1527126507] .nav-hover[_ngcontent-ng-c1527126507]:hover {
+    background-color: var(--colorNeutralBackground1Hover, #F3F2F1)
+}
+
+[_nghost-ng-c1527126507] .scaffold[_ngcontent-ng-c1527126507] .nav-panel[_ngcontent-ng-c1527126507] .menu-bar[_ngcontent-ng-c1527126507] .nav-hover[_ngcontent-ng-c1527126507]:focus {
+    outline-offset: -1px;
+    outline: 1px solid var(--colorNeutralForeground3, #605E5C)
+}
+
+[_nghost-ng-c1527126507] .scaffold[_ngcontent-ng-c1527126507] .nav-panel[_ngcontent-ng-c1527126507] .menu-bar[_ngcontent-ng-c1527126507] .nav-hover.activeRoute[_ngcontent-ng-c1527126507] {
+    background-color: var(--colorNeutralBackground1Pressed, #EDEBE9)
+}
+
+[_nghost-ng-c1527126507] .scaffold[_ngcontent-ng-c1527126507] .nav-panel[_ngcontent-ng-c1527126507] .menu-bar[_ngcontent-ng-c1527126507] .nav-hover[_ngcontent-ng-c1527126507] .expanded-button-label[_ngcontent-ng-c1527126507] {
+    color: var(--colorNeutralForeground1, #323130);
+    font-size: 14px;
+    font-weight: 600
+}
+
+[_nghost-ng-c1527126507] .scaffold[_ngcontent-ng-c1527126507] .nav-panel[_ngcontent-ng-c1527126507] .menu-bar[_ngcontent-ng-c1527126507] .expand-icon-area[_ngcontent-ng-c1527126507] {
+    justify-content: flex-end
+}
+
+@media (max-width: 639px) {
+    [_nghost-ng-c1527126507] .scaffold[_ngcontent-ng-c1527126507] .nav-panel[_ngcontent-ng-c1527126507] {
+        position: absolute;
+        height: 100%;
+        z-index: 999;
+        background-color: var(--colorNeutralBackground1, #ffffff);
+        display: none
+    }
+
+    [_nghost-ng-c1527126507] .scaffold[_ngcontent-ng-c1527126507] .nav-panel[_ngcontent-ng-c1527126507] .menu-bar[_ngcontent-ng-c1527126507] .expand-icon-area[_ngcontent-ng-c1527126507] {
+        display: none
+    }
+
+    [_nghost-ng-c1527126507] .scaffold[_ngcontent-ng-c1527126507] .nav-panel[_ngcontent-ng-c1527126507] .menu-bar[_ngcontent-ng-c1527126507] .top-area[_ngcontent-ng-c1527126507] .expand-icon-area[_ngcontent-ng-c1527126507] {
+        display: none
+    }
+}
+
+[_nghost-ng-c1527126507] .scaffold[_ngcontent-ng-c1527126507] .main-content[_ngcontent-ng-c1527126507] {
+    background: var(--colorNeutralBackground1, #ffffff);
+    color: var(--colorNeutralForeground1, #323130);
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    overflow: hidden
+}
+
+[_nghost-ng-c1527126507] #a365-fluent-layer-host[_ngcontent-ng-c1527126507] {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 10;
+    pointer-events: none;
+    overflow: hidden
+}
+
+[_nghost-ng-c1527126507] .banner[_ngcontent-ng-c1527126507] {
+    background-color: var(--colorInfoBackground, #F0F6FF)
+}
+
+[_nghost-ng-c2748946740] .modal-footer[_ngcontent-ng-c2748946740] {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    flex: 0 0 auto;
+    padding: 15px 0 7px;
+    margin-top: 10px;
+    border-top: 1px solid var(--colorNeutralStroke1, #DEDEDE);
+    background-color: var(--colorNeutralBackground1, #ffffff)
+}
+
+[_nghost-ng-c2748946740] .modal-footer[_ngcontent-ng-c2748946740] .modal-actions[_ngcontent-ng-c2748946740] {
+    display: flex;
+    flex-direction: row;
+    padding: 0 24px;
+    justify-content: space-between;
+    align-items: flex-end;
+    flex-wrap: wrap
+}
+
+[_nghost-ng-c2748946740] .modal-footer[_ngcontent-ng-c2748946740] .modal-actions[_ngcontent-ng-c2748946740] .left-button[_ngcontent-ng-c2748946740] {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    margin-bottom: 8px
+}
+
+[_nghost-ng-c2748946740] .modal-footer[_ngcontent-ng-c2748946740] .modal-actions[_ngcontent-ng-c2748946740] .left-button[_ngcontent-ng-c2748946740] button[_ngcontent-ng-c2748946740] {
+    min-width: 80px;
+    height: 24px;
+    line-height: 24px;
+    max-width: 200px;
+    font-family: Segoe UI;
+    color: var(--colorNeutralForeground1, #323130);
+    font-size: 13px;
+    line-height: 18px;
+    font-weight: 400
+}
+
+[_nghost-ng-c2748946740] .modal-footer[_ngcontent-ng-c2748946740] .modal-actions[_ngcontent-ng-c2748946740] .left-button[_ngcontent-ng-c2748946740] .confirm-button[_ngcontent-ng-c2748946740] {
+    font-family: Segoe UI;
+    color: var(--colorNeutralForeground1, #323130);
+    font-size: 13px;
+    line-height: 18px;
+    font-weight: 400;
+    height: 24px;
+    line-height: 22px !important;
+    border: 1px solid var(--colorBrandBackground, #0078D4) !important;
+    background-color: var(--colorBrandBackground, #0078D4) !important;
+    padding: 0 16px;
+    border-radius: 2px;
+    color: var(--colorNeutralForegroundOnBrand, #ffffff) !important;
+    cursor: pointer;
+    margin-right: 8px
+}
+
+[_nghost-ng-c2748946740] .modal-footer[_ngcontent-ng-c2748946740] .modal-actions[_ngcontent-ng-c2748946740] .left-button[_ngcontent-ng-c2748946740] .confirm-button[_ngcontent-ng-c2748946740]:hover {
+    border: 1px solid var(--colorBrandBackgroundHover, #106EBE) !important;
+    background-color: var(--colorBrandBackgroundHover, #106EBE) !important
+}
+
+[_nghost-ng-c2748946740] .modal-footer[_ngcontent-ng-c2748946740] .modal-actions[_ngcontent-ng-c2748946740] .left-button[_ngcontent-ng-c2748946740] .confirm-button[_ngcontent-ng-c2748946740]:focus {
+    outline-offset: -2px;
+    outline: 1px solid var(--colorNeutralForegroundOnBrand, #ffffff) !important
+}
+
+[_nghost-ng-c2748946740] .modal-footer[_ngcontent-ng-c2748946740] .modal-actions[_ngcontent-ng-c2748946740] .left-button[_ngcontent-ng-c2748946740] .confirm-button[_ngcontent-ng-c2748946740]:disabled {
+    border: none !important;
+    color: var(--colorNeutralForegroundDisabled, #A19F9D) !important;
+    cursor: default;
+    background-color: var(--colorNeutralBackgroundDisabled, #F3F2F1) !important
+}
+
+[_nghost-ng-c2748946740] .modal-footer[_ngcontent-ng-c2748946740] .modal-actions[_ngcontent-ng-c2748946740] .left-button[_ngcontent-ng-c2748946740] button[_ngcontent-ng-c2748946740]:disabled {
+    background-color: var(--colorNeutralBackgroundDisabled, #F3F2F1);
+    color: var(--colorNeutralForegroundDisabled, #A19F9D);
+    cursor: default
+}
+
+[_nghost-ng-c2748946740] .validation-modal[_ngcontent-ng-c2748946740] {
+    display: none;
+    flex-direction: column;
+    min-width: 435px;
+    height: 100%;
+    top: 40px;
+    right: 0;
+    background-color: var(--colorNeutralBackground1, #ffffff);
+    border-left: 2px solid var(--colorNeutralStroke2, #EAEAEA);
+    z-index: 1;
+    box-sizing: border-box
+}
+
+@media (max-width: 639px) {
+    [_nghost-ng-c2748946740] .validation-modal[_ngcontent-ng-c2748946740] {
+        border-left: 0px;
+        box-shadow: 0 7px 16px rgba(0, 0, 0, .16);
+        position: absolute;
+        z-index: 1001;
+        top: 0;
+        right: 0;
+        left: calc(100% - 435px)
+    }
+}
+
+@media (max-width: 434px) {
+    [_nghost-ng-c2748946740] .validation-modal[_ngcontent-ng-c2748946740] {
+        min-width: 100%;
+        left: 0
+    }
+}
+
+[_nghost-ng-c2748946740] .validation-modal[_ngcontent-ng-c2748946740] .modal-title-bar[_ngcontent-ng-c2748946740] {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-grow: 0;
+    flex-shrink: 0;
+    padding-left: 20px;
+    border-bottom: 1px solid var(--colorNeutralStroke1, #DEDEDE);
+    height: 36px
+}
+
+@media (max-width: 639px) {
+    [_nghost-ng-c2748946740] .validation-modal[_ngcontent-ng-c2748946740] .modal-title-bar[_ngcontent-ng-c2748946740] {
+        padding-left: 10px
+    }
+}
+
+[_nghost-ng-c2748946740] .validation-modal[_ngcontent-ng-c2748946740] .modal-title-bar[_ngcontent-ng-c2748946740] .modal-title-bar-icon[_ngcontent-ng-c2748946740] {
+    border: 0;
+    padding: 0;
+    background: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 24px;
+    width: 24px;
+    cursor: pointer
+}
+
+[_nghost-ng-c2748946740] .validation-modal[_ngcontent-ng-c2748946740] .modal-title-bar[_ngcontent-ng-c2748946740] .modal-title-bar-icon[_ngcontent-ng-c2748946740] .madrid-icon[_ngcontent-ng-c2748946740] {
+    padding: 4px
+}
+
+[_nghost-ng-c2748946740] .validation-modal[_ngcontent-ng-c2748946740] .modal-title-bar[_ngcontent-ng-c2748946740] .modal-title-bar-icon[_ngcontent-ng-c2748946740]:hover {
+    background-color: var(--colorNeutralBackground1Hover, #F3F2F1)
+}
+
+[_nghost-ng-c2748946740] .validation-modal[_ngcontent-ng-c2748946740] .modal-title-bar[_ngcontent-ng-c2748946740] .modal-title-bar-icon[_ngcontent-ng-c2748946740]:focus {
+    background-color: none;
+    outline: 1px solid var(--colorNeutralForeground3, #605E5C) !important
+}
+
+@media (min-width: 640px) {
+    [_nghost-ng-c2748946740] .validation-modal[_ngcontent-ng-c2748946740] .modal-title-bar[_ngcontent-ng-c2748946740] .modal-title-bar-icon[_ngcontent-ng-c2748946740] {
+        display: none
+    }
+}
+
+[_nghost-ng-c2748946740] .validation-modal[_ngcontent-ng-c2748946740] .modal-title[_ngcontent-ng-c2748946740] {
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
+    align-items: center
+}
+
+[_nghost-ng-c2748946740] .validation-modal[_ngcontent-ng-c2748946740] .modal-title[_ngcontent-ng-c2748946740] .modal-title-text[_ngcontent-ng-c2748946740] {
+    display: flex;
+    line-height: 43px;
+    color: var(--colorNeutralForeground1, #323130)
+}
+
+[_nghost-ng-c2748946740] .validation-modal[_ngcontent-ng-c2748946740] .modal-title[_ngcontent-ng-c2748946740] .modal-title-text[_ngcontent-ng-c2748946740] h1[_ngcontent-ng-c2748946740] {
+    margin: 0;
+    font-weight: 400;
+    -webkit-margin-before: unset;
+    margin-block-start: unset;
+    -webkit-margin-after: unset;
+    margin-block-end: unset;
+    -webkit-margin-start: unset;
+    margin-inline-start: unset;
+    -webkit-margin-end: unset;
+    margin-inline-end: unset;
+    font-size: 16px
+}
+
+[_nghost-ng-c2748946740] .dynamic-validation-component-container[_ngcontent-ng-c2748946740] {
+    position: relative;
+    flex-grow: 1;
+    overflow-x: hidden;
+    overflow-y: auto
+}
+
+[_nghost-ng-c168634370] .banner[_ngcontent-ng-c168634370] [_ngcontent-ng-c168634370]:hidden {
+    display: none
+}
+
+.idw-database-model-explorer .idw-left-pane-container:not(:hover) {
+    overflow: hidden;
+}
+
+.CodeCellPanel_codeCellPanel__K1e7T .CodeCellPanel_contextualMenuButton__dvXvH:not(:hover) {
+    background: transparent
+}
+
+.CodeCellPanel_codeCellPanel__K1e7T .CodeCellPanel_cellEditorPanel__MfZ1Q .CodeCellPanel_inputCollapseButton__bua65:not(:hover) {
+    background: transparent
+}
+
+.CellLeftBar_cellLeftBar__a7a7e .CellLeftBar_runCellButton__4tfiZ:not(:hover) {
+    background: transparent
+}
+
+.TextCellPanel_textCellPanel__ufkYi .TextCellPanel_viewer__4EwJF .TextCellPanel_contextualMenuButton__cO7QU:not(:hover) {
+    background: transparent
+}
+
+.svg-a365-home{background-image:url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDgiIGhlaWdodD0iNDgiIHZpZXdCb3g9IjAgMCA0OCA0OCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4NCjxnIGNsaXAtcGF0aD0idXJsKCNjbGlwMCkiPg0KPHBhdGggZD0iTTM1Ljc1IDIzLjA1NzVMMjQuNTUyNSAxMi42Njc1QzI0LjQwMDcgMTIuNTMxNCAyNC4yMDQgMTIuNDU2MSAyNCAxMi40NTYxQzIzLjc5NjEgMTIuNDU2MSAyMy41OTkzIDEyLjUzMTQgMjMuNDQ3NSAxMi42Njc1TDEyLjI2MjUgMjMuMDU3NUMxMS43MDI1IDIzLjU3NzUgMTIuMDk3NSAyNC40NjUgMTIuODkgMjQuNDY1SDE1LjE4QzE1LjIzMzIgMjQuNDY1IDE1LjI4NTkgMjQuNDc1NSAxNS4zMzUgMjQuNDk1OEMxNS4zODQxIDI0LjUxNjIgMTUuNDI4OCAyNC41NDYgMTUuNDY2NCAyNC41ODM2QzE1LjUwNCAyNC42MjEyIDE1LjUzMzggMjQuNjY1OSAxNS41NTQyIDI0LjcxNUMxNS41NzQ2IDI0Ljc2NDIgMTUuNTg1IDI0LjgxNjggMTUuNTg1IDI0Ljg3VjM0LjczNUMxNS41ODUgMzQuOTQ5OCAxNS42NzA0IDM1LjE1NTkgMTUuODIyMyAzNS4zMDc4QzE1Ljk3NDIgMzUuNDU5NyAxNi4xODAyIDM1LjU0NSAxNi4zOTUgMzUuNTQ1SDMxLjYwNUMzMS44MTk4IDM1LjU0NSAzMi4wMjU5IDM1LjQ1OTcgMzIuMTc3OCAzNS4zMDc4QzMyLjMyOTcgMzUuMTU1OSAzMi40MTUgMzQuOTQ5OCAzMi40MTUgMzQuNzM1VjI0Ljg3QzMyLjQxNSAyNC43NjI2IDMyLjQ1NzcgMjQuNjU5NiAzMi41MzM2IDI0LjU4MzZDMzIuNjA5NiAyNC41MDc3IDMyLjcxMjYgMjQuNDY1IDMyLjgyIDI0LjQ2NUgzNS4xMUMzNS45MDI1IDI0LjQ2NSAzNi4yOTc1IDIzLjU3NzUgMzUuNzUgMjMuMDU3NVoiIGZpbGw9InVybCgjcGFpbnQwX2xpbmVhcikiLz4NCjxwYXRoIGQ9Ik0yMS40Mjk5IDI4LjUzMjVIMjYuNTY5OUMyNi42OTI0IDI4LjU0MzkgMjYuODA1NiAyOC42MDI0IDI2Ljg4NTggMjguNjk1N0MyNi45NjYgMjguNzg4OSAyNy4wMDY5IDI4LjkwOTcgMjYuOTk5OSAyOS4wMzI1VjM1LjUzMjVIMjAuOTk5OVYyOS4wMzI1QzIwLjk5MjkgMjguOTA5NyAyMS4wMzM4IDI4Ljc4ODkgMjEuMTE0IDI4LjY5NTdDMjEuMTk0MiAyOC42MDI0IDIxLjMwNzUgMjguNTQzOSAyMS40Mjk5IDI4LjUzMjVaIiBmaWxsPSIjRTZFNkU2Ii8+DQo8cGF0aCBkPSJNMTIuODkgMjQuNDY1SDEzLjYwNUwyMy40NDc1IDE1LjMyMjVDMjMuNTk5MyAxNS4xODY0IDIzLjc5NjEgMTUuMTExMSAyNCAxNS4xMTExQzI0LjIwNCAxNS4xMTExIDI0LjQwMDcgMTUuMTg2NCAyNC41NTI1IDE1LjMyMjVMMzQuMzk1IDI0LjQ2NUgzNS4xMUMzNS45MDI1IDI0LjQ2NSAzNi4yOTc1IDIzLjU3NzUgMzUuNzM3NSAyMy4wNTc1TDI0LjU1MjUgMTIuNjY3NUMyNC40MDA3IDEyLjUzMTQgMjQuMjA0IDEyLjQ1NjEgMjQgMTIuNDU2MUMyMy43OTYxIDEyLjQ1NjEgMjMuNTk5MyAxMi41MzE0IDIzLjQ0NzUgMTIuNjY3NUwxMi4yNjI1IDIzLjA1NzVDMTEuNzAyNSAyMy41Nzc1IDEyLjA5NzUgMjQuNDY1IDEyLjg5IDI0LjQ2NVoiIGZpbGw9IiMwMDVCQTEiLz4NCjwvZz4NCjxkZWZzPg0KPGxpbmVhckdyYWRpZW50IGlkPSJwYWludDBfbGluZWFyIiB4MT0iMjQiIHkxPSIzNS41NDUiIHgyPSIyNCIgeTI9IjEyLjQ1NSIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiPg0KPHN0b3Agc3RvcC1jb2xvcj0iIzAwNzhENCIvPg0KPHN0b3Agb2Zmc2V0PSIwLjE3IiBzdG9wLWNvbG9yPSIjMUM4NERDIi8+DQo8c3RvcCBvZmZzZXQ9IjAuMzgiIHN0b3AtY29sb3I9IiMzOTkwRTQiLz4NCjxzdG9wIG9mZnNldD0iMC41OSIgc3RvcC1jb2xvcj0iIzREOTlFQSIvPg0KPHN0b3Agb2Zmc2V0PSIwLjgiIHN0b3AtY29sb3I9IiM1QTlFRUUiLz4NCjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iIzVFQTBFRiIvPg0KPC9saW5lYXJHcmFkaWVudD4NCjxjbGlwUGF0aCBpZD0iY2xpcDAiPg0KPHJlY3Qgd2lkdGg9IjI0IiBoZWlnaHQ9IjI0IiBmaWxsPSJ3aGl0ZSIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMTIgMTIpIi8+DQo8L2NsaXBQYXRoPg0KPC9kZWZzPg0KPC9zdmc+DQo=);background-repeat:no-repeat;background-position:center;width:48px;height:48px}
+.svg-a365-analyze{background-image:url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDgiIGhlaWdodD0iNDgiIHZpZXdCb3g9IjAgMCA0OCA0OCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4NCjxnIGNsaXAtcGF0aD0idXJsKCNjbGlwMCkiPg0KPHBhdGggZD0iTTMyLjc4NzMgMTJIMTYuNDAzQzE2LjMwNDggMTIgMTYuMjA3NiAxMi4wMTk0IDE2LjExNjkgMTIuMDU3QzE2LjAyNjMgMTIuMDk0NiAxNS45NDM5IDEyLjE0OTcgMTUuODc0NSAxMi4yMTkyQzE1LjgwNTIgMTIuMjg4NiAxNS43NTAyIDEyLjM3MTEgMTUuNzEyNyAxMi40NjE4QzE1LjY3NTMgMTIuNTUyNiAxNS42NTYxIDEyLjY0OTggMTUuNjU2MyAxMi43NDhWMzMuMTQzMkMxNS42NTYyIDMzLjM0MTQgMTUuNzM0OSAzMy41MzE0IDE1Ljg3NDkgMzMuNjcxNkMxNi4wMTQ5IDMzLjgxMTggMTYuMjA0OSAzMy44OTA3IDE2LjQwMyAzMy44OTFIMzIuNzg3M0MzMi45ODU0IDMzLjg5MDggMzMuMTc1NCAzMy44MTE5IDMzLjMxNTQgMzMuNjcxN0MzMy40NTU0IDMzLjUzMTUgMzMuNTM0MSAzMy4zNDE0IDMzLjUzNCAzMy4xNDMyVjEyLjc0OEMzMy41MzQgMTIuNTQ5OCAzMy40NTU0IDEyLjM1OTggMzMuMzE1NCAxMi4yMTk1QzMzLjE3NTQgMTIuMDc5MyAzMi45ODU0IDEyLjAwMDMgMzIuNzg3MyAxMlYxMloiIGZpbGw9InVybCgjcGFpbnQwX2xpbmVhcikiLz4NCjxwYXRoIGQ9Ik0yMy40MzMgMTQuMTQ5OUgxNC4xMTZDMTMuOTIyNSAxNC4xNDk5IDEzLjczNjggMTQuMjI2OCAxMy42IDE0LjM2MzZDMTMuNDYzMSAxNC41MDA1IDEzLjM4NjIgMTQuNjg2MSAxMy4zODYyIDE0Ljg3OTdWMzQuOTc2N0MxMy4zODU0IDM1LjA3MjUgMTMuNDAzNSAzNS4xNjc1IDEzLjQzOTQgMzUuMjU2NEMxMy40NzUzIDM1LjM0NTIgMTMuNTI4NCAzNS40MjYxIDEzLjU5NTYgMzUuNDk0NEMxMy42NjI4IDM1LjU2MjcgMTMuNzQyOCAzNS42MTcyIDEzLjgzMSAzNS42NTQ2QzEzLjkxOTIgMzUuNjkyIDE0LjAxMzkgMzUuNzExNiAxNC4xMDk3IDM1LjcxMjRIMzAuMjYxN0MzMC40NTUzIDM1LjcxMjQgMzAuNjQwOSAzNS42MzU1IDMwLjc3NzggMzUuNDk4N0MzMC45MTQ2IDM1LjM2MTggMzAuOTkxNSAzNS4xNzYyIDMwLjk5MTUgMzQuOTgyN1YyMS42ODAyQzMwLjk5MTYgMjEuNTg0MyAzMC45NzI3IDIxLjQ4OTMgMzAuOTM2MSAyMS40MDA3QzMwLjg5OTUgMjEuMzEyMSAzMC44NDU3IDIxLjIzMTYgMzAuNzc3OSAyMS4xNjM4QzMwLjcxMDIgMjEuMDk2IDMwLjYyOTcgMjEuMDQyMiAzMC41NDExIDIxLjAwNTVDMzAuNDUyNiAyMC45Njg4IDMwLjM1NzYgMjAuOTQ5OSAzMC4yNjE3IDIwLjk0OTlIMjQuOTAzMkMyNC43MDk1IDIwLjk0OCAyNC41MjQzIDIwLjg2OTcgMjQuMzg3OSAyMC43MzJDMjQuMjUxNiAyMC41OTQzIDI0LjE3NTEgMjAuNDA4NCAyNC4xNzUgMjAuMjE0N1YyMC4yMTQ3VjE0Ljg4NzlDMjQuMTc1MiAxNC42OTMzIDI0LjA5ODUgMTQuNTA2NSAyMy45NjE1IDE0LjM2ODNDMjMuODI0NiAxNC4yMzAxIDIzLjYzODYgMTQuMTUxNiAyMy40NDQgMTQuMTQ5OUgyMy40MzNaIiBmaWxsPSJ3aGl0ZSIvPg0KPHBhdGggZD0iTTIzLjQ1IDE0LjEwODlIMTMuOTk2N0MxMy43OTg2IDE0LjEwOTIgMTMuNjA4NyAxNC4xODggMTMuNDY4NyAxNC4zMjgzQzEzLjMyODYgMTQuNDY4NSAxMy4yNSAxNC42NTg1IDEzLjI1IDE0Ljg1NjZWMzUuMjUxOUMxMy4yNSAzNS40NTAxIDEzLjMyODYgMzUuNjQwMSAxMy40Njg2IDM1Ljc4MDRDMTMuNjA4NiAzNS45MjA2IDEzLjc5ODYgMzUuOTk5NiAxMy45OTY3IDM1Ljk5OTlIMzAuMzgxQzMwLjU3OTIgMzUuOTk5NiAzMC43NjkxIDM1LjkyMDYgMzAuOTA5MSAzNS43ODA0QzMxLjA0OTEgMzUuNjQwMSAzMS4xMjc4IDM1LjQ1MDEgMzEuMTI3OCAzNS4yNTE5VjIxLjc1MzZDMzEuMTI3OCAyMS41NTU2IDMxLjA0OTEgMjEuMzY1NiAzMC45MDkgMjEuMjI1NkMzMC43NjkgMjEuMDg1NiAzMC41NzkxIDIxLjAwNjkgMzAuMzgxIDIxLjAwNjlIMjQuOTQyM0MyNC43NDQyIDIxLjAwNjkgMjQuNTU0MyAyMC45MjgyIDI0LjQxNDIgMjAuNzg4MkMyNC4yNzQyIDIwLjY0ODEgMjQuMTk1NSAyMC40NTgyIDI0LjE5NTUgMjAuMjYwMVYyMC4yNjAxVjE0Ljg1NjZDMjQuMTk0OSAxNC42NTg5IDI0LjExNjIgMTQuNDY5NCAyMy45NzY2IDE0LjMyOTNDMjMuODM3IDE0LjE4OTMgMjMuNjQ3NyAxNC4xMTAxIDIzLjQ1IDE0LjEwODlaIiBmaWxsPSJ1cmwoI3BhaW50MV9saW5lYXIpIi8+DQo8cGF0aCBkPSJNMzAuODQyIDIxLjE1NTVMMjMuOTM3OCAxNC4yNzJWMTkuODgwN0MyMy45MzU4IDIwLjIxNjcgMjQuMDY3MiAyMC41Mzk3IDI0LjMwMzIgMjAuNzc4N0MyNC41MzkzIDIxLjAxNzggMjQuODYwNiAyMS4xNTM0IDI1LjE5NjUgMjEuMTU1N0wzMC44NDIgMjEuMTU1NVoiIGZpbGw9IiM4M0I5RjkiLz4NCjxwYXRoIGQ9Ik0yNC40OTYgMjIuOTM5NUgxNS44NDA3QzE1LjY0OCAyMi45Mzk1IDE1LjQ5MDcgMjMuMDM2MiAxNS40OTA3IDIzLjE1NTVWMjMuNjg4MkMxNS40OTA3IDIzLjgwNzUgMTUuNjQ3IDIzLjkwNCAxNS44NDA3IDIzLjkwNEgyNC40OTZDMjQuNjg4NyAyMy45MDQgMjQuODQ2IDIzLjgwNzUgMjQuODQ2IDIzLjY4ODJWMjMuMTU1NUMyNC44NDUgMjMuMDM2MiAyNC42ODg3IDIyLjkzOTUgMjQuNDk2IDIyLjkzOTVaIiBmaWxsPSIjODNCOUY5Ii8+DQo8cGF0aCBkPSJNMjQuNDk2IDI1LjgzMzNIMTUuODQwN0MxNS42NDggMjUuODMzMyAxNS40OTA3IDI1LjkyOTggMTUuNDkwNyAyNi4wNDlWMjYuNTgxOEMxNS40OTA3IDI2LjcwMSAxNS42NDcgMjYuNzk3OCAxNS44NDA3IDI2Ljc5NzhIMjQuNDk2QzI0LjY4ODcgMjYuNzk3OCAyNC44NDYgMjYuNzAxIDI0Ljg0NiAyNi41ODE4VjI2LjA1QzI0Ljg0NSAyNS45Mjk4IDI0LjY4ODcgMjUuODMzMyAyNC40OTYgMjUuODMzM1oiIGZpbGw9IiM4M0I5RjkiLz4NCjxwYXRoIGQ9Ik0yNC40OTYgMjguNzI3MUgxNS44NDA3QzE1LjY0OCAyOC43MjcxIDE1LjQ5MDcgMjguODIzNiAxNS40OTA3IDI4Ljk0MjhWMjkuNDc1MUMxNS40OTA3IDI5LjU5NDMgMTUuNjQ3IDI5LjY5MTEgMTUuODQwNyAyOS42OTExSDI0LjQ5NkMyNC42ODg3IDI5LjY5MTEgMjQuODQ2IDI5LjU5NDMgMjQuODQ2IDI5LjQ3NTFWMjguOTQyOEMyNC44NDUgMjguODIzNiAyNC42ODg3IDI4LjcyNzEgMjQuNDk2IDI4LjcyNzFaIiBmaWxsPSIjODNCOUY5Ii8+DQo8cGF0aCBkPSJNMjAuOTgyIDMxLjYyMDhIMTUuOTM0NUMxNS42OSAzMS42MjA4IDE1LjQ5MTggMzEuNzE3MyAxNS40OTE4IDMxLjgzNjZWMzIuMzY5M0MxNS40OTE4IDMyLjQ4ODYgMTUuNjkgMzIuNTg1NCAxNS45MzQ1IDMyLjU4NTRIMjAuOTgyQzIxLjIyNjUgMzIuNTg1NCAyMS40MjQ4IDMyLjQ4ODYgMjEuNDI0OCAzMi4zNjkzVjMxLjgzNjZDMjEuNDI1IDMxLjcxNzMgMjEuMjI2NSAzMS42MjA4IDIwLjk4MiAzMS42MjA4WiIgZmlsbD0iIzgzQjlGOSIvPg0KPC9nPg0KPGRlZnM+DQo8bGluZWFyR3JhZGllbnQgaWQ9InBhaW50MF9saW5lYXIiIHgxPSIyNC41OTUiIHkxPSIxMy40NjE1IiB4Mj0iMjQuNTk1IiB5Mj0iMzUuNDE1IiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+DQo8c3RvcCBzdG9wLWNvbG9yPSIjRENEQ0RDIi8+DQo8c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiNBQUFBQUEiLz4NCjwvbGluZWFyR3JhZGllbnQ+DQo8bGluZWFyR3JhZGllbnQgaWQ9InBhaW50MV9saW5lYXIiIHgxPSIyMi4xODg4IiB5MT0iMTUuNTcwNCIgeDI9IjIyLjE4ODgiIHkyPSIzNy41MjM2IiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+DQo8c3RvcCBzdG9wLWNvbG9yPSIjMDA3OEQ3Ii8+DQo8c3RvcCBvZmZzZXQ9IjAuMzI3IiBzdG9wLWNvbG9yPSIjMDA3NkQ0Ii8+DQo8c3RvcCBvZmZzZXQ9IjAuNTc2IiBzdG9wLWNvbG9yPSIjMDA3MUNBIi8+DQo8c3RvcCBvZmZzZXQ9IjAuNzk5IiBzdG9wLWNvbG9yPSIjMDA2OEJBIi8+DQo8c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiMwMDVCQTQiLz4NCjwvbGluZWFyR3JhZGllbnQ+DQo8Y2xpcFBhdGggaWQ9ImNsaXAwIj4NCjxyZWN0IHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgZmlsbD0id2hpdGUiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDEyIDEyKSIvPg0KPC9jbGlwUGF0aD4NCjwvZGVmcz4NCjwvc3ZnPg0K);background-repeat:no-repeat;background-position:center;width:48px;height:48px}
+.svg-a365-explore{background-image:url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDgiIGhlaWdodD0iNDgiIHZpZXdCb3g9IjAgMCA0OCA0OCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4NCjxwYXRoIGQ9Ik0yNCAxOC41NDk5QzE5IDE4LjU0OTkgMTQuOTUgMTcuMTM5OSAxNC45NSAxNS4yNzQ5VjMyLjcyNDlDMTQuOTUgMzQuNTE3NCAxOC45MzI1IDM1Ljk3NDkgMjMuODcyNSAzNS45OTk5SDI0QzI5IDM1Ljk5OTkgMzMuMDQ5OSAzNC41ODc0IDMzLjA0OTkgMzIuNzI0OVYxNS4yNzQ5QzMzLjA0OTkgMTcuMDk3NCAyOSAxOC41NDk5IDI0IDE4LjU0OTlaIiBmaWxsPSJ1cmwoI3BhaW50MF9saW5lYXIpIi8+DQo8cGF0aCBkPSJNMzMuMDQ5OSAxNS4yNzVDMzMuMDQ5OSAxNy4wOTc1IDI5IDE4LjU1IDI0IDE4LjU1QzE5IDE4LjU1IDE0Ljk1IDE3LjE0IDE0Ljk1IDE1LjI3NUMxNC45NSAxMy40MSAxOSAxMiAyNCAxMkMyOSAxMiAzMy4wNDk5IDEzLjQxMjUgMzMuMDQ5OSAxNS4yNzVaIiBmaWxsPSIjRThFOEU4Ii8+DQo8cGF0aCBkPSJNMzAuOTQ0OSAxNS4wMDAxQzMwLjk0NDkgMTYuMTU3NiAyNy44MjQ5IDE3LjA5MDEgMjMuOTk5OSAxNy4wOTAxQzIwLjE3NDkgMTcuMDkwMSAxNy4wNTQ5IDE2LjE2NTEgMTcuMDU0OSAxNS4wMDAxQzE3LjA1NDkgMTMuODM1MSAyMC4xNzQ5IDEyLjkzMjYgMjMuOTk5OSAxMi45MzI2QzI3LjgyNDkgMTIuOTMyNiAzMC45NDQ5IDEzLjg2MjYgMzAuOTQ0OSAxNS4wMDAxWiIgZmlsbD0iIzUwRTZGRiIvPg0KPHBhdGggZD0iTTI0IDE1LjUzQzIyLjEzNDEgMTUuNDgxOSAyMC4yNzM4IDE1Ljc1NDEgMTguNSAxNi4zMzVDMjAuMjc1NyAxNi45MDQzIDIyLjEzNjQgMTcuMTYyMyAyNCAxNy4wOTc1QzI1Ljg2NzQgMTcuMTUyMiAyNy43Mjk3IDE2Ljg3NDYgMjkuNSAxNi4yNzc1QzI3LjcyMSAxNS43MjQyIDI1Ljg2MjEgMTUuNDcxNSAyNCAxNS41M1oiIGZpbGw9IiMxOThBQjMiLz4NCjxkZWZzPg0KPGxpbmVhckdyYWRpZW50IGlkPSJwYWludDBfbGluZWFyIiB4MT0iMTQuOTUiIHkxPSIyNS42Mzc0IiB4Mj0iMzMuMDQ5OSIgeTI9IjI1LjYzNzQiIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIj4NCjxzdG9wIHN0b3AtY29sb3I9IiMwMDVCQTEiLz4NCjxzdG9wIG9mZnNldD0iMC4wNyIgc3RvcC1jb2xvcj0iIzAwNjBBOSIvPg0KPHN0b3Agb2Zmc2V0PSIwLjM2IiBzdG9wLWNvbG9yPSIjMDA3MUM4Ii8+DQo8c3RvcCBvZmZzZXQ9IjAuNTIiIHN0b3AtY29sb3I9IiMwMDc4RDQiLz4NCjxzdG9wIG9mZnNldD0iMC42NCIgc3RvcC1jb2xvcj0iIzAwNzRDRCIvPg0KPHN0b3Agb2Zmc2V0PSIwLjgyIiBzdG9wLWNvbG9yPSIjMDA2QUJCIi8+DQo8c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiMwMDVCQTEiLz4NCjwvbGluZWFyR3JhZGllbnQ+DQo8L2RlZnM+DQo8L3N2Zz4NCg==);background-repeat:no-repeat;background-position:center;width:48px;height:48px}
+.svg-a365-orchestrate{background-image:url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDgiIGhlaWdodD0iNDgiIHZpZXdCb3g9IjAgMCA0OCA0OCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4NCjxwYXRoIGQ9Ik0zMyAyMy45Nzc1QzMzIDI4LjM4NSAzMS43MDc1IDMxLjk1NSAzMC4xMSAzMS45NTVIMzMuMTFDMzQuNjkyNSAzMS45NTUgMzUuOTc3NSAyOC40NTUgMzYgMjQuMDg3NVYyMy45Nzc1QzM2IDE5LjU3MjUgMzQuNzA3NSAxNiAzMy4xMSAxNkgzMC4xMUMzMS43MDc1IDE2IDMzIDE5LjU3MjUgMzMgMjMuOTc3NVoiIGZpbGw9InVybCgjcGFpbnQwX2xpbmVhcikiLz4NCjxwYXRoIGQ9Ik0zMC4xMSAxNkMzMS43MDc1IDE2IDMzIDE5LjU3MjUgMzMgMjMuOTc3NUMzMyAyOC4zODI1IDMxLjcwNzUgMzEuOTU1IDMwLjExIDMxLjk1NUMyOC41MTI1IDMxLjk1NSAyNy4yMjI1IDI4LjM4NSAyNy4yMjI1IDIzLjk3NzVDMjcuMjIyNSAxOS41NyAyOC41MTUgMTYgMzAuMTEgMTZaIiBmaWxsPSIjRThFOEU4Ii8+DQo8cGF0aCBkPSJNMzAuMTEgMTcuOTc3NUgxNS4wNzc1VjI5Ljk3NzVIMzAuMTFDMzEuMTEgMjkuOTc3NSAzMS45MTI1IDI3LjI5MjUgMzEuOTEyNSAyMy45Nzc1QzMxLjkxMjUgMjAuNjYyNSAzMS4xMDc1IDE3Ljk3NzUgMzAuMTEgMTcuOTc3NVoiIGZpbGw9InVybCgjcGFpbnQxX2xpbmVhcikiLz4NCjxwYXRoIGQ9Ik0yNi43MSAxOEgxOS42NDc1VjMwSDI2LjcxVjE4WiIgZmlsbD0idXJsKCNwYWludDJfbGluZWFyKSIvPg0KPHBhdGggZD0iTTE3Ljc4IDIzLjk3NzVDMTcuNzggMjguMzg1IDE2LjQ4NSAzMS45NTUgMTQuODkgMzEuOTU1SDE3Ljg5QzE5LjQ3MjUgMzEuOTU1IDIwLjc1NzUgMjguNDU1IDIwLjc3NzUgMjQuMDg3NVYyMy45Nzc1QzIwLjc3NzUgMTkuNTcyNSAxOS40ODUgMTYgMTcuODkgMTZIMTQuODlDMTYuNDg1IDE2IDE3Ljc4IDE5LjU3MjUgMTcuNzggMjMuOTc3NVoiIGZpbGw9InVybCgjcGFpbnQzX2xpbmVhcikiLz4NCjxwYXRoIGQ9Ik0xNC44OSAxNkMxNi40ODUgMTYgMTcuNzc3NSAxOS41NzI1IDE3Ljc3NzUgMjMuOTc3NUMxNy43Nzc1IDI4LjM4MjUgMTYuNDg1IDMxLjk1NSAxNC44OSAzMS45NTVDMTMuMjk1IDMxLjk1NSAxMiAyOC4zODUgMTIgMjMuOTc3NUMxMiAxOS41NyAxMy4yOTI1IDE2IDE0Ljg5IDE2WiIgZmlsbD0iI0U4RThFOCIvPg0KPHBhdGggZD0iTTE0Ljg5IDE3Ljk3NzVDMTUuODkgMTcuOTc3NSAxNi42OTI1IDIwLjY2NSAxNi42OTI1IDIzLjk3NzVDMTYuNjkyNSAyNy4yOSAxNS44ODUgMjkuOTc3NSAxNC44OSAyOS45Nzc1QzEzLjg5NSAyOS45Nzc1IDEzLjA4NzUgMjcuMjkyNSAxMy4wODc1IDIzLjk3NzVDMTMuMDg3NSAyMC42NjI1IDEzLjg5NSAxNy45Nzc1IDE0Ljg5IDE3Ljk3NzVaIiBmaWxsPSJ1cmwoI3BhaW50NF9saW5lYXIpIi8+DQo8ZGVmcz4NCjxsaW5lYXJHcmFkaWVudCBpZD0icGFpbnQwX2xpbmVhciIgeDE9IjMzLjA1NSIgeTE9IjMxLjk1NSIgeDI9IjMzLjA1NSIgeTI9IjE2IiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+DQo8c3RvcCBzdG9wLWNvbG9yPSIjMDA1QkE0Ii8+DQo8c3RvcCBvZmZzZXQ9IjAuMTQiIHN0b3AtY29sb3I9IiMwMDY1QjYiLz4NCjxzdG9wIG9mZnNldD0iMC4zOCIgc3RvcC1jb2xvcj0iIzAwNzNDRSIvPg0KPHN0b3Agb2Zmc2V0PSIwLjUzIiBzdG9wLWNvbG9yPSIjMDA3OEQ3Ii8+DQo8c3RvcCBvZmZzZXQ9IjAuNjYiIHN0b3AtY29sb3I9IiMwMDczQ0UiLz4NCjxzdG9wIG9mZnNldD0iMC44NyIgc3RvcC1jb2xvcj0iIzAwNjVCNiIvPg0KPHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjMDA1QkE0Ii8+DQo8L2xpbmVhckdyYWRpZW50Pg0KPGxpbmVhckdyYWRpZW50IGlkPSJwYWludDFfbGluZWFyIiB4MT0iNzg5LjE1MSIgeTE9Ijg4MC44OTciIHgyPSI3ODkuMTUxIiB5Mj0iMzA0Ljg5NyIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiPg0KPHN0b3Agc3RvcC1jb2xvcj0iIzAwNUJBNCIvPg0KPHN0b3Agb2Zmc2V0PSIwLjE0IiBzdG9wLWNvbG9yPSIjMDA2NUI2Ii8+DQo8c3RvcCBvZmZzZXQ9IjAuMzgiIHN0b3AtY29sb3I9IiMwMDczQ0UiLz4NCjxzdG9wIG9mZnNldD0iMC41MyIgc3RvcC1jb2xvcj0iIzAwNzhENyIvPg0KPHN0b3Agb2Zmc2V0PSIwLjY2IiBzdG9wLWNvbG9yPSIjMDA3M0NFIi8+DQo8c3RvcCBvZmZzZXQ9IjAuODciIHN0b3AtY29sb3I9IiMwMDY1QjYiLz4NCjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iIzAwNUJBNCIvPg0KPC9saW5lYXJHcmFkaWVudD4NCjxsaW5lYXJHcmFkaWVudCBpZD0icGFpbnQyX2xpbmVhciIgeDE9IjE5LjY0NzUiIHkxPSIyNCIgeDI9IjI2LjcxIiB5Mj0iMjQiIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIj4NCjxzdG9wIHN0b3AtY29sb3I9IiMwMDVCQTQiLz4NCjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iIzAwNUJBNCIgc3RvcC1vcGFjaXR5PSIwIi8+DQo8L2xpbmVhckdyYWRpZW50Pg0KPGxpbmVhckdyYWRpZW50IGlkPSJwYWludDNfbGluZWFyIiB4MT0iLTMyODEuMDUiIHkxPSIyMTgzMS45IiB4Mj0iLTI5MDUuMzEiIHkyPSIyMTgzMS45IiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+DQo8c3RvcCBzdG9wLWNvbG9yPSIjMDA1QkE0Ii8+DQo8c3RvcCBvZmZzZXQ9IjAuMTQiIHN0b3AtY29sb3I9IiMwMDY1QjYiLz4NCjxzdG9wIG9mZnNldD0iMC4zOCIgc3RvcC1jb2xvcj0iIzAwNzNDRSIvPg0KPHN0b3Agb2Zmc2V0PSIwLjUzIiBzdG9wLWNvbG9yPSIjMDA3OEQ3Ii8+DQo8c3RvcCBvZmZzZXQ9IjAuNjYiIHN0b3AtY29sb3I9IiMwMDczQ0UiLz4NCjxzdG9wIG9mZnNldD0iMC44NyIgc3RvcC1jb2xvcj0iIzAwNjVCNiIvPg0KPHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjMDA1QkE0Ii8+DQo8L2xpbmVhckdyYWRpZW50Pg0KPGxpbmVhckdyYWRpZW50IGlkPSJwYWludDRfbGluZWFyIiB4MT0iMTMuMDg3NSIgeTE9IjIzLjk3NzUiIHgyPSIxNi42OTI1IiB5Mj0iMjMuOTc3NSIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiPg0KPHN0b3Agc3RvcC1jb2xvcj0iIzMyRDRGNSIvPg0KPHN0b3Agb2Zmc2V0PSIwLjIzIiBzdG9wLWNvbG9yPSIjMzFEMEYxIi8+DQo8c3RvcCBvZmZzZXQ9IjAuNDYiIHN0b3AtY29sb3I9IiMyQ0MzRTYiLz4NCjxzdG9wIG9mZnNldD0iMC43IiBzdG9wLWNvbG9yPSIjMjVBRkQ0Ii8+DQo8c3RvcCBvZmZzZXQ9IjAuOTQiIHN0b3AtY29sb3I9IiMxQzkyQkEiLz4NCjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iIzE5OEFCMyIvPg0KPC9saW5lYXJHcmFkaWVudD4NCjwvZGVmcz4NCjwvc3ZnPg0K);background-repeat:no-repeat;background-position:center;width:48px;height:48px}
+.svg-management-icon{background-image:url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDgiIGhlaWdodD0iNDgiIHZpZXdCb3g9IjAgMCA0OCA0OCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4NCjxnIGNsaXAtcGF0aD0idXJsKCNjbGlwMCkiPg0KPHBhdGggZD0iTTM1IDE2SDEzQzEyLjczNDggMTYgMTIuNDgwNCAxNi4xMDU0IDEyLjI5MjkgMTYuMjkyOUMxMi4xMDU0IDE2LjQ4MDQgMTIgMTYuNzM0OCAxMiAxN1YzNUMxMiAzNS4yNjUyIDEyLjEwNTQgMzUuNTE5NiAxMi4yOTI5IDM1LjcwNzFDMTIuNDgwNCAzNS44OTQ2IDEyLjczNDggMzYgMTMgMzZIMzVDMzUuMjY1MiAzNiAzNS41MTk2IDM1Ljg5NDYgMzUuNzA3MSAzNS43MDcxQzM1Ljg5NDYgMzUuNTE5NiAzNiAzNS4yNjUyIDM2IDM1VjE3QzM2IDE2LjczNDggMzUuODk0NiAxNi40ODA0IDM1LjcwNzEgMTYuMjkyOUMzNS41MTk2IDE2LjEwNTQgMzUuMjY1MiAxNiAzNSAxNloiIGZpbGw9IiMwMDc4RDciLz4NCjxwYXRoIGQ9Ik0zNiAyMEgxMlYzNUMxMiAzNS41NTI1IDEyLjUzNzUgMzYgMTMuMiAzNkgzNlYyMFoiIGZpbGw9InVybCgjcGFpbnQwX2xpbmVhcikiLz4NCjxwYXRoIGQ9Ik0yOSAxMkgxOUMxOC43MzQ4IDEyIDE4LjQ4MDQgMTIuMTA1NCAxOC4yOTI5IDEyLjI5MjlDMTguMTA1NCAxMi40ODA0IDE4IDEyLjczNDggMTggMTNWMTZIMjBWMTRIMjhWMTZIMzBWMTNDMzAgMTIuNzM0OCAyOS44OTQ2IDEyLjQ4MDQgMjkuNzA3MSAxMi4yOTI5QzI5LjUxOTYgMTIuMTA1NCAyOS4yNjUyIDEyIDI5IDEyVjEyWiIgZmlsbD0idXJsKCNwYWludDFfbGluZWFyKSIvPg0KPHBhdGggZD0iTTIwIDE4LjVIMThWMjEuNUgyMFYxOC41WiIgZmlsbD0iIzMyQkVERCIvPg0KPHBhdGggZD0iTTIwIDE4LjVIMThWMTkuOTkyNUgyMFYxOC41WiIgZmlsbD0iIzUwRTZGRiIvPg0KPHBhdGggZD0iTTMwIDE4LjVIMjhWMjEuNUgzMFYxOC41WiIgZmlsbD0iIzMyQkVERCIvPg0KPHBhdGggZD0iTTMwIDE4LjVIMjhWMTkuOTkyNUgzMFYxOC41WiIgZmlsbD0iIzUwRTZGRiIvPg0KPHBhdGggZD0iTTI2Ljc3IDI2LjVIMTYuNzVDMTYuNTUxMSAyNi41IDE2LjM2MDMgMjYuNTc5IDE2LjIxOTcgMjYuNzE5N0MxNi4wNzkgMjYuODYwMyAxNiAyNy4wNTExIDE2IDI3LjI1VjI4Ljc1QzE2IDI4Ljk0ODkgMTYuMDc5IDI5LjEzOTcgMTYuMjE5NyAyOS4yODAzQzE2LjM2MDMgMjkuNDIxIDE2LjU1MTEgMjkuNSAxNi43NSAyOS41SDI2Ljc3VjI2LjVaIiBmaWxsPSIjRDFEM0Q0Ii8+DQo8cGF0aCBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGNsaXAtcnVsZT0iZXZlbm9kZCIgZD0iTTI5LjAyNzUgMjkuNVYyNi41SDMxLjg3MjVDMzEuNTQyMyAyNS45MjgxIDMxLjAzMjYgMjUuNDgxMSAzMC40MjI1IDI1LjIyODRDMjkuODEyMyAyNC45NzU2IDI5LjEzNTkgMjQuOTMxMyAyOC40OTggMjUuMTAyMkMyNy44NjAxIDI1LjI3MzEgMjcuMjk2NCAyNS42NDk4IDI2Ljg5NDQgMjYuMTczN0MyNi40OTIzIDI2LjY5NzYgMjYuMjc0NCAyNy4zMzk2IDI2LjI3NDQgMjhDMjYuMjc0NCAyOC42NjA0IDI2LjQ5MjMgMjkuMzAyNCAyNi44OTQ0IDI5LjgyNjNDMjcuMjk2NCAzMC4zNTAyIDI3Ljg2MDEgMzAuNzI2OSAyOC40OTggMzAuODk3OEMyOS4xMzU5IDMxLjA2ODcgMjkuODEyMyAzMS4wMjQ0IDMwLjQyMjUgMzAuNzcxNkMzMS4wMzI2IDMwLjUxODkgMzEuNTQyMyAzMC4wNzE5IDMxLjg3MjUgMjkuNUgyOS4wMjc1WiIgZmlsbD0idXJsKCNwYWludDJfcmFkaWFsKSIvPg0KPC9nPg0KPGRlZnM+DQo8bGluZWFyR3JhZGllbnQgaWQ9InBhaW50MF9saW5lYXIiIHgxPSIyNCIgeTE9IjM2IiB4Mj0iMjQiIHkyPSIyMCIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiPg0KPHN0b3Agc3RvcC1jb2xvcj0iIzAwNzhENCIvPg0KPHN0b3Agb2Zmc2V0PSIwLjI2IiBzdG9wLWNvbG9yPSIjMDA3NUNFIi8+DQo8c3RvcCBvZmZzZXQ9IjAuNTkiIHN0b3AtY29sb3I9IiMwMDZDQkUiLz4NCjxzdG9wIG9mZnNldD0iMC45NyIgc3RvcC1jb2xvcj0iIzAwNUNBNCIvPg0KPHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjMDA1QkExIi8+DQo8L2xpbmVhckdyYWRpZW50Pg0KPGxpbmVhckdyYWRpZW50IGlkPSJwYWludDFfbGluZWFyIiB4MT0iMTgiIHkxPSIxMiIgeDI9IjMzOCIgeTI9IjMzMiIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiPg0KPHN0b3Agc3RvcC1jb2xvcj0iIzAwNzhENCIvPg0KPHN0b3Agb2Zmc2V0PSIwLjI2IiBzdG9wLWNvbG9yPSIjMDA3NUNFIi8+DQo8c3RvcCBvZmZzZXQ9IjAuNTkiIHN0b3AtY29sb3I9IiMwMDZDQkUiLz4NCjxzdG9wIG9mZnNldD0iMC45NyIgc3RvcC1jb2xvcj0iIzAwNUNBNCIvPg0KPHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjMDA1QkExIi8+DQo8L2xpbmVhckdyYWRpZW50Pg0KPHJhZGlhbEdyYWRpZW50IGlkPSJwYWludDJfcmFkaWFsIiBjeD0iMCIgY3k9IjAiIHI9IjEiIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIiBncmFkaWVudFRyYW5zZm9ybT0idHJhbnNsYXRlKDQwOC42MjMgNDA5KSBzY2FsZSg2NC45Mzc3IDY5LjYpIj4NCjxzdG9wIHN0b3AtY29sb3I9IiNGMkYyRjIiLz4NCjxzdG9wIG9mZnNldD0iMC41OCIgc3RvcC1jb2xvcj0iI0VFRUVFRSIvPg0KPHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjRTZFNkU2Ii8+DQo8L3JhZGlhbEdyYWRpZW50Pg0KPGNsaXBQYXRoIGlkPSJjbGlwMCI+DQo8cmVjdCB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIGZpbGw9IndoaXRlIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgxMiAxMikiLz4NCjwvY2xpcFBhdGg+DQo8L2RlZnM+DQo8L3N2Zz4NCg==);background-repeat:no-repeat;background-position:center;width:48px;height:48px}
+.svg-monitoring-icon{background-image:url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDgiIGhlaWdodD0iNDgiIHZpZXdCb3g9IjAgMCA0OCA0OCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4NCjxwYXRoIGQ9Ik0yNCAzNkMzMC42Mjc0IDM2IDM2IDMwLjYyNzQgMzYgMjRDMzYgMTcuMzcyNiAzMC42Mjc0IDEyIDI0IDEyQzE3LjM3MjYgMTIgMTIgMTcuMzcyNiAxMiAyNEMxMiAzMC42Mjc0IDE3LjM3MjYgMzYgMjQgMzZaIiBmaWxsPSJ1cmwoI3BhaW50MF9saW5lYXIpIi8+DQo8cGF0aCBkPSJNMjQgMzMuMzMyNUMyOS4xNTQyIDMzLjMzMjUgMzMuMzMyNSAyOS4xNTQyIDMzLjMzMjUgMjRDMzMuMzMyNSAxOC44NDU4IDI5LjE1NDIgMTQuNjY3NSAyNCAxNC42Njc1QzE4Ljg0NTggMTQuNjY3NSAxNC42Njc1IDE4Ljg0NTggMTQuNjY3NSAyNEMxNC42Njc1IDI5LjE1NDIgMTguODQ1OCAzMy4zMzI1IDI0IDMzLjMzMjVaIiBmaWxsPSIjMDA3OEQ3Ii8+DQo8cGF0aCBkPSJNMjQgMzMuMzMyNUMyOS4xNTQyIDMzLjMzMjUgMzMuMzMyNSAyOS4xNTQyIDMzLjMzMjUgMjRDMzMuMzMyNSAxOC44NDU4IDI5LjE1NDIgMTQuNjY3NSAyNCAxNC42Njc1QzE4Ljg0NTggMTQuNjY3NSAxNC42Njc1IDE4Ljg0NTggMTQuNjY3NSAyNEMxNC42Njc1IDI5LjE1NDIgMTguODQ1OCAzMy4zMzI1IDI0IDMzLjMzMjVaIiBmaWxsPSJ1cmwoI3BhaW50MV9yYWRpYWwpIi8+DQo8cGF0aCBkPSJNMjQgMjYuNjI1QzI1LjQ0OTcgMjYuNjI1IDI2LjYyNSAyNS40NDk3IDI2LjYyNSAyNEMyNi42MjUgMjIuNTUwMyAyNS40NDk3IDIxLjM3NSAyNCAyMS4zNzVDMjIuNTUwMyAyMS4zNzUgMjEuMzc1IDIyLjU1MDMgMjEuMzc1IDI0QzIxLjM3NSAyNS40NDk3IDIyLjU1MDMgMjYuNjI1IDI0IDI2LjYyNVoiIGZpbGw9IiM1MEU2RkYiLz4NCjxwYXRoIGQ9Ik0yNCAyNi42MjVDMjUuNDQ5NyAyNi42MjUgMjYuNjI1IDI1LjQ0OTcgMjYuNjI1IDI0QzI2LjYyNSAyMi41NTAzIDI1LjQ0OTcgMjEuMzc1IDI0IDIxLjM3NUMyMi41NTAzIDIxLjM3NSAyMS4zNzUgMjIuNTUwMyAyMS4zNzUgMjRDMjEuMzc1IDI1LjQ0OTcgMjIuNTUwMyAyNi42MjUgMjQgMjYuNjI1WiIgZmlsbD0iIzUwRTZGRiIvPg0KPHBhdGggZD0iTTI0IDE3Ljk3QzIzLjIwOTggMTcuOTY5IDIyLjQyNzMgMTguMTI0NSAyMS42OTc1IDE4LjQyNzVMMjEuMzE3NSAxNy41QzIyLjE2NzggMTcuMTQ3NCAyMy4wNzk2IDE2Ljk2NzMgMjQgMTYuOTdDMjUuMzkxIDE2Ljk2ODUgMjYuNzUxMSAxNy4zNzk5IDI3LjkwOCAxOC4xNTIyQzI5LjA2NDkgMTguOTI0NSAyOS45NjY1IDIwLjAyMjggMzAuNDk4NSAyMS4zMDgxQzMxLjAzMDUgMjIuNTkzMyAzMS4xNjkgMjQuMDA3NSAzMC44OTY1IDI1LjM3MTVDMzAuNjIzOSAyNi43MzU1IDI5Ljk1MjYgMjcuOTg3OSAyOC45Njc1IDI4Ljk3TDI4LjI2MjUgMjguMjY1QzI5LjEwNzMgMjcuNDIyMyAyOS42ODMxIDI2LjM0NzggMjkuOTE2NyAyNS4xNzc2QzMwLjE1MDMgMjQuMDA3NCAzMC4wMzE0IDIyLjc5NDIgMjkuNTc0OSAyMS42OTE3QzI5LjExODQgMjAuNTg5MiAyOC4zNDQ5IDE5LjY0NyAyNy4zNTI1IDE4Ljk4NDRDMjYuMzYgMTguMzIxOSAyNS4xOTMzIDE3Ljk2ODggMjQgMTcuOTdaIiBmaWxsPSIjNTBFNkZGIi8+DQo8cGF0aCBkPSJNMTguNjI1IDIxLjI2NzRDMTguMDQ2OSAyMi40MDIxIDE3Ljg0MzIgMjMuNjkwNyAxOC4wNDMxIDI0Ljk0ODNDMTguMjQyOSAyNi4yMDYgMTguODM2MSAyNy4zNjc5IDE5LjczNzUgMjguMjY3NEwxOS4wMzI1IDI4Ljk3MjRDMTcuOTgxNSAyNy45MjQzIDE3LjI5MDggMjYuNTY5MyAxNy4wNjAzIDI1LjEwMjlDMTYuODI5OCAyMy42MzY2IDE3LjA3MTMgMjIuMTM1IDE3Ljc1IDIwLjgxNDlMMTguNjI1IDIxLjI2NzRaIiBmaWxsPSIjNTBFNkZGIi8+DQo8cGF0aCBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGNsaXAtcnVsZT0iZXZlbm9kZCIgZD0iTTI4LjA1NzUgMTguNTI3NkwyOS44NTI1IDE2LjczNTFDMzAuMzcyOCAxNy4xNTQ2IDMwLjg0NzEgMTcuNjI4IDMxLjI2NzUgMTguMTQ3NkwyNC43NSAyNC42NzI2TDIzLjMyNzUgMjMuMjUwMUwyOC4wNTc1IDE4LjUyNzZaIiBmaWxsPSIjNTBFNkZGIi8+DQo8cGF0aCBkPSJNMjQgMjVDMjQuNTUyMyAyNSAyNSAyNC41NTIzIDI1IDI0QzI1IDIzLjQ0NzcgMjQuNTUyMyAyMyAyNCAyM0MyMy40NDc3IDIzIDIzIDIzLjQ0NzcgMjMgMjRDMjMgMjQuNTUyMyAyMy40NDc3IDI1IDI0IDI1WiIgZmlsbD0iIzAwNUJBMSIvPg0KPHBhdGggZD0iTTI0IDI1QzI0LjU1MjMgMjUgMjUgMjQuNTUyMyAyNSAyNEMyNSAyMy40NDc3IDI0LjU1MjMgMjMgMjQgMjNDMjMuNDQ3NyAyMyAyMyAyMy40NDc3IDIzIDI0QzIzIDI0LjU1MjMgMjMuNDQ3NyAyNSAyNCAyNVoiIGZpbGw9IiMwMDVCQTEiLz4NCjxwYXRoIGQ9Ik0yOC4yMSAxOC4zNzVDMjguNzQ2NyAxOC43NzY4IDI5LjIyMzIgMTkuMjUzMiAyOS42MjUgMTkuNzlMMjguOTEgMjAuNUMyOC41MjA0IDE5Ljk1NiAyOC4wNDQgMTkuNDc5NiAyNy41IDE5LjA5TDI4LjA2IDE4LjUyNzVMMjguMjEgMTguMzc1WiIgZmlsbD0iI0MzRjFGRiIvPg0KPGRlZnM+DQo8bGluZWFyR3JhZGllbnQgaWQ9InBhaW50MF9saW5lYXIiIHgxPSIyNCIgeTE9IjM2IiB4Mj0iMjQiIHkyPSIxMiIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiPg0KPHN0b3Agc3RvcC1jb2xvcj0iI0E3QTlBQyIvPg0KPHN0b3Agb2Zmc2V0PSIwLjMiIHN0b3AtY29sb3I9IiNBQkFEQjAiLz4NCjxzdG9wIG9mZnNldD0iMC42MiIgc3RvcC1jb2xvcj0iI0I4QkFCQyIvPg0KPHN0b3Agb2Zmc2V0PSIwLjk1IiBzdG9wLWNvbG9yPSIjQ0RDRkQxIi8+DQo8c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiNEMUQzRDQiLz4NCjwvbGluZWFyR3JhZGllbnQ+DQo8cmFkaWFsR3JhZGllbnQgaWQ9InBhaW50MV9yYWRpYWwiIGN4PSIwIiBjeT0iMCIgcj0iMSIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiIGdyYWRpZW50VHJhbnNmb3JtPSJ0cmFuc2xhdGUoMjQgMjQpIHNjYWxlKDkuMzMyNSkiPg0KPHN0b3Agc3RvcC1jb2xvcj0iIzAwNzhENCIvPg0KPHN0b3Agb2Zmc2V0PSIwLjI2IiBzdG9wLWNvbG9yPSIjMDA3NUNFIi8+DQo8c3RvcCBvZmZzZXQ9IjAuNTkiIHN0b3AtY29sb3I9IiMwMDZDQkUiLz4NCjxzdG9wIG9mZnNldD0iMC45NyIgc3RvcC1jb2xvcj0iIzAwNUNBNCIvPg0KPHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjMDA1QkExIi8+DQo8L3JhZGlhbEdyYWRpZW50Pg0KPC9kZWZzPg0KPC9zdmc+DQo=);background-repeat:no-repeat;background-position:center;width:48px;height:48px}
+
+/* Triangle Indicator */
+.triangle-indicator {
+    display: inline-block;
+    margin-left: 5px;
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 5px solid #000;
+    transform: rotate(-90deg);    /* Rotates it to point left */
+    transition: transform 0.3s ease; /* Smooth rotation animation */
+  }
+  
+  /* Rotate the triangle when sub-menu is expanded */
+  .triangle-indicator.rotate {
+    transform: rotate(0deg); /* Rotate 180 degrees */
+  }
+  
+  /* Styles for the sub-menu */
+  .sub-menu {
+    text-align: left;
+    margin-left: 20px;
+    padding-top: 5px;
+    list-style-type: none;
+  }
+  
+  .sub-menu ul {
+    text-align: left;
+    margin-left: 0;
+    list-style-type: none;
+    padding-left: 0;
+  }
+  
+  .sub-menu-title {
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  .sub-menu li {
+    padding: 5px 0;
+  }
+  
+iframe {
+    height: 100%;
+    width: 100%;
+}
+
+.workspace-section a {
+    color: #1a73e8; /* Nice blue color */
+    text-decoration: none; /* No underline */
+  }
+  
+.workspace-section  a:hover {
+    color: #0056b3; /* Darker blue on hover */
+}
