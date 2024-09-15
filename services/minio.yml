@@ -6,8 +6,9 @@
         IMAGE: ${IF_USING_LOCAL_REGISTRY}minio/minio:RELEASE.2024-09-09T16-59-28Z
     hostname: minio
     ports:
-      - "9000:9000"
-      - "9001:9001"
+      # Some Java and JMX (Java Management Extensions) monitoring tools use 9001 as a common port for administrative interfaces.
+      - "9002:9000"
+      - "9003:9001"
     volumes:
       - ./minio/data:/data
     environment:
@@ -35,3 +36,5 @@
       - trino-network
     depends_on:
       - minio
+
+    

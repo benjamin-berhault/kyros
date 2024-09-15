@@ -17,6 +17,21 @@ def jupyterlab():
     # Embed JupyterLab inside an iframe
     return render_template('base.html', content_url='http://localhost:8888')
 
+@app.route('/minio')
+def minio():
+    # Embed JupyterLab inside an iframe
+    return render_template('base.html', content_url='http://localhost:9002')
+
+@app.route('/dagster')
+def dagster():
+    # Embed JupyterLab inside an iframe
+    return render_template('base.html', content_url='http://localhost:3000')
+
+@app.route('/portainer')
+def portainer():
+    # Embed JupyterLab inside an iframe
+    return render_template('base.html', content_url='http://localhost:9000')
+
 # Add more routes for other components as needed
 # e.g., Spark UI, MinIO, etc.
 
