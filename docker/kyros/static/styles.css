@@ -2818,11 +2818,11 @@ iframe {
     width: 100%;
 }
 
-.workspace-section a {
+a {
     color: #1a73e8; /* Nice blue color */
     text-decoration: none; /* No underline */
   }
   
-.workspace-section  a:hover {
+a:hover {
     color: #0056b3; /* Darker blue on hover */
 }

@@ -1,0 +1,12 @@
+load_from:
+  - python_file:
+      relative_path: solids.py
+      attribute: hello_world_job
+
+  - python_file:
+      relative_path: solids.py
+      attribute: flink_job
+
+  - python_file:
+      relative_path: solids.py
+      attribute: flink_python_job

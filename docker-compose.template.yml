@@ -120,11 +120,16 @@ services:
       - METASTORE_DB=metastore
       - SPARK_USER=spark_user
       - SPARK_PASSWORD=spark_password
-      - SQLPAD_USER=sqlpad
-      - SQLPAD_PASSWORD=sqlpadpass
-      - SQLPAD_DB=sqlpaddb
+      - DAGSTER_ROLE=dagster
+      - DAGSTER_PASSWORD=dagsterpassword
+      - DAGSTER_DB=dagster
+      #- SQLPAD_USER=sqlpad
+      #- SQLPAD_PASSWORD=sqlpadpass
+      #- SQLPAD_DB=sqlpaddb
     ports:
       - "5432:5432"
+    volumes:
+      - ./docker/postgres/test-data-sample.sql:/docker-entrypoint-initdb.d/test-data-sample.sql
     networks:
       - my-network
 

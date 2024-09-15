@@ -1,0 +1,4 @@
+dagster
+dagster-webserver
+dagster-postgres
+uvicorn==0.18.3

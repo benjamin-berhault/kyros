@@ -26,16 +26,36 @@ EOSQL
 
 echo "Spark user created and privileges granted successfully."
 
-# Create the SQLPad user and database
-echo "Creating SQLPad user and database..."
+# Create the Dagster and Flink users, databases, and grant privileges
+echo "Setting up Dagster and Flink users and databases..."
 
 psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --dbname "$POSTGRES_DB" <<-EOSQL
-    CREATE USER $SQLPAD_USER WITH PASSWORD '$SQLPAD_PASSWORD';
-    CREATE DATABASE $SQLPAD_DB;
-    GRANT ALL PRIVILEGES ON DATABASE $SQLPAD_DB TO $SQLPAD_USER;
-    -- Change the owner of the public schema to the SQLPad user
-    \c $SQLPAD_DB
-    ALTER SCHEMA public OWNER TO $SQLPAD_USER;
+    -- Existing Dagster user setup
+    DROP ROLE IF EXISTS $DAGSTER_ROLE;
+    CREATE ROLE $DAGSTER_ROLE WITH LOGIN PASSWORD '$DAGSTER_PASSWORD';
+    GRANT ALL PRIVILEGES ON DATABASE $DAGSTER_DB TO $DAGSTER_ROLE;
+
+    -- New Flink catalog database and user setup
+    --CREATE DATABASE flink_catalog;
+    
+    --DROP ROLE IF EXISTS flink;
+    --CREATE ROLE flink WITH LOGIN PASSWORD 'flink_password';
+    --GRANT ALL PRIVILEGES ON DATABASE flink_catalog TO flink;
 EOSQL
 
-echo "SQLPad user and database created successfully."
+echo "Dagster and Flink users created and privileges granted successfully."
+
+
+# # Create the SQLPad user and database
+# echo "Creating SQLPad user and database..."
+
+# psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --dbname "$POSTGRES_DB" <<-EOSQL
+#     CREATE USER $SQLPAD_USER WITH PASSWORD '$SQLPAD_PASSWORD';
+#     CREATE DATABASE $SQLPAD_DB;
+#     GRANT ALL PRIVILEGES ON DATABASE $SQLPAD_DB TO $SQLPAD_USER;
+#     -- Change the owner of the public schema to the SQLPad user
+#     \c $SQLPAD_DB
+#     ALTER SCHEMA public OWNER TO $SQLPAD_USER;
+# EOSQL
+
+# echo "SQLPad user and database created successfully."

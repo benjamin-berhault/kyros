@@ -1,0 +1,7 @@
+ops:
+  run_pyflink_job:
+    config:
+      script_path: "/opt/pyflink/word_count.py"
+  trigger_flink_python_job:
+    config:
+      script_path: "/opt/flink/jobs/flink_kafka_to_parquet.py"
