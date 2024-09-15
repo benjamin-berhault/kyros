@@ -1,4 +1,5 @@
-FROM flink:1.17.0-scala_2.12-java11
+ARG IMAGE=flink:1.17.0-scala_2.12-java11
+FROM ${IMAGE}
 
 # Set environment variables
 ENV PYTHONUNBUFFERED=1

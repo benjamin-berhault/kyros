@@ -1,5 +1,6 @@
 # Use the official Python image as a base
-FROM python:3.9-slim
+ARG IMAGE=python:3.9-slim
+FROM ${IMAGE}
 
 # Copy and install dependencies
 COPY requirements.txt .

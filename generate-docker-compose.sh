@@ -49,6 +49,34 @@ if [ "$INCLUDE_KYROS" = "true" ]; then
 "
 fi
 
+# Include additional services based on environment variables
+if [ "$INCLUDE_DAGSTER" = "true" ]; then
+  additional_services+="$(cat services/dagster.yml)
+ 
+"
+fi
+
+# Include additional services based on environment variables
+if [ "$INCLUDE_DBT" = "true" ]; then
+  additional_services+="$(cat services/dbt.yml)
+ 
+"
+fi
+
+# Include additional services based on environment variables
+if [ "$INCLUDE_FLINK" = "true" ]; then
+  additional_services+="$(cat services/flink.yml)
+ 
+"
+fi
+
+# Include additional services based on environment variables
+if [ "$INCLUDE_GRAFANA" = "true" ]; then
+  additional_services+="$(cat services/grafana.yml)
+ 
+"
+fi
+
 
 # Generate worker services
 for i in $(seq 1 $WORKERS); do

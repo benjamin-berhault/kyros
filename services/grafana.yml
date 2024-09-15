@@ -1,0 +1,20 @@
+  grafana:
+    container_name: grafana
+    build:
+      context: ./docker/grafana
+      args:
+        IMAGE: ${IF_USING_LOCAL_REGISTRY}grafana/grafana:main
+    entrypoint: ["echo", "Service grafana disabled"]
+    labels:
+      - "DESCRIPTION=grafana container description à réaliser"
+      - "LICENCE=AGPL-3.0 license"
+      - "LICENSE_SOURCE=https://github.com/grafana/grafana"
+    ports:
+      - 3000:3000
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+    networks:
+      - my-network
+    volumes:
+      - ./docker/grafana/data:/var/lib/grafana  # Persist Grafana data
