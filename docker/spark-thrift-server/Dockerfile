@@ -2,6 +2,10 @@
 ARG IMAGE=apache/spark:3.4.1
 FROM ${IMAGE}
 
+# Define build argument for local JARs URL
+ARG BASE_URL_JARS
+ENV BASE_URL_JARS=${BASE_URL_JARS}
+
 # Set environment variables
 ENV JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
 ENV PATH=$JAVA_HOME/bin:$PATH
@@ -26,9 +30,9 @@ RUN ln -s /opt/bitnami/spark/sbin /opt/spark/sbin && \
     ln -s /opt/bitnami/spark/bin /opt/spark/bin
 
 # Add Delta Lake JARs and Hadoop client JAR
-RUN wget https://repo1.maven.org/maven2/io/delta/delta-core_2.12/2.4.0/delta-core_2.12-2.4.0.jar -P $SPARK_HOME/jars/ && \
-    wget https://repo1.maven.org/maven2/io/delta/delta-storage/2.4.0/delta-storage-2.4.0.jar -P $SPARK_HOME/jars/ && \
-    wget https://repo1.maven.org/maven2/org/apache/hadoop/hadoop-client/3.3.1/hadoop-client-3.3.1.jar -P $SPARK_HOME/jars/
+RUN wget ${BASE_URL_JARS}repo1.maven.org/maven2/io/delta/delta-core_2.12/2.4.0/delta-core_2.12-2.4.0.jar -P $SPARK_HOME/jars/ && \
+    wget ${BASE_URL_JARS}repo1.maven.org/maven2/io/delta/delta-storage/2.4.0/delta-storage-2.4.0.jar -P $SPARK_HOME/jars/ && \
+    wget ${BASE_URL_JARS}repo1.maven.org/maven2/org/apache/hadoop/hadoop-client/3.3.1/hadoop-client-3.3.1.jar -P $SPARK_HOME/jars/
 
 # Set ownership of necessary directories to the non-root user
 RUN chown -R sparkuser:sparkgroup /opt/spark /home/sparkuser && \

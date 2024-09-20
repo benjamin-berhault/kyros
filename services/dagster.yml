@@ -1,14 +1,12 @@
   dagster:
     container_name: dagster
     build:
-      context: ./dagster
+      context: ./docker/dagster
       args: 
         IMAGE: ${IF_USING_LOCAL_REGISTRY}python:3.9-slim
     ports:
       - "3000:3000"
     depends_on:
-      - jobmanager
-      - taskmanager
       - postgres
     networks:
       - my-network

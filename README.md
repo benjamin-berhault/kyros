@@ -78,7 +78,9 @@ docker compose -f docker-compose.yml build --no-cache
 
 # Bring Up Containers
 # Bring Up Containers
-docker compose -f docker-compose.yml up --remove-orphans -d
+docker compose --env-file .env-using-local-registry -f docker-compose-registry.yml up -d
+docker compose --env-file .env-using-local-registry -f docker-compose.yml up -d
+
 ```
 
 ### 5. Access JupyterLab
@@ -191,6 +193,37 @@ docker exec -it --user root jupyterlab bash
 
 # Lists all running Docker containers, displaying each container's ID, name, and IP address in a clear, readable format
 docker ps -q | while read id; do echo -n "$id -> "; docker inspect -f '{{.Name}} -> {{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' $id | sed 's/\///'; echo ""; done
+```
+
+## Cleaning commands
+
+You can use the following block of commands to free all memory and storage taken by Docker objects, including containers, images, volumes, and networks:
+
+```bash
+# Stop all running containers
+docker stop $(docker ps -aq)
+# Remove all containers
+docker rm $(docker ps -aq)
+# Remove all Docker images
+docker rmi -f $(docker images -aq)
+# Remove all unused volumes
+docker volume prune -f
+# Remove all unused networks
+docker network prune -f
+# Remove all unused data (build cache, dangling images, etc.)
+docker system prune -af --volumes
+```
+
+
+```bash
+# Build the Image with No Cache
+docker compose --env-file .env-using-local-registry build --no-cache minio
+# Run the MinIO Service
+docker compose --env-file .env-using-local-registry up -d minio
+```
+or maybe
+```bash
+docker-compose --env-file .env-using-local-registry -f docker-compose.yml up --build --no-deps -d kyros
 ```
 
 Check sparkuser existence:

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Container Status</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .container-table {
+            width: 100%; /* Make the table container 100% width */
+        }
+        table {
+            width: 100%; /* Ensure table fills the container */
+        }
+        th, td {
+            white-space: nowrap; /* Prevent text from wrapping */
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid container-table mt-5">
+        <h1 class="mb-4">Container Status</h1>
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>State</th>
+                    <th>Image</th>
+                    <th>Created</th>
+                    <th>IP Address</th>
+                    <th>Published Ports</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for container in containers %}
+                <tr>
+                    <td>{{ container.name }}</td>
+                    <td>
+                        <span class="{{ state_color(container.status) }}" style="font-weight:bold;">
+                            {{ container.status }}
+                        </span>
+                    </td>
+                    <td>{{ container.image }}</td>
+                    <td>{{ container.created }}</td>
+                    <td>{{ container.ip_address }}</td>
+                    <td>{{ container.published_ports }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

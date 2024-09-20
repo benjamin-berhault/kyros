@@ -77,6 +77,19 @@ if [ "$INCLUDE_GRAFANA" = "true" ]; then
 "
 fi
 
+# Include additional services based on environment variables
+if [ "$INCLUDE_MINIO" = "true" ]; then
+  additional_services+="$(cat services/minio.yml)
+ 
+"
+fi
+
+# Include additional services based on environment variables
+if [ "$INCLUDE_CODE_SERVER" = "true" ]; then
+  additional_services+="$(cat services/code-server.yml)
+ 
+"
+fi
 
 # Generate worker services
 for i in $(seq 1 $WORKERS); do

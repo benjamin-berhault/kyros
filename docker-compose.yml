@@ -41,13 +41,18 @@ services:
       - my-network
  
   portainer:
-    image: ${IF_USING_LOCAL_REGISTRY}portainer/portainer-ce:latest
     container_name: portainer
+    build:
+      context: ./docker/portainer
+      args:
+        IMAGE: ${IF_USING_LOCAL_REGISTRY}portainer/portainer-ce:2.21.1
     ports:
       - "9000:9000"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       #- portainer_data:/data
+    environment:
+      - ADMIN_PASSWORD=your_password
     networks:
       - my-network
  
@@ -87,15 +92,101 @@ services:
     build:
       context: ./docker/kyros
     ports:
-      - "5005:5000"
+      - "5005:5005"  # Exposing port 80 (Nginx) on port 5005 of the host
     volumes:
-      - ./docker/kyros:/app
+      - ./docker/kyros/app:/app  # Volume for your Flask app
+      - ./docker/kyros/nginx.conf:/etc/nginx/nginx.conf  # Nginx configuration
     depends_on:
       - cloudbeaver
     networks:
       - my-network
     environment:
-      - KYROS_PORT=5005  # Pass the port as an environment variable
+      - FLASK_ENV=dev
+ 
+  dagster:
+    container_name: dagster
+    build:
+      context: ./docker/dagster
+      args: 
+        IMAGE: ${IF_USING_LOCAL_REGISTRY}python:3.9-slim
+    ports:
+      - "3000:3000"
+    depends_on:
+      - postgres
+    networks:
+      - my-network
+    # volumes:
+    #   - ./dagster:/opt/dagster
+    #   - ./pyflink:/opt/pyflink
+ 
+  dbt:
+    container_name: dbt
+    build:
+      context: ./docker/dbt  # Points to the folder containing the Dockerfile
+      args: 
+        IMAGE: ghcr.io/dbt-labs/dbt-core:1.5.latest
+    environment:
+      DBT_PROFILES_DIR: /usr/app/dbt/profiles
+      SPARK_HOST: spark-master
+      SPARK_PORT: 7077
+    volumes:
+      - ./data/dbt_project:/usr/app/dbt  # Mount your dbt project directory
+    command: "tail -f /dev/null"  # Keep the container running
+    depends_on:
+      - spark-master
+    networks:
+      - my-network
+ 
+  minio:
+    container_name: minio
+    build:
+      context: ./docker/minio  # Path to your Dockerfile
+    hostname: minio
+    ports:
+      - "9003:9003"  # Expose Nginx on port 9003
+      - "9001:9001"  # Expose MinIO console on port 9001 (optional)
+    #volumes:
+    #  - ./docker/minio/data:/data
+    environment:
+      MINIO_ACCESS_KEY: minio
+      MINIO_SECRET_KEY: minio123
+    networks:
+      - my-network
+
+  minio-client:
+    container_name: minio-client
+    build:
+      context: ./docker/minio-client
+      args:
+        IMAGE: ${IF_USING_LOCAL_REGISTRY}alpine:3.20.3
+    environment:
+      MINIO_HOST: http://minio:9000
+      MINIO_ACCESS_KEY: minio
+      MINIO_SECRET_KEY: minio123
+      BUCKET_NAMES: raw-data,processed-data,delta-data,iceberg-data,models,logs,backups
+    networks:
+      - my-network
+    depends_on:
+      - minio
+ 
+  code-server:
+    container_name: code-server
+    build:
+      context: ./docker/code-server
+    environment:
+      - PASSWORD=yourpassword  # Password to access code-server
+      - SUDO_PASSWORD=yourpassword  # Sudo password for user `coder`
+    ports:
+      - "8083:8080"  # Map the default code-server port
+    volumes:
+      # Mounting the Docker Socket: Mounting /var/run/docker.sock allows the container 
+      # to communicate with the Docker daemon on the host system.
+      - /var/run/docker.sock:/var/run/docker.sock  # Mount Docker socket
+      - ./data/dbt_project:/home/coder/dbt_project  # Shared volume with the dbt container
+      - ./docker/code-server/project:/home/coder/project  # Mount the project directory
+      - ./docker/code-server/settings.json:/home/coder/.local/share/code-server/User/settings.json  # Mount settings.json for custom configurations
+    networks:
+      - my-network
  
 
 
@@ -260,11 +351,16 @@ services:
       - METASTORE_DB=metastore
       - SPARK_USER=spark_user
       - SPARK_PASSWORD=spark_password
-      - SQLPAD_USER=sqlpad
-      - SQLPAD_PASSWORD=sqlpadpass
-      - SQLPAD_DB=sqlpaddb
+      - DAGSTER_ROLE=dagster
+      - DAGSTER_PASSWORD=dagsterpassword
+      - DAGSTER_DB=dagster
+      #- SQLPAD_USER=sqlpad
+      #- SQLPAD_PASSWORD=sqlpadpass
+      #- SQLPAD_DB=sqlpaddb
     ports:
       - "5432:5432"
+    volumes:
+      - ./docker/postgres/test-data-sample.sql:/docker-entrypoint-initdb.d/test-data-sample.sql
     networks:
       - my-network
 
@@ -274,6 +370,7 @@ services:
       context: ./docker/spark-thrift-server
       args:
         IMAGE: ${IF_USING_LOCAL_REGISTRY}bitnami/spark:3.4.1
+        BASE_URL_JARS: ${BASE_URL_JARS}
     environment:
       - SPARK_MASTER_HOST=spark-master
       - SPARK_MASTER_PORT=7077

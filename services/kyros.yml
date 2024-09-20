@@ -3,12 +3,13 @@
     build:
       context: ./docker/kyros
     ports:
-      - "5005:5000"
+      - "5005:5005"  # Exposing port 80 (Nginx) on port 5005 of the host
     volumes:
-      - ./docker/kyros:/app
+      - ./docker/kyros/app:/app  # Volume for your Flask app
+      - ./docker/kyros/nginx.conf:/etc/nginx/nginx.conf  # Nginx configuration
     depends_on:
       - cloudbeaver
     networks:
       - my-network
     environment:
-      - KYROS_PORT=5005  # Pass the port as an environment variable
+      - FLASK_ENV=dev

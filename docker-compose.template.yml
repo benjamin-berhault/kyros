@@ -139,6 +139,7 @@ services:
       context: ./docker/spark-thrift-server
       args:
         IMAGE: ${IF_USING_LOCAL_REGISTRY}bitnami/spark:3.4.1
+        BASE_URL_JARS: ${BASE_URL_JARS}
     environment:
       - SPARK_MASTER_HOST=spark-master
       - SPARK_MASTER_PORT=7077

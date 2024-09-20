@@ -1,15 +1,31 @@
-# Use the official MinIO image as the base image
-ARG IMAGE=minio/minio:RELEASE.2024-09-09T16-59-28Z
-FROM ${IMAGE}
+# Use Debian as the base image
+FROM debian:latest
 
-# Create the Hadoop configuration directory
-RUN mkdir -p /etc/hadoop/conf
+# Install necessary packages
+RUN apt-get update && \
+    apt-get install -y wget gnupg2 ca-certificates nginx net-tools curl && \
+    rm -rf /var/lib/apt/lists/*
 
-# Copy the Hadoop configuration files into the container
-COPY core-site.xml /etc/hadoop/conf/core-site.xml
+# Install MinIO
+RUN wget https://dl.min.io/server/minio/release/linux-amd64/minio && \
+    chmod +x minio && \
+    mv minio /usr/local/bin/
 
-# Expose the MinIO ports
-EXPOSE 9000 9001
+# Copy the custom MinIO binary to the image
+#COPY minio/minio /usr/local/bin/minio
 
-# Command to run MinIO server
-CMD ["server", "/data", "--console-address", ":9001"]
+# Copy Nginx configuration
+COPY nginx.conf /etc/nginx/nginx.conf
+
+# Expose Nginx port (public port)
+EXPOSE 9003
+
+# Expose MinIO console port (if needed)
+EXPOSE 9001
+
+# Copy entrypoint script
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+
+# Set the entrypoint
+ENTRYPOINT ["/entrypoint.sh"]

@@ -1,5 +1,5 @@
+version: '3'
 services:
-
   local-registry:
     container_name: local-registry
     build:
@@ -10,9 +10,7 @@ services:
       - "5000:5000"  # HTTPS Docker registry exposed on port 5000
       - "5001:5001"  # HTTPS NGINX exposed on port 5001 for JAR files
     volumes:
-      # Local volume to store Docker images
       - ./docker/local-registry/images:/var/lib/registry   
-      # Local volume to store JAR files
       - ./docker/local-registry/jars:/usr/share/nginx/html/jars  
     healthcheck:
       test: ["CMD-SHELL", "curl -k http://localhost:5000/v2/ || exit 1"]  # Use HTTPS in health check
@@ -20,3 +18,12 @@ services:
       retries: 5
       start_period: 20s
       timeout: 5s
+    networks:
+      - backend_network
+      - frontend_network
+
+networks:
+  backend_network:
+    driver: bridge
+  frontend_network:
+    driver: bridge

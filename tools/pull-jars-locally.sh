@@ -1,14 +1,17 @@
 #!/bin/sh
 
-# Directory where JARs will be downloaded
-JAR_DIR="./local-registry/jars"
+# Get the directory where the script is located
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 
 # File that contains the list of JAR URLs or paths
-JARS_FILE="jars.txt"
+JARS_FILE="$SCRIPT_DIR/jars.txt"
+
+# Directory where JARs will be downloaded
+JAR_DIR="./docker/local-registry/jars"
 
 # Function to display help message
 display_help() {
-  echo "Usage: sudo ./pull-jars-locally.sh"
+  echo "Usage: sudo ./tools/pull-jars-locally.sh"
   echo
   echo "This script downloads JAR files listed in jars.txt and saves them into the specified directory."
   echo

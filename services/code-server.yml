@@ -1,0 +1,18 @@
+  code-server:
+    container_name: code-server
+    build:
+      context: ./docker/code-server
+    environment:
+      - PASSWORD=yourpassword  # Password to access code-server
+      - SUDO_PASSWORD=yourpassword  # Sudo password for user `coder`
+    ports:
+      - "8083:8080"  # Map the default code-server port
+    volumes:
+      # Mounting the Docker Socket: Mounting /var/run/docker.sock allows the container 
+      # to communicate with the Docker daemon on the host system.
+      - /var/run/docker.sock:/var/run/docker.sock  # Mount Docker socket
+      - ./data/dbt_project:/home/coder/dbt_project  # Shared volume with the dbt container
+      - ./docker/code-server/project:/home/coder/project  # Mount the project directory
+      - ./docker/code-server/settings.json:/home/coder/.local/share/code-server/User/settings.json  # Mount settings.json for custom configurations
+    networks:
+      - my-network

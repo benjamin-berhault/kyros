@@ -1,10 +1,15 @@
   portainer:
-    image: ${IF_USING_LOCAL_REGISTRY}portainer/portainer-ce:latest
     container_name: portainer
+    build:
+      context: ./docker/portainer
+      args:
+        IMAGE: ${IF_USING_LOCAL_REGISTRY}portainer/portainer-ce:2.21.1
     ports:
       - "9000:9000"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       #- portainer_data:/data
+    environment:
+      - ADMIN_PASSWORD=your_password
     networks:
       - my-network
