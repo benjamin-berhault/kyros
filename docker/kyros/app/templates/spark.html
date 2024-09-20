@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spark Cluster Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .iframe-container {
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+        }
+
+        .iframe-wrapper {
+            margin: 20px;
+        }
+
+        iframe {
+            width: 400px;
+            height: 300px;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Spark Cluster Dashboard</h1>
+
+    <div class="iframe-container">
+        {% for service in services %}
+        <div class="iframe-wrapper">
+            <h2>{{ service.name }}</h2>
+            <iframe src="{{ service.url }}" title="{{ service.name }}"></iframe>
+        </div>
+        {% endfor %}
+    </div>
+
+</body>
+</html>

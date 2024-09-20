@@ -33,16 +33,22 @@ RUN sudo apt-get update && sudo apt-get install -y docker-ce-cli
 # Install additional VSCode extensions (optional)
 RUN code-server --install-extension ms-python.python \
     && code-server --install-extension ms-toolsai.jupyter \
-    && code-server --install-extension esbenp.prettier-vscode
+    && code-server --install-extension esbenp.prettier-vscode \
+    && code-server --install-extension kelvin.vscode-sshfs
 
 # Copy custom user settings (optional)
 COPY settings.json /home/coder/.local/share/code-server/User/settings.json
+# Copy the predefined workspace.json to the workspace folder
+COPY workspace.json /home/coder/project/.vscode/settings.json
+
+USER root
 
 # Ensure directory exists
 RUN mkdir -p /home/coder/project/code-server
-
 # Set working directory
 WORKDIR /home/coder/project/code-server
+
+USER coder
 
 # Expose the default port for code-server (8080)
 EXPOSE 8080

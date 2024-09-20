@@ -124,14 +124,13 @@ services:
     build:
       context: ./docker/dbt  # Points to the folder containing the Dockerfile
       args: 
-        IMAGE: ghcr.io/dbt-labs/dbt-core:1.5.latest
+        IMAGE: python:3.10-alpine
     environment:
       DBT_PROFILES_DIR: /usr/app/dbt/profiles
       SPARK_HOST: spark-master
       SPARK_PORT: 7077
     volumes:
       - ./data/dbt_project:/usr/app/dbt  # Mount your dbt project directory
-    command: "tail -f /dev/null"  # Keep the container running
     depends_on:
       - spark-master
     networks:
@@ -188,8 +187,6 @@ services:
     networks:
       - my-network
  
-
-
   spark-master:
     container_name: spark-master
     build:

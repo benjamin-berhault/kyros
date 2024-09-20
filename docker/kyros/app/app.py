@@ -105,8 +105,8 @@ def cloudbeaver():
     # Embed CloudBeaver inside an iframe
     return render_template('base.html', content_url='http://localhost:8978')
 
-@app.route('/code-server')
-def cloudbeaver():
+@app.route('/codeserver')
+def codeserver():
     # Embed CloudBeaver inside an iframe
     return render_template('base.html', content_url='http://localhost:8083')
 
@@ -119,11 +119,22 @@ def jupyterlab():
 def minio():
     return render_template('base.html', content_url='http://localhost:9003')
 
-
 @app.route('/dagster')
 def dagster():
     # Embed JupyterLab inside an iframe
     return render_template('base.html', content_url='http://localhost:3000')
+    
+@app.route('/spark')
+def spark():
+    # Define the Spark Master and Worker URLs
+    spark_services = [
+        {"name": "Spark Master", "url": "http://localhost:8080"},
+        {"name": "Spark Worker 1", "url": "http://localhost:8081"},
+        {"name": "Spark Worker 2", "url": "http://localhost:8082"}
+    ]
+    
+    # Pass the list of services to the template
+    return render_template('spark.html', services=spark_services)
 
 @app.route('/portainer')
 def portainer():

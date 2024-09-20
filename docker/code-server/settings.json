@@ -1,8 +1,18 @@
 {
-    "workbench.colorTheme": "Default Dark+",
-    "editor.formatOnSave": true,
-    "editor.fontSize": 14,
-    "python.pythonPath": "/usr/bin/python3",
-    "files.autoSave": "afterDelay",
-    "files.autoSaveDelay": 1000
+  "workbench.colorTheme": "Default Dark+",
+  "editor.formatOnSave": true,
+  "editor.fontSize": 14,
+  "python.pythonPath": "/usr/bin/python3",
+  "files.autoSave": "afterDelay",
+  "files.autoSaveDelay": 1000,
+  "sshfs.configs": [
+    {
+      "name": "dbt-config",
+      "host": "dbt",
+      "username": "myuser",
+      "password": "mysecurepassword",
+      "root": "/home/myuser"
+    }
+  ]
+ 
 }

@@ -11,6 +11,7 @@ docker/minio/data
 docker/minio-client/mc
 docker/minio/data
 
+
 # But keep this .gitignore and .gitkeep file
 !/data/delta_lake/.gitignore
 !/data/delta_lake/.gitkeep
