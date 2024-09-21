@@ -67,61 +67,209 @@ Directory:	Default Directory (2db95f9e-429f-4217-8473-569494f2cac8)
 							_ngcontent-ng-c1527126507="" data-sa-nm="ibizaBanner" _nghost-ng-c168634370=""
 							class="ng-star-inserted"><!----></app-ibiza-banner><!----><!----><!----><!----></div><!---->
 					<div _ngcontent-ng-c1527126507="" class="scaffold">
-
-						
-						<div _ngcontent-ng-c1527126507="" class="nav-panel ng-star-inserted expanded-menu" id="nav-panel">
-							<div _ngcontent-ng-c1527126507="" class="menu-bar">
+						<div _ngcontent-ng-c1527126507="" class="nav-panel ng-star-inserted expanded-menu">
+							<div _ngcontent-ng-c1527126507="" class="menu-bar"><!---->
 								<div _ngcontent-ng-c1527126507="" class="ng-star-inserted">
-									
-									<!-- Toggle Icon -->
-									<div _ngcontent-ng-c1527126507="" class="expand-icon madrid-icon icon-doublechevronleft icon-size-16 ng-star-inserted" onclick="toggleMenu()" style="cursor: pointer;"></div>
-						
-									<div _ngcontent-ng-c1527126507="" data-sa-nm="shellNavPanel" role="navigation" class="top-area ng-star-inserted">
-										{% for item in menu['menu'] %}
-											<div _ngcontent-ng-c1527126507="" tabindex="0" class="p-element tooltip-wrapper ng-star-inserted">
-												<button _ngcontent-ng-c1527126507="" tabindex="-1" class="p-element nav-hover {{ 'activeRoute' if item.route == request.path }}" 
-													name="{{ item.name | lower }}" aria-label="{{ item.name }}"
-													{% if item.route %} onclick="window.location.href='{{ item.route }}'" {% else %} onclick="toggleSubMenu(this)" {% endif %}>
-													<div _ngcontent-ng-c1527126507="" class="icon {{ item.icon }} ng-star-inserted"></div>
-													<div _ngcontent-ng-c1527126507="" class="expanded-button-label ng-star-inserted"> {{ item.name }} </div>
-													{% if item.sub_menu %}
-														<span _ngcontent-ng-c1527126507="" class="triangle-indicator"></span>
-													{% endif %}
-												</button>
-						
-												{% if item.sub_menu %}
-													<div _ngcontent-ng-c1527126507="" class="sub-menu" style="display: none;">
-														{% for sub_item in item.sub_menu %}
-															{% if sub_item.title %}
-																<div _ngcontent-ng-c1527126507="" class="sub-menu-title">{{ sub_item.title }}</div>
-															{% endif %}
-															<ul _ngcontent-ng-c1527126507="">
-																{% if sub_item.sub_items %}
-																	{% for sub in sub_item.sub_items %}
-																		<li _ngcontent-ng-c1527126507="">
-																			{% if sub.route %}
-																				<a _ngcontent-ng-c1527126507="" href="{{ sub.route }}" title="{{ sub.description }}">{{ sub.name }}</a>
-																			{% else %}
-																				{{ sub.name }}
-																			{% endif %}
-																		</li>
-																	{% endfor %}
-																{% else %}
-																	<li _ngcontent-ng-c1527126507=""><em>No items available</em></li>
-																{% endif %}
-															</ul>
-														{% endfor %}
-													</div>
-												{% endif %}
+									<div _ngcontent-ng-c1527126507="" data-sa-nm="shellNavPanel" role="navigation"
+										class="top-area ng-star-inserted">
+
+										<div _ngcontent-ng-c1527126507="" tabindex="0"
+											class="p-element tooltip-wrapper ng-star-inserted"><button
+												_ngcontent-ng-c1527126507="" tabindex="-1"
+												class="p-element nav-hover activeRoute" name="home" aria-label="Home"
+												onclick="window.location.href='/'"><!---->
+												<div _ngcontent-ng-c1527126507=""
+													class="icon svg-a365-home ng-star-inserted"></div><!---->
+												<div _ngcontent-ng-c1527126507=""
+													class="expanded-button-label ng-star-inserted"> Home </div><!---->
+											</button></div>
+										<div _ngcontent-ng-c1527126507="" tabindex="0"
+											class="p-element tooltip-wrapper ng-star-inserted">
+											<button _ngcontent-ng-c1527126507="" tabindex="-1"
+												class="p-element nav-hover" name="explore" aria-label="Data"
+												onclick="toggleSubMenu(this)">
+												<div _ngcontent-ng-c1527126507=""
+													class="icon svg-a365-explore ng-star-inserted"></div>
+												<div _ngcontent-ng-c1527126507=""
+													class="expanded-button-label ng-star-inserted">Data</div>
+
+												<!-- Triangle icon next to the label -->
+												<span class="triangle-indicator"></span>
+											</button>
+
+											<!-- Sub-items under Data (hidden by default) -->
+											<div class="sub-menu" style="display: none;">
+												<!-- Workspace Section -->
+												<div>
+													<div class="sub-menu-title">Workspace</div>
+													<ul>
+														<li><a href="/minio" title="Currently MinIO">Object Storage</a>
+														</li>
+													</ul>
+												</div>
+
+												<!-- Linked Section -->
+												<div>
+													<div class="sub-menu-title">Linked</div>
+													<ul>
+														<li>Connect to external data</li>
+														<li>Integration dataset</li>
+														<li>Browse gallery</li>
+													</ul>
+												</div>
 											</div>
-										{% endfor %}
+										</div>
+
+
+										<div _ngcontent-ng-c1527126507="" tabindex="0"
+											class="p-element tooltip-wrapper ng-star-inserted"><button
+												_ngcontent-ng-c1527126507="" tabindex="-1" class="p-element nav-hover"
+												name="analyze" aria-label="Develop"
+												onclick="toggleSubMenu(this)"><!---->
+												<div _ngcontent-ng-c1527126507=""
+													class="icon svg-a365-analyze ng-star-inserted"></div><!---->
+												<div _ngcontent-ng-c1527126507=""
+													class="expanded-button-label ng-star-inserted"> Develop </div>
+												<div class="triangle-indicator"></div> <!-- Triangle indicator -->
+
+											</button>
+											<!-- Sub-items under Data (hidden by default) -->
+											<div class="sub-menu" style="display: none;">
+												<ul>
+													<li><a href="/cloudbeaver" title="Currently CloudBeaver">SQL
+															Editor</a></li>
+													<li><a href="/jupyterlab" title="Currently JupyterLab">Notebook</a>
+													</li>
+													<li><a href="/dagster" title="Currently Dagster">Pipelines</a></li>
+													<li>Browse gallery</li>
+													<li>Import</li>
+												</ul>
+											</div>
+										</div>
+										<div _ngcontent-ng-c1527126507="" tabindex="0"
+											class="p-element tooltip-wrapper ng-star-inserted"><button
+												_ngcontent-ng-c1527126507="" tabindex="-1" class="p-element nav-hover"
+												name="orchestrate" aria-label="Integrate"
+												onclick="toggleSubMenu(this)"><!---->
+												<div _ngcontent-ng-c1527126507=""
+													class="icon svg-a365-orchestrate ng-star-inserted"></div><!---->
+												<div _ngcontent-ng-c1527126507=""
+													class="expanded-button-label ng-star-inserted"> Integrate </div>
+												<div class="triangle-indicator"></div> <!-- Triangle indicator -->
+												<!---->
+											</button>
+											<!-- Sub-items under Data (hidden by default) -->
+											<div class="sub-menu" style="display: none;">
+												<!-- Workspace Section -->
+
+												<ul>
+													<li>Create Pipeline</li>
+													<li>Create Link connection</li>
+													<li>Copy Data tool</li>
+													<li>Browse gallery</li>
+												</ul>
+
+											</div>
+										</div>
+										<div _ngcontent-ng-c1527126507="" class="horizontal-line ng-star-inserted">
+										</div><!---->
+										<div _ngcontent-ng-c1527126507="" tabindex="0"
+											class="p-element tooltip-wrapper ng-star-inserted"><button
+												_ngcontent-ng-c1527126507="" tabindex="-1" class="p-element nav-hover"
+												name="monitoring" aria-label="Monitor"
+												onclick="toggleSubMenu(this)"><!---->
+												<div _ngcontent-ng-c1527126507=""
+													class="icon svg-monitoring-icon ng-star-inserted"></div><!---->
+												<div _ngcontent-ng-c1527126507=""
+													class="expanded-button-label ng-star-inserted"> Monitor </div>
+												<div class="triangle-indicator"></div> <!-- Triangle indicator -->
+												<!---->
+											</button>
+											<!-- Sub-items under Data (hidden by default) -->
+											<div class="sub-menu" style="display: none;">
+
+												<!-- Linked Section -->
+												<div>
+													<div class="sub-menu-title">Activities</div>
+													<ul>
+														<li>SQL requests</li>
+														<li>Apache Spark applications</li>
+														<li>Data flow debug</li>
+													</ul>
+												</div>
+
+												<div>
+													<div class="sub-menu-title">Integration</div>
+													<ul>
+														<li>Pipeline runs</li>
+														<li>Trigger runs</li>
+														<li>Integration runtimes</li>
+														<li>Link connections</li>
+													</ul>
+												</div>
+											</div>
+										</div>
+										<div _ngcontent-ng-c1527126507="" tabindex="0"
+											class="p-element tooltip-wrapper ng-star-inserted"><button
+												_ngcontent-ng-c1527126507="" tabindex="-1" class="p-element nav-hover"
+												name="management" aria-label="Manage"
+												onclick="toggleSubMenu(this)"><!---->
+												<div _ngcontent-ng-c1527126507=""
+													class="icon svg-management-icon ng-star-inserted"></div><!---->
+												<div _ngcontent-ng-c1527126507=""
+													class="expanded-button-label ng-star-inserted"> Manage </div><!---->
+												<div class="triangle-indicator"></div> <!-- Triangle indicator -->
+											</button>
+											<!-- Sub-items under Data (hidden by default) -->
+											<div class="sub-menu" style="display: none;">
+
+
+												<div>
+													<ul>
+														<li><a href="/portainer">Container manager</a></li>
+														<ul>
+												</div>
+
+												<div>
+													<div class="sub-menu-title">External connections</div>
+													<ul>
+														<li>Linked services</li>
+													</ul>
+												</div>
+
+												<div>
+													<div class="sub-menu-title">Security</div>
+													<ul>
+														<li>Access control</li>
+														<li>Credentials</li>
+														<li>Managed private endpoints</li>
+													</ul>
+												</div>
+
+												<div>
+													<div class="sub-menu-title">Configuration + libraries</div>
+													<ul>
+														<li>Workspace packages</li>
+														<li>Data flow libraries </li>
+														<li>Apache Spark configurations</li>
+													</ul>
+												</div>
+
+												<div>
+													<div class="sub-menu-title">Source control</div>
+													<ul>
+														<li>Git configuration</li>
+													</ul>
+												</div>
+											</div>
+										</div>
+
 									</div>
-								</div>
-							</div>
+									<app-feature-research _ngcontent-ng-c1527126507=""
+										_nghost-ng-c2074094944=""><!----></app-feature-research>
+								</div><!---->
+							</div><!---->
 						</div>
-						
-
-
 						<!--<div _ngcontent-ng-c1527126507="" id="main-content" role="main" class="main-content">-->
 						<div _ngcontent-ng-c1527126507="" id="main-content" role="main" class="main-content">
 							<iframe src="{{ content_url }}" frameborder="0"></iframe>
@@ -230,32 +378,6 @@ Directory:	Default Directory (2db95f9e-429f-4217-8473-569494f2cac8)
 				triangle.classList.remove('rotate');
 			}
 		}
-		function toggleMenu() {
-    var navPanel = document.getElementById('nav-panel');
-    
-    if (navPanel.classList.contains('expanded-menu')) {
-        // Switch to collapsed menu
-        navPanel.classList.remove('expanded-menu');
-        navPanel.classList.add('collapsed-menu');
-
-        // Hide all triangle-indicators when collapsed
-        document.querySelectorAll('.triangle-indicator').forEach(function(triangle) {
-            triangle.style.display = 'none';
-        });
-
-    } else {
-        // Switch to expanded menu
-        navPanel.classList.remove('collapsed-menu');
-        navPanel.classList.add('expanded-menu');
-
-        // Show all triangle-indicators when expanded
-        document.querySelectorAll('.triangle-indicator').forEach(function(triangle) {
-            triangle.style.display = 'inline-block';
-        });
-    }
-}
-
-
 	</script>
 
 </body>

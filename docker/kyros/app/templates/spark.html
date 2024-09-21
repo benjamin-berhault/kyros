@@ -3,48 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Spark Cluster Dashboard</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        h1 {
-            text-align: center;
-        }
-
-        .iframe-container {
-            display: flex;
-            justify-content: space-around;
-            width: 100%;
-        }
-
-        .iframe-wrapper {
-            margin: 20px;
-        }
-
-        iframe {
-            width: 400px;
-            height: 300px;
-            border: 1px solid #ccc;
-        }
-    </style>
+    <title>Spark Master Status</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
+    <div class="container mt-5">
+        <h1>Spark Master Status</h1>
 
-    <h1>Spark Cluster Dashboard</h1>
-
-    <div class="iframe-container">
-        {% for service in services %}
-        <div class="iframe-wrapper">
-            <h2>{{ service.name }}</h2>
-            <iframe src="{{ service.url }}" title="{{ service.name }}"></iframe>
+        <!-- Spark Master Info -->
+        <div class="card mb-4">
+            <div class="card-body">
+                <h4 class="card-title">Spark Master Information</h4>
+                <p><strong>URL:</strong> {{ spark.url }}</p>
+                <p><strong>Status:</strong> {{ spark.status }}</p>
+                <p><strong>Alive Workers:</strong> {{ spark.aliveWorkers }}</p>
+                <p><strong>Cores in use:</strong> {{ spark.cores }} Total, {{ spark.coresUsed }} Used</p>
+                <p><strong>Memory in use:</strong> {{ spark.memory / 1024 }} GiB Total, {{ spark.memoryUsed }} B Used</p>
+            </div>
         </div>
-        {% endfor %}
+
+        <!-- Workers Information -->
+        <h3>Workers ({{ spark.workers|length }})</h3>
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>Worker Id</th>
+                    <th>Address</th>
+                    <th>State</th>
+                    <th>Cores</th>
+                    <th>Memory</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for worker in spark.workers %}
+                <tr>
+                    <td>{{ worker.id }}</td>
+                    <td>{{ worker.host }}:{{ worker.port }}</td>
+                    <td>{{ worker.state }}</td>
+                    <td>{{ worker.cores }} ({{ worker.coresUsed }} Used)</td>
+                    <td>{{ worker.memory / 1024 }} MiB ({{ worker.memoryUsed }} B Used)</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <!-- Applications Information -->
+        <h3>Applications ({{ spark.applications|length }})</h3>
+        <p>No running or completed applications</p>
+
     </div>
 
+    <!-- Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

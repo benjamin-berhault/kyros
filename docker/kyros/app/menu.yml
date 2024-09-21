@@ -1,0 +1,57 @@
+menu:
+
+  - name: "Home"
+    route: "/"
+    icon: "svg-a365-home"
+
+  - name: "Develop"
+    icon: "svg-a365-analyze"
+    sub_menu:
+      - sub_items:
+          - name: "Code Editor"
+            route: "/codeserver"
+            description: "VS Code"
+          - name: "SQL Editor"
+            route: "/cloudbeaver"
+            description: "DBeaver"
+          - name: "Notebook"
+            route: "/jupyterlab"
+            description: "Jupyter Notebook"
+
+  - name: "Storage"
+    icon: "svg-a365-explore"
+    sub_menu:
+      - sub_items:
+          - name: "Object Storage"
+            route: "/minio"
+            description: "MinIO"
+
+  - name: "Pipelines"
+    icon: "svg-a365-orchestrate"
+    sub_menu:
+      - sub_items:
+          - name: "Pipelines"
+            route: "/dagster"
+            description: "Dagster"
+
+  - name: "Manage"
+    icon: "svg-management-icon"
+    sub_menu:
+      - sub_items:
+          - name: "Container Manager"
+            route: "/portainer"
+            description: "Portainer"
+
+  - name: "Resources"
+    icon: "svg-monitoring-icon"
+    sub_menu:
+      - sub_items:
+          - name: "Documentation"
+            route: "/docs"
+            description: "View Documentation"
+          - name: "GitHub Repo"
+            route: "https://github.com/kyrosdata/kyros"
+            description: "GitHub Repo"
+          - name: "Contribute"
+            route: "https://github.com/kyrosdata/kyros/CONTRIBUTE.md"
+            description: "CONTRIBUTE.md on GitHub"

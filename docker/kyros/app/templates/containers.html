@@ -35,16 +35,16 @@
             <tbody>
                 {% for container in containers %}
                 <tr>
-                    <td>{{ container.name }}</td>
+                    <td>{{ container.name | default('N/A') }}</td>
                     <td>
                         <span class="{{ state_color(container.status) }}" style="font-weight:bold;">
-                            {{ container.status }}
+                            {{ container.status | default('Unknown') }}
                         </span>
                     </td>
-                    <td>{{ container.image }}</td>
-                    <td>{{ container.created }}</td>
-                    <td>{{ container.ip_address }}</td>
-                    <td>{{ container.published_ports }}</td>
+                    <td>{{ container.image | default('N/A') }}</td>
+                    <td>{{ container.created | default('N/A') }}</td>
+                    <td>{{ container.ip_address | default('N/A') }}</td>
+                    <td>{{ container.published_ports | default('N/A') }}</td>
                 </tr>
                 {% endfor %}
             </tbody>

@@ -2789,6 +2789,15 @@ opacity: 1 !important;
     transform: rotate(0deg); /* Rotate 180 degrees */
   }
   
+
+#nav-panel.collapsed-menu .triangle-indicator {
+    opacity: 0; /* Hidden when collapsed */
+}
+
+#nav-panel.expanded-menu .triangle-indicator {
+    opacity: 1; /* Visible when expanded */
+}
+
   /* Styles for the sub-menu */
   .sub-menu {
     text-align: left;
@@ -2809,6 +2818,9 @@ opacity: 1 !important;
     margin-bottom: 5px;
   }
   
+  .sub-menu ul {
+    margin: 0;
+  }
   .sub-menu li {
     padding: 5px 0;
   }
@@ -2825,4 +2837,36 @@ a {
   
 a:hover {
     color: #0056b3; /* Darker blue on hover */
+}
+
+/* Expanded menu */
+#nav-panel.expanded-menu .expanded-button-label {
+    display: inline-block; /* Show labels when menu is expanded */
+}
+
+#nav-panel.expanded-menu .expand-icon::before {
+    content: '\00AB'; /* Left double chevron (<<) */
+}
+
+/* Collapsed menu */
+#nav-panel.collapsed-menu .expanded-button-label {
+    display: none; /* Hide labels in collapsed state */
+}
+
+#nav-panel.collapsed-menu .expand-icon::before {
+    content: '\00BB'; /* Right double chevron (>>) */
+}
+
+#nav-panel .icon {
+    display: inline-block; /* Always show the icons */
+    width: 40px;
+    height: 40px;
+}
+
+.expand-icon {
+    cursor: pointer;
+    padding: 10px;
+    font-size: 16px;
+    color: #000;
+    text-align: right;
 }

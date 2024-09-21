@@ -1,0 +1,80 @@
+menu:
+  - name: "Home"
+    route: "/"
+    icon: "svg-a365-home"
+  - name: "Data"
+    icon: "svg-a365-explore"
+    sub_menu:
+      - title: "Workspace"
+        sub_items:
+          - name: "Object Storage"
+            route: "/minio"
+            description: "Currently MinIO"
+      - title: "Linked"
+        sub_items:
+          - name: "Connect to external data"
+          - name: "Integration dataset"
+          - name: "Browse gallery"
+  - name: "Develop"
+    icon: "svg-a365-analyze"
+    sub_menu:
+      - sub_items:
+        - name: "Code Editor"
+          route: "/codeserver"
+          description: "VS Code"
+        - name: "SQL Editor"
+          route: "/cloudbeaver"
+          description: "DBeaver"
+        - name: "Notebook"
+          route: "/jupyterlab"
+          description: "Jupyter Notebook"
+        - name: "Pipelines"
+          route: "/dagster"
+          description: "Dagster"
+        - name: "Browse gallery"
+        - name: "Import"
+  - name: "Integrate"
+    icon: "svg-a365-orchestrate"
+    sub_menu:
+      - sub_items:
+          - name: "Pipeline runs"
+          - name: "Trigger runs"
+          - name: "Integration runtimes"
+          - name: "Link connections"
+  - name: "Monitor"
+    icon: "svg-monitoring-icon"
+    sub_menu:
+      - title: "Activities"
+        sub_items:
+          - name: "SQL requests"
+          - name: "Apache Spark applications"
+          - name: "Data flow debug"
+      - title: "Integration"
+        sub_items:
+          - name: "Pipeline runs"
+          - name: "Trigger runs"
+          - name: "Integration runtimes"
+          - name: "Link connections"
+  - name: "Manage"
+    icon: "svg-management-icon"
+    sub_menu:
+      - sub_items:
+        - name: "Container manager"
+          route: "/portainer"
+          description: "Portainer"
+      - title: "External connections"
+        sub_items:
+          - name: "Linked services"
+      - title: "Security"
+        sub_items:
+          - name: "Access control"
+          - name: "Credentials"
+          - name: "Managed private endpoints"
+      - title: "Configuration + libraries"
+        sub_items:
+          - name: "Workspace packages"
+          - name: "Data flow libraries"
+          - name: "Apache Spark configurations"
+      - title: "Source control"
+        sub_items:
+          - name: "Git configuration"

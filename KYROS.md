@@ -1,0 +1,7 @@
+The name **Kyros** comes from the ancient Greek concept of the "right or opportune moment," which fits perfectly with the philosophy behind this project. In the world of data platforms and cloud-based solutions, timing is everything—whether it's optimizing for cost-efficiency, deploying resources dynamically, or scaling up processing power precisely when it's needed.
+
+**Kyros** represents the idea of seizing these critical moments to make decisions that maximize performance and minimize waste. Just like in data engineering, DevOps, or project management, where efficient resource utilization, fast deployment, and adaptability are key, this platform empowers you to act at the right time, with the right tools, in the right way.
+
+By providing a **cloud-agnostic**, **open-source**, **modular**, and **predictable** solution, Kyros enables you to tailor your infrastructure to meet your current needs, avoiding over-provisioning and unnecessary costs. It brings agility to your data platform, giving you the control to deploy only what you need, when you need it, on affordable hosting solutions. In short, Kyros ensures you're always optimizing for the right moment, whether you’re handling small-scale operations or scaling up for big data processing.
+
+Kyros isn’t just about flexibility; it’s about giving engineers, developers, and project managers the tools to make **timely** decisions that lead to better performance, reduced complexity, and clearer, more predictable costs—all under the **Apache License 2.0**.
