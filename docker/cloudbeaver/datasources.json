@@ -1,0 +1,19 @@
+[
+    {
+        "server": {
+            "name": "MyCloudBeaverServer"
+        },
+        "admin": {
+            "name": "admin",
+            "password": "admin123"
+        },
+        "database": {
+            "driver": "postgresql",
+            "url": "jdbc:postgresql://postgres:5432/testdb",
+      "user": "test_user",
+      "password": "test_password"
+        }
+    }
+    
+  ]
+  

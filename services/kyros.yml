@@ -7,8 +7,6 @@
     volumes:
       - ./docker/kyros/app:/app  # Volume for your Flask app
       - ./docker/kyros/nginx.conf:/etc/nginx/nginx.conf  # Nginx configuration
-    depends_on:
-      - cloudbeaver
     networks:
       - my-network
     environment:

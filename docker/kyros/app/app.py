@@ -192,18 +192,24 @@ def home():
 
     except ConnectionError:
         # Portainer is not available, return a custom error page or message
-        return render_template('error.html', message="Portainer is not available. Please try again later."), 503
+        return render_template('base.html', content_url='/service_unavailable', menu=menu_data)
 
     except Exception as e:
         # Log any other unexpected exceptions and return an internal server error
         print(f"Unexpected error: {e}")
-        return render_template('error.html', message="An unexpected error occurred. Please try again later."), 500
+        return render_template('base.html', content_url='/internal_error', menu=menu_data)
+
 
 
 @app.route('/cloudbeaver')
 def cloudbeaver():
     # Embed CloudBeaver inside an iframe
     return render_template('base.html', content_url='http://localhost:8978', menu=menu_data)
+
+@app.route('/sqlpad')
+def sqlpad():
+    # Embed CloudBeaver inside an iframe
+    return render_template('base.html', content_url='http://localhost:3001', menu=menu_data)
 
 @app.route('/codeserver')
 def codeserver():
@@ -266,9 +272,33 @@ def portainer():
     # Embed JupyterLab inside an iframe
     return render_template('base.html', content_url='http://localhost:9000', menu=menu_data)
 
+@app.errorhandler(404)
+def page_not_found(e):
+    # You can log the error if necessary
+    print(f"404 Error: {e}")
+    
+    # Render a custom 404 error page
+    return render_template('base.html', content_url='/not_found', menu=menu_data)
+
+@app.errorhandler(500)
+def internal_server_error(e):
+    # You can log the error for debugging
+    print(f"500 Error: {e}")
+    
+    # Render a custom 500 error page
+    return render_template('base.html', content_url='/internal_error', menu=menu_data)
+
 @app.route('/not_found')
 def not_found():
     return render_template('404.html'), 404  # Render template with status code 404
+
+@app.route('/internal_error')
+def internal_error():
+    return render_template('500.html'), 500  # Render template with status code 404
+
+@app.route('/service_unavailable')
+def service_unavailable():
+    return render_template('503.html'), 503  # Render template with status code 404
 
 # Add more routes for other components as needed
 # e.g., Spark UI, MinIO, etc.

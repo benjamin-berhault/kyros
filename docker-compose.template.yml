@@ -107,7 +107,7 @@ services:
     build:
       context: ./docker/postgres
       args:
-        IMAGE: ${IF_USING_LOCAL_REGISTRY}postgres:latest
+        IMAGE: ${IF_USING_LOCAL_REGISTRY}postgres:16.4
     environment:
       #- POSTGRES_DB=metastore
       #- POSTGRES_USER=metastore_user
@@ -123,6 +123,9 @@ services:
       - DAGSTER_ROLE=dagster
       - DAGSTER_PASSWORD=dagsterpassword
       - DAGSTER_DB=dagster
+      - SANDPIT_USER=test_user
+      - SANDPIT_PASSWORD=test_password
+      - SANDPIT_DB=testdb
       #- SQLPAD_USER=sqlpad
       #- SQLPAD_PASSWORD=sqlpadpass
       #- SQLPAD_DB=sqlpaddb

@@ -50,6 +50,23 @@ EOSQL
 
 echo "Dagster and Flink users and databases created and privileges granted successfully."
 
+# Create the Sandpit user, databases, and grant privileges
+echo "Setting up Dagster and Flink users and databases..."
+
+execute_psql "$POSTGRES_DB" "$POSTGRES_USER" <<-EOSQL
+    -- Create Dagster database and role
+    CREATE DATABASE $SANDPIT_DB;
+    CREATE ROLE $SANDPIT_USER WITH LOGIN PASSWORD '$SANDPIT_PASSWORD';
+    GRANT ALL PRIVILEGES ON DATABASE $SANDPIT_DB TO $SANDPIT_USER;
+
+    -- Create a dedicated schema for Dagster
+    \c $SANDPIT_DB
+    CREATE SCHEMA IF NOT EXISTS dagster AUTHORIZATION $SANDPIT_USER;
+EOSQL
+
+echo "Dagster and Flink users and databases created and privileges granted successfully."
+
+
 # # Create the SQLPad user and database
 # echo "Creating SQLPad user and database..."
 

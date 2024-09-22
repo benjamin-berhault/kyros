@@ -1,0 +1,13 @@
+  keycloak:
+    image: jboss/keycloak:latest
+    container_name: keycloak
+    environment:
+      - KEYCLOAK_USER=admin
+      - KEYCLOAK_PASSWORD=admin
+      - DB_VENDOR=h2  # You can use PostgreSQL as the backend DB for persistence
+    ports:
+      - "8080:8080"
+    networks:
+      - my-network
+    volumes:
+      - ./keycloak/data:/opt/jboss/keycloak/standalone/data

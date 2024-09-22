@@ -74,16 +74,38 @@ services:
       - my-network
  
   cloudbeaver:
-    image: ${IF_USING_LOCAL_REGISTRY}dbeaver/cloudbeaver:latest
     container_name: cloudbeaver
+    build:
+      context: ./docker/cloudbeaver
+      args: 
+        IMAGE: ${IF_USING_LOCAL_REGISTRY}dbeaver/cloudbeaver:24.2.0
     environment:
       - CB_SERVER_NAME=CloudBeaver
       - CB_ADMIN_NAME=admin
       - CB_ADMIN_PASSWORD=admin_password
     ports:
       - "8978:8978"
-    volumes:
-      - cloudbeaver_data:/opt/cloudbeaver/workspace
+    # volumes:
+    #   - cloudbeaver_data:/opt/cloudbeaver/workspace
+    networks:
+      - my-network
+ 
+  sqlpad:
+    build:
+      context: ./docker/sqlpad
+      args:
+        IMAGE: ${IF_USING_LOCAL_REGISTRY}sqlpad/sqlpad:7.5.0
+    container_name: sqlpad
+    environment:
+      - SQLPAD_PORT=3001
+      - SQLPAD_ADMIN=admin@example.com
+      - SQLPAD_ADMIN_PASSWORD=admin
+      - SQLPAD_AUTH_DISABLED=false
+      - SQLPAD_BASE_URL=/sqlpad    # Base URL if behind a reverse proxy
+    ports:
+      - "3001:3001"
+    # volumes:
+    #   - ./docker/sqlpad/data:/var/lib/sqlpad  # Persistent storage for SQLPad data
     networks:
       - my-network
  
@@ -96,8 +118,6 @@ services:
     volumes:
       - ./docker/kyros/app:/app  # Volume for your Flask app
       - ./docker/kyros/nginx.conf:/etc/nginx/nginx.conf  # Nginx configuration
-    depends_on:
-      - cloudbeaver
     networks:
       - my-network
     environment:
@@ -187,6 +207,8 @@ services:
     networks:
       - my-network
  
+
+
   spark-master:
     container_name: spark-master
     build:
@@ -335,7 +357,7 @@ services:
     build:
       context: ./docker/postgres
       args:
-        IMAGE: ${IF_USING_LOCAL_REGISTRY}postgres:latest
+        IMAGE: ${IF_USING_LOCAL_REGISTRY}postgres:16.4
     environment:
       #- POSTGRES_DB=metastore
       #- POSTGRES_USER=metastore_user
@@ -351,6 +373,9 @@ services:
       - DAGSTER_ROLE=dagster
       - DAGSTER_PASSWORD=dagsterpassword
       - DAGSTER_DB=dagster
+      - SANDPIT_USER=test_user
+      - SANDPIT_PASSWORD=test_password
+      - SANDPIT_DB=testdb
       #- SQLPAD_USER=sqlpad
       #- SQLPAD_PASSWORD=sqlpadpass
       #- SQLPAD_DB=sqlpaddb

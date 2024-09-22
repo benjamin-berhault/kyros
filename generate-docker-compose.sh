@@ -43,6 +43,13 @@ if [ "$INCLUDE_CLOUDBEAVER" = "true" ]; then
 fi
 
 # Include additional services based on environment variables
+if [ "$INCLUDE_SQLPAD" = "true" ]; then
+  additional_services+="$(cat services/sqlpad.yml)
+ 
+"
+fi
+
+# Include additional services based on environment variables
 if [ "$INCLUDE_KYROS" = "true" ]; then
   additional_services+="$(cat services/kyros.yml)
  
