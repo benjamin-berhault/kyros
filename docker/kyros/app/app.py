@@ -3,6 +3,10 @@ import requests
 from requests.exceptions import ConnectionError
 import datetime
 import yaml
+import psutil
+import platform
+import os
+import subprocess
 
 app = Flask(__name__)
 
@@ -20,6 +24,57 @@ def load_menu_config():
         return yaml.safe_load(file)
 
 menu_data = load_menu_config()
+
+
+# Function to get detailed CPU information
+def get_cpu_info():
+    cpu_freq = psutil.cpu_freq()  # Get CPU frequency
+    cpu_info = {
+        'cpu_physical_cores': psutil.cpu_count(logical=False),  # Physical cores
+        'cpu_logical_cores': psutil.cpu_count(logical=True),    # Logical cores
+        'cpu_base_speed': cpu_freq.max if cpu_freq else 'N/A',  # Base speed
+        'cpu_current_speed': cpu_freq.current if cpu_freq else 'N/A',  # Current speed
+    }
+    return cpu_info
+
+
+# Function to get detailed Memory information
+def get_memory_info():
+    memory = psutil.virtual_memory()  # Get virtual memory details
+    # Get the memory installed by checking system files or using platform-specific methods
+    if platform.system() == 'Windows':
+        mem_installed = memory.total / (1024 ** 3)  # Total installed memory in GB
+
+
+    return {
+        'memory_total': memory.total / (1024 ** 3),  # Total memory in GB
+        'memory_used': memory.used / (1024 ** 3),    # Used memory in GB
+        'memory_percent': memory.percent,            # Memory usage percentage
+    }
+
+# Function to get disk space information
+def get_disk_info():
+    disk = psutil.disk_usage('/')  # Get disk usage details for root directory
+    return {
+        'disk_total': disk.total / (1024 ** 3),   # Total disk space in GB
+        'disk_used': disk.used / (1024 ** 3),     # Used disk space in GB
+        'disk_free': disk.free / (1024 ** 3),     # Free disk space in GB
+        'disk_percent': disk.percent              # Percentage of disk space used
+    }
+
+# Route to get live system resource data (CPU and Memory)
+@app.route('/stats')
+def get_system_stats():
+    memory_info = get_memory_info()
+    cpu_info = get_cpu_info()
+    disk_info = get_disk_info()
+
+    return jsonify({
+        'cpu_info': cpu_info,
+        'memory_info': memory_info,
+        'disk_info': disk_info
+    })
+
 
 # Authenticate with Portainer API to get the JWT token
 def get_portainer_token():

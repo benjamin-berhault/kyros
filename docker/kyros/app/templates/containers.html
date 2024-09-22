@@ -12,48 +12,144 @@
         }
         table {
             width: 100%; /* Ensure table fills the container */
+            font-family:'Consolas', 'Courier New', Courier, monospace;
+            font-size: 0.8em;
         }
         th, td {
             white-space: nowrap; /* Prevent text from wrapping */
         }
+        ul {
+            list-style-type: none; /* This removes the bullets */
+            padding-left: 0;       /* Removes default padding */
+            font-family:'Consolas', 'Courier New', Courier, monospace;
+            font-size: 0.8em;
+        }
     </style>
+    <script>
+        function fetchSystemStats() {
+            fetch('/stats')
+            .then(response => response.json())
+            .then(data => {
+                // Update CPU information
+                document.getElementById('cpu-usage').textContent = data.cpu_percent;
+                document.getElementById('cpu-physical-cores').textContent = data.cpu_info.cpu_physical_cores;
+                document.getElementById('cpu-logical-cores').textContent = data.cpu_info.cpu_logical_cores;
+                document.getElementById('cpu-base-speed').textContent = data.cpu_info.cpu_current_speed + ' MHz';
+
+                // Update Memory information
+                document.getElementById('memory-used').textContent = data.memory_info.memory_used.toFixed(2);
+                document.getElementById('memory-total').textContent = data.memory_info.memory_total.toFixed(2);
+                document.getElementById('memory-percent').textContent = data.memory_info.memory_percent;
+
+
+                // Update Disk information
+                document.getElementById('disk-used').textContent = data.disk_info.disk_used.toFixed(2);
+                document.getElementById('disk-total').textContent = data.disk_info.disk_total.toFixed(2);
+                document.getElementById('disk-free').textContent = data.disk_info.disk_free.toFixed(2);
+                document.getElementById('disk-percent').textContent = data.disk_info.disk_percent;
+
+            });
+        }
+
+        setInterval(fetchSystemStats, 5000); // Refresh stats every second
+    </script>
 </head>
 <body>
     <div class="container-fluid container-table mt-5">
-        <h1 class="mb-4">Container Status</h1>
-        <table class="table table-striped table-hover">
-            <thead>
+        <h3 class="mb0">System Resource Usage</h3>
+        <p class="text-muted mb-4">
+        <i>This section is refreshed every 5 seconds.</i>
+        </p>
+
+        <div class="row">
+            <!-- CPU Information -->
+            <div class="col-md-4">
+                <h5>CPU Information</h5>
+                <ul >
+                    <li>CPU Usage: <strong id="cpu-usage">Loading...</strong> %</li>
+                    <li>Physical Cores: <strong id="cpu-physical-cores">Loading...</strong></li>
+                    <li>Logical Cores: <strong id="cpu-logical-cores">Loading...</strong></li>
+                    <li>Base Speed: <strong id="cpu-base-speed">Loading...</strong></li>
+                </ul>
+            </div>
+    
+            <!-- Memory Information -->
+            <div class="col-md-4">
+                <h5>Memory Information</h5>
+                <ul >
+                    <li>Memory Usage Percentage: <strong id="memory-percent">Loading...</strong> %</li>
+                    <li>Memory Used: <strong id="memory-used">Loading...</strong> GB</li>
+                    <li>Total Memory: <strong id="memory-total">Loading...</strong> GB</li>
+                </ul>
+            </div>
+
+            <div class="col-md-4">
+                <h5>Disk Information</h5>
+                <ul>
+                    <li>Disk Used: <strong id="disk-used">Loading...</strong> GB</li>
+                    <li>Total Disk Space: <strong id="disk-total">Loading...</strong> GB</li>
+                    <li>Free Disk Space: <strong id="disk-free">Loading...</strong> GB</li>
+                    <li>Disk Usage Percentage: <strong id="disk-percent">Loading...</strong> %</li>
+                </ul>
+            </div>
+        </div>
+        <h3 class="mb0">Container Status</h3>
+        <p class="text-muted mb-4">
+            <i>For detailed monitoring and management, check the status in 
+            <a href="/portainer" class="text-info" target="_blank">Portainer</a>.</i>
+        </p>
+        <div class="container">
+        <table class="table table-hover table-sm table-bordered">
+            <thead class="thead-light">
                 <tr>
-                    <th>Name</th>
-                    <th>State</th>
-                    <th>Image</th>
-                    <th>Created</th>
-                    <th>IP Address</th>
-                    <th>Published Ports</th>
+                    <th style="width: 20%;">Name</th>
+                    <th style="width: 15%;">State</th>
+                    <!-- <th style="width: 25%;">Image</th> -->
+                    <th style="width: 15%;">Created</th>
+                    <th style="width: 15%;">IP Address</th>
+                    <th style="width: 10%;">Published Ports</th>
                 </tr>
             </thead>
             <tbody>
                 {% for container in containers %}
                 <tr>
-                    <td>{{ container.name | default('N/A') }}</td>
                     <td>
+                        <a href="/containers/{{ container.id }}" data-toggle="tooltip" title="View container details">
+                            {{ container.name | default('N/A') }}
+                        </a>
+                    </td>
+                    <td class="text-center">
                         <span class="{{ state_color(container.status) }}" style="font-weight:bold;">
+                            <i class="fas {% if container.status == 'running' %}fa-check-circle text-success{% elif container.status == 'exited' %}fa-times-circle text-danger{% else %}fa-exclamation-circle text-warning{% endif %}"></i>
                             {{ container.status | default('Unknown') }}
                         </span>
                     </td>
-                    <td>{{ container.image | default('N/A') }}</td>
+                    <!-- <td>{{ container.image | default('N/A') }}</td> -->
                     <td>{{ container.created | default('N/A') }}</td>
-                    <td>{{ container.ip_address | default('N/A') }}</td>
+                    <td>
+                        <i class="fas fa-network-wired"></i>
+                        <span data-toggle="tooltip" title="IP Address">{{ container.ip_address | default('N/A') }}</span>
+                    </td>
                     <td>{{ container.published_ports | default('N/A') }}</td>
                 </tr>
                 {% endfor %}
             </tbody>
         </table>
     </div>
+        
+        
+    </div>
 
     <!-- Bootstrap JS and dependencies -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Optional JavaScript to activate tooltips -->
+    <script>
+        $(document).ready(function(){
+            $('[data-toggle="tooltip"]').tooltip(); 
+        });
+    </script>
 </body>
 </html>

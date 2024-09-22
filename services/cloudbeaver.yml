@@ -1,6 +1,9 @@
   cloudbeaver:
-    image: ${IF_USING_LOCAL_REGISTRY}dbeaver/cloudbeaver:latest
     container_name: cloudbeaver
+    build:
+      context: ./docker/cloudbeaver
+      args: 
+        IMAGE: ${IF_USING_LOCAL_REGISTRY}dbeaver/cloudbeaver:24.2.0
     environment:
       - CB_SERVER_NAME=CloudBeaver
       - CB_ADMIN_NAME=admin
