@@ -14,11 +14,7 @@
       - 8888:8888
       - 4045:4040
     volumes:
-      - ./shared-workspace:/home/jovyan/work
-      - ./data/delta_lake:/home/jovyan/delta_lake
-      - ./data/parquet:/home/jovyan/parquet
-      - ./data/iceberg:/home/jovyan/iceberg
-    depends_on:
-      - spark-master
+      - data:/home/jovyan/data
+      - lab:/home/jovyan/lab
     networks:
       - my-network

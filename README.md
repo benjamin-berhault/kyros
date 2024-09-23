@@ -20,9 +20,8 @@ This project provides a Docker-based environment for data engineering using Apac
 
 ## 📝 Next steps
 
-- DBeaver data access for the 3 formats
-- Orchestration with Dagster
-- Hue
+- https://github.com/cnstlungu/portable-data-stack-dagster
+- https://github.com/zsvoboda/ngods-stocks
 
 ## Architecture Overview
 

@@ -31,10 +31,8 @@ services:
       - SPARK_MASTER_WEBUI_PORT=8080
       - SPARK_UI_PORT=4040  # Explicitly set UI port for Spark Master
     volumes:
-      - shared-workspace:/home/jovyan/work
-      - ./data/delta_lake:/home/jovyan/delta_lake
-      - ./data/parquet:/home/jovyan/parquet
-      - ./data/iceberg:/home/jovyan/iceberg
+      - data:/home/jovyan/data
+      - lab:/home/jovyan/lab
     networks:
       - my-network
 
@@ -158,13 +156,33 @@ services:
       - my-network
 
 volumes:
-  shared-workspace:
+  data:
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: ${PWD}/shared-workspace
+      device: ${PWD}/data/data
 
+  lab:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ${PWD}/data/lab
+
+  dagster-project:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ${PWD}/data/orchestrate/dagster/${DAGSTER_WORKSPACE}
+
+  transform:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ${PWD}/data/transform
   # delta_lake:
   #   driver: local
   #   driver_opts:

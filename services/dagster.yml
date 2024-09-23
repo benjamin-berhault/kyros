@@ -3,13 +3,18 @@
     build:
       context: ./docker/dagster
       args: 
-        IMAGE: ${IF_USING_LOCAL_REGISTRY}python:3.9-slim
+        IMAGE: ${IF_USING_LOCAL_REGISTRY}python:3.10-slim
     ports:
       - "3000:3000"
+    environment:
+      - DAGSTER_WORKSPACE_PATH=/opt/dagster-projects/${DAGSTER_WORKSPACE}/workspace.yaml
     depends_on:
       - postgres
     networks:
       - my-network
-    # volumes:
-    #   - ./dagster:/opt/dagster
+    volumes:
+      - dagster-project:/opt/dagster/app
     #   - ./pyflink:/opt/pyflink
+    
+
+      

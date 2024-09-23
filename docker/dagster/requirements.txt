@@ -1,4 +1,6 @@
-dagster
+dagster==1.8.6
 dagster-webserver
 dagster-postgres
 uvicorn==0.18.3
+dbt-core==1.8.6
+dagster-dbt==0.24.9  # Ensure this version or later is specified

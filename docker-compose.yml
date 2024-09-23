@@ -31,12 +31,8 @@ services:
       - 8888:8888
       - 4045:4040
     volumes:
-      - ./shared-workspace:/home/jovyan/work
-      - ./data/delta_lake:/home/jovyan/delta_lake
-      - ./data/parquet:/home/jovyan/parquet
-      - ./data/iceberg:/home/jovyan/iceberg
-    depends_on:
-      - spark-master
+      - data:/home/jovyan/data
+      - lab:/home/jovyan/lab
     networks:
       - my-network
  
@@ -90,25 +86,6 @@ services:
     networks:
       - my-network
  
-  sqlpad:
-    build:
-      context: ./docker/sqlpad
-      args:
-        IMAGE: ${IF_USING_LOCAL_REGISTRY}sqlpad/sqlpad:7.5.0
-    container_name: sqlpad
-    environment:
-      - SQLPAD_PORT=3001
-      - SQLPAD_ADMIN=admin@example.com
-      - SQLPAD_ADMIN_PASSWORD=admin
-      - SQLPAD_AUTH_DISABLED=false
-      - SQLPAD_BASE_URL=/sqlpad    # Base URL if behind a reverse proxy
-    ports:
-      - "3001:3001"
-    # volumes:
-    #   - ./docker/sqlpad/data:/var/lib/sqlpad  # Persistent storage for SQLPad data
-    networks:
-      - my-network
- 
   kyros:
     container_name: kyros
     build:
@@ -128,17 +105,19 @@ services:
     build:
       context: ./docker/dagster
       args: 
-        IMAGE: ${IF_USING_LOCAL_REGISTRY}python:3.9-slim
+        IMAGE: ${IF_USING_LOCAL_REGISTRY}python:3.10-slim
     ports:
       - "3000:3000"
+    environment:
+      - DAGSTER_WORKSPACE_PATH=/opt/dagster/app/workspace.yaml
     depends_on:
       - postgres
     networks:
       - my-network
-    # volumes:
-    #   - ./dagster:/opt/dagster
+    volumes:
+      - dagster-project:/opt/dagster/app
     #   - ./pyflink:/opt/pyflink
- 
+      
   dbt:
     container_name: dbt
     build:
@@ -225,10 +204,8 @@ services:
       - SPARK_MASTER_WEBUI_PORT=8080
       - SPARK_UI_PORT=4040  # Explicitly set UI port for Spark Master
     volumes:
-      - shared-workspace:/home/jovyan/work
-      - ./data/delta_lake:/home/jovyan/delta_lake
-      - ./data/parquet:/home/jovyan/parquet
-      - ./data/iceberg:/home/jovyan/iceberg
+      - data:/home/jovyan/data
+      - lab:/home/jovyan/lab
     networks:
       - my-network
 
@@ -251,10 +228,8 @@ services:
       - SPARK_EXECUTOR_CORES=2
       - SPARK_UI_PORT=4041
     volumes:
-      - ./shared-workspace:/home/jovyan/work
-      - ./data/delta_lake:/home/jovyan/delta_lake
-      - ./data/parquet:/home/jovyan/parquet
-      - ./data/iceberg:/home/jovyan/iceberg
+      - data:/home/jovyan/data
+      - lab:/home/jovyan/lab
     depends_on:
       - spark-master
     networks:
@@ -279,10 +254,8 @@ services:
       - SPARK_EXECUTOR_CORES=2
       - SPARK_UI_PORT=4042
     volumes:
-      - ./shared-workspace:/home/jovyan/work
-      - ./data/delta_lake:/home/jovyan/delta_lake
-      - ./data/parquet:/home/jovyan/parquet
-      - ./data/iceberg:/home/jovyan/iceberg
+      - data:/home/jovyan/data
+      - lab:/home/jovyan/lab
     depends_on:
       - spark-master
     networks:
@@ -408,13 +381,33 @@ services:
       - my-network
 
 volumes:
-  shared-workspace:
+  data:
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: ${PWD}/shared-workspace
+      device: ${PWD}/data/data
 
+  lab:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ${PWD}/data/lab
+
+  dagster-project:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ${PWD}/data/orchestrate/dagster/${DAGSTER_WORKSPACE}
+
+  transform:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ${PWD}/data/transform
   # delta_lake:
   #   driver: local
   #   driver_opts:

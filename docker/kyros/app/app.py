@@ -192,14 +192,12 @@ def home():
 
     except ConnectionError:
         # Portainer is not available, return a custom error page or message
-        return render_template('base.html', content_url='/service_unavailable', menu=menu_data)
+        return render_template('503.html', content_url='/service_unavailable', menu=menu_data)
 
     except Exception as e:
         # Log any other unexpected exceptions and return an internal server error
         print(f"Unexpected error: {e}")
-        return render_template('base.html', content_url='/internal_error', menu=menu_data)
-
-
+        return render_template('500.html', content_url='/internal_error', menu=menu_data)
 
 @app.route('/cloudbeaver')
 def cloudbeaver():
@@ -278,7 +276,7 @@ def page_not_found(e):
     print(f"404 Error: {e}")
     
     # Render a custom 404 error page
-    return render_template('base.html', content_url='/not_found', menu=menu_data)
+    return render_template('404.html', content_url='/not_found', menu=menu_data)
 
 @app.errorhandler(500)
 def internal_server_error(e):
