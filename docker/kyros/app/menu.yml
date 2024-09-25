@@ -17,6 +17,9 @@ menu:
           - name: "Notebook"
             route: "/jupyterlab"
             description: "Jupyter Notebook"
+          - name: "Superset"
+            route: "/superset"
+            description: "Superset BI"
 
   - name: "Storage"
     icon: "svg-a365-explore"

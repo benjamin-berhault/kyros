@@ -219,6 +219,11 @@ def jupyterlab():
     # Embed JupyterLab inside an iframe
     return render_template('base.html', content_url='http://localhost:8888', menu=menu_data)
 
+@app.route('/superset')
+def jupyterlab():
+    # Embed JupyterLab inside an iframe
+    return render_template('base.html', content_url='http://localhost:8088', menu=menu_data)
+
 @app.route('/minio')
 def minio():
     return render_template('base.html', content_url='http://localhost:9003', menu=menu_data)

@@ -3,18 +3,38 @@
     build:
       context: ./docker/dagster
       args: 
-        IMAGE: ${IF_USING_LOCAL_REGISTRY}python:3.10-slim
-    ports:
-      - "3000:3000"
+        IMAGE: ${IF_USING_LOCAL_REGISTRY}python:3.11-slim
     environment:
-      - DAGSTER_WORKSPACE_PATH=/opt/dagster-projects/${DAGSTER_WORKSPACE}/workspace.yaml
+        POSTGRES_USER: ${POSTGRES_USER}
+        POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+        DAGSTER_HOME: /dagster/postcard_company_dm
+    volumes:
+        - data:/shared
+        - ./docker/dagster/postcard_company_dm:/dagster/postcard_company_dm
+    ports:
+        - "3000:3000"
+    command: dagster-webserver -h 0.0.0.0
     depends_on:
-      - postgres
+      generator:
+        condition: service_completed_successfully
     networks:
       - my-network
-    volumes:
-      - dagster-project:/opt/dagster/app
-    #   - ./pyflink:/opt/pyflink
-    
 
+  # dagster:
+  #   container_name: dagster
+  #   build:
+  #     context: ./docker/dagster
+  #     args: 
+  #       IMAGE: ${IF_USING_LOCAL_REGISTRY}python:3.11-slim
+  #   ports:
+  #     - "3000:3000"
+  #   environment:
+  #     - DAGSTER_WORKSPACE_PATH=/opt/dagster-projects/${DAGSTER_WORKSPACE}/workspace.yaml
+  #   depends_on:
+  #     - postgres
+  #   networks:
+  #     - my-network
+  #   volumes:
+  #     - dagster-project:/opt/dagster/app
+    #   - ./pyflink:/opt/pyflink
       

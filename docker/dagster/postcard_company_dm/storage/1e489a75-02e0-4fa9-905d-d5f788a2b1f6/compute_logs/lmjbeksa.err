@@ -1,0 +1,22 @@
+2024-09-23 19:32:52 +0000 - dagster - DEBUG - run_dbt_test_job - 1e489a75-02e0-4fa9-905d-d5f788a2b1f6 - 5898 - LOGS_CAPTURED - Started capturing logs in process (pid: 5898).
+2024-09-23 19:32:52 +0000 - dagster - DEBUG - run_dbt_test_job - 1e489a75-02e0-4fa9-905d-d5f788a2b1f6 - 5898 - dbt_test_op - STEP_START - Started execution of step "dbt_test_op".
+2024-09-23 19:32:52 +0000 - dagster - INFO - resource:dbt - 1e489a75-02e0-4fa9-905d-d5f788a2b1f6 - dbt_test_op - Executing command: dbt --no-use-colors --log-format json test --project-dir /dagster-dbt/postcard_company_dm/postcard_company_dm/../dbt --profiles-dir /dagster-dbt/postcard_company_dm/postcard_company_dm/../dbt/config
+2024-09-23 19:32:55 +0000 - dagster - INFO - resource:dbt - 1e489a75-02e0-4fa9-905d-d5f788a2b1f6 - dbt_test_op - Running with dbt=1.8.2
+2024-09-23 19:32:55 +0000 - dagster - INFO - resource:dbt - 1e489a75-02e0-4fa9-905d-d5f788a2b1f6 - dbt_test_op - Registered adapter: duckdb=1.8.1
+2024-09-23 19:32:56 +0000 - dagster - INFO - resource:dbt - 1e489a75-02e0-4fa9-905d-d5f788a2b1f6 - dbt_test_op - Found 22 models, 1 test, 1 seed, 7 sources, 528 macros
+2024-09-23 19:32:56 +0000 - dagster - INFO - resource:dbt - 1e489a75-02e0-4fa9-905d-d5f788a2b1f6 - dbt_test_op
+2024-09-23 19:32:57 +0000 - dagster - INFO - resource:dbt - 1e489a75-02e0-4fa9-905d-d5f788a2b1f6 - dbt_test_op - Concurrency: 1 threads (target='local')
+2024-09-23 19:32:57 +0000 - dagster - INFO - resource:dbt - 1e489a75-02e0-4fa9-905d-d5f788a2b1f6 - dbt_test_op
+2024-09-23 19:32:57 +0000 - dagster - INFO - resource:dbt - 1e489a75-02e0-4fa9-905d-d5f788a2b1f6 - dbt_test_op - 1 of 1 START test total_amount_is_non_negative ................................. [RUN]
+2024-09-23 19:32:58 +0000 - dagster - INFO - resource:dbt - 1e489a75-02e0-4fa9-905d-d5f788a2b1f6 - dbt_test_op - 1 of 1 PASS total_amount_is_non_negative ....................................... [PASS in 0.36s]
+2024-09-23 19:32:58 +0000 - dagster - INFO - resource:dbt - 1e489a75-02e0-4fa9-905d-d5f788a2b1f6 - dbt_test_op
+2024-09-23 19:32:58 +0000 - dagster - INFO - resource:dbt - 1e489a75-02e0-4fa9-905d-d5f788a2b1f6 - dbt_test_op - Finished running 1 test in 0 hours 0 minutes and 1.63 seconds (1.63s).
+2024-09-23 19:32:58 +0000 - dagster - INFO - resource:dbt - 1e489a75-02e0-4fa9-905d-d5f788a2b1f6 - dbt_test_op
+2024-09-23 19:32:58 +0000 - dagster - INFO - resource:dbt - 1e489a75-02e0-4fa9-905d-d5f788a2b1f6 - dbt_test_op - Completed successfully
+2024-09-23 19:32:58 +0000 - dagster - INFO - resource:dbt - 1e489a75-02e0-4fa9-905d-d5f788a2b1f6 - dbt_test_op
+2024-09-23 19:32:58 +0000 - dagster - INFO - resource:dbt - 1e489a75-02e0-4fa9-905d-d5f788a2b1f6 - dbt_test_op - Done. PASS=1 WARN=0 ERROR=0 SKIP=0 TOTAL=1
+2024-09-23 19:32:59 +0000 - dagster - INFO - resource:dbt - 1e489a75-02e0-4fa9-905d-d5f788a2b1f6 - dbt_test_op - dbt exited with return code 0
+2024-09-23 19:32:59 +0000 - dagster - DEBUG - run_dbt_test_job - 1e489a75-02e0-4fa9-905d-d5f788a2b1f6 - 5898 - dbt_test_op - STEP_OUTPUT - Yielded output "result" of type "DbtOutput". (Type check passed).
+2024-09-23 19:32:59 +0000 - dagster - DEBUG - run_dbt_test_job - 1e489a75-02e0-4fa9-905d-d5f788a2b1f6 - dbt_test_op - Writing file at: /dagster-dbt/postcard_company_dm/storage/1e489a75-02e0-4fa9-905d-d5f788a2b1f6/dbt_test_op/result using PickledObjectFilesystemIOManager...
+2024-09-23 19:32:59 +0000 - dagster - DEBUG - run_dbt_test_job - 1e489a75-02e0-4fa9-905d-d5f788a2b1f6 - 5898 - dbt_test_op - HANDLED_OUTPUT - Handled output "result" using IO manager "io_manager"
+2024-09-23 19:32:59 +0000 - dagster - DEBUG - run_dbt_test_job - 1e489a75-02e0-4fa9-905d-d5f788a2b1f6 - 5898 - dbt_test_op - STEP_SUCCESS - Finished execution of step "dbt_test_op" in 6.6s.

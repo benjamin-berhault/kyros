@@ -98,6 +98,27 @@ if [ "$INCLUDE_CODE_SERVER" = "true" ]; then
 "
 fi
 
+# Include additional services based on environment variables
+if [ "$INCLUDE_GENERATOR" = "true" ]; then
+  additional_services+="$(cat services/generator.yml)
+ 
+"
+fi
+
+# Include additional services based on environment variables
+if [ "$INCLUDE_POSTGRES" = "true" ]; then
+  additional_services+="$(cat services/postgres.yml)
+ 
+"
+fi
+
+# Include additional services based on environment variables
+if [ "$INCLUDE_SUPERSET" = "true" ]; then
+  additional_services+="$(cat services/superset.yml)
+ 
+"
+fi
+
 # Generate worker services
 for i in $(seq 1 $WORKERS); do
   spark_worker_services+="  spark-worker-$i:\n"

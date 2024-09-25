@@ -105,19 +105,42 @@ services:
     build:
       context: ./docker/dagster
       args: 
-        IMAGE: ${IF_USING_LOCAL_REGISTRY}python:3.10-slim
-    ports:
-      - "3000:3000"
+        IMAGE: ${IF_USING_LOCAL_REGISTRY}python:3.11-slim
     environment:
-      - DAGSTER_WORKSPACE_PATH=/opt/dagster/app/workspace.yaml
+        POSTGRES_USER: ${POSTGRES_USER}
+        POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+        DAGSTER_HOME: /dagster/postcard_company_dm
+    volumes:
+        - data:/shared
+        - ./docker/dagster/postcard_company_dm:/dagster/postcard_company_dm
+    ports:
+        - "3000:3000"
+    command: dagster-webserver -h 0.0.0.0
     depends_on:
-      - postgres
+      generator:
+        condition: service_completed_successfully
     networks:
       - my-network
-    volumes:
-      - dagster-project:/opt/dagster/app
+
+  # dagster:
+  #   container_name: dagster
+  #   build:
+  #     context: ./docker/dagster
+  #     args: 
+  #       IMAGE: ${IF_USING_LOCAL_REGISTRY}python:3.11-slim
+  #   ports:
+  #     - "3000:3000"
+  #   environment:
+  #     - DAGSTER_WORKSPACE_PATH=/opt/dagster-projects/${DAGSTER_WORKSPACE}/workspace.yaml
+  #   depends_on:
+  #     - postgres
+  #   networks:
+  #     - my-network
+  #   volumes:
+  #     - dagster-project:/opt/dagster/app
     #   - ./pyflink:/opt/pyflink
       
+ 
   dbt:
     container_name: dbt
     build:
@@ -183,6 +206,85 @@ services:
       - ./data/dbt_project:/home/coder/dbt_project  # Shared volume with the dbt container
       - ./docker/code-server/project:/home/coder/project  # Mount the project directory
       - ./docker/code-server/settings.json:/home/coder/.local/share/code-server/User/settings.json  # Mount settings.json for custom configurations
+    networks:
+      - my-network
+ 
+  generator:
+    container_name: generator
+    build:
+      context: ./docker/generator
+      args:
+        IMAGE: ${IF_USING_LOCAL_REGISTRY}python:3.9-slim
+        POSTGRES_USER: $POSTGRES_USER
+        POSTGRES_PASSWORD: $POSTGRES_PASSWORD
+    volumes:
+      - data:/shared
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - my-network
+ 
+
+  postgres:
+    container_name: postgres
+    build:
+      context: ./docker/postgres
+      args:
+        IMAGE: ${IF_USING_LOCAL_REGISTRY}postgres:16.4
+    environment:
+      #- POSTGRES_DB=metastore
+      #- POSTGRES_USER=metastore_user
+      #- POSTGRES_PASSWORD=metastore_password
+      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - METASTORE_USER=metastore_user
+      - METASTORE_PASSWORD=metastore_password
+      - METASTORE_DB=metastore
+      - SPARK_USER=spark_user
+      - SPARK_PASSWORD=spark_password
+      - DAGSTER_ROLE=dagster
+      - DAGSTER_PASSWORD=dagsterpassword
+      - DAGSTER_DB=dagster
+      - SANDPIT_USER=test_user
+      - SANDPIT_PASSWORD=test_password
+      - SANDPIT_DB=testdb
+      #- SQLPAD_USER=sqlpad
+      #- SQLPAD_PASSWORD=sqlpadpass
+      #- SQLPAD_DB=sqlpaddb
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./docker/postgres/test-data-sample.sql:/docker-entrypoint-initdb.d/test-data-sample.sql
+    networks:
+      - my-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -d sales_oltp --username $POSTGRES_USER"]
+      interval: 30s
+      timeout: 60s
+      retries: 5
+      start_period: 45s
+ 
+  superset:
+    build:
+      context: ./docker/superset
+      args:
+        IMAGE: ${IF_USING_LOCAL_REGISTRY}apache/superset:3.1.3
+        POSTGRES_USER: $POSTGRES_USER
+        POSTGRES_PASSWORD: $POSTGRES_PASSWORD
+        SUPERSET_ADMIN: $SUPERSET_ADMIN
+        SUPERSET_PASSWORD: $SUPERSET_PASSWORD
+        SUPERSET_SECRET_KEY: ${SUPERSET_SECRET_KEY}
+    environment:
+      SUPERSET_SECRET_KEY: ${SUPERSET_SECRET_KEY}
+    ports:
+        - "8088:8088"
+    command:     gunicorn --bind  "0.0.0.0:8088" --access-logfile '-' --error-logfile '-' --workers 1 --worker-class gthread --threads 20 --timeout 60 --limit-request-line 0 --limit-request-field_size 0 "superset.app:create_app()"
+    volumes:
+        - ./shared/db:/app/superset_home/db
+    depends_on:
+      - dagster
     networks:
       - my-network
  
@@ -324,41 +426,7 @@ services:
       - postgres
     networks:
       - my-network
-
-  postgres:
-    container_name: postgres
-    build:
-      context: ./docker/postgres
-      args:
-        IMAGE: ${IF_USING_LOCAL_REGISTRY}postgres:16.4
-    environment:
-      #- POSTGRES_DB=metastore
-      #- POSTGRES_USER=metastore_user
-      #- POSTGRES_PASSWORD=metastore_password
-      - POSTGRES_DB=postgres
-      - POSTGRES_USER=postgres_admin
-      - POSTGRES_PASSWORD=admin_password
-      - METASTORE_USER=metastore_user
-      - METASTORE_PASSWORD=metastore_password
-      - METASTORE_DB=metastore
-      - SPARK_USER=spark_user
-      - SPARK_PASSWORD=spark_password
-      - DAGSTER_ROLE=dagster
-      - DAGSTER_PASSWORD=dagsterpassword
-      - DAGSTER_DB=dagster
-      - SANDPIT_USER=test_user
-      - SANDPIT_PASSWORD=test_password
-      - SANDPIT_DB=testdb
-      #- SQLPAD_USER=sqlpad
-      #- SQLPAD_PASSWORD=sqlpadpass
-      #- SQLPAD_DB=sqlpaddb
-    ports:
-      - "5432:5432"
-    volumes:
-      - ./docker/postgres/test-data-sample.sql:/docker-entrypoint-initdb.d/test-data-sample.sql
-    networks:
-      - my-network
-
+      
   spark-thrift-server:
     container_name: spark-thrift-server
     build:

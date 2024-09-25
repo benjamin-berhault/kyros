@@ -1,0 +1,15 @@
+  generator:
+    container_name: generator
+    build:
+      context: ./docker/generator
+      args:
+        IMAGE: ${IF_USING_LOCAL_REGISTRY}python:3.9-slim
+        POSTGRES_USER: $POSTGRES_USER
+        POSTGRES_PASSWORD: $POSTGRES_PASSWORD
+    volumes:
+      - data:/shared
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - my-network

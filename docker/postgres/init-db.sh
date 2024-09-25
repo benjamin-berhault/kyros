@@ -67,6 +67,9 @@ EOSQL
 echo "Dagster and Flink users and databases created and privileges granted successfully."
 
 
+execute_psql "$POSTGRES_DB" "$POSTGRES_USER" <<-EOSQL
+    CREATE DATABASE sales_oltp;
+EOSQL
 # # Create the SQLPad user and database
 # echo "Creating SQLPad user and database..."
 

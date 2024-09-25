@@ -17,7 +17,6 @@ This project provides a Docker-based environment for data engineering using Apac
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-
 ## 📝 Next steps
 
 - https://github.com/cnstlungu/portable-data-stack-dagster

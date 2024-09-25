@@ -1,0 +1,40 @@
+
+  postgres:
+    container_name: postgres
+    build:
+      context: ./docker/postgres
+      args:
+        IMAGE: ${IF_USING_LOCAL_REGISTRY}postgres:16.4
+    environment:
+      #- POSTGRES_DB=metastore
+      #- POSTGRES_USER=metastore_user
+      #- POSTGRES_PASSWORD=metastore_password
+      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - METASTORE_USER=metastore_user
+      - METASTORE_PASSWORD=metastore_password
+      - METASTORE_DB=metastore
+      - SPARK_USER=spark_user
+      - SPARK_PASSWORD=spark_password
+      - DAGSTER_ROLE=dagster
+      - DAGSTER_PASSWORD=dagsterpassword
+      - DAGSTER_DB=dagster
+      - SANDPIT_USER=test_user
+      - SANDPIT_PASSWORD=test_password
+      - SANDPIT_DB=testdb
+      #- SQLPAD_USER=sqlpad
+      #- SQLPAD_PASSWORD=sqlpadpass
+      #- SQLPAD_DB=sqlpaddb
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./docker/postgres/test-data-sample.sql:/docker-entrypoint-initdb.d/test-data-sample.sql
+    networks:
+      - my-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -d sales_oltp --username $POSTGRES_USER"]
+      interval: 30s
+      timeout: 60s
+      retries: 5
+      start_period: 45s
