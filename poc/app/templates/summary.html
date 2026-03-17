@@ -1,0 +1,119 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2 class="text-primary">Configuration Summary</h2>
+<p class="mb-3">Review the selected configuration options below before proceeding to deployment.</p>
+
+{% if summary %}
+<div class="card mb-4">
+    <div class="card-header">
+        <strong>Configuration Details</strong>
+    </div>
+    <div class="list-group list-group-flush">
+        {% for item in summary %}
+        <div class="list-group-item d-flex align-items-center">
+            <span class="badge bg-primary me-2">{{ loop.index }}</span>
+            <span>{{ item }}</span>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% else %}
+<div class="alert alert-warning">No configuration options were selected. Please go back and configure your setup.</div>
+{% endif %}
+
+<form id="deployment-form">
+    <div class="d-flex justify-content-between">
+        <a href="/" class="btn btn-secondary">Back to Configuration</a>
+        <button id="deploymentButton" class="btn btn-primary">Start Deployment</button>
+    </div>
+</form>
+
+<div class="position-relative mt-3">
+    <button id="copyLogsBtn" class="btn btn-sm btn-outline-secondary position-absolute" style="top: 8px; right: 8px; z-index: 10;" onclick="copyLogs()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+            <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
+            <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
+        </svg>
+        Copy
+    </button>
+    <pre id="logs" class="terminal"></pre>
+</div>
+
+<script src="https://cdn.socket.io/4.6.0/socket.io.min.js"></script>
+<script>
+const socket = io();
+const deploymentButton = document.getElementById('deploymentButton');
+
+// Copy logs to clipboard
+function copyLogs() {
+    const logsElement = document.getElementById('logs');
+    const text = logsElement.innerText;
+    navigator.clipboard.writeText(text).then(() => {
+        const btn = document.getElementById('copyLogsBtn');
+        const originalHTML = btn.innerHTML;
+        btn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z"/></svg> Copied!';
+        btn.classList.remove('btn-outline-secondary');
+        btn.classList.add('btn-success');
+        setTimeout(() => {
+            btn.innerHTML = originalHTML;
+            btn.classList.remove('btn-success');
+            btn.classList.add('btn-outline-secondary');
+        }, 2000);
+    });
+}
+
+let deploymentInProgress = false;
+
+// Handle deployment button click
+deploymentButton.addEventListener('click', (event) => {
+    event.preventDefault(); // Prevent form submission and reload
+
+    if (!deploymentInProgress) {
+        // Start deployment
+        deploymentInProgress = true;
+        deploymentButton.textContent = 'Cancel Deployment';
+        deploymentButton.className = 'btn btn-danger';
+        socket.emit('start_workflow');
+    } else {
+        // Cancel deployment
+        deploymentInProgress = false;
+        deploymentButton.textContent = 'Start Deployment';
+        deploymentButton.className = 'btn btn-primary';
+        socket.emit('cancel_workflow'); // Ensure your server can handle this
+    }
+});
+
+// Handle incoming log messages
+socket.on('log', (data) => {
+    const logElement = document.getElementById('logs');
+
+    // Create a new log line
+    const logMessage = document.createElement('div');
+    logMessage.textContent = data.message;
+
+    // Apply color coding based on message content
+    if (data.message.includes('ERROR')) {
+        logMessage.className = 'log-error';
+    } else if (data.message.includes('success')) {
+        logMessage.className = 'log-success';
+    } else if (data.message.includes('Running')) {
+        logMessage.className = 'log-info';
+    } else {
+        logMessage.className = 'log-default'; // Default style
+    }
+
+    // Append the new log line and auto-scroll
+    logElement.appendChild(logMessage);
+    logElement.scrollTop = logElement.scrollHeight;
+
+    // Check for deployment completion
+    if (data.message.includes('Deployment successful')) {
+        deploymentInProgress = false;
+        deploymentButton.textContent = 'Access the Platform';
+        deploymentButton.className = 'btn btn-success';
+        deploymentButton.onclick = () => window.location.href = 'http://your-deployed-platform.com';
+    }
+});
+</script>
+{% endblock %}

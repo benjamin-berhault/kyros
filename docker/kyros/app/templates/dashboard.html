@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kyros - Platform Services</title>
+    <style>
+        :root {
+            --bg-dark: #0d1117;
+            --bg-card: #161b22;
+            --bg-card-hover: #21262d;
+            --border: #30363d;
+            --text: #c9d1d9;
+            --text-muted: #8b949e;
+            --accent: #58a6ff;
+            --success: #3fb950;
+            --warning: #d29922;
+            --danger: #f85149;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+            background: var(--bg-dark);
+            color: var(--text);
+            min-height: 100vh;
+            padding: 24px;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 32px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .header h1 {
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        .header h1 span { color: var(--accent); }
+
+        .status-summary {
+            display: flex;
+            gap: 16px;
+        }
+
+        .status-pill {
+            padding: 6px 12px;
+            border-radius: 16px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .status-pill.running { background: rgba(63, 185, 80, 0.2); color: var(--success); }
+        .status-pill.stopped { background: rgba(248, 81, 73, 0.2); color: var(--danger); }
+
+        .section { margin-bottom: 32px; }
+
+        .section-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 16px;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 16px;
+        }
+
+        .service-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 16px;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .service-card:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .service-card.offline {
+            opacity: 0.5;
+        }
+
+        .service-card.offline:hover {
+            border-color: var(--border);
+            transform: none;
+            cursor: not-allowed;
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 8px;
+        }
+
+        .card-title {
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .status-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            margin-top: 4px;
+        }
+
+        .status-dot.online { background: var(--success); box-shadow: 0 0 8px var(--success); }
+        .status-dot.offline { background: var(--danger); }
+        .status-dot.unknown { background: var(--warning); }
+
+        .card-desc {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-bottom: 12px;
+        }
+
+        .card-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .card-port { color: var(--accent); }
+        .card-level {
+            background: var(--bg-dark);
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
+
+        .decision-card {
+            background: linear-gradient(135deg, #1a1f35 0%, #0d1117 100%);
+            border: 1px solid var(--accent);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 32px;
+        }
+
+        .decision-card h2 {
+            font-size: 18px;
+            margin-bottom: 16px;
+            color: var(--accent);
+        }
+
+        .decision-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+        }
+
+        .decision-item {
+            background: rgba(255,255,255,0.05);
+            padding: 12px;
+            border-radius: 8px;
+        }
+
+        .decision-item h3 {
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+
+        .decision-item p {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .system-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+
+        .stat-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 16px;
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 28px;
+            font-weight: 600;
+            color: var(--accent);
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+
+        .progress-bar {
+            height: 4px;
+            background: var(--border);
+            border-radius: 2px;
+            margin-top: 8px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--accent);
+            border-radius: 2px;
+            transition: width 0.3s;
+        }
+
+        .progress-fill.warning { background: var(--warning); }
+        .progress-fill.danger { background: var(--danger); }
+
+        @media (max-width: 768px) {
+            .system-stats { grid-template-columns: 1fr; }
+            .services-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Kyros <span>Platform</span></h1>
+        <div class="status-summary">
+            <span class="status-pill running" id="running-count">-- running</span>
+            <span class="status-pill stopped" id="stopped-count">-- stopped</span>
+        </div>
+    </div>
+
+    <div class="system-stats">
+        <div class="stat-card">
+            <div class="stat-value" id="cpu-value">--%</div>
+            <div class="stat-label">CPU Usage</div>
+            <div class="progress-bar"><div class="progress-fill" id="cpu-bar" style="width: 0%"></div></div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-value" id="mem-value">--%</div>
+            <div class="stat-label">Memory Usage</div>
+            <div class="progress-bar"><div class="progress-fill" id="mem-bar" style="width: 0%"></div></div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-value" id="disk-value">--%</div>
+            <div class="stat-label">Disk Usage</div>
+            <div class="progress-bar"><div class="progress-fill" id="disk-bar" style="width: 0%"></div></div>
+        </div>
+    </div>
+
+    <div class="decision-card">
+        <h2>Do you need Spark?</h2>
+        <div class="decision-grid">
+            <div class="decision-item">
+                <h3>< 10 GB</h3>
+                <p>PostgreSQL + dbt or DuckDB. Spark is overkill.</p>
+            </div>
+            <div class="decision-item">
+                <h3>10-100 GB</h3>
+                <p>DuckDB or warehouse + dbt. Consider Spark optional.</p>
+            </div>
+            <div class="decision-item">
+                <h3>100 GB - 1 TB</h3>
+                <p>Warehouse + dbt. Spark starts making sense.</p>
+            </div>
+            <div class="decision-item">
+                <h3>1+ TB</h3>
+                <p>Spark is justified. Consider Trino for federated queries.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">Data & Processing</div>
+        <div class="services-grid" id="data-services">
+            <!-- Populated by JS -->
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">Orchestration & BI</div>
+        <div class="services-grid" id="orchestration-services">
+            <!-- Populated by JS -->
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">Development Tools</div>
+        <div class="services-grid" id="dev-services">
+            <!-- Populated by JS -->
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">Infrastructure</div>
+        <div class="services-grid" id="infra-services">
+            <!-- Populated by JS -->
+        </div>
+    </div>
+
+    <script>
+        const SERVICES = {
+            data: [
+                { name: "PostgreSQL", desc: "Relational database", port: 5432, level: 1, url: null },
+                { name: "MinIO", desc: "S3-compatible object storage", port: 9001, level: 2, url: "http://localhost:9001" },
+                { name: "Trino", desc: "Federated SQL query engine", port: 8082, level: 3, url: "http://localhost:8082" },
+                { name: "Spark Master", desc: "Distributed processing", port: 8080, level: 3, url: "http://localhost:8080" },
+                { name: "Kafka", desc: "Event streaming platform", port: 9092, level: 4, url: null },
+                { name: "Flink", desc: "Stream processing", port: 8081, level: 4, url: "http://localhost:8081" },
+            ],
+            orchestration: [
+                { name: "Dagster", desc: "Data orchestration", port: 3000, level: 1, url: "http://localhost:3000" },
+                { name: "Superset", desc: "BI & visualization", port: 8088, level: 1, url: "http://localhost:8088" },
+                { name: "dbt", desc: "SQL transformations", port: null, level: 0, url: null },
+            ],
+            dev: [
+                { name: "JupyterLab", desc: "Notebooks & analysis", port: 8888, level: 2, url: "http://localhost:8888" },
+                { name: "Code Server", desc: "VS Code in browser", port: 8083, level: 2, url: "http://localhost:8083" },
+                { name: "CloudBeaver", desc: "Database UI", port: 8978, level: 1, url: "http://localhost:8978" },
+                { name: "SQLPad", desc: "SQL editor", port: 3001, level: 1, url: "http://localhost:3001" },
+            ],
+            infra: [
+                { name: "Kyros Dashboard", desc: "Platform control", port: 5000, level: 1, url: "/" },
+                { name: "Portainer", desc: "Container management", port: 9000, level: 1, url: "http://localhost:9000" },
+                { name: "Grafana", desc: "Monitoring dashboards", port: 3002, level: 2, url: "http://localhost:3002" },
+            ]
+        };
+
+        function createServiceCard(service, status = 'unknown') {
+            const isOnline = status === 'online';
+            const card = document.createElement('a');
+            card.className = `service-card ${isOnline ? '' : 'offline'}`;
+            card.href = service.url || '#';
+            card.target = service.url && service.url !== '/' ? '_blank' : '_self';
+
+            if (!service.url || !isOnline) {
+                card.onclick = (e) => { if (!isOnline) e.preventDefault(); };
+            }
+
+            card.innerHTML = `
+                <div class="card-header">
+                    <span class="card-title">${service.name}</span>
+                    <span class="status-dot ${status}"></span>
+                </div>
+                <div class="card-desc">${service.desc}</div>
+                <div class="card-meta">
+                    <span class="card-port">${service.port ? ':' + service.port : 'CLI'}</span>
+                    <span class="card-level">Level ${service.level}+</span>
+                </div>
+            `;
+            return card;
+        }
+
+        async function checkServiceStatus(service) {
+            if (!service.url || !service.port) return 'unknown';
+
+            try {
+                const controller = new AbortController();
+                setTimeout(() => controller.abort(), 2000);
+
+                await fetch(service.url, {
+                    method: 'HEAD',
+                    mode: 'no-cors',
+                    signal: controller.signal
+                });
+                return 'online';
+            } catch {
+                return 'offline';
+            }
+        }
+
+        async function loadServices() {
+            let running = 0, stopped = 0;
+
+            for (const [category, services] of Object.entries(SERVICES)) {
+                const container = document.getElementById(`${category}-services`);
+                container.innerHTML = '';
+
+                for (const service of services) {
+                    const status = await checkServiceStatus(service);
+                    if (status === 'online') running++;
+                    else if (status === 'offline') stopped++;
+
+                    container.appendChild(createServiceCard(service, status));
+                }
+            }
+
+            document.getElementById('running-count').textContent = `${running} running`;
+            document.getElementById('stopped-count').textContent = `${stopped} stopped`;
+        }
+
+        async function loadStats() {
+            try {
+                const response = await fetch('/stats');
+                const data = await response.json();
+
+                // CPU
+                const cpuPercent = 100 - (data.cpu_info?.cpu_current_speed || 0);
+                document.getElementById('cpu-value').textContent = `${Math.round(cpuPercent)}%`;
+                document.getElementById('cpu-bar').style.width = `${cpuPercent}%`;
+
+                // Memory
+                const memPercent = data.memory_info?.memory_percent || 0;
+                document.getElementById('mem-value').textContent = `${Math.round(memPercent)}%`;
+                document.getElementById('mem-bar').style.width = `${memPercent}%`;
+                document.getElementById('mem-bar').className = `progress-fill ${memPercent > 85 ? 'danger' : memPercent > 70 ? 'warning' : ''}`;
+
+                // Disk
+                const diskPercent = data.disk_info?.disk_percent || 0;
+                document.getElementById('disk-value').textContent = `${Math.round(diskPercent)}%`;
+                document.getElementById('disk-bar').style.width = `${diskPercent}%`;
+                document.getElementById('disk-bar').className = `progress-fill ${diskPercent > 85 ? 'danger' : diskPercent > 70 ? 'warning' : ''}`;
+            } catch (e) {
+                console.error('Failed to load stats:', e);
+            }
+        }
+
+        // Initial load
+        loadServices();
+        loadStats();
+
+        // Refresh every 30 seconds
+        setInterval(loadServices, 30000);
+        setInterval(loadStats, 10000);
+    </script>
+</body>
+</html>

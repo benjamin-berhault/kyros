@@ -1,0 +1,135 @@
+{% extends 'base.html' %}
+{% block content %}
+<div id="content">
+    <div class="container">
+        <h1>Configure Your Kyros Platform</h1>
+        <form method="POST" action="{{ url_for('main.config') }}">
+            
+            <!-- Development Tools -->
+            <h2>Development Tools</h2>
+            <label>
+                <input type="checkbox" name="INCLUDE_MKDOCS" value="true">
+                Include MKDocs (Documentation Generator)
+            </label><br>
+
+            <!-- Notebook Tools -->
+            <h2>Notebook Tools</h2>
+            <label>
+                <input type="checkbox" name="INCLUDE_JUPYTERLAB" value="true">
+                Include JupyterLab
+            </label><br>
+            <label>
+                <input type="checkbox" name="INCLUDE_JUPYTERLAB_CPP_SUPPORT" value="true">
+                JupyterLab C++ Support
+            </label><br>
+            <label>
+                <input type="checkbox" name="INCLUDE_JUPYTERLAB_GO_SUPPORT" value="true">
+                JupyterLab Go Support
+            </label><br>
+            <label>
+                <input type="checkbox" name="INCLUDE_JUPYTERLAB_RUST_SUPPORT" value="true">
+                JupyterLab Rust Support
+            </label><br>
+            <label>
+                <input type="checkbox" name="INCLUDE_JUPYTERLAB_DBT_SUPPORT" value="true">
+                JupyterLab dbt Support
+            </label><br>
+            <label>
+                <input type="checkbox" name="INCLUDE_JUPYTERLAB_DBT_POSTGRES_SUPPORT" value="true">
+                JupyterLab dbt Postgres Support
+            </label><br>
+            <label>
+                <input type="checkbox" name="INCLUDE_JUPYTERLAB_DBT_SPARK_SUPPORT" value="true">
+                JupyterLab dbt Spark Support
+            </label><br>
+
+            <!-- SQL Editors -->
+            <h2>SQL Editors</h2>
+            <label>
+                <input type="checkbox" name="INCLUDE_CLOUDBEAVER" value="true">
+                Include CloudBeaver
+            </label><br>
+            <label>
+                <input type="checkbox" name="INCLUDE_SQLPAD" value="true">
+                Include SQLPad
+            </label><br>
+
+            <!-- Code Editor -->
+            <h2>Code Editor</h2>
+            <label>
+                <input type="checkbox" name="INCLUDE_CODESERVER" value="true">
+                Include Code Server
+            </label><br>
+
+            <!-- Data and Storage Tools -->
+            <h2>Data and Storage Tools</h2>
+            <label>
+                <input type="checkbox" name="INCLUDE_KAFKA" value="true">
+                Include Kafka
+            </label><br>
+            <label>
+                <input type="checkbox" name="INCLUDE_MINIO" value="true">
+                Include MinIO (Object Storage)
+            </label><br>
+            <label>
+                <input type="checkbox" name="INCLUDE_POSTGRES" value="true">
+                Include PostgreSQL
+            </label><br>
+
+            <!-- Data Processing Tools -->
+            <h2>Data Processing Tools</h2>
+            <label>
+                <input type="checkbox" name="INCLUDE_DBT" value="true">
+                Include dbt (Data Build Tool)
+            </label><br>
+            <label>
+                <input type="checkbox" name="INCLUDE_FLINK" value="true">
+                Include Flink (Stream Processing)
+            </label><br>
+            <label>
+                <input type="checkbox" name="INCLUDE_TRINO" value="true">
+                Include Trino (SQL Query Engine)
+            </label><br>
+            <label>
+                <input type="checkbox" name="INCLUDE_SPARKS" value="true">
+                Include Apache Spark
+            </label><br>
+            <label>
+                Number of Spark Workers:
+                <input type="number" name="WORKERS" min="1" max="10" value="2">
+            </label><br>
+
+            <!-- Data Orchestration -->
+            <h2>Data Orchestration</h2>
+            <label>
+                <input type="checkbox" name="INCLUDE_DAGSTER" value="true">
+                Include Dagster (Data Orchestration Tool)
+            </label><br>
+
+            <!-- BI and Analytics Tools -->
+            <h2>BI and Analytics Tools</h2>
+            <label>
+                <input type="checkbox" name="INCLUDE_SUPERSET" value="true">
+                Include Superset (BI Platform)
+            </label><br>
+            <label>
+                <input type="checkbox" name="INCLUDE_GRAFANA" value="true">
+                Include Grafana (Monitoring & Visualization)
+            </label><br>
+
+            <!-- Authentication -->
+            <h2>Authentication and Access Management</h2>
+            <label>
+                <input type="checkbox" name="INCLUDE_OPENLDAP" value="true">
+                Include OpenLDAP (Centralized User Management)
+            </label><br>
+            <label>
+                <input type="checkbox" name="INCLUDE_KEYCLOAK" value="true" checked>
+                Include Keycloak (Identity and Access Management)
+            </label><br>
+
+            <button type="submit" class="btn-primary">Save Configuration</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

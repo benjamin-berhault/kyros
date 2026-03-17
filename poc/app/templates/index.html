@@ -1,0 +1,275 @@
+{% extends 'base.html' %}
+{% block content %}
+        <h1 class="text-primary">Welcome to Kyros</h1>
+        <p class="mb-4">
+            Your open-source data platform, built for customization and scalability. Configure your tools to get started!
+        </p>
+
+        <!-- Configuration Form -->
+        <form method="POST" action="/">
+            <h2 class="section-title mb-3">Select Your Tools</h2>
+
+            <div class="accordion" id="toolAccordion">
+                <!-- Development Tools -->
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="headingDevelopment">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseDevelopment" aria-expanded="true" aria-controls="collapseDevelopment">
+                      Development Tools
+                    </button>
+                  </h2>
+                  <div id="collapseDevelopment" class="accordion-collapse collapse show">
+                    <div class="accordion-body">
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="mkdocs" name="INCLUDE_MKDOCS" value="true">
+                        <label class="form-check-label" for="mkdocs">Include MKDocs</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              
+<!-- Notebook Tools -->
+<div class="accordion-item">
+    <h2 class="accordion-header" id="headingNotebook">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseNotebook" aria-expanded="false" aria-controls="collapseNotebook">
+            Notebook Tools
+        </button>
+    </h2>
+    <div id="collapseNotebook" class="accordion-collapse collapse">
+        <div class="accordion-body">
+            <!-- JupyterLab Option -->
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="jupyterlab" name="INCLUDE_JUPYTERLAB" value="true" onchange="toggleJupyterlabSupport(this)">
+                <label class="form-check-label" for="jupyterlab">Include JupyterLab</label>
+            </div>
+            <!-- JupyterLab Support Options -->
+            <div id="jupyterlab-support-options" class="ms-3">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="cpp-support" name="INCLUDE_JUPYTERLAB_CPP_SUPPORT" value="true" disabled>
+                    <label class="form-check-label" for="cpp-support">JupyterLab C++ Support</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="go-support" name="INCLUDE_JUPYTERLAB_GO_SUPPORT" value="true" disabled>
+                    <label class="form-check-label" for="go-support">JupyterLab Go Support</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="rust-support" name="INCLUDE_JUPYTERLAB_RUST_SUPPORT" value="true" disabled>
+                    <label class="form-check-label" for="rust-support">JupyterLab Rust Support</label>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+              
+                <!-- SQL Editors -->
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="headingSQLEditors">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSQLEditors" aria-expanded="false" aria-controls="collapseSQLEditors">
+                      SQL Editors
+                    </button>
+                  </h2>
+                  <div id="collapseSQLEditors" class="accordion-collapse collapse">
+                    <div class="accordion-body">
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="cloudbeaver" name="INCLUDE_CLOUDBEAVER" value="true">
+                        <label class="form-check-label" for="cloudbeaver">Include CloudBeaver</label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="sqlpad" name="INCLUDE_SQLPAD" value="true">
+                        <label class="form-check-label" for="sqlpad">Include SQLPad</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              
+                <!-- Code Editor -->
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="headingCodeEditor">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCodeEditor" aria-expanded="false" aria-controls="collapseCodeEditor">
+                      Code Editor
+                    </button>
+                  </h2>
+                  <div id="collapseCodeEditor" class="accordion-collapse collapse">
+                    <div class="accordion-body">
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="codeserver" name="INCLUDE_CODESERVER" value="true">
+                        <label class="form-check-label" for="codeserver">Include Code Server</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              
+                <!-- Data and Storage Tools -->
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="headingDataStorage">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseDataStorage" aria-expanded="false" aria-controls="collapseDataStorage">
+                      Data and Storage Tools
+                    </button>
+                  </h2>
+                  <div id="collapseDataStorage" class="accordion-collapse collapse">
+                    <div class="accordion-body">
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="kafka" name="INCLUDE_KAFKA" value="true">
+                        <label class="form-check-label" for="kafka">Include Kafka</label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="minio" name="INCLUDE_MINIO" value="true">
+                        <label class="form-check-label" for="minio">Include MinIO (Object Storage)</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              
+                <!-- BI and Analytics Tools -->
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="headingAnalytics">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseAnalytics" aria-expanded="false" aria-controls="collapseAnalytics">
+                      BI and Analytics Tools
+                    </button>
+                  </h2>
+                  <div id="collapseAnalytics" class="accordion-collapse collapse">
+                    <div class="accordion-body">
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="superset" name="INCLUDE_SUPERSET" value="true">
+                        <label class="form-check-label" for="superset">Include Superset</label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="grafana" name="INCLUDE_GRAFANA" value="true">
+                        <label class="form-check-label" for="grafana">Include Grafana</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              
+                <!-- Data Processing Tools -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingDataProcessing">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseDataProcessing" aria-expanded="false" aria-controls="collapseDataProcessing">
+                            Data Processing Tools
+                        </button>
+                  </h2>
+                  <div id="collapseDataProcessing" class="accordion-collapse collapse">
+                    <div class="accordion-body">
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="flink" name="INCLUDE_FLINK" value="true">
+                        <label class="form-check-label" for="flink">Include Flink</label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="dbt" name="INCLUDE_DBT" value="true">
+                        <label class="form-check-label" for="dbt">Include dbt</label>
+                      </div>
+<!-- Apache Spark Option -->
+<div class="form-check">
+    <input class="form-check-input" type="checkbox" id="spark" name="INCLUDE_SPARKS" value="true" onchange="toggleSparkWorkers(this)">
+    <label class="form-check-label" for="spark">Include Apache Spark</label>
+</div>
+<!-- Spark Workers Input -->
+<div id="spark-workers-input" class="d-flex align-items-center ms-3 mt-2">
+    <label for="spark-workers" class="form-label me-2 mb-0">Number of Spark Workers:</label>
+    <input type="number" id="spark-workers" name="WORKERS" class="form-control w-auto" min="1" max="10" value="2" disabled>
+</div>
+  
+  
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              
+              
+
+    <!-- Submit Configuration -->
+    <div class="d-flex justify-content-between mt-3">
+      <a href="/logs" class="btn btn-secondary">View Logs</a>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+        </form>
+
+
+{% endblock %}
+{% block scripts %}
+<script>
+
+    <!-- JavaScript block for child templates -->
+
+    document.addEventListener('DOMContentLoaded', () => {
+        // Resizer functionality
+        const resizer = document.getElementById('resizer');
+        const content = document.getElementById('content');
+        const terminal = document.getElementById('terminal');
+        let isResizing = false;
+      
+        if (resizer) {
+            resizer.addEventListener('mousedown', () => {
+                isResizing = true;
+                document.body.style.cursor = 'ew-resize';
+            });
+      
+            document.addEventListener('mousemove', (e) => {
+                if (!isResizing) return;
+      
+                const frameWidth = document.getElementById('frame').offsetWidth;
+                const newTerminalWidth = frameWidth - e.clientX;
+                const minTerminalWidth = 150;
+                const maxTerminalWidth = frameWidth * 0.8;
+      
+                if (newTerminalWidth >= minTerminalWidth && newTerminalWidth <= maxTerminalWidth) {
+                    terminal.style.width = `${newTerminalWidth}px`;
+                    content.style.width = `calc(100% - ${newTerminalWidth + 10}px)`;
+                }
+            });
+      
+            document.addEventListener('mouseup', () => {
+                isResizing = false;
+                document.body.style.cursor = 'default';
+            });
+        }
+      
+        // Toggle functionality for JupyterLab support options
+        function toggleJupyterlabSupport(checkbox) {
+            const supportOptions = document.querySelectorAll('#jupyterlab-support-options input');
+            supportOptions.forEach(option => {
+                option.disabled = !checkbox.checked;
+                if (!checkbox.checked) {
+                    option.checked = false; // Uncheck support options when JupyterLab is deselected
+                }
+            });
+        }
+      
+        // Initialize JupyterLab toggle functionality
+        const jupyterlabCheckbox = document.getElementById('jupyterlab');
+        if (jupyterlabCheckbox) {
+            jupyterlabCheckbox.addEventListener('change', () => toggleJupyterlabSupport(jupyterlabCheckbox));
+        }
+      
+        // Toggle functionality for Spark workers
+        function toggleSparkWorkers() {
+            const sparkCheckbox = document.getElementById('spark');
+            const sparkWorkersInput = document.getElementById('spark-workers');
+      
+            if (sparkCheckbox.checked) {
+                sparkWorkersInput.disabled = false;
+            } else {
+                sparkWorkersInput.disabled = true;
+                sparkWorkersInput.value = 2; // Reset to default value when unchecked
+            }
+        }
+      
+        // Initialize Spark workers toggle functionality
+        const sparkCheckbox = document.getElementById('spark');
+        if (sparkCheckbox) {
+            sparkCheckbox.addEventListener('change', toggleSparkWorkers);
+        }
+      
+        // Enable all disabled inputs before form submission
+        const form = document.querySelector("form");
+      
+        form.addEventListener("submit", () => {
+            const disabledInputs = form.querySelectorAll("input:disabled");
+            disabledInputs.forEach(input => input.disabled = false);
+        });
+      
+      });
+      
+</script>
+
+    {% endblock %}

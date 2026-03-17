@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en" data-critters-container="">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>Kyros</title>
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+
+	<!-- Fonts -->
+	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+
+	<!-- Favicon Links -->
+	<link rel="icon" href="{{ url_for('static', filename='icons/favicon/favicon.ico') }}" sizes="32x32"
+		type="image/png">
+
+	<!-- Custom Styles -->
+	<link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+
+	<style>
+		.container-fluid {
+			display: flex;
+			height: 100vh;
+		}
+
+		.left-panel {
+			flex: 1;
+			min-width: 200px;
+			overflow: auto;
+			min-height: 100vh;
+			/* Ensure left panel takes full viewport height */
+			display: flex;
+			flex-direction: column;
+			/* Allows the content to stretch vertically */
+		}
+
+		.splitter {
+			width: 20px;
+			background-color: #FFF;
+			/* Matches the right panel background */
+			cursor: ew-resize;
+			border-radius: 20px 0px 0px 20px;
+			/* Rounded corners on the left */
+			/* box-shadow: 30px 30px 30px rgba(0, 0, 0, 1); */
+		}
+
+		.right-panel {
+			width: calc(40% - 20px);
+			min-width: 50px;
+			display: flex;
+			flex-direction: column;
+			overflow: hidden;
+			background-color: white;
+
+		}
+
+
+		.right-header {
+			padding: 8px !important;
+			margin: 0;
+			height: 56px;
+
+		}
+
+		.right-title {
+			/* display: none; */
+			font-size: 1.2rem;
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+		}
+
+		.right-title:hover {
+			cursor: pointer;
+		}
+
+		.right-panel.collapsed .right-title {
+			padding: 8px 0px 20px 8px;
+			display: block;
+			font-size: 1.2rem;
+			writing-mode: vertical-rl;
+			transform: rotate(180deg) translateX(15px);
+			/* Rotate text vertically */
+			/* font-size: 1rem; */
+		}
+
+		.right-content {
+			flex: 1;
+			padding: 20px;
+			overflow: auto;
+		}
+
+		.right-panel.collapsed .right-content {
+			display: none;
+		}
+
+		.right-panel.collapsed {
+			width: 50px;
+		}
+
+		/* Hide the left panel initially */
+		.hidden-until-loaded {
+			display: none;
+		}
+
+    /* Smaller switch container */
+	#d-switch {
+	  height: 20px;
+	  margin: 9px;
+	  padding-left: 4px;
+	}
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 40px;
+      height: 20px;
+    }
+
+    /* Hide the checkbox */
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    /* The slider (background) */
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      transition: 0.3s;
+      border-radius: 20px;
+    }
+
+    /* The circle (knob) */
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 14px;
+      width: 14px;
+      left: 3px;
+      bottom: 3px;
+      background-color: white;
+      transition: 0.3s;
+      border-radius: 50%;
+    }
+
+    /* Background and knob position change when checked */
+    input:checked + .slider {
+      background-color: #007bff;
+    }
+    input:checked + .slider:before {
+      transform: translateX(18px);
+    }
+
+	#toggleLabel {
+		font-weight: 600;
+		font-size: smaller;
+		font-style: italic;
+	}
+	</style>
+</head>
+
+<body>
+	<div class="background-split">
+		<div class="upper-half"></div>
+		<div class="lower-half"></div>
+	</div>
+	<div class="container-fluid d-flex h-100 overflow-hidden min-vh-100" style="padding:0px;">
+		<div class="ng-star-inserted left-panel">
+			<div role="banner" data-sa-nm="appTopBar" class="top-bar">
+				<a href="/" class="title-container">
+					<div id="kyros-title">Kyros</div>
+					<div id="slogan" class="slogan"></div>
+
+
+				</a>
+				<!----><!---->
+				<div class="icon-bar-container">
+					<app-icon-bar id="app-icon-bar">
+						<div class="full-container ng-star-inserted">
+
+							<button class="p-element account-info-button" aria-label="Name:	anonymous
+Email:	anonymous@mail.com
+Directory:	Default Directory (2db95f9e-429f-4217-8473-569494f2cac8)
+">
+								<div class="account-info-container" onclick="toggleUserMenu()">
+									<div class="userInfo">
+										<div class="userEmail">
+											anonymous@mail.com</div>
+										<div class="userTenant">Default Directory</div>
+									</div>
+									<div class="userPhoto"><img alt="" class="img-circle"
+											src="./static/img/AvatarMenu_defaultAvatarSmall.png"><!-- Dropdown content -->
+										<div id="userMenu" class="dropdown-content">
+											<a href="{{ url_for('general.profile') }}">Profile</a>
+											<a href="{{ url_for('auth.logout') }}">Logout</a>
+										</div>
+									</div>
+
+
+								</div>
+							</button>
+						</div><!----><!----><!---->
+					</app-icon-bar>
+				</div>
+			</div>
+
+			<app-app-mainlayout id="app-app-mainlayout" class="ng-star-inserted">
+				<div class="scaffold">
+
+
+					<div class="nav-panel ng-star-inserted expanded-menu" id="nav-panel">
+						<div class="menu-bar">
+							<div class="ng-star-inserted">
+
+								<!-- Toggle Icon -->
+								<div class="expand-icon madrid-icon icon-doublechevronleft icon-size-16 ng-star-inserted"
+									onclick="toggleMenu()" style="cursor: pointer;"></div>
+
+								<div data-sa-nm="shellNavPanel" role="navigation" class="top-area ng-star-inserted">
+									{% for item in menu['menu'] %}
+									<div tabindex="{{ loop.index }}" class="p-element tooltip-wrapper ng-star-inserted">
+										<button tabindex="{{ loop.index }}"
+											class="p-element nav-hover {{ 'activeRoute' if item.route == request.path }}"
+											name="{{ item.name | lower }}" aria-label="{{ item.name }}" {% if item.route
+											%} onclick="loadIframe('{{ item.route }}')" {% else %}
+											onclick="toggleSubMenu(this)" {% endif %}>
+											<div class="icon {{ item.icon }} ng-star-inserted"></div>
+											<div class="expanded-button-label ng-star-inserted"> {{ item.name }}
+											</div>
+											{% if item.sub_menu %}
+											<span class="triangle-indicator"></span>
+											{% endif %}
+										</button>
+
+										{% if item.sub_menu %}
+										<div class="sub-menu" style="display: none;">
+											{% for sub_item in item.sub_menu %}
+											{% if sub_item.title %}
+											<div class="sub-menu-title">{{ sub_item.title }}</div>
+											{% endif %}
+											<ul>
+												{% if sub_item.sub_items %}
+												{% for sub in sub_item.sub_items %}
+												<li>
+													{% if sub.route %}
+													<a href="javascript:void(0);"
+														onclick="loadIframe('{{ sub.route }}')"
+														title="{{ sub.description }}">{{ sub.name }}</a>
+													{% else %}
+													{{ sub.name }}
+													{% endif %}
+												</li>
+												{% endfor %}
+												{% else %}
+												<li><em>No items available</em></li>
+												{% endif %}
+											</ul>
+											{% endfor %}
+										</div>
+										{% endif %}
+									</div>
+									{% endfor %}
+									<div tabindex="-1" id="d-switch" class="p-element tooltip-wrapper ng-star-inserted">
+  <!-- Toggle switch structure -->
+  <label class="switch">
+	<input type="checkbox" id="toggleDocs" onclick="toggleDocumentationPanel()">
+	<span class="slider"></span>
+  </label>
+  <span id="toggleLabel" class="label-text">Show Documentation</span>
+</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+
+
+
+					<!--<div id="main-content" role="main" class="main-content">-->
+					<div id="main-content" role="main" class="main-content">
+						<!-- Container for iframe and overlay -->
+						<div class="iframe-container">
+							<!-- Loading overlay with a spinner -->
+							<div class="loading-overlay" id="loadingOverlay">
+								<div class="spinner"></div>
+							</div>
+							<iframe id="dynamic-iframe" src="/dashboard" frameborder="0"></iframe>
+						</div>
+					</div>
+
+
+				</div>
+			</app-app-mainlayout><!---->
+		</div>
+
+		{% if right_panel_state != "none" %}
+		<div class="splitter shadow-lg bg-white hidden-until-loaded" id="splitter"></div>
+		<div class="right-panel bg-white text-dark hidden-until-loaded" id="rightPanel">
+			<div class="right-header d-flex align-items-start justify-content p-3">
+				<h1 class="right-title m-0">Documentation</h1>
+			</div>
+			<!-- Embed MKDocs documentation -->
+			<iframe id="embeddedDoc" src="{{ doc_page_url }}?embedded=true" frameborder="0"
+				style="width: 100%; height: 100%; border: none; overflow: auto;">
+				<!-- Fallback message if iframe is not supported -->
+				Your browser does not support iframes.
+			</iframe>
+		</div>
+		{% endif %}
+	</div>
+	</div>
+
+	<script src="{{ url_for('static', filename='js/custom.js') }}"></script>
+
+	<script>
+		const DOMAIN = getRootDomain();
+		const KYROS_DOMAIN = window.location.hostname;
+		const PROTOCOL = window.location.protocol; // returns 'http:' or 'https:'
+
+		const WITH_OVERLAY = true;
+		const ENABLE_RESIZING = false; // Set to true to enable resizing, false to disable
+		const SHRINK_ME_TEXT = 'Shrink Documentation >>';
+
+		const splitter = document.getElementById('splitter');
+		const rightPanel = document.getElementById('rightPanel');
+		const embeddedDoc = document.getElementById('embeddedDoc');
+		const leftPanel = document.querySelector('.left-panel');
+		const rightTitle = document.querySelector('.right-title'); // Select the <h1> title
+		let isResizing = false;
+
+		// Assuming right_panel_state is passed as a global variable in the HTML template
+		let rightPanelState = "{{ right_panel_state }}";
+
+		// Initialize the right panel state
+		function initializeRightPanel() {
+			const toggleButton = document.getElementById('toggleDocs')
+			if (rightPanelState === 'expanded') {
+				expandPanel();
+				toggleButton.checked = true;
+			} else if (rightPanelState === 'collapsed') {
+				collapsePanel();
+				toggleButton.checked = true;
+			} else if (rightPanelState === 'none') {
+				hidePanel();
+				toggleButton.checked = false;
+			}
+
+			// Show the left panel once initialization is complete
+			splitter.classList.remove('hidden-until-loaded');
+			rightPanel.classList.remove('hidden-until-loaded');
+		}
+		function hidePanel() {
+				rightPanel.style.display = 'none';
+				splitter.style.display = 'none';
+		}
+
+		// Function to expand the panel
+		function expandPanel() {
+			rightPanel.classList.add('expanded');
+			rightPanel.classList.remove('collapsed');
+			rightPanel.style.width = '40%';
+			rightPanel.style.display = 'block';
+			splitter.style.display = 'block';
+			embeddedDoc.style.display = 'block'; // Show iframe when expanded
+			rightTitle.textContent = SHRINK_ME_TEXT; // Change title when expanded
+		}
+
+		// Function to collapse the panel
+		function collapsePanel() {
+			rightPanel.classList.add('collapsed');
+			rightPanel.classList.remove('expanded');
+			rightPanel.style.width = '50px';
+			rightPanel.style.display = 'block';
+			splitter.style.display = 'block';
+			embeddedDoc.style.display = 'none'; // Hide iframe when collapsed
+			rightTitle.textContent = 'Documentation'; // Reset title when collapsed
+		}
+
+		// Add click event to toggle panel expansion and collapse
+		rightTitle.addEventListener('click', () => {
+			if (rightPanel.classList.contains('expanded')) {
+				collapsePanel();
+			} else {
+				expandPanel();
+			}
+		});
+
+		function toggleSubMenu(button) {
+			const subMenu = button.parentElement.querySelector('.sub-menu');
+			const triangle = button.querySelector('.triangle-indicator');
+
+			// Toggle the sub-menu visibility
+			if (subMenu.style.display === 'none') {
+				subMenu.style.display = 'block';
+				triangle.classList.add('rotate');
+			} else {
+				subMenu.style.display = 'none';
+				triangle.classList.remove('rotate');
+			}
+		}
+		function toggleMenu() {
+			var navPanel = document.getElementById('nav-panel');
+			var dSwitch = document.getElementById('d-switch');
+
+			if (navPanel.classList.contains('expanded-menu')) {
+				
+				// Switch to collapsed menu
+				navPanel.classList.remove('expanded-menu');
+				navPanel.classList.add('collapsed-menu');
+
+				dSwitch.style.display = 'none';
+				// Hide all triangle-indicators when collapsed
+				document.querySelectorAll('.triangle-indicator').forEach(function (triangle) {
+					triangle.style.display = 'none';
+				});
+
+				// Hide all sub-menus when collapsed
+				document.querySelectorAll('.sub-menu').forEach(function (subMenu) {
+					subMenu.style.display = 'none';
+				});
+			} else {
+				// Switch to expanded menu
+				navPanel.classList.remove('collapsed-menu');
+				navPanel.classList.add('expanded-menu');
+
+				dSwitch.style.display = 'inline-block';
+
+				// Show all triangle-indicators when expanded
+				document.querySelectorAll('.triangle-indicator').forEach(function (triangle) {
+					triangle.style.display = 'inline-block';
+				});
+			}
+		}
+		// Function to toggle dropdown visibility
+		function toggleUserMenu() {
+			var dropdown = document.getElementById("userMenu");
+			dropdown.classList.toggle("show");
+		}
+
+		// Close the dropdown if the user clicks outside of it
+		window.onclick = function (event) {
+			if (!event.target.matches('.account-info-container, .account-info-container *')) {
+				var dropdowns = document.getElementsByClassName("dropdown-content");
+				for (var i = 0; i < dropdowns.length; i++) {
+					var openDropdown = dropdowns[i];
+					if (openDropdown.classList.contains('show')) {
+						openDropdown.classList.remove('show');
+					}
+				}
+			}
+		}
+
+		function make_iframe_url(input) {
+			iframe_url = '';
+			if (input.startsWith("/")) {
+				iframe_url = PROTOCOL + '//' + KYROS_DOMAIN + input;
+			} else if (input.startsWith("http")) {
+				window.open(input, '_blank');
+				iframe_url = null;
+			} else {
+				iframe_url = PROTOCOL + '//' + input + '.' + DOMAIN;
+			}
+			return iframe_url;
+		}
+
+		function loadIframe(service) {
+			const iframe = document.getElementById('dynamic-iframe');
+			const loadingOverlay = document.getElementById('loadingOverlay');
+			// alert('super 2 ' + WITH_OVERLAY);
+			if (WITH_OVERLAY) {
+				// Show the loading overlay when the function starts
+				loadingOverlay.classList.add('show');
+
+				// Event listener to hide the loading overlay once the iframe is fully loaded
+				iframe.onload = function () {
+					loadingOverlay.classList.remove('show');  // Hide the loading overlay
+				};
+
+				// If loading fails, ensure the overlay hides
+				iframe.onerror = function () {
+					loadingOverlay.classList.remove('show');
+					alert('Error loading the content.');
+				};
+			}
+
+			// // Update the iframe source and the browser URL
+			// const newUrl = new URL(window.location.href);
+			// newUrl.searchParams.set('srv', service);
+			// iframe.src = service;
+			// window.history.pushState({}, '', newUrl);
+
+			// Update the iframe source and the browser URL
+			const newUrl = new URL(window.location.href);
+			service_url = make_iframe_url(service)
+			if (service_url == null) {
+				loadingOverlay.classList.remove('show');
+				return;
+			}
+			newUrl.searchParams.set('srv', service_url);
+			iframe.src = service_url;
+			window.history.pushState({}, '', newUrl);
+		}
+
+
+		// Fetch slogans from the server
+		// Fetch slogans from the text file
+		async function fetchSlogans() {
+			const response = await fetch("{{ url_for('static', filename='data/slogans.txt') }}");
+			const text = await response.text();
+			return text.split('\n').filter(line => line.trim()); // Split and filter empty lines
+		}
+
+		// Display a random slogan with fading effect
+		async function showRandomSlogan() {
+			const slogans = await fetchSlogans();
+			const sloganDiv = document.getElementById("slogan");
+			const randomSlogan = slogans[Math.floor(Math.random() * slogans.length)];
+			sloganDiv.textContent = randomSlogan;
+
+			// Apply fade-out effect after 3 seconds
+			setTimeout(() => {
+				sloganDiv.classList.add("fade-out");
+				setTimeout(() => {
+					sloganDiv.textContent = "";
+					sloganDiv.classList.remove("fade-out");
+				}, 1000); // Duration of fade-out effect
+			}, 3000);
+		}
+
+		function toggleDocumentationPanel() {
+			const toggle = document.getElementById('toggleDocs');
+			const label = document.getElementById('toggleLabel');
+
+			if (toggle.checked) {
+				label.textContent = "Show Documentation";
+				expandPanel();
+				// Code to show the documentation panel
+			} else {
+				label.textContent = "Hide Documentation";
+				hidePanel();
+				// Code to hide the documentation panel
+			}
+		}
+
+		// On page load, check for the 'srv' query parameter and load the iframe accordingly
+		window.onload = function () {
+
+			const urlParams = new URLSearchParams(window.location.search);
+			const service = urlParams.get('srv');
+			if (service) {
+				// Call loadIframe with the service from the query parameter
+				//if ((service.startsWith('/')) == false)
+				//	loadIframe('http://'+service);
+				//else
+				//	loadIframe(service);
+				loadIframe(service);
+			}
+			const embeddedDoc = document.getElementById("embeddedDoc");
+			embeddedDoc.src = make_iframe_url('mkdocs') + '?embedded=true';
+			// } else {
+			// 	// Default behavior if no 'srv' parameter is provided
+			// 	loadIframe('/containers/dashboard');  // or whatever your default service is
+			// }
+			showRandomSlogan();
+
+			// Call the initialization function on load
+			initializeRightPanel();
+
+			if (ENABLE_RESIZING && rightPanelState !== 'none') {
+				splitter.addEventListener('mousedown', () => {
+					isResizing = true;
+				});
+
+				document.addEventListener('mousemove', (e) => {
+					if (!isResizing || rightPanelState === 'none') return;
+
+					const containerWidth = document.querySelector('.container-fluid').offsetWidth;
+					let newRightPanelWidth = containerWidth - e.clientX - 20; // Adjust for splitter width
+
+					if (newRightPanelWidth < 100) {
+						collapsePanel();
+					} else {
+						rightPanel.classList.remove('collapsed');
+						rightPanel.style.width = `${newRightPanelWidth}px`;
+						embeddedDoc.style.display = 'block';
+						rightTitle.textContent = SHRINK_ME_TEXT;
+					}
+
+					const leftPanelMinWidth = 200;
+					const remainingWidth = containerWidth - newRightPanelWidth - 20; // Adjust for splitter width
+					leftPanel.style.width = `${Math.max(leftPanelMinWidth, remainingWidth)}px`;
+				});
+
+				document.addEventListener('mouseup', () => {
+					isResizing = false;
+				});
+			}
+
+			// JavaScript to handle switch toggle and display status
+			const toggleDocs = document.getElementById('toggleDocs');
+			const statusMessage = document.getElementById('statusMessage');
+
+			toggleDocs.addEventListener('change', function() {
+			if (toggleDocs.checked) {
+				statusMessage.textContent = "Switch is ON";
+			} else {
+				statusMessage.textContent = "Switch is OFF";
+			}
+			});
+
+		};
+
+
+	</script>
+
+</body>
+
+</html>

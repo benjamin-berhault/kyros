@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kyros - Deploy Platform</title>
+    <style>
+        :root {
+            --bg-dark: #0d1117;
+            --bg-card: #161b22;
+            --bg-card-hover: #21262d;
+            --border: #30363d;
+            --text: #c9d1d9;
+            --text-muted: #8b949e;
+            --accent: #58a6ff;
+            --success: #3fb950;
+            --warning: #d29922;
+            --danger: #f85149;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+            background: var(--bg-dark);
+            color: var(--text);
+            min-height: 100vh;
+            padding: 24px;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 32px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .header h1 { font-size: 24px; font-weight: 600; }
+        .header h1 span { color: var(--accent); }
+
+        .container { max-width: 1200px; margin: 0 auto; }
+
+        .section { margin-bottom: 32px; }
+        .section-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 16px;
+        }
+
+        /* Level Cards */
+        .levels-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+
+        .level-card {
+            background: var(--bg-card);
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            padding: 16px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .level-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+        .level-card.selected { border-color: var(--success); background: rgba(63, 185, 80, 0.1); }
+
+        .level-card h3 { font-size: 18px; margin-bottom: 4px; }
+        .level-card .level-num { color: var(--accent); font-size: 12px; margin-bottom: 8px; }
+        .level-card p { font-size: 13px; color: var(--text-muted); margin-bottom: 8px; }
+        .level-card .meta { font-size: 11px; color: var(--text-muted); }
+        .level-card .meta span { margin-right: 12px; }
+        .level-card .cost { color: var(--warning); }
+
+        /* Components Grid */
+        .components-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 12px;
+        }
+
+        .component {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 12px;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .component:hover { border-color: var(--accent); }
+        .component.selected { border-color: var(--success); background: rgba(63, 185, 80, 0.1); }
+        .component.disabled { opacity: 0.4; cursor: not-allowed; }
+
+        .component .checkbox {
+            width: 18px;
+            height: 18px;
+            border: 2px solid var(--border);
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .component.selected .checkbox {
+            background: var(--success);
+            border-color: var(--success);
+        }
+
+        .component.selected .checkbox::after {
+            content: "✓";
+            color: white;
+            font-size: 12px;
+        }
+
+        .component-info h4 { font-size: 13px; margin-bottom: 2px; }
+        .component-info p { font-size: 11px; color: var(--text-muted); }
+
+        /* Deploy Button */
+        .deploy-section {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+            margin-top: 32px;
+            padding-top: 24px;
+            border-top: 1px solid var(--border);
+        }
+
+        .btn {
+            padding: 12px 32px;
+            border: none;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-primary {
+            background: var(--success);
+            color: white;
+        }
+
+        .btn-primary:hover { background: #2ea043; }
+        .btn-primary:disabled { background: var(--border); cursor: not-allowed; }
+
+        .btn-secondary {
+            background: var(--bg-card);
+            color: var(--text);
+            border: 1px solid var(--border);
+        }
+
+        .btn-secondary:hover { border-color: var(--accent); }
+
+        .deploy-summary {
+            flex: 1;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* Console Output */
+        .console {
+            background: #000;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 16px;
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: 13px;
+            line-height: 1.5;
+            max-height: 400px;
+            overflow-y: auto;
+            display: none;
+            margin-top: 24px;
+        }
+
+        .console.visible { display: block; }
+
+        .console .line { margin-bottom: 2px; }
+        .console .line.info { color: var(--text); }
+        .console .line.success { color: var(--success); }
+        .console .line.warning { color: var(--warning); }
+        .console .line.error { color: var(--danger); }
+        .console .line.cmd { color: var(--accent); }
+        .console .line.dim { color: var(--text-muted); }
+
+        .workers-input {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-top: 16px;
+            padding: 12px;
+            background: var(--bg-card);
+            border-radius: 6px;
+        }
+
+        .workers-input label { font-size: 14px; }
+        .workers-input input {
+            width: 60px;
+            padding: 8px;
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            background: var(--bg-dark);
+            color: var(--text);
+            font-size: 14px;
+        }
+
+        .workers-input .hint { font-size: 12px; color: var(--text-muted); }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Kyros <span>Deploy</span></h1>
+            <a href="/" class="btn btn-secondary">Back to Dashboard</a>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Select Architecture Level</div>
+            <div class="levels-grid" id="levels">
+                <div class="level-card" data-level="0">
+                    <div class="level-num">LEVEL 0</div>
+                    <h3>Local</h3>
+                    <p>DuckDB + dbt</p>
+                    <div class="meta">
+                        <span>< 50 GB</span>
+                        <span class="cost">$0</span>
+                    </div>
+                </div>
+                <div class="level-card" data-level="1">
+                    <div class="level-num">LEVEL 1</div>
+                    <h3>Team</h3>
+                    <p>+ PostgreSQL + Dagster + Superset</p>
+                    <div class="meta">
+                        <span>< 500 GB</span>
+                        <span class="cost">$20-100</span>
+                    </div>
+                </div>
+                <div class="level-card" data-level="2">
+                    <div class="level-num">LEVEL 2</div>
+                    <h3>Data Lake</h3>
+                    <p>+ MinIO + JupyterLab</p>
+                    <div class="meta">
+                        <span>< 1 TB</span>
+                        <span class="cost">$50-150</span>
+                    </div>
+                </div>
+                <div class="level-card" data-level="3">
+                    <div class="level-num">LEVEL 3</div>
+                    <h3>Distributed</h3>
+                    <p>+ Spark + Trino</p>
+                    <div class="meta">
+                        <span>1+ TB</span>
+                        <span class="cost">$150-500</span>
+                    </div>
+                </div>
+                <div class="level-card" data-level="4">
+                    <div class="level-num">LEVEL 4</div>
+                    <h3>Enterprise</h3>
+                    <p>+ Kafka + Flink + SSO</p>
+                    <div class="meta">
+                        <span>Any</span>
+                        <span class="cost">$500+</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Components</div>
+            <div class="components-grid" id="components">
+                <!-- Data -->
+                <div class="component" data-key="POSTGRES" data-level="1">
+                    <div class="checkbox"></div>
+                    <div class="component-info">
+                        <h4>PostgreSQL</h4>
+                        <p>Database</p>
+                    </div>
+                </div>
+                <div class="component" data-key="MINIO" data-level="2">
+                    <div class="checkbox"></div>
+                    <div class="component-info">
+                        <h4>MinIO</h4>
+                        <p>Object Storage</p>
+                    </div>
+                </div>
+                <div class="component" data-key="TRINO" data-level="3">
+                    <div class="checkbox"></div>
+                    <div class="component-info">
+                        <h4>Trino</h4>
+                        <p>Federated SQL</p>
+                    </div>
+                </div>
+                <div class="component" data-key="KAFKA" data-level="4">
+                    <div class="checkbox"></div>
+                    <div class="component-info">
+                        <h4>Kafka</h4>
+                        <p>Streaming</p>
+                    </div>
+                </div>
+                <div class="component" data-key="FLINK" data-level="4">
+                    <div class="checkbox"></div>
+                    <div class="component-info">
+                        <h4>Flink</h4>
+                        <p>Stream Processing</p>
+                    </div>
+                </div>
+                <!-- Orchestration -->
+                <div class="component" data-key="DAGSTER" data-level="1">
+                    <div class="checkbox"></div>
+                    <div class="component-info">
+                        <h4>Dagster</h4>
+                        <p>Orchestration</p>
+                    </div>
+                </div>
+                <div class="component" data-key="SUPERSET" data-level="1">
+                    <div class="checkbox"></div>
+                    <div class="component-info">
+                        <h4>Superset</h4>
+                        <p>BI Dashboards</p>
+                    </div>
+                </div>
+                <!-- Dev -->
+                <div class="component" data-key="JUPYTERLAB" data-level="2">
+                    <div class="checkbox"></div>
+                    <div class="component-info">
+                        <h4>JupyterLab</h4>
+                        <p>Notebooks</p>
+                    </div>
+                </div>
+                <div class="component" data-key="CLOUDBEAVER" data-level="1">
+                    <div class="checkbox"></div>
+                    <div class="component-info">
+                        <h4>CloudBeaver</h4>
+                        <p>Database UI</p>
+                    </div>
+                </div>
+                <div class="component" data-key="CODE_SERVER" data-level="2">
+                    <div class="checkbox"></div>
+                    <div class="component-info">
+                        <h4>Code Server</h4>
+                        <p>VS Code</p>
+                    </div>
+                </div>
+                <div class="component" data-key="SQLPAD" data-level="1">
+                    <div class="checkbox"></div>
+                    <div class="component-info">
+                        <h4>SQLPad</h4>
+                        <p>SQL Editor</p>
+                    </div>
+                </div>
+                <!-- Infra -->
+                <div class="component" data-key="KYROS" data-level="1">
+                    <div class="checkbox"></div>
+                    <div class="component-info">
+                        <h4>Kyros</h4>
+                        <p>Dashboard</p>
+                    </div>
+                </div>
+                <div class="component" data-key="PORTAINER" data-level="1">
+                    <div class="checkbox"></div>
+                    <div class="component-info">
+                        <h4>Portainer</h4>
+                        <p>Containers</p>
+                    </div>
+                </div>
+                <div class="component" data-key="GRAFANA" data-level="2">
+                    <div class="checkbox"></div>
+                    <div class="component-info">
+                        <h4>Grafana</h4>
+                        <p>Monitoring</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="workers-input" id="workers-section" style="display: none;">
+                <label>Spark Workers:</label>
+                <input type="number" id="workers" value="2" min="1" max="10">
+                <span class="hint">Number of Spark worker nodes</span>
+            </div>
+        </div>
+
+        <div class="deploy-section">
+            <button class="btn btn-primary" id="deploy-btn" disabled>Deploy Platform</button>
+            <button class="btn btn-secondary" id="stop-btn">Stop All</button>
+            <div class="deploy-summary" id="summary">Select a level or components to deploy</div>
+        </div>
+
+        <div class="console" id="console"></div>
+    </div>
+
+    <script>
+        const LEVEL_COMPONENTS = {
+            0: [],
+            1: ['POSTGRES', 'DAGSTER', 'SUPERSET', 'KYROS', 'PORTAINER', 'CLOUDBEAVER', 'SQLPAD'],
+            2: ['POSTGRES', 'DAGSTER', 'SUPERSET', 'KYROS', 'PORTAINER', 'CLOUDBEAVER', 'MINIO', 'JUPYTERLAB', 'GRAFANA', 'CODE_SERVER'],
+            3: ['POSTGRES', 'DAGSTER', 'SUPERSET', 'KYROS', 'PORTAINER', 'CLOUDBEAVER', 'MINIO', 'JUPYTERLAB', 'GRAFANA', 'CODE_SERVER', 'TRINO'],
+            4: ['POSTGRES', 'DAGSTER', 'SUPERSET', 'KYROS', 'PORTAINER', 'CLOUDBEAVER', 'MINIO', 'JUPYTERLAB', 'GRAFANA', 'CODE_SERVER', 'TRINO', 'KAFKA', 'FLINK']
+        };
+
+        let selectedLevel = null;
+        let selectedComponents = new Set();
+
+        document.querySelectorAll('.level-card').forEach(card => {
+            card.addEventListener('click', () => {
+                document.querySelectorAll('.level-card').forEach(c => c.classList.remove('selected'));
+                card.classList.add('selected');
+                selectedLevel = parseInt(card.dataset.level);
+
+                // Auto-select components for this level
+                selectedComponents = new Set(LEVEL_COMPONENTS[selectedLevel]);
+                updateComponentsUI();
+                updateSummary();
+
+                // Show workers input for level 3+
+                document.getElementById('workers-section').style.display = selectedLevel >= 3 ? 'flex' : 'none';
+            });
+        });
+
+        document.querySelectorAll('.component').forEach(comp => {
+            comp.addEventListener('click', () => {
+                const key = comp.dataset.key;
+                if (selectedComponents.has(key)) {
+                    selectedComponents.delete(key);
+                } else {
+                    selectedComponents.add(key);
+                }
+                selectedLevel = null;
+                document.querySelectorAll('.level-card').forEach(c => c.classList.remove('selected'));
+                updateComponentsUI();
+                updateSummary();
+            });
+        });
+
+        function updateComponentsUI() {
+            document.querySelectorAll('.component').forEach(comp => {
+                const key = comp.dataset.key;
+                comp.classList.toggle('selected', selectedComponents.has(key));
+            });
+        }
+
+        function updateSummary() {
+            const count = selectedComponents.size;
+            const summary = document.getElementById('summary');
+            const deployBtn = document.getElementById('deploy-btn');
+
+            if (count === 0) {
+                summary.textContent = 'Select a level or components to deploy';
+                deployBtn.disabled = true;
+            } else {
+                summary.textContent = `${count} component${count > 1 ? 's' : ''} selected`;
+                deployBtn.disabled = false;
+            }
+        }
+
+        document.getElementById('deploy-btn').addEventListener('click', async () => {
+            const consoleEl = document.getElementById('console');
+            consoleEl.classList.add('visible');
+            consoleEl.innerHTML = '';
+
+            const workers = document.getElementById('workers').value || 0;
+            const components = Array.from(selectedComponents);
+
+            log('Starting deployment...', 'info');
+            log(`Components: ${components.join(', ')}`, 'dim');
+            log(`Workers: ${workers}`, 'dim');
+            log('', 'info');
+
+            try {
+                const response = await fetch('/api/deploy', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ components, workers: parseInt(workers) })
+                });
+
+                const reader = response.body.getReader();
+                const decoder = new TextDecoder();
+
+                while (true) {
+                    const { done, value } = await reader.read();
+                    if (done) break;
+
+                    const text = decoder.decode(value);
+                    text.split('\n').forEach(line => {
+                        if (line.trim()) {
+                            const type = getLineType(line);
+                            log(line, type);
+                        }
+                    });
+                    consoleEl.scrollTop = consoleEl.scrollHeight;
+                }
+            } catch (err) {
+                log(`Error: ${err.message}`, 'error');
+            }
+        });
+
+        document.getElementById('stop-btn').addEventListener('click', async () => {
+            const consoleEl = document.getElementById('console');
+            consoleEl.classList.add('visible');
+            consoleEl.innerHTML = '';
+
+            log('Stopping all services...', 'info');
+
+            try {
+                const response = await fetch('/api/stop', { method: 'POST' });
+                const reader = response.body.getReader();
+                const decoder = new TextDecoder();
+
+                while (true) {
+                    const { done, value } = await reader.read();
+                    if (done) break;
+
+                    const text = decoder.decode(value);
+                    text.split('\n').forEach(line => {
+                        if (line.trim()) log(line, getLineType(line));
+                    });
+                    consoleEl.scrollTop = consoleEl.scrollHeight;
+                }
+            } catch (err) {
+                log(`Error: ${err.message}`, 'error');
+            }
+        });
+
+        function log(message, type = 'info') {
+            const consoleEl = document.getElementById('console');
+            const line = document.createElement('div');
+            line.className = `line ${type}`;
+            line.textContent = message;
+            consoleEl.appendChild(line);
+        }
+
+        function getLineType(line) {
+            const lower = line.toLowerCase();
+            if (lower.includes('error') || lower.includes('failed')) return 'error';
+            if (lower.includes('warning')) return 'warning';
+            if (lower.includes('success') || lower.includes('done') || lower.includes('started') || line.includes('✓')) return 'success';
+            if (line.startsWith('$') || line.startsWith('#')) return 'cmd';
+            if (line.startsWith('=>') || line.startsWith('--')) return 'dim';
+            return 'info';
+        }
+    </script>
+</body>
+</html>

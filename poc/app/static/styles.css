@@ -1,0 +1,271 @@
+
+/* General Styling */
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+    background: linear-gradient(135deg, #f5f5f5, #e0e0e0);
+    color: #333;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1 0 auto; /* Allows main to grow and push the footer down */
+}
+/* Top Bar */
+.top-bar {
+    background: linear-gradient(90deg, #0078d7, #005ea6);
+    color: white;
+    padding: 15px 20px;
+    font-size: 22px;
+    font-weight: bold;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Container */
+.container {
+    background: white;
+    padding: 40px;
+    margin: 30px auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.content-wrapper {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    margin-top: 2rem;
+}
+
+footer {
+    background-color: #343a40;
+    color: #adb5bd;
+    text-align: center;
+    padding: 10px 0;
+    flex-shrink: 0; /* Prevents footer from shrinking */
+}
+
+/* Container */
+.container {
+    background: white;
+    padding: 40px;
+    margin: 30px auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+
+}
+
+/* Buttons */
+.btn-primary, .btn-secondary {
+    display: inline-block;
+    border: none;
+    padding: 12px 24px;
+    font-size: 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    margin: 10px;
+}
+
+.btn-primary {
+    background: linear-gradient(90deg, #0078d7, #005ea6);
+    color: white;
+    font-weight: bold;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+}
+
+.btn-primary:hover {
+    background: linear-gradient(90deg, #005ea6, #003e74);
+    transform: translateY(-3px);
+}
+
+.btn-secondary {
+    background: linear-gradient(90deg, #ccc, #aaa);
+    color: black;
+}
+
+.btn-secondary:hover {
+    background: linear-gradient(90deg, #aaa, #888);
+    transform: translateY(-3px);
+}
+
+/* Terminal */
+#terminal {
+    background: #1e1e1e;
+    color: #00ff00;
+    padding: 25px;
+    font-family: 'Courier New', monospace;
+    overflow-y: auto;
+    white-space: pre-wrap;
+    border-radius: 8px;
+    max-height: 400px;
+    margin: 30px auto;
+    box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+/* Section Titles */
+.section-title {
+    font-size: 1.8rem;
+    color: #0078d7;
+    margin-bottom: 10px;
+}
+
+.sub-section-title {
+    font-size: 1.4rem;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    color: #005ea6;
+}
+
+/* Checkbox Group */
+.checkbox-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-bottom: 20px;
+}
+
+/* Input Group */
+.input-group {
+    margin-top: 10px;
+}
+
+.input-group label input {
+    margin-left: 10px;
+    padding: 5px;
+    width: 60px;
+}
+
+/* Button Group */
+.button-group {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+/* Accordion */
+.accordion-button {
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    padding: 15px;
+    border: none;
+    background: linear-gradient(90deg, #40a9ff, #0078d7); /* Brighter gradient */
+    color: white;
+    cursor: pointer;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+
+/* Hover Effect for Accordion Button */
+.accordion-button:hover {
+    background: linear-gradient(90deg, #66ccff, #3399ff); /* Lighter on hover */
+    transform: translateY(-2px);
+}
+
+/* Active Accordion Button */
+.accordion-button:not(.collapsed) {
+    background: linear-gradient(90deg, #0078d7, #005ea6); /* Slightly darker for active state */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.accordion-button:focus {
+    outline: none;
+    box-shadow: 0 0 8px rgba(0, 120, 215, 0.8);
+}
+
+.accordion-body {
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 6px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 10px;
+}
+
+.console-output {
+    background-color: #1e1e1e;
+    color: #dcdcdc;
+    padding: 10px;
+    font-family: monospace;
+    font-size: 14px;
+    min-height: 300px;
+    overflow-y: auto;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+
+.log-line {
+    margin: 0;
+}
+
+.terminal {
+    font-family: "GitLab Mono", "JetBrains Mono", "Menlo", "DejaVu Sans Mono", "Liberation Mono", "Consolas", "Ubuntu Mono", "Courier New", "andale mono", "lucida console", monospace;
+    padding: 20px;
+    margin: 20px 0 8px 10px; /* Updated: Add 10px left margin */
+    font-size: 13px;
+    word-break: break-word;
+    color: #fff; /* Light text color */
+    background-color: #111; /* Dark background */
+    border-left: 1px solid var(--gl-border-color-default, #dcdcde);
+    border-right: 1px solid var(--gl-border-color-default, #dcdcde);
+    border-radius: 0.5rem;
+    min-height: 2.5rem;
+    overflow-y: auto; /* Scrollable if logs overflow */
+    white-space: pre-wrap; /* Ensure wrapping for long lines */
+}
+
+.terminal div {
+    position: relative;
+    counter-increment: line-number; /* Increment line counter */
+    padding-left: 1.2em; /* Space between numbers and content */
+}
+
+.terminal div::before {
+    content: counter(line-number); /* Display line number */
+    position: absolute;
+    left: -2.5em; /* Align numbers to the left */
+    width: 3em; /* Reserve space for numbers */
+    text-align: right; /* Right-align the numbers */
+    color: #888; /* Line number color */
+    background: #2d2d2d; /* Background for line numbers */
+    padding-right: 0.2em;
+    padding-left: 1em; /* Space between numbers and content */
+}
+
+code {
+    font-family: inherit; /* Use the same monospaced font as the logs */
+    padding: 2px 4px;
+    color: #18171d;
+    background-color: var(--gl-background-color-strong, #f6f6f6);
+    border-radius: 0.25rem;
+}
+
+.log-info {
+    color: #00bdbd; /* Blue for info */
+    font-weight: 600;
+}
+
+.log-success {
+    color: #00d600; /* Green for success */
+    font-weight: 600;
+}
+
+.log-warning {
+    color: #e5c07b; /* Yellow for warning */
+}
+
+.log-error {
+    color: #e06c75; /* Red for error */
+}

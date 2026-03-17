@@ -1,347 +1,262 @@
+# Kyros - Data Platform at the Right Scale
 
-# Data Engineering with Apache Spark and Delta Lake
+Deploy the right architecture at the right time. Start simple, scale when needed.
 
-This project provides a Docker-based environment for data engineering using Apache Spark and Delta Lake. The setup includes a JupyterLab instance preconfigured with Spark, Delta Lake, and other necessary tools.
-
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-**Table of Contents** 
-
-- [📝 Next steps](#-next-steps)
-- [Architecture Overview](#architecture-overview)
-- [Prerequisites](#prerequisites)
-- [Setup](#setup)
-- [Common Commands](#common-commands)
-- [Project Setup](#project-setup)
-- [Contributing](#contributing)
-- [License](#license)
-
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
-
-## 📝 Next steps
-
-- https://github.com/cnstlungu/portable-data-stack-dagster
-- https://github.com/zsvoboda/ngods-stocks
-
-## Architecture Overview
-
-- **JupyterLab**: A browser-based interactive computing environment that enables you to work with documents and activities such as Jupyter notebooks, text editors, terminals, and custom components.
-- **Apache Spark**: A powerful open-source distributed computing system that provides an interface for programming entire clusters with implicit data parallelism and fault tolerance.
-- **Delta Lake**: An open-source storage layer that brings ACID transactions to Apache Spark and big data workloads.
-
-## Prerequisites
-
-- Docker and Docker Compose installed on your machine.
-- Internet connection to pull Docker images and download dependencies.
-
-## Setup
-
-### 1. Clone the repository
-
-```bash
-git clone <repository-url>
-cd <repository-directory>
+```
+██╗  ██╗██╗   ██╗██████╗  ██████╗ ███████╗
+██║ ██╔╝╚██╗ ██╔╝██╔══██╗██╔═══██╗██╔════╝
+█████╔╝  ╚████╔╝ ██████╔╝██║   ██║███████╗
+██╔═██╗   ╚██╔╝  ██╔══██╗██║   ██║╚════██║
+██║  ██╗   ██║   ██║  ██║╚██████╔╝███████║
+╚═╝  ╚═╝   ╚═╝   ╚═╝  ╚═╝ ╚═════╝ ╚══════╝
 ```
 
-### 2. Configure Environment Variables
+**Right tool • Right time • Right cost**
 
-Create a `.env` file to define the characteristics of the architecture:
+## Quick Start
 
+### Option 1: Web Deployment Interface (Recommended)
 ```bash
-cp .env.example .env
+cd poc
+pip install -r requirements.txt
+python run.py
+```
+Open **http://localhost:5003** - Select components, review config, deploy with real-time logs.
+
+### Option 2: Interactive CLI
+```bash
+./kyros-cli.py
 ```
 
-Edit the `.env` file to configure your environment:
-
+### Option 3: Manual Preset
 ```bash
-nano .env
-```
-
-### 3. Prepare Permissions and Generate Docker Compose File
-
-Run the setup scripts:
-
-```bash
-./before_docker-compose.sh
+cp presets/level-1.env .env
 ./generate-docker-compose.sh
+docker compose up -d
 ```
 
-### 4. Build and Start the Docker Containers
+Access the dashboard at **http://localhost:5005**
 
-You can choose between building without cache or simply bringing up the containers:
+## Architecture Levels
+
+| Level | Name | Stack | Data Size | Cost/Month |
+|-------|------|-------|-----------|------------|
+| **0** | Local | DuckDB + dbt | < 50 GB | $0 |
+| **1** | Team | + PostgreSQL + Dagster + Superset | < 500 GB | $20-100 |
+| **2** | Data Lake | + MinIO + Delta Lake + JupyterLab | < 1 TB | $50-150 |
+| **3** | Distributed | + Spark + Trino | 1+ TB | $150-500 |
+| **4** | Enterprise | + Flink + Kafka + SSO | Any | $500+ |
+
+### Do You Need Spark?
+
+| Data Size | Recommendation |
+|-----------|----------------|
+| < 10 GB | PostgreSQL + dbt or DuckDB. Spark is overkill. |
+| 10-100 GB | DuckDB or warehouse + dbt. Spark optional. |
+| 100 GB - 1 TB | Warehouse + dbt. Spark starts making sense. |
+| 1+ TB | Spark is justified. Consider Trino for federated queries. |
+
+## Components
+
+### Data & Processing
+| Component | Description | Port | Level |
+|-----------|-------------|------|-------|
+| PostgreSQL | Relational database | 5432 | 1+ |
+| MinIO | S3-compatible object storage | 9001 | 2+ |
+| Trino | Federated SQL query engine | 8082 | 3+ |
+| Spark | Distributed processing | 8080 | 3+ |
+| Kafka | Event streaming platform | 9092 | 4+ |
+| Flink | Stream processing | 8081 | 4+ |
+
+### Orchestration & BI
+| Component | Description | Port | Level |
+|-----------|-------------|------|-------|
+| Dagster | Data orchestration | 3000 | 1+ |
+| Superset | BI & visualization | 8088 | 1+ |
+| dbt | SQL transformations | CLI | 0+ |
+
+### Development Tools
+| Component | Description | Port | Level |
+|-----------|-------------|------|-------|
+| JupyterLab | Notebooks & analysis | 8888 | 2+ |
+| Code Server | VS Code in browser | 8083 | 2+ |
+| CloudBeaver | Database UI | 8978 | 1+ |
+| SQLPad | SQL editor | 3001 | 1+ |
+
+### Infrastructure
+| Component | Description | Port | Level |
+|-----------|-------------|------|-------|
+| Kyros Dashboard | Platform control panel | 5000 | 1+ |
+| Portainer | Container management | 9000 | 1+ |
+| Grafana | Monitoring dashboards | 3002 | 2+ |
+
+## Usage
+
+### Interactive CLI
+
+The CLI provides an interactive interface with GitLab-style build logs:
 
 ```bash
-# Build Images Without Cache
-# Build Images Without Cache
-docker compose -f docker-compose.yml build --no-cache
-
-# Bring Up Containers
-# Bring Up Containers
-docker compose --env-file .env-using-local-registry -f docker-compose-registry.yml up -d
-docker compose --env-file .env-using-local-registry -f docker-compose.yml up -d
-
+./kyros-cli.py
 ```
 
-### 5. Access JupyterLab
+Options:
+- **deploy** - Select components and deploy
+- **stop** - Stop all running services
+- **status** - Show running containers
+- **levels** - View architecture levels
 
-Once the containers are up, you can access JupyterLab at:
+### Using Presets
 
+```bash
+# Level 1: Team (PostgreSQL + Dagster + Superset)
+cp presets/level-1.env .env
+
+# Level 2: Data Lake (+ MinIO + JupyterLab)
+cp presets/level-2.env .env
+
+# Level 3: Distributed (+ Spark + Trino)
+cp presets/level-3.env .env
+
+# Level 4: Enterprise (+ Kafka + Flink)
+cp presets/level-4.env .env
+
+# Generate and deploy
+./generate-docker-compose.sh
+docker compose up -d
 ```
-http://localhost:8888
+
+### Custom Configuration
+
+Edit `.env` to enable/disable specific components:
+
+```bash
+# Toggle components
+INCLUDE_POSTGRES=true
+INCLUDE_DAGSTER=true
+INCLUDE_SUPERSET=true
+INCLUDE_MINIO=false
+INCLUDE_JUPYTERLAB=true
+INCLUDE_TRINO=false
+INCLUDE_KAFKA=false
+INCLUDE_FLINK=false
+
+# Spark workers (Level 3+)
+WORKERS=2
+
+# Resource allocation
+SPARK_WORKER_MEMORY=2G
+SPARK_EXECUTOR_MEMORY=2G
+SPARK_WORKER_CORES=2
 ```
+
+## Dashboard
+
+The Kyros Dashboard (http://localhost:5000) provides:
+
+- **Service Status** - Real-time health monitoring
+- **System Stats** - CPU, memory, disk usage
+- **Quick Access** - Links to all platform services
+- **Decision Helper** - Guidance on when to scale
 
 ## Common Commands
 
-### Stop and Remove All Containers
-
 ```bash
-docker stop $(docker ps -aq)
-docker rm $(docker ps -aq)
+# Start services
+docker compose up -d
+
+# Stop services
+docker compose down
+
+# View logs
+docker compose logs -f [service-name]
+
+# Rebuild specific service
+docker compose up -d --build [service-name]
+
+# Check status
+docker compose ps
+
+# Scale Spark workers
+docker compose up -d --scale spark-worker=3
 ```
 
-### Clean Up Docker Volumes and Networks
+## Project Structure
 
-```bash
-docker volume prune -f
-docker network prune -f
+```
+kyros/
+├── poc/                   # Web Deployment Interface
+│   ├── app/
+│   │   ├── templates/     # config.html, summary.html (real-time logs)
+│   │   ├── routes.py      # Flask routes + Socket.IO
+│   │   └── socketio.py    # Real-time log streaming
+│   └── run.py             # Entry point
+├── kyros-cli.py           # Interactive CLI (Rich TUI)
+├── generate-docker-compose.sh  # Compose generator
+├── .env                   # Active configuration
+├── presets/               # Level presets
+│   ├── level-0.env        # Local (DuckDB + dbt)
+│   ├── level-1.env        # Team (+ PostgreSQL, Dagster, Superset)
+│   ├── level-2.env        # Data Lake (+ MinIO, JupyterLab)
+│   ├── level-3.env        # Distributed (+ Spark, Trino)
+│   └── level-4.env        # Enterprise (+ Kafka, Flink, SSO)
+├── services/              # Modular service definitions
+│   ├── postgres.yml
+│   ├── dagster.yml
+│   ├── spark.yml
+│   └── ...
+├── docker/                # Dockerfiles & configs
+│   ├── kyros/             # Dashboard app
+│   ├── jupyterlab/
+│   ├── spark/
+│   └── ...
+└── VISION.md              # Project philosophy & roadmap
 ```
 
-### Access JupyterLab Container as Root
+## The Problem We Solve
 
-```bash
-docker exec -it --user root jupyterlab bash
-```
+The data engineering industry has an over-engineering problem. Companies with 10GB deploy Spark clusters. Startups paying $15k/month for Databricks could run on DuckDB.
 
-## Project Setup
+**Every vendor says "use us." Nobody says "you don't need us yet."**
 
-### 1. **Environment Variables (`.env`)**
+Kyros is different: Start simple. Scale when justified. Know the difference.
 
-The `.env` file contains all the environment variables needed to configure your Docker setup:
+## Philosophy
 
-```dotenv
-# General settings
-# General settings
-PROJECT_NAME=data-engineering
-JUPYTERLAB_VERSION=4.2.4
-SPARK_VERSION=3.4.1
-DELTA_VERSION=2.4.0
-ICEBERG_VERSION=1.2.0
+1. **Complexity is a cost** - Every service added is operational burden. Justify it.
+2. **Ready to scale, not already scaled** - Have the path, don't walk it prematurely.
+3. **Teach the trade-offs** - Don't just provide tools, explain when to use them.
+4. **Accessible by default** - A student and a startup should both find value here.
+5. **Honest about limitations** - This is a learning and launching platform, not enterprise software.
 
-# Ports
-# Ports
-JUPYTERLAB_PORT=8888
-SPARK_UI_PORT=4045
+## Who This Is For
 
-# Docker network
-# Docker network
-NETWORK_NAME=my-network
-```
+- **Students** learning data engineering without cloud bills
+- **Bootstrapped startups** who need results, not impressive architecture
+- **Career switchers** building portfolio projects
+- **Small teams** who want to grow into complexity, not start with it
+- **Anyone** tired of over-engineering
 
-### 2. **Generate Docker Compose (`generate-docker-compose.sh`)**
+## Prerequisites
 
-This script generates the `docker-compose.yml` file dynamically based on the variables specified in your `.env` file. Ensure to run this script before starting your Docker containers.
+- Docker and Docker Compose
+- Python 3.8+ (for CLI)
+- 8GB+ RAM recommended (16GB+ for Level 3+)
 
-### 3. **Permissions Setup (`before_docker-compose.sh`)**
+## Default Credentials
 
-Run this script to ensure that the necessary directories are created and permissions are set correctly:
+| Service | Username | Password |
+|---------|----------|----------|
+| PostgreSQL | kyros | kyros_dev |
+| Superset | admin | admin |
+| MinIO | kyros | kyros_dev |
 
-```bash
-#!/bin/bash
-
-# Create directories if they do not exist
-# Create directories if they do not exist
-mkdir -p ./shared-workspace
-mkdir -p ./data/delta_lake
-
-# Set permissions for the directories
-# Set permissions for the directories
-chmod -R 777 ./shared-workspace
-chmod -R 777 ./data/delta_lake
-
-echo "Directories and permissions set successfully."
-```
-
-### 4. **Common Docker Commands**
-
-Here are some essential Docker commands for managing your environment:
-
-```bash
-# Stop all running containers
-docker stop $(docker ps -aq)
-
-# Remove all containers
-docker rm $(docker ps -aq)
-
-# Remove all volumes
-docker volume prune -f
-
-# Remove all networks
-docker network prune -f
-
-# Build and start the containers with Docker Compose
-docker compose -f docker-compose.yml up --remove-orphans --build -d
-
-# Build images without using cache
-docker compose -f docker-compose.yml build --no-cache
-
-# Start containers without rebuilding
-docker compose -f docker-compose.yml up --remove-orphans -d
-
-# Access the JupyterLab container as root
-docker exec -it --user root jupyterlab bash
-
-# Lists all running Docker containers, displaying each container's ID, name, and IP address in a clear, readable format
-docker ps -q | while read id; do echo -n "$id -> "; docker inspect -f '{{.Name}} -> {{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' $id | sed 's/\///'; echo ""; done
-```
-
-## Cleaning commands
-
-You can use the following block of commands to free all memory and storage taken by Docker objects, including containers, images, volumes, and networks:
-
-```bash
-# Stop all running containers
-docker stop $(docker ps -aq)
-# Remove all containers
-docker rm $(docker ps -aq)
-# Remove all Docker images
-docker rmi -f $(docker images -aq)
-# Remove all unused volumes
-docker volume prune -f
-# Remove all unused networks
-docker network prune -f
-# Remove all unused data (build cache, dangling images, etc.)
-docker system prune -af --volumes
-```
-
-
-```bash
-# Build the Image with No Cache
-docker compose --env-file .env-using-local-registry build --no-cache minio
-# Run the MinIO Service
-docker compose --env-file .env-using-local-registry up -d minio
-```
-or maybe
-```bash
-docker-compose --env-file .env-using-local-registry -f docker-compose.yml up --build --no-deps -d kyros
-```
-
-Check sparkuser existence:
-```bash
-docker exec -it spark-master id sparkuser
-docker exec -it spark-worker-1 id sparkuser
-docker exec -it spark-worker-2 id sparkuser
-docker exec -it hive-metastore id sparkuser
-docker exec -it spark-thrift-server id sparkuser
-docker exec -it postgres id sparkuser
-docker stats
-```
-
-#### Confirms that your core-site.xml is being correctly loaded by Spark within the spark-thrift-server container
-
-Access Spark Shell
-```
-spark-shell
-```
-
-Verify Loading Configuration  
-```java
-scala> val conf = spark.sparkContext.hadoopConfiguration
-conf: org.apache.hadoop.conf.Configuration = Configuration: core-default.xml, core-site.xml, mapred-default.xml, mapred-site.xml, yarn-default.xml, yarn-site.xml, __spark_hadoop_conf__.xml
-
-scala> println(conf.get("fs.defaultFS"))  // Should print the value from core-site.xml
-hdfs://namenode:9000
-
-scala> println(conf.get("hadoop.security.group.mapping"))  // Should print the value from core-site.xml
-org.apache.hadoop.security.ShellBasedUnixGroupsMapping
-```
-
-## Hive
-
-Connection
- * Host: `localhost`
- * Port: `10000`
- * Database/Schema: `default`
- * Username: `sparkuser`
- * Password: `sparkuser_password`
-
-## Getting Started Tutorials
-
-* Delta Lake PySpark Python Helper Class | Working with Delta Lakes & Glue Pyspark Made Easy
-  * [YouTube Video](https://www.youtube.com/watch?v=fMF6J5-KJVw&list=PLL2hlSFBmWwyg9XXo9itISuh3exPNk70O)
-  * [Documentation](http://delta-lake-helper-class.s3-website-us-east-1.amazonaws.com/)
-  * [GitHub Repo](https://github.com/soumilshah1995/Delta-Lake-Pyspark-Helper-Class)
-
-* Reading Data from Hudi INC & Joining with Delta Tables using HudiStreamer & SQL-Based Transformer
-  * [YouTube Video](https://www.youtube.com/watch?v=g5N-C5JbC_o)
-  * [](https://www.youtube.com/redirect?event=video_description&redir_token=QUFFLUhqbVBzZjdmTHF3cVYwVnlrLV8zMFpNbWFUbjFiZ3xBQ3Jtc0ttZk9QXzBYLUxUUG5FZ0prUS14eEdRZXQ0djA3Z1lMWXFjdThYYndlNlBYdUVETmdjT2lOeDhoX2ZQR19qT2l1Ql83Vnh6SVkwR2VGY1VabXFaa19BZmxrUF96ZF9FVU5ZbkNCQ3VwcDBqRmtPR2VEUQ&q=https%3A%2F%2Fgithub.com%2Fsoumilshah1995%2FHudi-delta-etl-deltastreamer%2Ftree%2Fmain&v=g5N-C5JbC_o)
-
-`/opt/bitnami/spark/sbin/start-thriftserver.sh`
-```sh
-#!/usr/bin/env bash
-
-#
-# Licensed to the Apache Software Foundation (ASF) under one or more
-# contributor license agreements.  See the NOTICE file distributed with
-# this work for additional information regarding copyright ownership.
-# The ASF licenses this file to You under the Apache License, Version 2.0
-# (the "License"); you may not use this file except in compliance with
-# the License.  You may obtain a copy of the License at
-#
-#    http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
-#
-
-#
-# Shell script for starting the Spark SQL Thrift server
-
-# Enter posix mode for bash
-set -o posix
-
-if [ -z "${SPARK_HOME}" ]; then
-  export SPARK_HOME="$(cd "`dirname "$0"`"/..; pwd)"
-fi
-
-# NOTE: This exact class name is matched downstream by SparkSubmit.
-# Any changes need to be reflected there.
-CLASS="org.apache.spark.sql.hive.thriftserver.HiveThriftServer2"
-
-function usage {
-  echo "Usage: ./sbin/start-thriftserver [options] [thrift server options]"
-  pattern="usage"
-  pattern+="\|Spark assembly has been built with Hive"
-  pattern+="\|NOTE: SPARK_PREPEND_CLASSES is set"
-  pattern+="\|Spark Command: "
-  pattern+="\|======="
-  pattern+="\|--help"
-  pattern+="\|Using Spark's default log4j profile:"
-  pattern+="\|^log4j:"
-  pattern+="\|Started daemon with process name"
-  pattern+="\|Registered signal handler for"
-
-  "${SPARK_HOME}"/bin/spark-submit --help 2>&1 | grep -v Usage 1>&2
-  echo
-  echo "Thrift server options:"
-  "${SPARK_HOME}"/bin/spark-class $CLASS --help 2>&1 | grep -v "$pattern" 1>&2
-}
-
-if [[ "$@" = *--help ]] || [[ "$@" = *-h ]]; then
-  usage
-  exit 1
-fi
-
-export SUBMIT_USAGE_FUNCTION=usage
-
-exec "${SPARK_HOME}"/sbin/spark-daemon.sh submit $CLASS 1 --name "Thrift JDBC/ODBC Server" "$@"
-```
+**Note:** Change these for production deployments.
 
 ## Contributing
 
-We welcome contributions! Feel free to open an issue or submit a pull request.
+Contributions welcome! Feel free to open an issue or submit a pull request.
 
 ## License
 
-This project is licensed under the MIT License.
+MIT License
