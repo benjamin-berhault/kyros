@@ -55,10 +55,10 @@ COMPONENTS = {
 
 LEVELS = {
     0: {"name": "Local", "desc": "DuckDB + dbt", "cost": "$0", "data": "< 50 GB"},
-    1: {"name": "Team", "desc": "+ PostgreSQL + Dagster + Superset", "cost": "$20-100", "data": "< 500 GB"},
-    2: {"name": "Data Lake", "desc": "+ MinIO + Delta Lake", "cost": "$50-150", "data": "< 1 TB"},
-    3: {"name": "Distributed", "desc": "+ Spark + Trino", "cost": "$150-500", "data": "1+ TB"},
-    4: {"name": "Enterprise", "desc": "+ Flink + Kafka + SSO", "cost": "$500+", "data": "Any"},
+    1: {"name": "Team", "desc": "+ PostgreSQL + Dagster + Superset", "cost": "$30-80", "data": "< 500 GB"},
+    2: {"name": "Data Lake", "desc": "+ MinIO + JupyterLab + Grafana", "cost": "$80-200", "data": "< 1 TB"},
+    3: {"name": "Distributed", "desc": "+ Spark + Trino", "cost": "$300-600", "data": "1+ TB"},
+    4: {"name": "Enterprise", "desc": "+ Kafka + Flink", "cost": "$600-1500+", "data": "Any"},
 }
 
 
