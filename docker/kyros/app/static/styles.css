@@ -1,4 +1,4 @@
-html {
+/* html {
     --mat-option-selected-state-label-text-color: #673ab7;
     --mat-option-label-text-color: rgba(0, 0, 0, .87);
     --mat-option-hover-state-layer-color: rgba(0, 0, 0, .04);
@@ -419,7 +419,6 @@ html {
     --text-color-secondary: #605e5c;
     --primary-color: #0078d4;
     --primary-color-text: #ffffff;
-    --font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
     --surface-0: #ffffff;
     --surface-50: #f3f2f1;
     --surface-100: #e1dfdd;
@@ -451,14 +450,8 @@ html {
     --surface-border: #edebe9;
     --surface-hover: #f3f2f1;
     --maskbg: rgba(0, 0, 0, .4);
-    --focus-ring: inset 0 0 0 1px #605e5c
-}
+    --focus-ring: inset 0 0 0 1px #605e5c;
 
-* {
-    box-sizing: border-box
-}
-
-:root {
     --blue-50: #f3f8fc;
     --blue-100: #c6dcef;
     --blue-200: #98c1e3;
@@ -568,71 +561,65 @@ html {
     --red-600: #b22c30;
     --red-700: #922427;
     --red-800: #731d1f;
-    --red-900: #541516
+    --red-900: #541516;
+    --swiper-theme-color: #007aff;
+    --swiper-navigation-size: 44px;
 }
+    
+* {
+    box-sizing: border-box
+}
+    
+*/
 
 
-:root {
-    --font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji
-}
-
-:root {
-    --swiper-theme-color: #007aff
-}
-
-:root {
-    --swiper-navigation-size: 44px
-}
-
-@font-face {
-    font-family: Segoe UI;
-    src: local("Segoe UI Light"), url(segoeuil.b7052262d65498a9.woff) format("woff"), url(segoeuil.453a74f4a685b371.woff2) format("woff2"), url(segoeuil.a10e36ee0338cb3e.ttf) format("ttf"), url(segoeuil.b148c78f5c88e846.svg#SegoeUILight) format("svg");
-    font-weight: 200;
-    font-style: normal
-}
-
-@font-face {
-    font-family: Segoe UI;
-    src: local("Segoe UI Semilight"), url(segoeuisl.0b319767acd16189.woff) format("woff"), url(segoeuisl.3ef7c5e718255646.woff2) format("woff2"), url(segoeuisl.e3f7e0dafc6e539b.ttf) format("ttf"), url(segoeuisl.d42c9a39c04c3914.svg#SegoeUISemilight) format("svg");
-    font-weight: 300;
-    font-style: normal
-}
-
-@font-face {
-    font-family: Segoe UI;
-    src: local("Segoe UI"), url(segoeui.fdabbd73c48f7e0a.woff) format("woff"), url(segoeui.80c9c12e20390ef0.woff2) format("woff2"), url(segoeui.060b7660e09c7882.ttf) format("ttf"), url(segoeui.97c254b4d6bb03fe.svg#SegoeUI) format("svg");
-    font-weight: 400;
-    font-style: normal
-}
-
-@font-face {
-    font-family: Segoe UI;
-    src: local("Segoe UI Semibold"), url(segoeuisb.f4801215643e9168.woff) format("woff"), url(segoeuisb.00bf63d10c5e7dbb.woff2) format("woff2"), url(segoeuisb.2a9104d3dac409bc.ttf) format("ttf"), url(segoeuisb.287a384f27650cb1.svg#SegoeUISemibold) format("svg");
-    font-weight: 500;
-    font-style: normal
-}
-
-@font-face {
-    font-family: Segoe UI;
-    src: local("Segoe UI Semibold"), url(segoeuisb.f4801215643e9168.woff) format("woff"), url(segoeuisb.00bf63d10c5e7dbb.woff2) format("woff2"), url(segoeuisb.2a9104d3dac409bc.ttf) format("ttf"), url(segoeuisb.287a384f27650cb1.svg#SegoeUISemibold) format("svg");
-    font-weight: 600;
-    font-style: normal
-}
-
-@font-face {
-    font-family: Segoe UI;
-    src: local("Segoe UI Bold"), url(segoeuib.f88854d9b87dc087.woff) format("woff"), url(segoeuib.79384356c39628d0.woff2) format("woff2"), url(segoeuib.aa3d5449c2477d50.ttf) format("ttf"), url(segoeuib.70d7487745ef2f05.svg#SegoeUIBold) format("svg");
-    font-weight: 700;
-    font-style: normal
-}
 
 body {
     margin: 0;
     height: 100%;
     width: 100%;
-    font-family: Segoe UI;
-    background-color: var(--colorNeutralBackground1, #ffffff);
+    /* Azure Synapse */
+    /* font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji; */
+    /* Airbyte */
+    font-family: Inter, Helvetica, Arial, sans-serif;
+    /* font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif; */
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased; /* For WebKit browsers */
+    -moz-osx-font-smoothing: grayscale;  /* For Firefox on macOS */
+    -webkit-font-smoothing: antialiased;
     color: var(--colorNeutralForeground1, #242424)
+}
+
+
+
+.background-split {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: -1; /* Places the background layers behind content */
+    display: flex;
+    flex-direction: column;
+}
+
+.upper-half {
+    background-color: var(--colorNeutralBackground1, #0078d4); /* Upper half color */
+    height: 50vh;
+    width: 100%;
+}
+
+.lower-half {
+    background-color: #fff; /* Lower half color */
+    height: 50vh;
+    width: 100%;
+}
+
+/* Style for other content to scroll over the background */
+.content {
+    position: relative;
+    z-index: 1; /* Places content above the background layers */
+    padding: 20px;
 }
 
 html {
@@ -646,7 +633,7 @@ html {
 * {
     box-sizing: revert
 }
-
+/* 
 :root {
     --borderRadiusNone: 0;
     --borderRadiusSmall: 2px;
@@ -1323,7 +1310,7 @@ html {
     --globalColorCharcoalTint40: #c4c4c4;
     --globalColorCharcoalTint50: #dfdfdf;
     --globalColorCharcoalTint60: #f7f7f7
-}
+} */
 
 /*---------------------------------------------------------------------------------------------
 *  Copyright (c) Microsoft Corporation. All rights reserved.
@@ -1753,16 +1740,6 @@ border-color: rgba(204, 204, 204, 0.2);
 *  Licensed under the MIT License. See License.txt in the project root for license information.
 *--------------------------------------------------------------------------------------------*/
 
-/*---------------------------------------------------------------------------------------------
-*  Copyright (c) Microsoft Corporation. All rights reserved.
-*  Licensed under the MIT License. See License.txt in the project root for license information.
-*--------------------------------------------------------------------------------------------*/
-
-@font-face {
-    font-family: "codicon";
-    font-display: block;
-    src: url(0903360d41263eef.ttf) format("truetype");
-}
 
 /* icon rules are dynamically created by the platform theme service (see iconsStyleSheet.ts) */
 /*---------------------------------------------------------------------------------------------
@@ -1976,64 +1953,72 @@ opacity: 1 !important;
 * of patent rights can be found in the PATENTS file in the same directory.
 */
 
-[_nghost-ng-c3356402977] {
+/* {
     height: 100vh;
     display: flex;
     flex-direction: column
-}
+} */
 
 @media (min-height: 256px) {
-    [_nghost-ng-c3356402977] {
+    {
         height: 100%
     }
 }
-
-[_nghost-ng-c3356402977] mat-sidenav-container[_ngcontent-ng-c3356402977] {
+/* 
+mat-sidenav-container {
     display: flex;
     flex-grow: 1;
     z-index: inherit;
     height: 100%
 }
 
-[_nghost-ng-c3356402977] mat-sidenav-container[_ngcontent-ng-c3356402977] .mat-drawer-content {
+mat-sidenav-container .mat-drawer-content {
     display: flex;
     flex-grow: 1
 }
 
-[_nghost-ng-c3356402977] mat-sidenav-container[_ngcontent-ng-c3356402977] mat-sidenav {
+mat-sidenav-container mat-sidenav {
     box-shadow: 0 4px 6px rgba(0, 0, 0, .12)
 }
 
 @media (max-height: 256px) {
-    [_nghost-ng-c3356402977] mat-sidenav-container.fullHeight[_ngcontent-ng-c3356402977] mat-sidenav-content {
+    mat-sidenav-container.fullHeight mat-sidenav-content {
         height: 216px
     }
-}
+} */
 
-[_nghost-ng-c3356402977] .globalSearchToggle[_ngcontent-ng-c3356402977] {
+.globalSearchToggle {
     line-height: 2.5
 }
 
-[_nghost-ng-c3356402977] .search-close[_ngcontent-ng-c3356402977] {
+.search-close {
     line-height: 2.5;
     flex-grow: 5;
     margin: 0 10px
 }
 
-[_nghost-ng-c3356402977] .top-bar[_ngcontent-ng-c3356402977] {
+.top-bar {
     display: flex;
     flex-flow: row nowrap;
     min-height: 40px;
     flex: 0 0 auto;
     position: relative;
-    background-color: var(--colorBrandBackground, #0078D4);
+    background-color: #0078D4;
     justify-content: center;
     white-space: nowrap;
     box-shadow: 0 8px 16px rgba(0, 0, 0, .16);
     z-index: 2
 }
 
-[_nghost-ng-c3356402977] .top-bar[_ngcontent-ng-c3356402977] .title-container[_ngcontent-ng-c3356402977] {
+.top-bar a {
+    color: #ffffff;
+}
+
+.top-bar a:hover {
+    color: #f5f5f5;
+}
+
+.top-bar .title-container {
     display: flex;
     flex-grow: 1;
     flex-shrink: 5;
@@ -2042,13 +2027,13 @@ opacity: 1 !important;
 }
 
 @media (max-width: 870px) {
-    [_nghost-ng-c3356402977] .top-bar[_ngcontent-ng-c3356402977] .title-container[_ngcontent-ng-c3356402977] .optional-text[_ngcontent-ng-c3356402977] {
+    .top-bar .title-container .optional-text {
         display: none
     }
 }
 
-[_nghost-ng-c3356402977] .top-bar[_ngcontent-ng-c3356402977] .microsoft-title[_ngcontent-ng-c3356402977] {
-    color: var(--colorNeutralForegroundOnBrand, #ffffff);
+.top-bar {
+    color: #ffffff;
     font-size: 15px;
     padding: 0 16px;
     line-height: 40px;
@@ -2058,36 +2043,36 @@ opacity: 1 !important;
     margin-bottom: 0
 }
 
-[_nghost-ng-c3356402977] .top-bar[_ngcontent-ng-c3356402977] .microsoft-title[_ngcontent-ng-c3356402977]:hover {
-    background-color: var(--colorBrandBackgroundHover, #106EBE);
+.top-bar .microsoft-title:hover {
+    background-color: #106EBE;
     box-shadow: inset -9px 0 13px rgba(74, 74, 74, .23)
 }
 
-[_nghost-ng-c3356402977] .top-bar[_ngcontent-ng-c3356402977] .microsoft-title[_ngcontent-ng-c3356402977]:focus {
-    outline: 1px dashed var(--colorNeutralForegroundOnBrand, #ffffff)
+.top-bar .microsoft-title:focus {
+    outline: 1px dashed #ffffff
 }
 
-[_nghost-ng-c3356402977] .top-bar[_ngcontent-ng-c3356402977] .icon-bar-container[_ngcontent-ng-c3356402977] {
+.top-bar .icon-bar-container {
     display: flex;
     flex-grow: 2;
     justify-content: flex-end
 }
 
-[_nghost-ng-c3356402977] .top-bar[_ngcontent-ng-c3356402977] .madrid-icon[_ngcontent-ng-c3356402977] {
-    color: var(--colorNeutralForegroundOnBrand, #ffffff)
+.top-bar .madrid-icon {
+    color: #ffffff
 }
 
-[_nghost-ng-c3356402977] .top-bar[_ngcontent-ng-c3356402977] .nav-menu-small-screen[_ngcontent-ng-c3356402977] {
+.top-bar .nav-menu-small-screen {
     line-height: 2.5;
     margin: 0 15px
 }
 
-[_nghost-ng-c3356402977] .top-bar[_ngcontent-ng-c3356402977] .madrid-icon[_ngcontent-ng-c3356402977] {
+.top-bar .madrid-icon {
     cursor: pointer
 }
 
 @media (min-width: 1024px) {
-    [_nghost-ng-c3356402977] .top-bar[_ngcontent-ng-c3356402977] app-icon-bar[_ngcontent-ng-c3356402977] {
+    .top-bar app-icon-bar {
         width: 35%;
         min-width: 250px;
         overflow: hidden;
@@ -2096,78 +2081,78 @@ opacity: 1 !important;
         flex-grow: 1
     }
 
-    [_nghost-ng-c3356402977] .top-bar[_ngcontent-ng-c3356402977] .title-container[_ngcontent-ng-c3356402977] {
+    .top-bar .title-container {
         flex: 1 1 auto
     }
 
-    [_nghost-ng-c3356402977] .top-bar[_ngcontent-ng-c3356402977] .globalSearchToggle[_ngcontent-ng-c3356402977] {
+    .top-bar .globalSearchToggle {
         display: none
     }
 
-    [_nghost-ng-c3356402977] .top-bar[_ngcontent-ng-c3356402977] .search-close[_ngcontent-ng-c3356402977] {
+    .top-bar .search-close {
         display: none
     }
 
-    [_nghost-ng-c3356402977] .top-bar[_ngcontent-ng-c3356402977] .nav-menu-small-screen[_ngcontent-ng-c3356402977] {
+    .top-bar .nav-menu-small-screen {
         display: none
     }
 }
 
 @media (min-width: 640px) and (max-width: 1023px) {
-    [_nghost-ng-c3356402977] .top-bar[_ngcontent-ng-c3356402977] app-icon-bar[_ngcontent-ng-c3356402977] {
+    .top-bar app-icon-bar {
         flex-grow: 1
     }
 
-    [_nghost-ng-c3356402977] .top-bar[_ngcontent-ng-c3356402977] .globalSearchToggle[_ngcontent-ng-c3356402977] {
+    .top-bar .globalSearchToggle {
         display: none
     }
 
-    [_nghost-ng-c3356402977] .top-bar[_ngcontent-ng-c3356402977] .title-container[_ngcontent-ng-c3356402977] {
+    .top-bar .title-container {
         display: flex
     }
 
-    [_nghost-ng-c3356402977] .top-bar[_ngcontent-ng-c3356402977] .search-close[_ngcontent-ng-c3356402977] {
+    .top-bar .search-close {
         display: none
     }
 
-    [_nghost-ng-c3356402977] .top-bar[_ngcontent-ng-c3356402977] .nav-menu-small-screen[_ngcontent-ng-c3356402977] {
+    .top-bar .nav-menu-small-screen {
         display: none
     }
 }
 
 @media (min-width: 256px) and (max-width: 639px) {
-    [_nghost-ng-c3356402977] .top-bar[_ngcontent-ng-c3356402977] app-icon-bar[_ngcontent-ng-c3356402977] {
+    .top-bar app-icon-bar {
         flex-grow: 0
     }
 
-    [_nghost-ng-c3356402977] .top-bar[_ngcontent-ng-c3356402977] .search-close[_ngcontent-ng-c3356402977] {
+    .top-bar .search-close {
         display: none
     }
 
-    [_nghost-ng-c3356402977] .top-bar[_ngcontent-ng-c3356402977] .globalSearchToggle[_ngcontent-ng-c3356402977] {
+    .top-bar .globalSearchToggle {
         display: flex
     }
 
-    [_nghost-ng-c3356402977] .top-bar[_ngcontent-ng-c3356402977] .nav-menu-small-screen[_ngcontent-ng-c3356402977] {
+    .top-bar .nav-menu-small-screen {
         display: flex
     }
 }
 
 @media (max-width: 479px) {
 
-    [_nghost-ng-c3356402977] .top-bar[_ngcontent-ng-c3356402977] .search-close[_ngcontent-ng-c3356402977] {
+    .top-bar .search-close {
         display: none
     }
 
-    [_nghost-ng-c3356402977] .top-bar[_ngcontent-ng-c3356402977] .globalSearchToggle[_ngcontent-ng-c3356402977] {
+    .top-bar .globalSearchToggle {
         display: flex
     }
 
-    [_nghost-ng-c3356402977] .top-bar[_ngcontent-ng-c3356402977] .nav-menu-small-screen[_ngcontent-ng-c3356402977] {
+    .top-bar .nav-menu-small-screen {
         display: flex
     }
 }
-
+/* 
 .mat-drawer-container {
     position: relative;
     z-index: 1;
@@ -2238,17 +2223,17 @@ opacity: 1 !important;
     -webkit-overflow-scrolling: touch
 }
 
-[_nghost-ng-c1979484314] mat-sidenav-container[_ngcontent-ng-c1979484314] {
+mat-sidenav-container {
     display: flex;
     flex-grow: 1;
     height: 100%
 }
 
-[_nghost-ng-c1979484314] mat-sidenav-container[_ngcontent-ng-c1979484314] mat-sidenav-content[_ngcontent-ng-c1979484314] {
-    background-color: var(--colorNeutralBackground1, #ffffff)
-}
+mat-sidenav-container mat-sidenav-content {
+    background-color: #ffffff
+} */
 
-[_nghost-ng-c1979484314] .sidenav-modal[_ngcontent-ng-c1979484314] {
+.sidenav-modal {
     display: flex;
     flex-direction: column;
     min-width: 316px;
@@ -2258,113 +2243,102 @@ opacity: 1 !important;
     background-color: transparent
 }
 
-[_nghost-ng-c1979484314] .dynamic-component-container[_ngcontent-ng-c1979484314] {
+.dynamic-component-container {
     position: relative;
     flex-grow: 1;
     overflow: hidden
 }
 
 @media (max-width: 1023px) {
-    [_nghost-ng-c1979484314] .sidenav-modal[_ngcontent-ng-c1979484314] {
+    .sidenav-modal {
         max-width: 632px
     }
 }
 
 @media (max-width: 639px) {
-    [_nghost-ng-c1979484314] .sidenav-modal[_ngcontent-ng-c1979484314] {
+    .sidenav-modal {
         max-width: 316px
     }
 }
 
 @media (max-height: 479px) {
 
-    [_nghost-ng-c1979484314] .sidenav-modal[_ngcontent-ng-c1979484314] {
+    .sidenav-modal {
         overflow-y: auto
     }
 
-    [_nghost-ng-c1979484314] .dynamic-component-container[_ngcontent-ng-c1979484314] {
+    .dynamic-component-container {
         overflow: visible
     }
 }
 
-[_nghost-ng-c3276584325] {
+#app-icon-bar {
     display: flex;
     justify-content: flex-end
 }
 
-[_nghost-ng-c3276584325] .full-container[_ngcontent-ng-c3276584325] {
+#app-icon-bar .full-container {
     display: flex
 }
 
-[_nghost-ng-c3276584325] .account-info-button[_ngcontent-ng-c3276584325] {
+#app-icon-bar .account-info-button {
     border: 0;
     padding: 0;
     background: none
 }
 
-[_nghost-ng-c3276584325] .account-info-button[_ngcontent-ng-c3276584325] .account-info-container[_ngcontent-ng-c3276584325] {
+#app-icon-bar .account-info-button .account-info-container {
     display: flex;
     align-items: center;
     height: 40px;
     cursor: pointer
 }
 
-[_nghost-ng-c3276584325] .account-info-button[_ngcontent-ng-c3276584325] .account-info-container[_ngcontent-ng-c3276584325]:hover {
-    background-color: var(--colorBrandBackgroundHover, #106EBE);
+#app-icon-bar .account-info-button .account-info-container:hover {
+    background-color: #106EBE;
     box-shadow: inset -9px 0 13px rgba(74, 74, 74, .23)
 }
 
-[_nghost-ng-c3276584325] .account-info-button[_ngcontent-ng-c3276584325] .account-info-container[_ngcontent-ng-c3276584325]:focus {
-    outline: 1px dashed var(--colorNeutralStrokeOnBrand2, #ffffff)
+#app-icon-bar .account-info-button .account-info-container:focus {
+    outline: 1px dashed #ffffff
 }
 
-[_nghost-ng-c3276584325] .account-info-button[_ngcontent-ng-c3276584325] .account-info-container[_ngcontent-ng-c3276584325] .userInfo[_ngcontent-ng-c3276584325] {
+#app-icon-bar .account-info-button .account-info-container .userInfo {
     display: flex;
     align-items: flex-end;
     flex-direction: column;
     padding: 0 0 0 20px;
-    color: var(--colorNeutralForegroundOnBrand, #ffffff)
+    color: #ffffff
 }
 
-[_nghost-ng-c3276584325] .account-info-button[_ngcontent-ng-c3276584325] .account-info-container[_ngcontent-ng-c3276584325] .userInfo[_ngcontent-ng-c3276584325] .userEmail[_ngcontent-ng-c3276584325] {
+#app-icon-bar .account-info-button .account-info-container .userInfo .userEmail {
     cursor: default;
     font-size: 14px
 }
 
-[_nghost-ng-c3276584325] .account-info-button[_ngcontent-ng-c3276584325] .account-info-container[_ngcontent-ng-c3276584325] .userInfo[_ngcontent-ng-c3276584325] .userTenant[_ngcontent-ng-c3276584325] {
+#app-icon-bar .account-info-button .account-info-container .userInfo .userTenant {
     text-transform: uppercase;
     font-size: 10px;
     font-weight: 600
 }
 
 @media (max-width: 870px) {
-    [_nghost-ng-c3276584325] .account-info-button[_ngcontent-ng-c3276584325] .account-info-container[_ngcontent-ng-c3276584325] .userInfo[_ngcontent-ng-c3276584325] {
+    #app-icon-bar .account-info-button .account-info-container .userInfo {
         display: none
     }
 }
 
-[_nghost-ng-c3276584325] .account-info-button[_ngcontent-ng-c3276584325] .account-info-container[_ngcontent-ng-c3276584325] .userPhoto[_ngcontent-ng-c3276584325] {
+#app-icon-bar .account-info-button .account-info-container .userPhoto {
     padding: 0 6px
 }
 
-[_nghost-ng-c3276584325] .account-info-button[_ngcontent-ng-c3276584325] .account-info-container[_ngcontent-ng-c3276584325] .userPhoto[_ngcontent-ng-c3276584325] .img-circle[_ngcontent-ng-c3276584325] {
+#app-icon-bar .account-info-button .account-info-container .userPhoto .img-circle {
     border-radius: 50%;
     width: 28px;
     height: 28px
 }
 
 
-/* Slider */
-
-/* Icons */
-@font-face {
-    font-family: 'slick';
-    font-weight: normal;
-    font-style: normal;
-
-    src: url(data:application/vnd.ms-fontobject;base64,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);
-    src: url(data:application/vnd.ms-fontobject;base64,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?#iefix) format('embedded-opentype'), url(data:font/woff;base64,d09GRk9UVE8AAAVkAAsAAAAAB1wAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAABDRkYgAAABCAAAAi4AAAKbH/pWDkZGVE0AAAM4AAAAGgAAABxt0civR0RFRgAAA1QAAAAcAAAAIAAyAARPUy8yAAADcAAAAFIAAABgUBj/rmNtYXAAAAPEAAAAUAAAAWIiC0SwaGVhZAAABBQAAAAuAAAANgABMftoaGVhAAAERAAAABwAAAAkA+UCA2htdHgAAARgAAAADgAAAA4ESgBKbWF4cAAABHAAAAAGAAAABgAFUABuYW1lAAAEeAAAANwAAAFuBSeBwnBvc3QAAAVUAAAAEAAAACAAAwABeJw9ks9vEkEUx2cpWyeUoFYgNkHi2Wt7N3rVm3cTs3UVLC4LxIWEQvi1P3i7O1tYLJDAmlgKGEhQrsajf0j7J3jYTXrQWUrMJG+++b55n5e8NwwKBhHDMLv5kxT3ATEBxKBn3qOAl9zxHgb1MAPhHQgHkyF08Gr/L8B/Eb6zWnmCJ7AJVLubQOheArXvJ1A4EXi6j4I+Zg9F0QFKvsnlBCmXeve+sFEnb/nCptdtQ4QYhVFRAT1HrF8UQK/RL/SbmUbclsvGVFXRZKDHUE38cc4qpkbAAsuwiImvro+ufcfaOIQ6szlrmjRJDaKZKnbjN3GWKIbiIzRFUfCffuxxKOL+3LDlDVvx2TdxN84qZEsnhNBa6pgm2dAsnzbLsETdsmRFxUeHV4e+I2/ptN8TyqV8T3Dt29t7EYOuajVIw2y1Wy3M86w0zg/Fz2IvawmQAUHOVrPVfLkoScVynsqsTG0MGUs4z55nh3mnOJa+li+rl9WpPIcFfDubDeaDC+fLBdYN3QADzLauGfj4B6sZmq6CCpqmtSvF0qlUl2qf5AJIUCSlTqlb7lUG+LRfGzZGzZEyBgccMu6MuqPecNDvD4Y9Kjtj4gD+DsvKVMTcMdtqtZtmkzQstQvYje7Syep0PDSAhSOeHYXYWThEF//A/0YvYV1fSQtpKU5STtrhbQ444OtpKSWJIg3pOg8cBs7maTY1EZf07aq+hjWs7IWzdCYTGhb2CtZ47x+Uhx28AAB4nGNgYGBkAIJz765vANHnCyvqYTQAWnkHswAAeJxjYGRgYOADYgkGEGBiYARCFjAG8RgABHYAN3icY2BmYmCcwMDKwMHow5jGwMDgDqW/MkgytDAwMDGwcjKAQQMDAyOQUmCAgoA01xQGB4ZExUmMD/4/YNBjvP3/NgNEDQPjbbBKBQZGADfLDgsAAHicY2BgYGaAYBkGRgYQiAHyGMF8FgYHIM3DwMHABGQzMCQqKClOUJz0/z9YHRLv/+L7D+8V3cuHmgAHjGwM6ELUByxUMIOZCmbgAAA5LQ8XeJxjYGRgYABiO68w73h+m68M3EwMIHC+sKIeTqsyqDLeZrwN5HIwgKUB/aYJUgAAeJxjYGRgYLzNwMCgx8QAAkA2IwMqYAIAMGIB7QIAAAACAAAlACUAJQAlAAAAAFAAAAUAAHicbY49asNAEIU/2ZJDfkiRIvXapUFCEqpcptABUrg3ZhEiQoKVfY9UqVLlGDlADpAT5e16IUWysMz3hjfzBrjjjQT/EjKpCy+4YhN5yZoxcirPe+SMWz4jr6S+5UzSa3VuwpTnBfc8RF7yxDZyKs9r5IxHPiKv1P9iZqDnyAvMQ39UecbScVb/gJO03Xk4CFom3XYK1clhMdQUlKo7/d9NF13RkIdfy+MV7TSe2sl11tRFaXYmJKpWTd7kdVnJ8veevZKc+n3I93t9Jnvr5n4aTVWU/0z9AI2qMkV4nGNgZkAGjAxoAAAAjgAF) format('woff'), url(data:font/ttf;base64,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) format('truetype'), url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBzdGFuZGFsb25lPSJubyI/Pgo8IURPQ1RZUEUgc3ZnIFBVQkxJQyAiLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4iICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxtZXRhZGF0YT5HZW5lcmF0ZWQgYnkgRm9udGFzdGljLm1lPC9tZXRhZGF0YT4KPGRlZnM+Cjxmb250IGlkPSJzbGljayIgaG9yaXotYWR2LXg9IjUxMiI+Cjxmb250LWZhY2UgZm9udC1mYW1pbHk9InNsaWNrIiB1bml0cy1wZXItZW09IjUxMiIgYXNjZW50PSI0ODAiIGRlc2NlbnQ9Ii0zMiIvPgo8bWlzc2luZy1nbHlwaCBob3Jpei1hZHYteD0iNTEyIiAvPgoKPGdseXBoIHVuaWNvZGU9IiYjODU5NDsiIGQ9Ik0yNDEgMTEzbDEzMCAxMzBjNCA0IDYgOCA2IDEzIDAgNS0yIDktNiAxM2wtMTMwIDEzMGMtMyAzLTcgNS0xMiA1LTUgMC0xMC0yLTEzLTVsLTI5LTMwYy00LTMtNi03LTYtMTIgMC01IDItMTAgNi0xM2w4Ny04OC04Ny04OGMtNC0zLTYtOC02LTEzIDAtNSAyLTkgNi0xMmwyOS0zMGMzLTMgOC01IDEzLTUgNSAwIDkgMiAxMiA1eiBtMjM0IDE0M2MwLTQwLTktNzctMjktMTEwLTIwLTM0LTQ2LTYwLTgwLTgwLTMzLTIwLTcwLTI5LTExMC0yOS00MCAwLTc3IDktMTEwIDI5LTM0IDIwLTYwIDQ2LTgwIDgwLTIwIDMzLTI5IDcwLTI5IDExMCAwIDQwIDkgNzcgMjkgMTEwIDIwIDM0IDQ2IDYwIDgwIDgwIDMzIDIwIDcwIDI5IDExMCAyOSA0MCAwIDc3LTkgMTEwLTI5IDM0LTIwIDYwLTQ2IDgwLTgwIDIwLTMzIDI5LTcwIDI5LTExMHoiLz4KPGdseXBoIHVuaWNvZGU9IiYjODU5MjsiIGQ9Ik0yOTYgMTEzbDI5IDMwYzQgMyA2IDcgNiAxMiAwIDUtMiAxMC02IDEzbC04NyA4OCA4NyA4OGM0IDMgNiA4IDYgMTMgMCA1LTIgOS02IDEybC0yOSAzMGMtMyAzLTggNS0xMyA1LTUgMC05LTItMTItNWwtMTMwLTEzMGMtNC00LTYtOC02LTEzIDAtNSAyLTkgNi0xM2wxMzAtMTMwYzMtMyA3LTUgMTItNSA1IDAgMTAgMiAxMyA1eiBtMTc5IDE0M2MwLTQwLTktNzctMjktMTEwLTIwLTM0LTQ2LTYwLTgwLTgwLTMzLTIwLTcwLTI5LTExMC0yOS00MCAwLTc3IDktMTEwIDI5LTM0IDIwLTYwIDQ2LTgwIDgwLTIwIDMzLTI5IDcwLTI5IDExMCAwIDQwIDkgNzcgMjkgMTEwIDIwIDM0IDQ2IDYwIDgwIDgwIDMzIDIwIDcwIDI5IDExMCAyOSA0MCAwIDc3LTkgMTEwLTI5IDM0LTIwIDYwLTQ2IDgwLTgwIDIwLTMzIDI5LTcwIDI5LTExMHoiLz4KPGdseXBoIHVuaWNvZGU9IiYjODIyNjsiIGQ9Ik00NzUgMjU2YzAtNDAtOS03Ny0yOS0xMTAtMjAtMzQtNDYtNjAtODAtODAtMzMtMjAtNzAtMjktMTEwLTI5LTQwIDAtNzcgOS0xMTAgMjktMzQgMjAtNjAgNDYtODAgODAtMjAgMzMtMjkgNzAtMjkgMTEwIDAgNDAgOSA3NyAyOSAxMTAgMjAgMzQgNDYgNjAgODAgODAgMzMgMjAgNzAgMjkgMTEwIDI5IDQwIDAgNzctOSAxMTAtMjkgMzQtMjAgNjAtNDYgODAtODAgMjAtMzMgMjktNzAgMjktMTEweiIvPgo8Z2x5cGggdW5pY29kZT0iJiM5NzsiIGQ9Ik00NzUgNDM5bDAtMTI4YzAtNS0xLTktNS0xMy00LTQtOC01LTEzLTVsLTEyOCAwYy04IDAtMTMgMy0xNyAxMS0zIDctMiAxNCA0IDIwbDQwIDM5Yy0yOCAyNi02MiAzOS0xMDAgMzktMjAgMC0zOS00LTU3LTExLTE4LTgtMzMtMTgtNDYtMzItMTQtMTMtMjQtMjgtMzItNDYtNy0xOC0xMS0zNy0xMS01NyAwLTIwIDQtMzkgMTEtNTcgOC0xOCAxOC0zMyAzMi00NiAxMy0xNCAyOC0yNCA0Ni0zMiAxOC03IDM3LTExIDU3LTExIDIzIDAgNDQgNSA2NCAxNSAyMCA5IDM4IDIzIDUxIDQyIDIgMSA0IDMgNyAzIDMgMCA1LTEgNy0zbDM5LTM5YzItMiAzLTMgMy02IDAtMi0xLTQtMi02LTIxLTI1LTQ2LTQ1LTc2LTU5LTI5LTE0LTYwLTIwLTkzLTIwLTMwIDAtNTggNS04NSAxNy0yNyAxMi01MSAyNy03MCA0Ny0yMCAxOS0zNSA0My00NyA3MC0xMiAyNy0xNyA1NS0xNyA4NSAwIDMwIDUgNTggMTcgODUgMTIgMjcgMjcgNTEgNDcgNzAgMTkgMjAgNDMgMzUgNzAgNDcgMjcgMTIgNTUgMTcgODUgMTcgMjggMCA1NS01IDgxLTE1IDI2LTExIDUwLTI2IDcwLTQ1bDM3IDM3YzYgNiAxMiA3IDIwIDQgOC00IDExLTkgMTEtMTd6Ii8+CjwvZm9udD48L2RlZnM+PC9zdmc+Cg==#slick) format('svg');
-}
 
 /* Arrows */
 
@@ -2376,16 +2350,16 @@ opacity: 1 !important;
 
 .FeatureShowcase_featureShowcase__tWZZI .slick-prev:focus-visible,
 .FeatureShowcase_featureShowcase__tWZZI .slick-next:focus-visible {
-    outline: var(--focus-outline-color, #00bcf2) auto 1px
+    outline: #00bcf2 auto 1px
 }
 
 .FeatureShowcase_featureShowcase__tWZZI .slick-dots.FeatureShowcase_sliderDots__miK2E li button:focus-visible {
     outline-offset: -1px;
-    outline: var(--focus-outline-color, #00bcf2) auto 1px
+    outline: #00bcf2 auto 1px
 }
 
-[_nghost-ng-c1527126507] {
-    background: var(--colorNeutralBackground1, #ffffff);
+#app-app-mainlayout {
+    background: #ffffff;
     display: flex;
     flex-flow: column nowrap;
     width: 100%;
@@ -2393,58 +2367,57 @@ opacity: 1 !important;
     font-size: 14px
 }
 
-[_nghost-ng-c1527126507] .scaffold[_ngcontent-ng-c1527126507] {
+#app-app-mainlayout .scaffold {
     display: flex;
     flex-flow: row nowrap;
     flex-grow: 1;
     height: 100%;
     overflow: hidden;
-    background: var(--colorNeutralBackground1, #ffffff);
-    color: var(--colorNeutralStrokeFocus2, #000000)
+    background: #ffffff;
+    color: #000000
 }
 
-[_nghost-ng-c1527126507] .scaffold[_ngcontent-ng-c1527126507] .expanded-menu[_ngcontent-ng-c1527126507] {
+#app-app-mainlayout .scaffold .expanded-menu {
     min-width: 228px
 }
 
-[_nghost-ng-c1527126507] .scaffold[_ngcontent-ng-c1527126507] .horizontal-line[_ngcontent-ng-c1527126507] {
-    background-color: var(--colorNeutralStroke1, #DEDEDE);
+#app-app-mainlayout .scaffold .horizontal-line {
+    background-color: #DEDEDE;
     height: 1px;
     margin: 0 12px
 }
 
-[_nghost-ng-c1527126507] .scaffold[_ngcontent-ng-c1527126507] .nav-panel[_ngcontent-ng-c1527126507] {
+#app-app-mainlayout .scaffold .nav-panel {
     display: flex;
     flex-flow: row nowrap;
     flex-shrink: 0;
     width: inherit;
     overflow: auto;
-    background-color: var(--colorNeutralBackground2, #FAFAFA);
+    background-color: #FAFAFA;
     box-shadow: inset 0 0 8px rgba(0, 0, 0, .2)
 }
 
-[_nghost-ng-c1527126507] .scaffold[_ngcontent-ng-c1527126507] .nav-panel[_ngcontent-ng-c1527126507] .tooltip-wrapper[_ngcontent-ng-c1527126507]:focus {
+#app-app-mainlayout .scaffold .nav-panel .tooltip-wrapper:focus {
     outline-offset: -1px;
-    outline: var(--colorNeutralStrokeAccessible, #605E5C) dashed 1px
+    outline: #605E5C dashed 1px
 }
 
-[_nghost-ng-c1527126507] .scaffold[_ngcontent-ng-c1527126507] .nav-panel[_ngcontent-ng-c1527126507] .menu-bar[_ngcontent-ng-c1527126507] {
+#app-app-mainlayout .scaffold .nav-panel .menu-bar {
     display: flex;
-    color: var(--colorNeutralForeground1, #323130);
-    text-align: center;
+    color: #323130;
     flex-flow: column nowrap;
     justify-content: space-between;
     z-index: 3;
     width: 100%
 }
 
-[_nghost-ng-c1527126507] .scaffold[_ngcontent-ng-c1527126507] .nav-panel[_ngcontent-ng-c1527126507] .menu-bar[_ngcontent-ng-c1527126507] .top-area[_ngcontent-ng-c1527126507] {
+#app-app-mainlayout .scaffold .nav-panel .menu-bar .top-area {
     display: flex;
     justify-content: flex-start;
     flex-direction: column
 }
 
-[_nghost-ng-c1527126507] .scaffold[_ngcontent-ng-c1527126507] .nav-panel[_ngcontent-ng-c1527126507] .menu-bar[_ngcontent-ng-c1527126507] .top-area[_ngcontent-ng-c1527126507] .icon[_ngcontent-ng-c1527126507] {
+#app-app-mainlayout .scaffold .nav-panel .menu-bar .top-area .icon {
     color: #fff;
     font-size: 15px;
     height: 48px;
@@ -2455,23 +2428,23 @@ opacity: 1 !important;
     outline: none
 }
 
-[_nghost-ng-c1527126507] .scaffold[_ngcontent-ng-c1527126507] .nav-panel[_ngcontent-ng-c1527126507] .menu-bar[_ngcontent-ng-c1527126507] .top-area[_ngcontent-ng-c1527126507] .expand-icon-area[_ngcontent-ng-c1527126507] {
+#app-app-mainlayout .scaffold .nav-panel .menu-bar .top-area .expand-icon-area {
     width: 100%;
     height: 28px;
     display: flex
 }
 
-[_nghost-ng-c1527126507] .scaffold[_ngcontent-ng-c1527126507] .nav-panel[_ngcontent-ng-c1527126507] .menu-bar[_ngcontent-ng-c1527126507] .top-area[_ngcontent-ng-c1527126507] .expand-icon-area[_ngcontent-ng-c1527126507] .expand-icon[_ngcontent-ng-c1527126507] {
+#app-app-mainlayout .scaffold .nav-panel .menu-bar .top-area .expand-icon-area .expand-icon {
     width: 25px;
     margin-left: auto
 }
 
-[_nghost-ng-c1527126507] .scaffold[_ngcontent-ng-c1527126507] .nav-panel[_ngcontent-ng-c1527126507] .menu-bar[_ngcontent-ng-c1527126507] .tooltip-wrapper[_ngcontent-ng-c1527126507]:focus {
+#app-app-mainlayout .scaffold .nav-panel .menu-bar .tooltip-wrapper:focus {
     outline-offset: -1px;
-    outline: 1px solid var(--colorNeutralForeground3, #605E5C)
+    outline: 1px solid #605E5C
 }
 
-[_nghost-ng-c1527126507] .scaffold[_ngcontent-ng-c1527126507] .nav-panel[_ngcontent-ng-c1527126507] .menu-bar[_ngcontent-ng-c1527126507] .nav-hover[_ngcontent-ng-c1527126507] {
+#app-app-mainlayout .scaffold .nav-panel .menu-bar .nav-hover {
     cursor: pointer;
     display: flex;
     flex-flow: row nowrap;
@@ -2482,57 +2455,57 @@ opacity: 1 !important;
     width: 100%
 }
 
-[_nghost-ng-c1527126507] .scaffold[_ngcontent-ng-c1527126507] .nav-panel[_ngcontent-ng-c1527126507] .menu-bar[_ngcontent-ng-c1527126507] .nav-hover[_ngcontent-ng-c1527126507]:hover {
-    background-color: var(--colorNeutralBackground1Hover, #F3F2F1)
+#app-app-mainlayout .scaffold .nav-panel .menu-bar .nav-hover:hover {
+    background-color: #F3F2F1
 }
 
-[_nghost-ng-c1527126507] .scaffold[_ngcontent-ng-c1527126507] .nav-panel[_ngcontent-ng-c1527126507] .menu-bar[_ngcontent-ng-c1527126507] .nav-hover[_ngcontent-ng-c1527126507]:focus {
+#app-app-mainlayout .scaffold .nav-panel .menu-bar .nav-hover:focus {
     outline-offset: -1px;
-    outline: 1px solid var(--colorNeutralForeground3, #605E5C)
+    outline: 1px solid #605E5C
 }
 
-[_nghost-ng-c1527126507] .scaffold[_ngcontent-ng-c1527126507] .nav-panel[_ngcontent-ng-c1527126507] .menu-bar[_ngcontent-ng-c1527126507] .nav-hover.activeRoute[_ngcontent-ng-c1527126507] {
-    background-color: var(--colorNeutralBackground1Pressed, #EDEBE9)
+#app-app-mainlayout .scaffold .nav-panel .menu-bar .nav-hover.activeRoute {
+    background-color: #EDEBE9
 }
 
-[_nghost-ng-c1527126507] .scaffold[_ngcontent-ng-c1527126507] .nav-panel[_ngcontent-ng-c1527126507] .menu-bar[_ngcontent-ng-c1527126507] .nav-hover[_ngcontent-ng-c1527126507] .expanded-button-label[_ngcontent-ng-c1527126507] {
+#app-app-mainlayout .scaffold .nav-panel .menu-bar .nav-hover .expanded-button-label {
     color: var(--colorNeutralForeground1, #323130);
     font-size: 14px;
     font-weight: 600
 }
 
-[_nghost-ng-c1527126507] .scaffold[_ngcontent-ng-c1527126507] .nav-panel[_ngcontent-ng-c1527126507] .menu-bar[_ngcontent-ng-c1527126507] .expand-icon-area[_ngcontent-ng-c1527126507] {
+#app-app-mainlayout .scaffold .nav-panel .menu-bar .expand-icon-area {
     justify-content: flex-end
 }
 
 @media (max-width: 639px) {
-    [_nghost-ng-c1527126507] .scaffold[_ngcontent-ng-c1527126507] .nav-panel[_ngcontent-ng-c1527126507] {
+    #app-app-mainlayout .scaffold .nav-panel {
         position: absolute;
         height: 100%;
         z-index: 999;
-        background-color: var(--colorNeutralBackground1, #ffffff);
+        background-color: #ffffff;
         display: none
     }
 
-    [_nghost-ng-c1527126507] .scaffold[_ngcontent-ng-c1527126507] .nav-panel[_ngcontent-ng-c1527126507] .menu-bar[_ngcontent-ng-c1527126507] .expand-icon-area[_ngcontent-ng-c1527126507] {
+    #app-app-mainlayout .scaffold .nav-panel .menu-bar .expand-icon-area {
         display: none
     }
 
-    [_nghost-ng-c1527126507] .scaffold[_ngcontent-ng-c1527126507] .nav-panel[_ngcontent-ng-c1527126507] .menu-bar[_ngcontent-ng-c1527126507] .top-area[_ngcontent-ng-c1527126507] .expand-icon-area[_ngcontent-ng-c1527126507] {
+    #app-app-mainlayout .scaffold .nav-panel .menu-bar .top-area .expand-icon-area {
         display: none
     }
 }
 
-[_nghost-ng-c1527126507] .scaffold[_ngcontent-ng-c1527126507] .main-content[_ngcontent-ng-c1527126507] {
-    background: var(--colorNeutralBackground1, #ffffff);
-    color: var(--colorNeutralForeground1, #323130);
+#app-app-mainlayout .scaffold .main-content {
+    background: #ffffff;
+    color: #323130;
     display: flex;
     flex-direction: column;
     flex-grow: 1;
     overflow: hidden
 }
 
-[_nghost-ng-c1527126507] #a365-fluent-layer-host[_ngcontent-ng-c1527126507] {
+#app-app-mainlayout #a365-fluent-layer-host {
     position: absolute;
     left: 0;
     top: 0;
@@ -2543,104 +2516,26 @@ opacity: 1 !important;
     overflow: hidden
 }
 
-[_nghost-ng-c1527126507] .banner[_ngcontent-ng-c1527126507] {
-    background-color: var(--colorInfoBackground, #F0F6FF)
+#app-app-mainlayout .banner {
+    background-color: #F0F6FF
 }
 
-[_nghost-ng-c2748946740] .modal-footer[_ngcontent-ng-c2748946740] {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    flex: 0 0 auto;
-    padding: 15px 0 7px;
-    margin-top: 10px;
-    border-top: 1px solid var(--colorNeutralStroke1, #DEDEDE);
-    background-color: var(--colorNeutralBackground1, #ffffff)
-}
 
-[_nghost-ng-c2748946740] .modal-footer[_ngcontent-ng-c2748946740] .modal-actions[_ngcontent-ng-c2748946740] {
-    display: flex;
-    flex-direction: row;
-    padding: 0 24px;
-    justify-content: space-between;
-    align-items: flex-end;
-    flex-wrap: wrap
-}
-
-[_nghost-ng-c2748946740] .modal-footer[_ngcontent-ng-c2748946740] .modal-actions[_ngcontent-ng-c2748946740] .left-button[_ngcontent-ng-c2748946740] {
-    display: flex;
-    justify-content: flex-end;
-    align-items: flex-end;
-    margin-bottom: 8px
-}
-
-[_nghost-ng-c2748946740] .modal-footer[_ngcontent-ng-c2748946740] .modal-actions[_ngcontent-ng-c2748946740] .left-button[_ngcontent-ng-c2748946740] button[_ngcontent-ng-c2748946740] {
-    min-width: 80px;
-    height: 24px;
-    line-height: 24px;
-    max-width: 200px;
-    font-family: Segoe UI;
-    color: var(--colorNeutralForeground1, #323130);
-    font-size: 13px;
-    line-height: 18px;
-    font-weight: 400
-}
-
-[_nghost-ng-c2748946740] .modal-footer[_ngcontent-ng-c2748946740] .modal-actions[_ngcontent-ng-c2748946740] .left-button[_ngcontent-ng-c2748946740] .confirm-button[_ngcontent-ng-c2748946740] {
-    font-family: Segoe UI;
-    color: var(--colorNeutralForeground1, #323130);
-    font-size: 13px;
-    line-height: 18px;
-    font-weight: 400;
-    height: 24px;
-    line-height: 22px !important;
-    border: 1px solid var(--colorBrandBackground, #0078D4) !important;
-    background-color: var(--colorBrandBackground, #0078D4) !important;
-    padding: 0 16px;
-    border-radius: 2px;
-    color: var(--colorNeutralForegroundOnBrand, #ffffff) !important;
-    cursor: pointer;
-    margin-right: 8px
-}
-
-[_nghost-ng-c2748946740] .modal-footer[_ngcontent-ng-c2748946740] .modal-actions[_ngcontent-ng-c2748946740] .left-button[_ngcontent-ng-c2748946740] .confirm-button[_ngcontent-ng-c2748946740]:hover {
-    border: 1px solid var(--colorBrandBackgroundHover, #106EBE) !important;
-    background-color: var(--colorBrandBackgroundHover, #106EBE) !important
-}
-
-[_nghost-ng-c2748946740] .modal-footer[_ngcontent-ng-c2748946740] .modal-actions[_ngcontent-ng-c2748946740] .left-button[_ngcontent-ng-c2748946740] .confirm-button[_ngcontent-ng-c2748946740]:focus {
-    outline-offset: -2px;
-    outline: 1px solid var(--colorNeutralForegroundOnBrand, #ffffff) !important
-}
-
-[_nghost-ng-c2748946740] .modal-footer[_ngcontent-ng-c2748946740] .modal-actions[_ngcontent-ng-c2748946740] .left-button[_ngcontent-ng-c2748946740] .confirm-button[_ngcontent-ng-c2748946740]:disabled {
-    border: none !important;
-    color: var(--colorNeutralForegroundDisabled, #A19F9D) !important;
-    cursor: default;
-    background-color: var(--colorNeutralBackgroundDisabled, #F3F2F1) !important
-}
-
-[_nghost-ng-c2748946740] .modal-footer[_ngcontent-ng-c2748946740] .modal-actions[_ngcontent-ng-c2748946740] .left-button[_ngcontent-ng-c2748946740] button[_ngcontent-ng-c2748946740]:disabled {
-    background-color: var(--colorNeutralBackgroundDisabled, #F3F2F1);
-    color: var(--colorNeutralForegroundDisabled, #A19F9D);
-    cursor: default
-}
-
-[_nghost-ng-c2748946740] .validation-modal[_ngcontent-ng-c2748946740] {
+.validation-modal {
     display: none;
     flex-direction: column;
     min-width: 435px;
     height: 100%;
     top: 40px;
     right: 0;
-    background-color: var(--colorNeutralBackground1, #ffffff);
-    border-left: 2px solid var(--colorNeutralStroke2, #EAEAEA);
+    background-color: #ffffff;
+    border-left: 2px solid #EAEAEA;
     z-index: 1;
     box-sizing: border-box
 }
 
 @media (max-width: 639px) {
-    [_nghost-ng-c2748946740] .validation-modal[_ngcontent-ng-c2748946740] {
+    .validation-modal {
         border-left: 0px;
         box-shadow: 0 7px 16px rgba(0, 0, 0, .16);
         position: absolute;
@@ -2652,13 +2547,13 @@ opacity: 1 !important;
 }
 
 @media (max-width: 434px) {
-    [_nghost-ng-c2748946740] .validation-modal[_ngcontent-ng-c2748946740] {
+    .validation-modal {
         min-width: 100%;
         left: 0
     }
 }
 
-[_nghost-ng-c2748946740] .validation-modal[_ngcontent-ng-c2748946740] .modal-title-bar[_ngcontent-ng-c2748946740] {
+.validation-modal .modal-title-bar {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -2670,12 +2565,12 @@ opacity: 1 !important;
 }
 
 @media (max-width: 639px) {
-    [_nghost-ng-c2748946740] .validation-modal[_ngcontent-ng-c2748946740] .modal-title-bar[_ngcontent-ng-c2748946740] {
+    .validation-modal .modal-title-bar {
         padding-left: 10px
     }
 }
 
-[_nghost-ng-c2748946740] .validation-modal[_ngcontent-ng-c2748946740] .modal-title-bar[_ngcontent-ng-c2748946740] .modal-title-bar-icon[_ngcontent-ng-c2748946740] {
+.validation-modal .modal-title-bar .modal-title-bar-icon {
     border: 0;
     padding: 0;
     background: none;
@@ -2687,39 +2582,39 @@ opacity: 1 !important;
     cursor: pointer
 }
 
-[_nghost-ng-c2748946740] .validation-modal[_ngcontent-ng-c2748946740] .modal-title-bar[_ngcontent-ng-c2748946740] .modal-title-bar-icon[_ngcontent-ng-c2748946740] .madrid-icon[_ngcontent-ng-c2748946740] {
+.validation-modal .modal-title-bar .modal-title-bar-icon .madrid-icon {
     padding: 4px
 }
 
-[_nghost-ng-c2748946740] .validation-modal[_ngcontent-ng-c2748946740] .modal-title-bar[_ngcontent-ng-c2748946740] .modal-title-bar-icon[_ngcontent-ng-c2748946740]:hover {
-    background-color: var(--colorNeutralBackground1Hover, #F3F2F1)
+.validation-modal .modal-title-bar .modal-title-bar-icon:hover {
+    background-color: #F3F2F1
 }
 
-[_nghost-ng-c2748946740] .validation-modal[_ngcontent-ng-c2748946740] .modal-title-bar[_ngcontent-ng-c2748946740] .modal-title-bar-icon[_ngcontent-ng-c2748946740]:focus {
+.validation-modal .modal-title-bar .modal-title-bar-icon:focus {
     background-color: none;
-    outline: 1px solid var(--colorNeutralForeground3, #605E5C) !important
+    outline: 1px solid #605E5C !important
 }
 
 @media (min-width: 640px) {
-    [_nghost-ng-c2748946740] .validation-modal[_ngcontent-ng-c2748946740] .modal-title-bar[_ngcontent-ng-c2748946740] .modal-title-bar-icon[_ngcontent-ng-c2748946740] {
+    .validation-modal .modal-title-bar .modal-title-bar-icon {
         display: none
     }
 }
 
-[_nghost-ng-c2748946740] .validation-modal[_ngcontent-ng-c2748946740] .modal-title[_ngcontent-ng-c2748946740] {
+.validation-modal .modal-title {
     display: flex;
     flex-direction: row;
     flex-grow: 1;
     align-items: center
 }
 
-[_nghost-ng-c2748946740] .validation-modal[_ngcontent-ng-c2748946740] .modal-title[_ngcontent-ng-c2748946740] .modal-title-text[_ngcontent-ng-c2748946740] {
+.validation-modal .modal-title .modal-title-text {
     display: flex;
     line-height: 43px;
-    color: var(--colorNeutralForeground1, #323130)
+    color: #323130
 }
 
-[_nghost-ng-c2748946740] .validation-modal[_ngcontent-ng-c2748946740] .modal-title[_ngcontent-ng-c2748946740] .modal-title-text[_ngcontent-ng-c2748946740] h1[_ngcontent-ng-c2748946740] {
+.validation-modal .modal-title .modal-title-text h1 {
     margin: 0;
     font-weight: 400;
     -webkit-margin-before: unset;
@@ -2733,14 +2628,14 @@ opacity: 1 !important;
     font-size: 16px
 }
 
-[_nghost-ng-c2748946740] .dynamic-validation-component-container[_ngcontent-ng-c2748946740] {
+.dynamic-validation-component-container {
     position: relative;
     flex-grow: 1;
     overflow-x: hidden;
     overflow-y: auto
 }
 
-[_nghost-ng-c168634370] .banner[_ngcontent-ng-c168634370] [_ngcontent-ng-c168634370]:hidden {
+.banner :hidden {
     display: none
 }
 
@@ -2869,4 +2764,182 @@ a:hover {
     font-size: 16px;
     color: #000;
     text-align: right;
+}
+/* Main Container */
+.login-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #f5f5f5;
+}
+
+   /* Main Container */
+   .login-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #f5f5f5;
+}
+
+/* Login Box */
+.login-box {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    margin: 0 auto;
+    box-sizing: border-box; /* Ensures padding is included in width calculation */
+}
+
+.login-box h2 {
+    margin-bottom: 20px;
+    color: #333;
+    font-size: 22px;
+    text-align: center;
+}
+
+.login-box input[type="text"],
+.login-box input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box; /* Ensure inputs are 100% wide */
+}
+
+.login-box button[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    background-color: #0078d7;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+}
+
+.login-box button[type="submit"]:hover {
+    background-color: #005ea6;
+}
+
+/* Footer */
+.footer {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 14px;
+}
+
+.footer a {
+    color: #0078d7;
+    text-decoration: none;
+}
+
+.footer a:hover {
+    text-decoration: underline;
+}
+
+/* Hide the dropdown by default */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    top: 100%; /* Show dropdown below the icon */
+    right: 0; /* Align the dropdown to the right of the icon */
+    background-color: #f9f9f9;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    min-width: 150px; /* Set a minimum width */
+}
+
+/* Style the dropdown links */
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
+
+.show {
+    display: block;
+}
+
+/* Container for iframe and overlay */
+.iframe-container {
+    position: relative;
+    width: 100%;
+    height: 100%; /* Adjust height as needed */
+}
+
+.iframe-container::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 15px; /* Width of the shading effect */
+    height: 100%;
+    background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.06) 100%);
+    pointer-events: none; /* Allows clicks to go through the shading */
+}
+/* Loading overlay styling for the iframe */
+.loading-overlay {
+    display: none; /* Hidden by default */
+    position: absolute; /* Position relative to the iframe container */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    z-index: 9999; /* Ensure it's on top of the iframe */
+    justify-content: center;
+    align-items: center;
+}
+
+/* Show the overlay when needed */
+.loading-overlay.show {
+    display: flex;
+}
+
+/* Spinner styling */
+.spinner {
+    border: 16px solid #f3f3f3;
+    border-top: 16px solid #3498db;
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+#kyros-title {
+    font-size: 1.2em;
+    position: relative;
+}
+.slogan {
+    font-size: 1em;
+    color: #fff;
+    position: absolute;
+    top: 0;
+    left: 110px;
+    animation: fadeOut 3s ease-in-out forwards;
+}
+
+@keyframes fadeOut {
+    0% { opacity: 1; }
+    80% { opacity: 1; }
+    100% { opacity: 0; }
 }

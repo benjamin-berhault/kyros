@@ -1,3 +1,22 @@
+# ============================================
+# SECURITY - Do not commit these files
+# ============================================
+.env
+.env.local
+.env.*.local
+*.pem
+*.key
+*_rsa
+*_dsa
+*_ed25519
+*_ecdsa
+credentials.json
+secrets.json
+
+# Backup folders (may contain old configs with secrets)
+_BACKUP/
+
+# ============================================
 
 # Created by https://www.toptal.com/developers/gitignore/api/spark,jupyternotebooks,pycharm,pycharm+iml,pycharm+all
 # Edit at https://www.toptal.com/developers/gitignore?templates=spark,jupyternotebooks,pycharm,pycharm+iml,pycharm+all

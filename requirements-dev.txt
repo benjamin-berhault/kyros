@@ -1,0 +1,14 @@
+# Development and testing dependencies for Kyros
+
+# Testing
+pytest>=7.0.0
+pytest-cov>=4.0.0
+
+# YAML parsing for tests
+PyYAML>=6.0
+
+# CLI dependencies (already in main project)
+rich>=13.0.0
+
+# Linting (optional)
+ruff>=0.1.0

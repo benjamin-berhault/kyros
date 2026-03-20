@@ -14,5 +14,11 @@
       - ./data/dbt_project:/home/coder/dbt_project  # Shared volume with the dbt container
       - ./docker/code-server/project:/home/coder/project  # Mount the project directory
       - ./docker/code-server/settings.json:/home/coder/.local/share/code-server/User/settings.json  # Mount settings.json for custom configurations
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/healthz"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
     networks:
       - my-network
