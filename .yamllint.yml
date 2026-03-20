@@ -1,0 +1,49 @@
+# YAML Lint configuration for Kyros
+
+extends: default
+
+rules:
+  # Line length - allow longer lines for readability
+  line-length:
+    max: 150
+    allow-non-breakable-words: true
+    allow-non-breakable-inline-mappings: true
+
+  # Indentation
+  indentation:
+    spaces: 2
+    indent-sequences: consistent
+
+  # Allow multiple documents (for k8s-style files)
+  document-start: disable
+
+  # Truthy values - allow yes/no for docker-compose
+  truthy:
+    allowed-values: ['true', 'false', 'yes', 'no']
+
+  # Comments
+  comments:
+    require-starting-space: true
+    min-spaces-from-content: 1
+
+  # Braces
+  braces:
+    min-spaces-inside: 0
+    max-spaces-inside: 1
+
+  # Brackets
+  brackets:
+    min-spaces-inside: 0
+    max-spaces-inside: 1
+
+  # Empty lines
+  empty-lines:
+    max: 2
+    max-start: 0
+    max-end: 1
+
+# Ignore generated files
+ignore: |
+  docker-compose.yml
+  docker-compose.*.yml
+  docker/grafana/provisioning/dashboards/json/

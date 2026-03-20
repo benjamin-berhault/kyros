@@ -13,7 +13,12 @@
 credentials.json
 secrets.json
 
-# Backup folders (may contain old configs with secrets)
+# Docker secrets (keep .gitkeep)
+secrets/*
+!secrets/.gitkeep
+
+# Backup folders
+backups/
 _BACKUP/
 
 # ============================================
@@ -380,4 +385,5 @@ spark-warehouse/
 .jvmopts
 
 
-# End of https://www.toptal.com/developers/gitignore/api/spark,jupyternotebooks,pycharm,pycharm+iml,pycharm+all
+# End of https://www.toptal.com/developers/gitignore/api/spark,jupyternotebooks,pycharm,pycharm+iml,pycharm+all*.key
+*.crt

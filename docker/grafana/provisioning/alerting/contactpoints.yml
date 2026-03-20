@@ -1,0 +1,53 @@
+apiVersion: 1
+
+contactPoints:
+  - orgId: 1
+    name: kyros-default
+    receivers:
+      # Webhook (default - logs alerts)
+      - uid: kyros-webhook
+        type: webhook
+        settings:
+          url: "http://kyros:5000/api/alerts"
+          httpMethod: POST
+        disableResolveMessage: false
+
+      # Uncomment and configure for Slack notifications
+      # - uid: kyros-slack
+      #   type: slack
+      #   settings:
+      #     url: "${SLACK_WEBHOOK_URL}"
+      #     recipient: "#alerts"
+      #     title: "{{ .CommonLabels.alertname }}"
+      #     text: "{{ .CommonAnnotations.description }}"
+
+      # Uncomment and configure for Email notifications
+      # - uid: kyros-email
+      #   type: email
+      #   settings:
+      #     addresses: "${ALERT_EMAIL}"
+      #     singleEmail: true
+
+policies:
+  - orgId: 1
+    receiver: kyros-default
+    group_by:
+      - alertname
+      - service
+    group_wait: 30s
+    group_interval: 5m
+    repeat_interval: 4h
+    routes:
+      # Critical alerts - immediate notification
+      - receiver: kyros-default
+        matchers:
+          - severity = critical
+        group_wait: 10s
+        repeat_interval: 1h
+
+      # Warning alerts - standard timing
+      - receiver: kyros-default
+        matchers:
+          - severity = warning
+        group_wait: 1m
+        repeat_interval: 4h

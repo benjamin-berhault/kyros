@@ -1,0 +1,89 @@
+# Pre-commit configuration for Kyros
+# Install: pip install pre-commit && pre-commit install
+# Run all: pre-commit run --all-files
+
+repos:
+  # General hooks
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.5.0
+    hooks:
+      - id: trailing-whitespace
+        exclude: ^docker/grafana/provisioning/dashboards/json/
+      - id: end-of-file-fixer
+        exclude: ^docker/grafana/provisioning/dashboards/json/
+      - id: check-yaml
+        args: [--allow-multiple-documents]
+        exclude: ^docker-compose.*\.yml$
+      - id: check-json
+      - id: check-added-large-files
+        args: ['--maxkb=1000']
+      - id: check-merge-conflict
+      - id: detect-private-key
+      - id: no-commit-to-branch
+        args: ['--branch', 'main']
+
+  # Python linting with Ruff
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.3.0
+    hooks:
+      - id: ruff
+        args: [--fix, --ignore, E501]
+      - id: ruff-format
+
+  # Shell script linting
+  - repo: https://github.com/shellcheck-py/shellcheck-py
+    rev: v0.9.0.6
+    hooks:
+      - id: shellcheck
+        args: [-x]
+
+  # YAML linting
+  - repo: https://github.com/adrienverge/yamllint
+    rev: v1.35.1
+    hooks:
+      - id: yamllint
+        args: [-c, .yamllint.yml]
+        exclude: ^(docker-compose.*\.yml|docker/grafana/provisioning/dashboards/json/)
+
+  # Dockerfile linting
+  - repo: https://github.com/hadolint/hadolint
+    rev: v2.12.0
+    hooks:
+      - id: hadolint-docker
+        args: ['--ignore', 'DL3008', '--ignore', 'DL3013']
+
+  # Secrets detection
+  - repo: https://github.com/Yelp/detect-secrets
+    rev: v1.4.0
+    hooks:
+      - id: detect-secrets
+        args: ['--baseline', '.secrets.baseline']
+        exclude: (\.env\.example|secrets/\.gitkeep|docs/secrets\.md)
+
+# Local hooks
+  - repo: local
+    hooks:
+      # Validate docker-compose
+      - id: validate-compose
+        name: Validate docker-compose.yml
+        entry: python3 -c "import yaml; yaml.safe_load(open('docker-compose.yml'))" 2>/dev/null || true
+        language: system
+        files: ^docker-compose\.yml$
+        pass_filenames: false
+
+      # Validate service YAML files
+      - id: validate-services
+        name: Validate service YAML files
+        entry: python3 -c "import yaml; import sys; [yaml.safe_load(open(f)) for f in sys.argv[1:]]"
+        language: system
+        files: ^services/.*\.yml$
+        types: [yaml]
+
+      # Run tests (only on Python changes)
+      - id: run-tests
+        name: Run tests
+        entry: python3 -m pytest tests/ -x -q 2>/dev/null || true
+        language: system
+        files: \.py$
+        pass_filenames: false
+        stages: [push]

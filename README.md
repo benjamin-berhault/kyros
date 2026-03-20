@@ -13,213 +13,349 @@ Deploy the right architecture at the right time. Start simple, scale when needed
 
 **Right tool • Right time • Right cost**
 
+## Architecture Overview
+
+```
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                              KYROS PLATFORM                                  │
+├─────────────────────────────────────────────────────────────────────────────┤
+│                                                                             │
+│  ┌─────────────┐  ┌─────────────┐  ┌─────────────┐  ┌─────────────┐        │
+│  │   Superset  │  │   Grafana   │  │  JupyterLab │  │ Code Server │        │
+│  │  (BI/Viz)   │  │ (Monitoring)│  │ (Notebooks) │  │  (VS Code)  │        │
+│  │   :8088     │  │   :3002     │  │   :8888     │  │   :8083     │        │
+│  └──────┬──────┘  └──────┬──────┘  └──────┬──────┘  └─────────────┘        │
+│         │                │                │                                 │
+│  ┌──────┴────────────────┴────────────────┴──────┐                         │
+│  │                 Query Layer                    │                         │
+│  │  ┌─────────┐  ┌─────────┐  ┌─────────────────┐│                         │
+│  │  │  Trino  │  │  Spark  │  │ Spark Thrift   ││                         │
+│  │  │ :8082   │  │ :8080   │  │    :10000      ││                         │
+│  │  └────┬────┘  └────┬────┘  └────────────────┘│                         │
+│  └───────┼────────────┼─────────────────────────┘                         │
+│          │            │                                                    │
+│  ┌───────┴────────────┴─────────────────────────┐                         │
+│  │              Orchestration Layer              │                         │
+│  │  ┌─────────┐  ┌─────────┐  ┌─────────────┐  │                         │
+│  │  │ Dagster │  │   dbt   │  │    Flink    │  │                         │
+│  │  │ :3000   │  │  (CLI)  │  │   :8081     │  │                         │
+│  │  └────┬────┘  └────┬────┘  └──────┬──────┘  │                         │
+│  └───────┼────────────┼──────────────┼─────────┘                         │
+│          │            │              │                                    │
+│  ┌───────┴────────────┴──────────────┴─────────┐                         │
+│  │                Storage Layer                 │                         │
+│  │  ┌──────────┐  ┌─────────┐  ┌─────────────┐ │                         │
+│  │  │PostgreSQL│  │  MinIO  │  │    Kafka    │ │                         │
+│  │  │  :5432   │  │  :9001  │  │   :9092     │ │                         │
+│  │  └──────────┘  └─────────┘  └─────────────┘ │                         │
+│  └─────────────────────────────────────────────┘                         │
+│                                                                           │
+│  ┌─────────────────────────────────────────────┐                         │
+│  │            Observability Stack              │                         │
+│  │  ┌────────┐  ┌──────────┐  ┌─────────────┐ │                         │
+│  │  │  Loki  │◄─┤ Promtail │  │   Grafana   │ │                         │
+│  │  │ :3100  │  │  (logs)  │  │  Dashboards │ │                         │
+│  │  └────────┘  └──────────┘  └─────────────┘ │                         │
+│  └─────────────────────────────────────────────┘                         │
+│                                                                           │
+│  ┌─────────────────────────────────────────────┐                         │
+│  │              Management Tools               │                         │
+│  │  ┌─────────┐  ┌───────────┐  ┌───────────┐ │                         │
+│  │  │ Kyros   │  │ Portainer │  │CloudBeaver│ │                         │
+│  │  │ :5000   │  │  :9000    │  │  :8978    │ │                         │
+│  │  └─────────┘  └───────────┘  └───────────┘ │                         │
+│  └─────────────────────────────────────────────┘                         │
+└─────────────────────────────────────────────────────────────────────────────┘
+```
+
 ## Quick Start
 
-### Option 1: Web Deployment Interface (Recommended)
+### 1. Clone and Navigate
 ```bash
-cd poc
-pip install -r requirements.txt
-python run.py
+git clone https://github.com/benjamin-berhault/kyros.git
+cd kyros
 ```
-Open **http://localhost:5003** - Select components, review config, deploy with real-time logs.
 
-### Option 2: Interactive CLI
+### 2. Choose Your Level
+
+**Option A: Use Makefile (Recommended)**
+```bash
+make level-1    # Team: PostgreSQL + Dagster + Superset
+# or
+make level-2    # Data Lake: + MinIO + JupyterLab + Grafana
+# or
+make level-3    # Distributed: + Spark + Trino
+```
+
+**Option B: Interactive CLI**
 ```bash
 ./kyros-cli.py
 ```
 
-### Option 3: Manual Preset
+**Option C: Manual Preset**
 ```bash
 cp presets/level-1.env .env
-./generate-docker-compose.sh
-docker compose up -d
+make up
 ```
 
-Access the dashboard at **http://localhost:5005**
+### 3. Access Services
+
+After deployment, access services at:
+
+| Service | URL | Default Credentials |
+|---------|-----|---------------------|
+| Kyros Dashboard | http://localhost:5000 | - |
+| Superset | http://localhost:8088 | admin / admin |
+| Dagster | http://localhost:3000 | - |
+| Grafana | http://localhost:3002 | admin / admin |
+| JupyterLab | http://localhost:8888 | - |
+| MinIO Console | http://localhost:9001 | kyros / kyros_dev |
+| Portainer | http://localhost:9000 | (set on first login) |
+| CloudBeaver | http://localhost:8978 | - |
 
 ## Architecture Levels
 
-| Level | Name | Stack | Data Size | Cost/Month |
-|-------|------|-------|-----------|------------|
+| Level | Name | What You Get | Data Size | Monthly Cost |
+|:-----:|------|--------------|-----------|--------------|
 | **0** | Local | DuckDB + dbt | < 50 GB | $0 |
-| **1** | Team | + PostgreSQL + Dagster + Superset | < 500 GB | $20-100 |
-| **2** | Data Lake | + MinIO + Delta Lake + JupyterLab | < 1 TB | $50-150 |
-| **3** | Distributed | + Spark + Trino | 1+ TB | $150-500 |
-| **4** | Enterprise | + Flink + Kafka + SSO | Any | $500+ |
+| **1** | Team | + PostgreSQL + Dagster + Superset + Portainer | < 500 GB | $20-100 |
+| **2** | Data Lake | + MinIO + JupyterLab + Grafana + Loki | < 1 TB | $50-150 |
+| **3** | Distributed | + Spark cluster + Trino + Code Server | 1+ TB | $150-500 |
+| **4** | Enterprise | + Kafka + Flink + full observability | Any | $500+ |
 
-### Do You Need Spark?
+### Level Selection Guide
 
-| Data Size | Recommendation |
-|-----------|----------------|
-| < 10 GB | PostgreSQL + dbt or DuckDB. Spark is overkill. |
-| 10-100 GB | DuckDB or warehouse + dbt. Spark optional. |
-| 100 GB - 1 TB | Warehouse + dbt. Spark starts making sense. |
-| 1+ TB | Spark is justified. Consider Trino for federated queries. |
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                    DO YOU NEED SPARK?                           │
+├─────────────────────────────────────────────────────────────────┤
+│                                                                 │
+│  Data < 10 GB     →  PostgreSQL + dbt or DuckDB                │
+│                      Spark is overkill.                         │
+│                                                                 │
+│  Data 10-100 GB   →  DuckDB or PostgreSQL + dbt                │
+│                      Spark is optional.                         │
+│                                                                 │
+│  Data 100GB-1TB   →  PostgreSQL/warehouse + dbt                │
+│                      Spark starts making sense.                 │
+│                                                                 │
+│  Data 1+ TB       →  Spark is justified.                       │
+│                      Consider Trino for federated queries.      │
+│                                                                 │
+└─────────────────────────────────────────────────────────────────┘
+```
 
-## Components
+## Components Reference
 
-### Data & Processing
-| Component | Description | Port | Level |
-|-----------|-------------|------|-------|
-| PostgreSQL | Relational database | 5432 | 1+ |
-| MinIO | S3-compatible object storage | 9001 | 2+ |
-| Trino | Federated SQL query engine | 8082 | 3+ |
-| Spark | Distributed processing | 8080 | 3+ |
-| Kafka | Event streaming platform | 9092 | 4+ |
-| Flink | Stream processing | 8081 | 4+ |
+### Storage & Data
+
+| Component | Description | Port | Level | Use Case |
+|-----------|-------------|:----:|:-----:|----------|
+| **PostgreSQL** | Relational database | 5432 | 1+ | OLTP, metadata, application data |
+| **MinIO** | S3-compatible object storage | 9001 | 2+ | Data lake, raw files, artifacts |
+| **Kafka** | Event streaming platform | 9092 | 4+ | Real-time data pipelines |
+
+### Processing & Query
+
+| Component | Description | Port | Level | Use Case |
+|-----------|-------------|:----:|:-----:|----------|
+| **dbt** | SQL transformations | CLI | 0+ | Data modeling, ELT |
+| **Spark** | Distributed processing | 8080 | 3+ | Large-scale batch processing |
+| **Trino** | Federated SQL engine | 8082 | 3+ | Query across multiple sources |
+| **Flink** | Stream processing | 8081 | 4+ | Real-time analytics |
 
 ### Orchestration & BI
-| Component | Description | Port | Level |
-|-----------|-------------|------|-------|
-| Dagster | Data orchestration | 3000 | 1+ |
-| Superset | BI & visualization | 8088 | 1+ |
-| dbt | SQL transformations | CLI | 0+ |
 
-### Development Tools
-| Component | Description | Port | Level |
-|-----------|-------------|------|-------|
-| JupyterLab | Notebooks & analysis | 8888 | 2+ |
-| Code Server | VS Code in browser | 8083 | 2+ |
-| CloudBeaver | Database UI | 8978 | 1+ |
-| SQLPad | SQL editor | 3001 | 1+ |
+| Component | Description | Port | Level | Use Case |
+|-----------|-------------|:----:|:-----:|----------|
+| **Dagster** | Data orchestration | 3000 | 1+ | Pipeline scheduling, monitoring |
+| **Superset** | BI & visualization | 8088 | 1+ | Dashboards, ad-hoc queries |
 
-### Infrastructure
-| Component | Description | Port | Level |
-|-----------|-------------|------|-------|
-| Kyros Dashboard | Platform control panel | 5000 | 1+ |
-| Portainer | Container management | 9000 | 1+ |
-| Grafana | Monitoring dashboards | 3002 | 2+ |
+### Development
 
-## Usage
+| Component | Description | Port | Level | Use Case |
+|-----------|-------------|:----:|:-----:|----------|
+| **JupyterLab** | Notebooks | 8888 | 2+ | Data exploration, prototyping |
+| **Code Server** | VS Code in browser | 8083 | 2+ | Remote development |
+| **CloudBeaver** | Database UI | 8978 | 1+ | SQL queries, schema browsing |
+| **SQLPad** | SQL editor | 3001 | 1+ | Quick queries, sharing |
 
-### Interactive CLI
+### Observability
 
-The CLI provides an interactive interface with GitLab-style build logs:
+| Component | Description | Port | Level | Use Case |
+|-----------|-------------|:----:|:-----:|----------|
+| **Grafana** | Monitoring dashboards | 3002 | 2+ | Metrics, logs visualization |
+| **Loki** | Log aggregation | 3100 | 2+ | Centralized logging |
+| **Promtail** | Log collector | - | 2+ | Ship logs to Loki |
+
+### Management
+
+| Component | Description | Port | Level | Use Case |
+|-----------|-------------|:----:|:-----:|----------|
+| **Kyros Dashboard** | Platform control | 5000 | 1+ | Service status, quick access |
+| **Portainer** | Container management | 9000 | 1+ | Docker UI, logs, shells |
+
+## Makefile Commands
 
 ```bash
-./kyros-cli.py
+# Deployment
+make up              # Start services (generates compose first)
+make down            # Stop all services
+make build           # Build all images
+make restart         # Restart all services
+make logs            # Follow logs from all services
+make status          # Show running containers
+make generate        # Generate docker-compose.yml from .env
+
+# Level Presets
+make level-0         # Deploy Level 0 (Local)
+make level-1         # Deploy Level 1 (Team)
+make level-2         # Deploy Level 2 (Data Lake)
+make level-3         # Deploy Level 3 (Distributed)
+make level-4         # Deploy Level 4 (Enterprise)
+
+# Development
+make test            # Run test suite
+make lint            # Run linter
+make validate        # Validate YAML files
+make clean           # Remove generated files
+
+# Utilities
+make cli             # Run interactive CLI
+make shell-postgres  # Open psql shell
+make prune           # Clean unused Docker resources
 ```
 
-Options:
-- **deploy** - Select components and deploy
-- **stop** - Stop all running services
-- **status** - Show running containers
-- **levels** - View architecture levels
+## Configuration
 
-### Using Presets
+### Environment Variables
+
+Create `.env` from a preset or customize:
 
 ```bash
-# Level 1: Team (PostgreSQL + Dagster + Superset)
-cp presets/level-1.env .env
-
-# Level 2: Data Lake (+ MinIO + JupyterLab)
+# Copy a preset
 cp presets/level-2.env .env
 
-# Level 3: Distributed (+ Spark + Trino)
-cp presets/level-3.env .env
-
-# Level 4: Enterprise (+ Kafka + Flink)
-cp presets/level-4.env .env
-
-# Generate and deploy
-./generate-docker-compose.sh
-docker compose up -d
-```
-
-### Custom Configuration
-
-Edit `.env` to enable/disable specific components:
-
-```bash
-# Toggle components
+# Or customize manually
+cat > .env << 'EOF'
+# Components
 INCLUDE_POSTGRES=true
 INCLUDE_DAGSTER=true
 INCLUDE_SUPERSET=true
-INCLUDE_MINIO=false
+INCLUDE_MINIO=true
 INCLUDE_JUPYTERLAB=true
+INCLUDE_GRAFANA=true
+INCLUDE_LOKI=true
+INCLUDE_PROMTAIL=true
 INCLUDE_TRINO=false
 INCLUDE_KAFKA=false
 INCLUDE_FLINK=false
 
 # Spark workers (Level 3+)
-WORKERS=2
+WORKERS=0
 
-# Resource allocation
+# Resources
 SPARK_WORKER_MEMORY=2G
 SPARK_EXECUTOR_MEMORY=2G
 SPARK_WORKER_CORES=2
+
+# Credentials
+POSTGRES_USER=kyros
+POSTGRES_PASSWORD=kyros_dev
+SUPERSET_ADMIN=admin
+SUPERSET_PASSWORD=admin
+EOF
 ```
 
-## Dashboard
+### Regenerate Compose
 
-The Kyros Dashboard (http://localhost:5000) provides:
-
-- **Service Status** - Real-time health monitoring
-- **System Stats** - CPU, memory, disk usage
-- **Quick Access** - Links to all platform services
-- **Decision Helper** - Guidance on when to scale
-
-## Common Commands
-
+After changing `.env`:
 ```bash
-# Start services
-docker compose up -d
-
-# Stop services
-docker compose down
-
-# View logs
-docker compose logs -f [service-name]
-
-# Rebuild specific service
-docker compose up -d --build [service-name]
-
-# Check status
-docker compose ps
-
-# Scale Spark workers
-docker compose up -d --scale spark-worker=3
+make generate   # or: python3 generate_compose.py
+make up
 ```
 
 ## Project Structure
 
 ```
 kyros/
-├── poc/                   # Web Deployment Interface
-│   ├── app/
-│   │   ├── templates/     # config.html, summary.html (real-time logs)
-│   │   ├── routes.py      # Flask routes + Socket.IO
-│   │   └── socketio.py    # Real-time log streaming
-│   └── run.py             # Entry point
-├── kyros-cli.py           # Interactive CLI (Rich TUI)
-├── generate-docker-compose.sh  # Compose generator
-├── .env                   # Active configuration
-├── presets/               # Level presets
-│   ├── level-0.env        # Local (DuckDB + dbt)
-│   ├── level-1.env        # Team (+ PostgreSQL, Dagster, Superset)
-│   ├── level-2.env        # Data Lake (+ MinIO, JupyterLab)
-│   ├── level-3.env        # Distributed (+ Spark, Trino)
-│   └── level-4.env        # Enterprise (+ Kafka, Flink, SSO)
-├── services/              # Modular service definitions
-│   ├── postgres.yml
-│   ├── dagster.yml
-│   ├── spark.yml
-│   └── ...
-├── docker/                # Dockerfiles & configs
-│   ├── kyros/             # Dashboard app
-│   ├── jupyterlab/
-│   ├── spark/
-│   └── ...
-└── VISION.md              # Project philosophy & roadmap
+├── docker/                    # Dockerfiles & service configs
+│   ├── dagster/              # Dagster configuration
+│   ├── grafana/              # Grafana provisioning
+│   │   └── provisioning/     # Dashboards & datasources
+│   ├── kyros/                # Dashboard application
+│   ├── loki/                 # Loki configuration
+│   ├── postgres/             # PostgreSQL initialization
+│   ├── promtail/             # Promtail configuration
+│   ├── spark-master/         # Spark master node
+│   ├── spark-worker/         # Spark worker nodes
+│   └── superset/             # Superset configuration
+├── services/                  # Modular service definitions
+│   ├── postgres.yml          # Database service
+│   ├── dagster.yml           # Orchestration service
+│   ├── superset.yml          # BI service
+│   ├── grafana.yml           # Monitoring service
+│   ├── loki.yml              # Log aggregation
+│   ├── promtail.yml          # Log collection
+│   └── ...                   # Other services
+├── presets/                   # Level preset configurations
+│   ├── level-0.env           # Local (DuckDB + dbt)
+│   ├── level-1.env           # Team
+│   ├── level-2.env           # Data Lake
+│   ├── level-3.env           # Distributed
+│   └── level-4.env           # Enterprise
+├── tests/                     # Test suite
+│   ├── test_cli.py           # CLI tests
+│   └── test_generate_compose.py  # Compose generator tests
+├── data/                      # Data directories (gitignored)
+│   ├── data/                 # Shared data volume
+│   ├── lab/                  # JupyterLab workspace
+│   └── transform/            # dbt project
+├── kyros-cli.py              # Interactive CLI
+├── generate_compose.py        # Compose file generator
+├── docker-compose.template.yml # Base template
+├── Makefile                   # Common commands
+└── README.md                  # This file
 ```
+
+## Observability
+
+### Viewing Logs
+
+**Via Grafana (Recommended):**
+1. Open http://localhost:3002
+2. Navigate to Dashboards → Container Logs
+3. Filter by service name
+
+**Via CLI:**
+```bash
+make logs                    # All services
+docker compose logs -f dagster  # Specific service
+```
+
+### Pre-configured Dashboards
+
+- **Container Logs** - Search and filter logs from all services
+- **Kyros Overview** - Platform health, service status, resource usage
+
+## System Requirements
+
+| Level | RAM | CPU | Disk |
+|-------|-----|-----|------|
+| 0 | 4 GB | 2 cores | 10 GB |
+| 1 | 8 GB | 4 cores | 20 GB |
+| 2 | 12 GB | 4 cores | 50 GB |
+| 3 | 16 GB | 8 cores | 100 GB |
+| 4 | 32 GB | 16 cores | 200 GB |
 
 ## The Problem We Solve
 
-The data engineering industry has an over-engineering problem. Companies with 10GB deploy Spark clusters. Startups paying $15k/month for Databricks could run on DuckDB.
+The data engineering industry has an over-engineering problem:
+- Companies with 10GB deploy Spark clusters
+- Startups pay $15k/month for Databricks when DuckDB would suffice
+- **Every vendor says "use us." Nobody says "you don't need us yet."**
 
-**Every vendor says "use us." Nobody says "you don't need us yet."**
-
-Kyros is different: Start simple. Scale when justified. Know the difference.
+Kyros is different: **Start simple. Scale when justified. Know the difference.**
 
 ## Philosophy
 
@@ -237,26 +373,18 @@ Kyros is different: Start simple. Scale when justified. Know the difference.
 - **Small teams** who want to grow into complexity, not start with it
 - **Anyone** tired of over-engineering
 
-## Prerequisites
+## Security Note
 
-- Docker and Docker Compose
-- Python 3.8+ (for CLI)
-- 8GB+ RAM recommended (16GB+ for Level 3+)
-
-## Default Credentials
-
-| Service | Username | Password |
-|---------|----------|----------|
-| PostgreSQL | kyros | kyros_dev |
-| Superset | admin | admin |
-| MinIO | kyros | kyros_dev |
-
-**Note:** Change these for production deployments.
+Default credentials are for development only. For production:
+1. Change all passwords in `.env`
+2. Enable SSL/TLS (see `docs/security.md`)
+3. Configure proper network isolation
+4. Review `SECURITY.md` for guidelines
 
 ## Contributing
 
-Contributions welcome! Feel free to open an issue or submit a pull request.
+Contributions welcome! Please read `CONTRIBUTING.md` before submitting PRs.
 
 ## License
 
-MIT License
+MIT License - See `LICENSE` for details.

@@ -1,7 +1,7 @@
 # Kyros - Data Engineering at the Right Scale
 # Common commands for development and deployment
 
-.PHONY: help up down build test lint clean logs status level-0 level-1 level-2 level-3 level-4 generate
+.PHONY: help up down build test lint clean logs status level-0 level-1 level-2 level-3 level-4 generate secrets backup restore
 
 # Default target
 help:
@@ -24,11 +24,21 @@ help:
 	@echo "    make level-4     - Deploy Level 4 (Enterprise: + Kafka + Flink)"
 	@echo ""
 	@echo "  Development:"
-	@echo "    make test        - Run test suite"
+	@echo "    make test        - Run unit tests"
+	@echo "    make test-integration - Run integration tests (requires services)"
 	@echo "    make lint        - Run linter"
+	@echo "    make pre-commit  - Run all pre-commit hooks"
 	@echo "    make validate    - Validate YAML files"
 	@echo "    make clean       - Remove generated files"
-	@echo "    make install-dev - Install development dependencies"
+	@echo "    make install-dev - Install dev dependencies + pre-commit"
+	@echo ""
+	@echo "  Security:"
+	@echo "    make secrets     - Generate secure random secrets"
+	@echo "    make secrets-enable - Enable Docker secrets mode"
+	@echo ""
+	@echo "  Backup/Restore:"
+	@echo "    make backup      - Backup all data (PostgreSQL, MinIO, Grafana)"
+	@echo "    make restore     - Restore from backup (interactive)"
 	@echo ""
 	@echo "  CLI:"
 	@echo "    make cli         - Run interactive CLI"
@@ -91,10 +101,13 @@ level-4:
 # ============================================================
 
 test:
-	python -m pytest tests/ -v
+	python -m pytest tests/ -v --ignore=tests/test_integration.py
 
 test-cov:
-	python -m pytest tests/ --cov=. --cov-report=html --cov-report=term
+	python -m pytest tests/ --cov=. --cov-report=html --cov-report=term --ignore=tests/test_integration.py
+
+test-integration:
+	python -m pytest tests/test_integration.py -v
 
 lint:
 	ruff check . --ignore E501
@@ -110,6 +123,10 @@ validate:
 
 install-dev:
 	pip install -r requirements-dev.txt
+	pre-commit install
+
+pre-commit:
+	pre-commit run --all-files
 
 clean:
 	@echo "Cleaning generated files..."
@@ -124,6 +141,39 @@ clean:
 
 cli:
 	./kyros-cli.py
+
+# ============================================================
+# Secrets Management
+# ============================================================
+
+secrets:
+	@./scripts/generate-secrets.sh
+
+secrets-enable:
+	@echo "USE_DOCKER_SECRETS=true" >> .env
+	@echo "Docker secrets enabled. Run 'make generate && make up' to apply."
+
+# ============================================================
+# Backup/Restore
+# ============================================================
+
+backup:
+	@./scripts/backup.sh all
+
+backup-postgres:
+	@./scripts/backup.sh postgres
+
+backup-minio:
+	@./scripts/backup.sh minio
+
+backup-grafana:
+	@./scripts/backup.sh grafana
+
+restore:
+	@echo "Available backups:"
+	@ls -1d backups/*/ 2>/dev/null || echo "  No backups found"
+	@echo ""
+	@read -p "Enter backup directory name: " dir && ./scripts/restore.sh "$$dir" all
 
 # ============================================================
 # Docker Utilities

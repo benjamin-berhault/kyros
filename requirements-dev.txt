@@ -10,5 +10,8 @@ PyYAML>=6.0
 # CLI dependencies (already in main project)
 rich>=13.0.0
 
-# Linting (optional)
+# Linting
 ruff>=0.1.0
+
+# Pre-commit hooks
+pre-commit>=3.0.0

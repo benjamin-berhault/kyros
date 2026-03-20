@@ -41,6 +41,7 @@ SERVICE_ENV_MAP = {
     "sqlpad": "INCLUDE_SQLPAD",
     "generator": "INCLUDE_GENERATOR",
     "keycloak": "INCLUDE_KEYCLOAK",
+    "traefik": "INCLUDE_TRAEFIK",
 }
 
 
@@ -256,7 +257,8 @@ def build_base_compose(env_vars: dict[str, str], num_workers: int) -> dict[str, 
             "cloudbeaver_data": {"driver": "local"},
             "grafana-data": {"driver": "local"},
             "loki-data": {"driver": "local"},
-            "postgres-data": {"driver": "local"}
+            "postgres-data": {"driver": "local"},
+            "traefik-certs": {"driver": "local"}
         },
         "networks": {
             "my-network": {"driver": "bridge"}
@@ -289,6 +291,59 @@ def add_spark_workers(
     """Add Spark worker services."""
     for i in range(1, num_workers + 1):
         compose["services"][f"spark-worker-{i}"] = generate_spark_worker(i, env_vars)
+
+
+def add_docker_secrets(
+    compose: dict[str, Any],
+    base_dir: Path,
+    env_vars: dict[str, str]
+) -> None:
+    """Add Docker secrets configuration when USE_DOCKER_SECRETS=true."""
+    secrets_dir = base_dir / "secrets"
+
+    # Define available secrets
+    secrets_config = {
+        "postgres_password": {
+            "file": secrets_dir / "postgres_password.txt",
+            "services": ["postgres", "dagster", "superset", "hive-metastore"]
+        },
+        "superset_password": {
+            "file": secrets_dir / "superset_password.txt",
+            "services": ["superset"]
+        },
+        "superset_secret_key": {
+            "file": secrets_dir / "superset_secret_key.txt",
+            "services": ["superset"]
+        },
+        "minio_password": {
+            "file": secrets_dir / "minio_password.txt",
+            "services": ["minio"]
+        },
+        "grafana_password": {
+            "file": secrets_dir / "grafana_password.txt",
+            "services": ["grafana"]
+        }
+    }
+
+    # Add secrets section to compose
+    compose["secrets"] = {}
+    for secret_name, config in secrets_config.items():
+        if config["file"].exists():
+            compose["secrets"][secret_name] = {
+                "file": str(config["file"].relative_to(base_dir))
+            }
+
+    # Add secrets to services
+    for secret_name, config in secrets_config.items():
+        if secret_name not in compose.get("secrets", {}):
+            continue
+
+        for service_name in config["services"]:
+            if service_name in compose["services"]:
+                service = compose["services"][service_name]
+                if "secrets" not in service:
+                    service["secrets"] = []
+                service["secrets"].append(secret_name)
 
 
 def generate_docker_compose(
@@ -325,6 +380,12 @@ def generate_docker_compose(
 
     # Add optional services
     add_optional_services(compose, env_vars, services_dir)
+
+    # Add Docker secrets if enabled
+    use_secrets = env_vars.get("USE_DOCKER_SECRETS", "false").lower() == "true"
+    if use_secrets:
+        add_docker_secrets(compose, base_dir, env_vars)
+        print("Docker secrets enabled - using files from secrets/")
 
     # Write output
     if output_path is None:

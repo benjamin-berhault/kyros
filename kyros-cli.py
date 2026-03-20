@@ -50,6 +50,7 @@ COMPONENTS = {
     "CODE_SERVER": {"name": "Code Server", "level": 2, "desc": "VS Code in browser", "port": 8083},
     "PORTAINER": {"name": "Portainer", "level": 1, "desc": "Container management", "port": 9000},
     "KYROS": {"name": "Kyros Dashboard", "level": 1, "desc": "Platform control panel", "port": 5000},
+    "TRAEFIK": {"name": "Traefik", "level": 2, "desc": "Reverse proxy with HTTPS", "port": 443},
 }
 
 LEVELS = {

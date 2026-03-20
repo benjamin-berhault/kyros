@@ -8,6 +8,9 @@
       - GF_SECURITY_ADMIN_PASSWORD=${GRAFANA_PASSWORD:-admin}
       - GF_USERS_ALLOW_SIGN_UP=false
       - GF_SERVER_ROOT_URL=http://localhost:3002
+      # Alerting
+      - GF_UNIFIED_ALERTING_ENABLED=true
+      - GF_ALERTING_ENABLED=false
     volumes:
       - ./docker/grafana/provisioning:/etc/grafana/provisioning
       - grafana-data:/var/lib/grafana
