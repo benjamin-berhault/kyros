@@ -11,6 +11,7 @@
     volumes:
       - ./data/dbt_project:/usr/app/dbt  # Mount your dbt project directory
     depends_on:
-      - spark-master
+      postgres:
+        condition: service_healthy
     networks:
       - my-network

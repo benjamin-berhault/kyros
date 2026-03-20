@@ -28,9 +28,9 @@
         reservations:
           memory: 256M
           cpus: "0.25"
-    # depends_on:
-    #   generator:
-    #     condition: service_completed_successfully
+    depends_on:
+      postgres:
+        condition: service_healthy
     networks:
       - my-network
 

@@ -18,6 +18,9 @@
       timeout: 10s
       retries: 3
       start_period: 30s
+    depends_on:
+      postgres:
+        condition: service_healthy
     # volumes:
     #   - ./docker/sqlpad/data:/var/lib/sqlpad  # Persistent storage for SQLPad data
     networks:

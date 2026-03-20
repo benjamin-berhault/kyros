@@ -1,7 +1,7 @@
 # Kyros - Data Engineering at the Right Scale
 # Common commands for development and deployment
 
-.PHONY: help up down build test lint clean logs status level-0 level-1 level-2 level-3 level-4
+.PHONY: help up down build test lint clean logs status level-0 level-1 level-2 level-3 level-4 generate
 
 # Default target
 help:
@@ -14,6 +14,7 @@ help:
 	@echo "    make restart     - Restart all services"
 	@echo "    make logs        - Follow logs from all services"
 	@echo "    make status      - Show running containers"
+	@echo "    make generate    - Generate docker-compose.yml from .env"
 	@echo ""
 	@echo "  Level Presets:"
 	@echo "    make level-0     - Deploy Level 0 (Local: DuckDB + dbt)"
@@ -36,15 +37,16 @@ help:
 # Deployment Commands
 # ============================================================
 
-up:
-	@./generate-docker-compose.sh
+generate:
+	@python3 generate_compose.py
+
+up: generate
 	docker compose up -d
 
 down:
 	docker compose down
 
-build:
-	@./generate-docker-compose.sh
+build: generate
 	docker compose build
 
 restart: down up

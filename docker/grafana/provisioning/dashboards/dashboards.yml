@@ -1,0 +1,13 @@
+apiVersion: 1
+
+providers:
+  - name: 'Kyros Dashboards'
+    orgId: 1
+    folder: 'Kyros'
+    folderUid: 'kyros'
+    type: file
+    disableDeletion: false
+    updateIntervalSeconds: 30
+    allowUiUpdates: true
+    options:
+      path: /etc/grafana/provisioning/dashboards/json

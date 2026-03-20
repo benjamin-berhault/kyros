@@ -31,6 +31,9 @@
           memory: 512M
           cpus: "0.5"
     depends_on:
-      - dagster
+      postgres:
+        condition: service_healthy
+      dagster:
+        condition: service_healthy
     networks:
       - my-network
